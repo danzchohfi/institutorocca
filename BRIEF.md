@@ -91,10 +91,10 @@ recusa. **Ambos em toda dobra.**
   referência de leitura é a Seven, não a Enjoy: nada caricato ou serifado). **[PENDENTE]** a webfont: usar
   **Jost** (Google Fonts) como substituta — geométrica, leve, mesma família de formas do wordmark. Um único
   token `--fonte` troca tudo. **Proibido serifa em qualquer lugar** (inclusive na marca).
-- **Wordmark:** "INSTITUTO" pequeno com tracking largo sobre "ROCCA" grande com tracking largo; o **A não tem
-  barra** (Λ). Arquivos já gerados a partir da Jost: `assets/img/logo.svg` (creme), `assets/img/logo-escuro.svg`
-  (escuro), `assets/img/monograma.svg` (R provisório). **[PENDENTE]** logo oficial e o **símbolo** da marca
-  (citado na Direção; não recebido) — quando chegarem, substituem os arquivos sem mudar o HTML.
+- **Wordmark oficial:** "INSTITUTO" pequeno com tracking largo sobre "ROCCA" grande com tracking largo; o **A
+  não tem barra** (Λ) — "o desenho aberto da letra A sugere evolução". Vetorizado do Manual de Identidade em
+  `assets/img/logo*.svg`; **símbolo oficial** (círculo com quatro aberturas, cruz médica em espaço negativo) em
+  `assets/img/simbolo*.svg` e `favicon.svg`. Ver regras de uso em §4.1.
 - **Minimalista, mesmo usando bordô:** espaço, pouco elemento, uma informação por bloco. A cor sustenta, não
   decora. O símbolo (quando chegar) assina sem ocupar o quadro.
 - **Fotografia:** os três no estúdio Jacarandá (painel de madeira geométrico, poltrona de couro, luminária de
@@ -132,27 +132,39 @@ retangulares sem raio, partículas quentes, vídeo de estúdio com bastidores, m
 
 ## 4. Sistema visual compartilhado (implementar em `brand/tokens.css` + `shared/base.css`)
 
-### 4.1 Paleta (valores amostrados do moodboard e do logo)
+### 4.1 Paleta — OFICIAL (Manual de Identidade Visual v1.0, pág. 18) + cores de apoio
 
-| Token | Valor | Uso |
-|-------|-------|-----|
-| `--cor-bordo` | `#4A1312` | cor principal: hero, seções-âncora, botões sobre claro |
-| `--cor-bordo-profundo` | `#33090B` | gradientes do hero, footer, sombras de cor |
-| `--cor-bordo-claro` | `#6B1F1E` | hover, linhas sobre bordô, painel ripado |
-| `--cor-creme` | `#F2E8D9` | **texto sobre bordô/escuro**, botões sobre escuro, logo |
-| `--cor-osso` | `#EFE7DA` | fundo das seções de respiro (off-white) |
-| `--cor-tinta` | `#2A1A16` | texto sobre osso ("preto aberto" quente) |
-| `--cor-madeira` | `#B79A7C` | acento quente: numerais, linhas, hover sobre osso |
-| `--cor-marmore` | `#483927` | superfícies escuras secundárias, bordas sobre osso |
-| `--cor-grafite` | `#534B46` | texto secundário sobre osso, ícones |
-| `--cor-oliva` | `#6B6A45` | acento alternativo (regra do feed), tags, detalhes |
-| `--cor-creme-60` | `rgba(242,232,217,.6)` | texto secundário sobre bordô |
-| `--cor-whatsapp` | `#25D366` | só no hover do botão flutuante |
+| Token | Valor | Origem / uso |
+|-------|-------|--------------|
+| `--cor-bordo` | `#550000` | **Rocca 01 — Bordô** (RGB 85,0,0). Cor principal: hero, seções-âncora, botões sobre claro, logo sobre fundos claros |
+| `--cor-areia` (alias `--cor-madeira`) | `#B8997D` | **Rocca 02 — Areia**. Acento quente: numerais, linhas, hover sobre osso, eyebrows sobre bordô. **Nunca** como cor do logo |
+| `--cor-oliva-escuro` (alias `--cor-marmore`) | `#4A3B26` | **Rocca 03 — Oliva Escuro**. Superfícies escuras secundárias, bordas sobre osso, tags |
+| `--cor-cinza-quente` (alias `--cor-grafite`) | `#544D45` | **Rocca 04 — Cinza Quente**. Texto secundário sobre osso, ícones, divisores |
+| `--cor-creme` | `#F2E8D9` | Apoio (Direção de Marca: "nem branco puro"). **Texto sobre bordô** e logo sobre escuro — o "branco" da marca na tela |
+| `--cor-osso` | `#EFE7DA` | Apoio. Fundo das seções de respiro (off-white) |
+| `--cor-tinta` | `#2A1A16` | Apoio. Texto sobre osso ("preto aberto" quente) |
+| `--cor-bordo-profundo` | `#3B0000` | Derivada. Footer, base de gradientes sutis de fundo (nunca no logo) |
+| `--cor-bordo-claro` | `#6E1212` | Derivada. Hover e linhas sobre bordô |
+| `--cor-creme-60` | `rgba(242,232,217,.6)` | Texto secundário sobre bordô (só ≥ 16px) |
+| `--cor-whatsapp` | `#25D366` | Só no hover do botão flutuante |
+
+Regras do manual que valem para o site: logo em **bordô sobre fundos claros** e em **branco/creme sobre fundos
+escuros ou coloridos**; **proibida a versão em areia**; nada de gradiente, sombra, distorção ou efeito sobre o
+logo; área de proteção = altura do "R"; **largura mínima digital do logotipo = 250 px** — abaixo disso usa-se
+o **símbolo** (portanto a nav no mobile usa o símbolo, não o wordmark). Símbolo: círculo com quatro aberturas
+que desenham uma cruz médica em espaço negativo; usar em favicon, foto de perfil, marca-d'água, padrões
+gráficos e detalhes de acabamento (o cartão do manual repete os arcos do símbolo como padrão na borda).
+
+Arquivos oficiais já vetorizados a partir do manual, em `assets/img/`: `logo.svg` (creme), `logo-branco.svg`,
+`logo-bordo.svg` (= `logo-escuro.svg`, para fundos claros), `simbolo.svg` (creme), `simbolo-bordo.svg`,
+`simbolo-branco.svg`, `favicon.svg` (símbolo creme em círculo bordô).
 
 ### 4.2 Tipografia
 
 - **`--fonte: 'Jost', 'Semplicita Pro', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif`** (Google Fonts
-  `Jost:ital,wght@0,200;0,300;0,400;0,500;1,300`). **Sem serifa em lugar nenhum.**
+  `Jost:ital,wght@0,200;0,300;0,400;0,500;1,300`). O manual (pág. 21) confirma **Semplicita Pro** como tipografia
+  de apoio (Light, Regular, Medium, SemiBold, Bold e itálicas); a webfont ainda não foi entregue — Jost é a
+  substituta até lá. **Sem serifa em lugar nenhum.**
 - **H1:** Jost 200/300, `clamp(2.6rem, 5.4vw, 5.8rem)`, `line-height: 1.04`, `letter-spacing: -0.005em`,
   caixa normal (sentence case, com ponto final, como a endline). **Assinatura:** H1/H2 de 2 linhas têm a
   **2ª linha em itálico 300**; no desktop a 2ª linha desloca `padding-left: 6–12%`; no mobile, 0.
@@ -174,7 +186,7 @@ retangulares sem raio, partículas quentes, vídeo de estúdio com bastidores, m
 - **Nav (padrão CLP, igual nos 3):** esquerda "MENU" (2 linhas + palavra); centro `logo.svg` (creme) — sobre
   seção clara troca para `logo-escuro.svg`; direita: ícone WhatsApp + botão "AGENDAR AVALIAÇÃO". Transparente
   sobre o hero; ao rolar, fundo bordô 88% + blur. Menu em tela cheia bordô: Frentes (5), Os médicos (3),
-  Conteúdo, Contato. Mobile: MENU + logo + WhatsApp.
+  Conteúdo, Contato. Mobile: MENU + **símbolo** (o wordmark não pode ter menos de 250 px) + WhatsApp.
 - **WhatsApp flutuante:** círculo creme com o glifo do WhatsApp em bordô (hover: fundo `--cor-whatsapp`,
   glifo creme), canto inferior direito, aparece após a 1ª dobra, `aria-label="Falar no WhatsApp"`.
 - **Footer** bordô-profundo: logo, descritor, "Moema, São Paulo" **[PENDENTE endereço, telefone, horários]**,
@@ -336,7 +348,7 @@ Cada conceito lista, em comentário no fim do HTML e em `CONCEITOS.md`, exatamen
 
 | Material | Onde entra | Esforço |
 |----------|-----------|---------|
-| Identidade visual completa (Drive não acessível daqui) | `brand/tokens.css` (cores/fonte) + `assets/img/logo*.svg` + símbolo | minutos |
+| Webfont Semplicita Pro (o manual confirma a fonte, mas não traz os arquivos) | `@font-face` + `--fonte` em `brand/tokens.css` | minutos |
 | Webfont Semplicita Pro | `@font-face` em `brand/tokens.css` + `--fonte` | minutos |
 | Foto real da entrada | `assets/img/entrada-clinica.jpg` (+ `-mobile.jpg`) | minutos |
 | Filme institucional | `assets/video/institucional.mp4` + `poster.jpg` | minutos |
