@@ -44,11 +44,10 @@ html.menu-aberto, html.menu-aberto body { overflow: hidden; }
 /* ---- 3. Tipografia --------------------------------------------------------- */
 h1, .h1 {
   font-size: var(--h1);
-  font-weight: 300;
+  font-weight: 300; /* Semplicita Pro não tem 200: Light (300) em todos os tamanhos */
   line-height: 1.04;
   letter-spacing: -.005em;
 }
-@media (min-width: 900px) { h1, .h1 { font-weight: 200; } }
 
 h2, .h2 { font-size: var(--h2); font-weight: 300; line-height: 1.1; letter-spacing: -.005em; }
 h3, .h3 { font-size: var(--h3); font-weight: 300; line-height: 1.25; }
@@ -201,7 +200,8 @@ h3 + p { margin-top: .8rem; }
 }
 .nav--absoluta { position: absolute; }
 .nav--solida {
-  background: rgba(74, 19, 18, .88);
+  background: rgba(85, 0, 0, .88);
+  background: color-mix(in srgb, var(--cor-bordo) 88%, transparent);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
@@ -214,7 +214,7 @@ html[data-tema="claro"]:not(.menu-aberto) .nav {
   --botao-hover-fg: var(--cor-creme);
   --foco: var(--cor-bordo);
 }
-html[data-tema="claro"]:not(.menu-aberto) .nav--solida { background: rgba(239, 231, 218, .88); }
+html[data-tema="claro"]:not(.menu-aberto) .nav--solida { background: rgba(239, 231, 218, .88); background: color-mix(in srgb, var(--cor-osso) 88%, transparent); }
 html.menu-aberto .nav { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
 
 /* Botão MENU: duas linhas + palavra */
@@ -243,13 +243,22 @@ html.menu-aberto .nav { background: transparent; -webkit-backdrop-filter: none; 
 .nav__menu[aria-expanded="true"] .nav__menu-linhas::after { bottom: 4px; transform: rotate(-45deg); }
 .nav__menu-txt { padding-top: .1em; }
 
-/* Marca: dois <img>; o creme é o padrão, o escuro entra sobre seção clara */
+/* Marca: dois eixos independentes.
+   1) viewport: símbolo (.nav__simbolo) abaixo de 640px; wordmark (.nav__wordmark)
+      a partir de 640px, sempre com 250px de largura (mínimo digital do manual).
+   2) tema: .nav__logo--creme por padrão; .nav__logo--escuro (bordô) sobre seção clara. */
 .nav__marca { justify-self: center; display: block; line-height: 0; }
-.nav__logo { height: 30px; width: auto; }
+.nav__wordmark { display: none; }
+.nav__simbolo { display: block; }
+.nav__simbolo .nav__logo { height: 34px; width: auto; }
+.nav__wordmark .nav__logo { width: 250px; height: auto; }
 .nav__logo--escuro { display: none; }
 html[data-tema="claro"]:not(.menu-aberto) .nav__logo--creme { display: none; }
 html[data-tema="claro"]:not(.menu-aberto) .nav__logo--escuro { display: block; }
-@media (min-width: 900px) { .nav__logo { height: 34px; } }
+@media (min-width: 640px) {
+  .nav__wordmark { display: block; }
+  .nav__simbolo { display: none; }
+}
 
 .nav__acoes { justify-self: end; display: flex; align-items: center; gap: 28px; }
 .nav__whats { display: block; line-height: 0; color: inherit; transition: opacity var(--dur-rapida); }
@@ -390,7 +399,7 @@ html[data-tema="claro"]:not(.menu-aberto) .nav__logo--escuro { display: block; }
   font-size: .75rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; line-height: 1.4;
 }
 .tile__sub { display: block; margin-top: .5rem; font-size: .95rem; line-height: 1.5; color: var(--fg-2); max-width: 40ch; }
-.tile--sobreposto .tile__corpo { position: absolute; inset: auto 0 0 0; background: linear-gradient(to top, rgba(51, 9, 11, .85), transparent); color: var(--cor-creme); }
+.tile--sobreposto .tile__corpo { position: absolute; inset: auto 0 0 0; background: linear-gradient(to top, rgba(59, 0, 0, .85), transparent); color: var(--cor-creme); }
 .tile--sobreposto .tile__sub { color: var(--cor-creme-60); }
 
 /* ---- 9. Lista numerada (pilares / provas) ---------------------------------- */
@@ -624,7 +633,7 @@ html:not(.js) .whats { opacity: 1; visibility: visible; transform: none; }
 /* ---- 16. Footer ------------------------------------------------------------ */
 .footer { padding-block: clamp(64px, 8vw, 120px) 32px; font-size: .95rem; }
 .footer__grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
-.footer__logo img { height: 40px; width: auto; }
+.footer__logo img { width: min(260px, 100%); height: auto; } /* wordmark nunca abaixo de 250px */
 .footer__descritor { margin-top: 1.4rem; color: var(--fg-2); max-width: 34ch; line-height: 1.6; }
 .footer__titulo { margin-bottom: 1rem; }
 .footer__lista { display: flex; flex-direction: column; gap: .35rem; }
@@ -650,7 +659,7 @@ html:not(.js) .whats { opacity: 1; visibility: visible; transform: none; }
   color: var(--cor-creme);
   display: grid; place-items: center; align-content: center; gap: 28px;
 }
-.preloader__marca img { height: clamp(40px, 5vw, 56px); width: auto; }
+.preloader__marca img { width: min(280px, 72vw); height: auto; }
 .preloader__linha { width: min(220px, 40vw); height: 1px; background: rgba(242, 232, 217, .18); overflow: hidden; }
 .preloader__linha::after {
   content: ""; display: block; height: 100%; background: var(--cor-creme);
@@ -669,7 +678,7 @@ dialog.lightbox {
   color: var(--cor-creme);
   overflow: visible;
 }
-dialog.lightbox::backdrop { background: rgba(51, 9, 11, .9); }
+dialog.lightbox::backdrop { background: rgba(59, 0, 0, .9); background: color-mix(in srgb, var(--cor-bordo-profundo) 90%, transparent); }
 dialog.lightbox[open] { animation: faq-abrir .5s var(--ease-out) both; }
 .lightbox__media { background: var(--cor-bordo-profundo); }
 .lightbox__media video, .lightbox__media img, .lightbox__media iframe { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }

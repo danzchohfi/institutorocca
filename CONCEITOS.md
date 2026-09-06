@@ -1,4 +1,4 @@
-# Instituto Rocca — três conceitos para a home
+# Instituto Rocca — conceitos para a home
 
 > Documento de apresentação. Cada conceito é um protótipo navegável em `concepts/<conceito>/index.html`.
 > Os três nascem da mesma Direção de Marca, usam o mesmo sistema visual e o mesmo texto; o que muda é o hero,
@@ -16,8 +16,8 @@ desses blocos entram as seções de apoio (Frentes, A casa, A primeira consulta,
 mais comuns), todas escritas na mesma voz e checadas pelo léxico (`node scripts/lexico.mjs`).
 
 **A identidade oficial.** Bordô Rocca 01 como cor principal e creme como cor de letra; areia, oliva escuro e
-cinza quente como apoio; tipografia fina sem serifa (Jost como substituta da Semplicita Pro até a webfont
-chegar); wordmark e símbolo vetorizados do manual; regra dos 250 px (no mobile a nav usa o símbolo).
+cinza quente como apoio; Semplicita Pro (auto-hospedada, pesos 300–600) sem serifa; wordmark e símbolo a partir
+dos vetores oficiais; regra dos 250 px (no mobile a nav usa o símbolo).
 
 **"Clássico no vínculo. Avançado na medicina."** A madeira, o mármore e a luz quente dos renders do projeto de
 interiores dão o ambiente clássico; a tela do exame (off-white, uma linha só), a bioimpedância e o método dão o
@@ -71,7 +71,14 @@ aparece), FAQ com as três objeções das personas.
 | Número do WhatsApp | `href="https://wa.me/55..."` nos três HTML | Cliente |
 | Cores de apoio (creme, osso, tinta) | `brand/tokens.css` | A confirmar com o designer da identidade |
 
-## 7. Como foi feito
+## 7. Próximas versões (lembrete)
+
+- **Versão com Higgsfield:** hero e bastidores com vídeo/imagens gerados por IA enquanto a diária na clínica
+  não acontece. Pedido pelo cliente para uma rodada futura, depois da escolha dos conceitos.
+- Concepto "Linha" (a tela do exame como hero: uma linha de evolução desenhando em off-white) ficou como
+  alternativa não construída.
+
+## 8. Como foi feito
 
 Briefing (`BRIEF.md`) a partir da Direção de Marca, do Planejamento de Conteúdo, do Estudo Preliminar de
 Interiores e do Manual de Identidade; sistema visual compartilhado (`brand/`, `shared/`); um construtor por

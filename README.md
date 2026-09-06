@@ -1,6 +1,6 @@
 # Instituto Rocca — conceitos de home
 
-Três conceitos navegáveis para a **home** do site do Instituto Rocca (Moema, São Paulo), construídos sobre a
+Seis conceitos navegáveis para a **home** do site do Instituto Rocca (Moema, São Paulo), construídos sobre a
 Direção de Marca, o Planejamento de Conteúdo e o projeto de interiores da clínica.
 
 | # | Conceito | Hero | Abrir |
@@ -8,6 +8,9 @@ Direção de Marca, o Planejamento de Conteúdo e o projeto de interiores da cl�
 | 1 | **Matéria** | Partículas three.js em creme/madeira sobre bordô | `concepts/01-materia/index.html` |
 | 2 | **Chegada** | Foto da entrada/recepção da clínica | `concepts/02-chegada/index.html` |
 | 3 | **Presença** | Vídeo institucional (placeholder até a gravação) | `concepts/03-presenca/index.html` |
+| 4 | **Conversa** | Claro, tipográfico, o médico em vídeo vertical | `concepts/04-conversa/index.html` |
+| 5 | **Símbolo** | O símbolo da marca como máscara e dispositivo de scroll | `concepts/05-simbolo/index.html` |
+| 6 | **Slides** | Slides fotográficos de tela cheia, ritmo de campanha | `concepts/06-slides/index.html` |
 
 Leia **`CONCEITOS.md`** para o racional de cada conceito, a estrutura seção a seção, o que cada diária de
 gravação precisa entregar e a recomendação. **`BRIEF.md`** é o briefing criativo que ancorou tudo.
@@ -26,7 +29,9 @@ disco (`file://`), sem servidor.
 ## Estrutura
 
 ```
-brand/tokens.css        variáveis de marca (cores, fonte, escala) — troque aqui a identidade
+brand/tokens.css        variáveis de marca (paleta oficial Rocca 01–04, @font-face da Semplicita Pro, escala)
+brand/fontes/           Semplicita Pro 300/400/500/600 + itálicas (woff2 + ttf), auto-hospedada
+brand/MANUAL.md         resumo do Manual de Identidade aplicado ao site
 brand/SISTEMA.md        documentação do sistema visual
 shared/base.css         reset, tipografia, grid e componentes comuns (nav, botões, cards, footer…)
 shared/ui.js            Lenis + GSAP/ScrollTrigger, nav, menu, reveals, formulário, lightbox
@@ -34,7 +39,7 @@ shared/partials.html    marcação canônica de nav, menu, WhatsApp, formulário
 src/<conceito>/         código-fonte JS de cada conceito (empacotado por esbuild)
 concepts/<conceito>/    index.html + concept.css + app.js (bundle) de cada conceito
 concepts/00-kit/        kit do sistema (style guide vivo)
-assets/img/             renders do projeto de interiores + logo vetorial provisório
+assets/img/             renders do projeto de interiores + logo e símbolo oficiais (SVG) + favicon
 assets/placeholders/    SVGs que ocupam o lugar de retratos, vídeos e telas até a mídia real chegar
 assets/video/           ponha aqui institucional.mp4 (hero do conceito 3) e os vídeos dos médicos
 scripts/build.mjs       build (esbuild)
@@ -48,8 +53,6 @@ docs/screenshots/       capturas de cada conceito (desktop, tablet, mobile)
 
 | Material | Caminho |
 |----------|---------|
-| Logo oficial (SVG) | `assets/img/logo.svg` (creme) e `assets/img/logo-escuro.svg` |
-| Webfont Semplicita Pro | `@font-face` + `--fonte` em `brand/tokens.css` |
 | Foto real da entrada | `assets/img/entrada-clinica.jpg` (16:9) e `entrada-clinica-mobile.jpg` (4:5) |
 | Filme institucional (loop mudo do hero) | `assets/video/institucional.mp4` (+ `poster.jpg`) |
 | Filme completo (lightbox, com som) | `assets/video/institucional-completo.mp4` |
