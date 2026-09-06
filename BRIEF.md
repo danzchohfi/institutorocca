@@ -355,3 +355,63 @@ Cada conceito lista, em comentário no fim do HTML e em `CONCEITOS.md`, exatamen
 | Vídeos verticais dos médicos | `assets/video/tulio.mp4`, `breno.mp4`, `ana-paula.mp4` | minutos |
 | Retratos dos médicos | `assets/img/retrato-tulio.jpg` etc. (substituem os SVGs) | minutos |
 | Endereço, telefone, horários, CRM, Instagram | `shared/partials.html` (footer/contato) → copiar nos 3 HTML | 15 min |
+
+## 6b. Conceitos adicionais (4–6) — para a segunda rodada
+
+O cliente vai ver três; a agência quer escolher entre seis bem diferentes entre si. Os três abaixo se afastam
+dos três primeiros em superfície, protagonista e mecânica. Mesmo sistema (`brand/`, `shared/`), mesmo texto
+(`COPY.md`), mesma espinha de seções — como nos conceitos 1–3.
+
+### Conceito 4 — **Conversa** (claro, tipográfico, o médico fala)
+
+- **Ideia:** *"Aqui quem fala é uma pessoa."* É a regra do feed levada ao site: **base neutra (osso) e o bordô
+  como ponto**. O hero é claro, quase só tipografia: a frase-mãe enorme em Semplicita Light sobre osso, e à
+  direita um **vídeo vertical 9:16** do médico se apresentando ("Quem eu sou", gravado no estúdio Jacarandá —
+  placeholder `retrato-tulio.svg`), com o nome, a frente e uma linha em primeira pessoa
+  ("Eu vejo isso toda semana. — Dr. Túlio Bovo"). Um seletor discreto alterna os três médicos (Túlio / Breno /
+  Ana Paula) trocando vídeo, nome e a frase; o "seu médico" é escolha de quem chega.
+- **Estrutura:** O problema e O mecanismo como texto corrido grande, tipo carta; as **Perguntas da semana** viram
+  o dispositivo principal da página — uma lista longa de perguntas (10–12 títulos do banco, BRIEF §5.1 + os do
+  Planejamento) com nome do médico e "Ver resposta"; As provas como três frases em bordô sobre osso; A casa em
+  uma faixa horizontal de fotos pequenas; o Fecho em bordô (único bloco escuro grande além do footer).
+- **Motion:** discreto — reveals por linha, troca de médico com crossfade, sublinhados que desenham. Sem pin.
+- **Diferença essencial:** é o único conceito claro; o protagonista é a pessoa e a pergunta, não a casa nem a
+  tecnologia. Risco a evitar: parecer blog. O tamanho da tipografia e o vídeo vertical evitam isso.
+
+### Conceito 5 — **Símbolo** (a geometria da marca em movimento)
+
+- **Ideia:** *"Quatro aberturas, uma casa."* O símbolo oficial (círculo com quatro aberturas) vira o dispositivo
+  visual da home: no hero, um anel gigante em creme sobre bordô, com a mídia (render/vídeo) visível **dentro do
+  círculo** como máscara; ao rolar, o anel gira lentamente e as quatro aberturas se alinham com quatro textos —
+  as **quatro provas/frentes** — que entram uma a uma (scrub). Depois o anel se abre e se dissolve em um padrão
+  de arcos (como no cartão do manual) que vira textura das seções seguintes.
+- **Estrutura:** hero (anel + frase-mãe centralizada); O problema em bordô com o padrão de arcos ao fundo; O
+  método em osso com numerais grandes; **Frentes em scroll horizontal** (cinco painéis que deslizam com o scroll
+  vertical, ScrollTrigger pin) — é o momento "avançado" do site; O mecanismo com a tela do exame; As provas dentro
+  de três círculos; A casa; Os médicos; A primeira consulta; FAQ; Fecho.
+- **Técnica:** SVG do símbolo (`assets/img/simbolo.svg`) com `clip-path`/`mask` sobre a mídia; GSAP ScrollTrigger
+  com pin e scrub; sem WebGL. Respeitar o manual: o símbolo nunca é distorcido nem recebe gradiente — ele gira,
+  escala e vira máscara, só.
+- **Diferença essencial:** monocromático bordô/creme, geométrico, cinético, "app-like". É o mais moderno dos seis.
+
+### Conceito 6 — **Slides** (fotográfico, editorial de moda, ritmo Seven)
+
+- **Ideia:** *"Três médicos, uma casa — em tela cheia."* Hero em **slides fotográficos de tela cheia** que
+  avançam sozinhos (7 s) ou por setas/teclado: slide 1 = a recepção com a frase-mãe centralizada; slide 2 = o
+  retrato dos três no estúdio (placeholder `video-conversa.svg`) com "Três médicos, uma casa."; slide 3 = a tela
+  do exame acesa no consultório com "Investigar antes de prescrever."; slide 4 = "Todo mundo sabe da mulher. E o
+  homem?" sobre o consultório escuro. Título grande em caixa alta com tracking (é o lugar onde a caixa alta cabe),
+  indicador de slides fino em creme, transição por crossfade + leve zoom.
+- **Estrutura:** depois do hero, a página é mais direta e comercial: **Frentes em grade 2×2 de tiles escuros**
+  (padrão Seven) com foto sangrada e rótulo em caixa alta; O problema/O mecanismo como declaração com respiro
+  enorme (eyebrow + título em caixa alta com tracking, centralizados, em osso); As provas em três colunas; Os
+  médicos com retratos P&B grandes e nome + frente (sem idade — a marca não usa depoimento como prova); A casa em
+  split-screen; A primeira consulta; Fecho.
+- **Motion:** slideshow (GSAP timeline, pausa em hover e em `document.hidden`), parallax nos tiles, reveals.
+- **Diferença essencial:** fotografia como protagonista e caixa alta nos títulos; é o mais "campanha" dos seis.
+  Cuidado: nada de antes-e-depois, nada de idade nos retratos, nada de exclamação.
+
+### Ainda não agora (lembrete pedido pelo cliente)
+
+- **Versão com Higgsfield** (vídeo/imagem gerados por IA para o hero e os bastidores, enquanto a diária não
+  acontece): fica para uma rodada futura, depois de escolhidos os conceitos. Anotado em `CONCEITOS.md`.
