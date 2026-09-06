@@ -727,3 +727,11 @@ html.js [data-split-linhas].split-pronto { opacity: 1; }
   .preloader { display: none; }
   .whats { opacity: 1; visibility: visible; transform: none; }
 }
+
+
+/* ---- Marca na nav: wordmark no desktop, símbolo no mobile (manual: wordmark nunca abaixo de 250 px) ---- */
+.nav__simbolo { display: none; height: 28px; width: auto; }
+@media (max-width: 640px) {
+  .nav__marca img:not(.nav__simbolo) { display: none; }
+  .nav__simbolo { display: block; }
+}

@@ -28,7 +28,7 @@ e os cortes por breakpoint continuam valendo.
 Todos usam só a paleta do `brand/tokens.css` (bordô `#4A1312`, bordô-profundo `#33090B`, bordô-claro `#6B1F1E`,
 creme `#F2E8D9`, osso `#EFE7DA`, tinta `#2A1A16`, madeira `#B79A7C`, mármore `#483927`, grafite `#534B46`) e
 misturas entre elas. Nunca preto puro nem branco puro. Sem filtros (só gradientes), então renderizam leves em qualquer
-navegador. Texto interno em Jost com fallback sem serifa — dentro de `<img>` o navegador não baixa webfont,
+navegador. Texto interno em Semplicita Pro/Jost com fallback sem serifa — dentro de `<img>` o navegador não baixa webfont,
 então o rótulo cai no sans do sistema; é um rótulo pequeno e discreto, não faz diferença.
 Gerados por script (`scripts` do agente, não versionado): quem quiser refazer altera os valores e regenera.
 
@@ -76,7 +76,7 @@ cada arquivo abaixo serve de `alt`.
 | `sala-aplicacao.jpg` | 1334×1952 (vertical) | estudo | Estudo da sala de aplicação: bancada branca com cuba e laptop, cadeira giratória creme, prateleira e pufe marrom |
 | `sala-procedimento.jpg` | 1978×2024 (1:1) | estudo | Estudo da sala de procedimento: maca branca, banqueta, escadinha e aparelho com tela em carrinho |
 | `planta.jpg` | 1272×1536 | planta | Planta baixa humanizada da clínica: recepção com tapete redondo, consultórios, salas de soroterapia e bioimpedância, copa e banheiros |
-| `logo.svg` | vetor | marca | Wordmark Instituto Rocca em creme (sobre bordô) — provisório, gerado a partir da Jost |
+| `logo.svg` | vetor | marca | Wordmark oficial Instituto Rocca em creme (sobre bordô), a partir do vetor enviado pelo cliente |
 | `logo-escuro.svg` | vetor | marca | Wordmark em tom escuro (sobre osso) — provisório |
 | `monograma.svg` | vetor | marca | Monograma "R" provisório — sai quando o símbolo oficial chegar |
 
