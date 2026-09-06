@@ -18,7 +18,7 @@
 .hero__nota { margin-top: 3rem; font-size: .875rem; }
 .hero .acoes { margin-top: 2.6rem; }
 @media (min-width: 900px) {
-  .hero .titulo-2l { max-width: 14ch; }
+  .hero .titulo-2l { max-width: 18ch; }
 }
 
 /* Cabeça de cada bloco do kit */

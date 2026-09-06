@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="../../brand/tokens.css">
     <link rel="stylesheet" href="../../shared/base.css">
     <link rel="stylesheet" href="./concept.css">
+    <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#550000">
+    <script src="./app.js" defer></script>
   ============================================================================
 -->
 
@@ -39,9 +42,11 @@
 <!-- ===== 2. NAV (padrão CLP: MENU | marca | WhatsApp + botão) =====
      - ui.js adiciona .nav--solida ao rolar > 40px.
      - html[data-tema="claro"] (seção com data-tema="claro" sob a nav) troca
-       o logo creme pelo escuro e o botão para bordô. Os dois <img> ficam no
+       o logo creme pelo bordô e o botão para bordô. Os <img> ficam todos no
        HTML; o CSS alterna.
-     - No mobile o botão "Agendar avaliação" some (fica MENU + logo + WhatsApp). -->
+     - Marca: wordmark de 250px (mínimo digital do manual) a partir de 640px;
+       abaixo disso, o símbolo oficial (creme / bordô conforme o tema).
+     - No mobile o botão "Agendar avaliação" some (fica MENU + símbolo + WhatsApp). -->
 <header class="nav" id="topo">
   <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu">
     <span class="nav__menu-linhas" aria-hidden="true"></span>
@@ -49,7 +54,8 @@
   </button>
 
   <a class="nav__marca" href="#" aria-label="Instituto Rocca — início">
-        <img class="nav__simbolo" src="../../assets/img/simbolo.svg" alt="" width="28" height="28" aria-hidden="true">
+    <img class="nav__simbolo" src="../../assets/img/simbolo.svg" alt="" width="666" height="666" aria-hidden="true">
+    <img class="nav__simbolo nav__simbolo--escuro" src="../../assets/img/simbolo-bordo.svg" alt="" width="666" height="666" aria-hidden="true">
     <img class="nav__logo nav__logo--creme" src="../../assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
     <img class="nav__logo nav__logo--escuro" src="../../assets/img/logo-escuro.svg" alt="" aria-hidden="true" width="1686" height="410">
   </a>

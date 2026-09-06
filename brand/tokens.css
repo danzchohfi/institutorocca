@@ -4,27 +4,30 @@
    Fonte de verdade das cores, da fonte, da escala tipográfica, dos espaços,
    dos easings e das camadas (z-index). Todo CSS dos conceitos lê daqui.
 
-   COMO TROCAR PELA IDENTIDADE OFICIAL (quando o material chegar):
+   ESTADO: identidade oficial aplicada (Manual de Identidade v1.0, pág. 18 e 21).
+   - Paleta Rocca 01–04 nos tokens --cor-bordo, --cor-areia, --cor-oliva-escuro,
+     --cor-cinza-quente; os nomes antigos (--cor-madeira, --cor-marmore,
+     --cor-grafite, --cor-oliva) continuam valendo como aliases.
+   - Semplicita Pro auto-hospedada em brand/fontes/ (300/400/500/600 + itálicas)
+     pelos @font-face abaixo; Jost fica só como reserva na pilha de --fonte.
+     Não há peso 200: títulos usam 300 (Light). Nenhum HTML carrega Google Fonts.
 
-   1) Fonte — Semplicita Pro JÁ está auto-hospedada (brand/fontes/, @font-face abaixo); Jost fica só como reserva:
-      a) copie os arquivos da webfont para brand/fontes/ e declare aqui em cima:
-         @font-face { font-family: 'Semplicita Pro'; font-weight: 300; font-style: normal;
-                      src: url('fontes/SemplicitaPro-Light.woff2') format('woff2'); font-display: swap; }
-         (repita para 200/400/500 e para a itálica 300)
-      b) troque a ordem em --fonte: 'Semplicita Pro' primeiro, 'Jost' depois;
-      c) remova a <link> do Google Fonts do <head> de cada concepts/XX/index.html.
-      Nada mais muda: títulos, botões, rótulos e menu herdam de --fonte.
-
-   2) Paleta oficial — substitua só os valores de --cor-* abaixo. As superfícies
-      (.sup-bordo, .sup-osso, .sup-profundo) e os componentes leem das variáveis
-      derivadas (--bg, --fg, --fg-2, --acento, --linha, --rotulo, --botao-*),
-      então trocar as cores-base atualiza o site inteiro.
-
-   3) Logo e símbolo — troque assets/img/logo.svg (creme), logo-escuro.svg
-      (escuro) e monograma.svg mantendo os nomes; o HTML não muda.
+   COMO TROCAR:
+   1) Fonte — substitua os arquivos em brand/fontes/ mantendo os nomes, ou
+      edite os @font-face abaixo e a ordem em --fonte. Títulos, botões,
+      rótulos e menu herdam de --fonte; nada mais muda.
+   2) Cores — troque só os valores --cor-* em :root. As superfícies
+      (.sup-bordo, .sup-osso, .sup-profundo) e os componentes leem das
+      variáveis derivadas (--bg, --fg, --fg-2, --acento, --rotulo, --linha,
+      --botao-*), então trocar as cores-base atualiza o site inteiro.
+   3) Logo e símbolo — assets/img/logo.svg (creme), logo-escuro.svg (= logo-bordo.svg,
+      fundos claros), simbolo.svg / simbolo-bordo.svg e favicon.svg; trocar os
+      arquivos mantendo os nomes, o HTML não muda.
 
    Regras fixas: nunca #000 nem #FFF; nunca serifa; nunca border-radius > 0
-   (só o círculo do WhatsApp e o do play).
+   (só o círculo do WhatsApp e o do play); logo nunca em areia, nunca com
+   gradiente ou efeito; wordmark nunca abaixo de 250px de largura (abaixo
+   disso, símbolo).
    ============================================================================ */
 
 /* ---- Semplicita Pro (tipografia oficial, auto-hospedada em brand/fontes/) ---- */
@@ -50,7 +53,7 @@
   --cor-bordo:          #550000; /* Rocca 01 — Bordô (manual) */
   --cor-areia:          #B8997D; /* Rocca 02 — Areia (manual) */
   --cor-oliva-escuro:   #4A3B26; /* Rocca 03 — Oliva Escuro (manual) */
-  --cor-cinza-quente:   #544D45; /* Rocca 04 — Cinza Quente (manual) */ /* principal: hero, seções-âncora, botões sobre claro */
+  --cor-cinza-quente:   #544D45; /* Rocca 04 — Cinza Quente (manual) */
   --cor-bordo-profundo: #3B0000; /* gradientes do hero, footer, sombras de cor */
   --cor-bordo-claro:    #6E1212; /* hover, linhas sobre bordô, painel ripado */
   --cor-creme:          #F2E8D9; /* texto sobre bordô/escuro, botões sobre escuro, logo */
@@ -67,9 +70,9 @@
   --fonte: 'Semplicita Pro', 'Jost', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
 
   /* ---- Escala tipográfica ------------------------------------------------ */
-  --h1:      clamp(2.6rem, 5.4vw, 5.8rem);               /* Jost 200/300, lh 1.04 */
-  --h2:      clamp(1.9rem, 3.4vw, 3.4rem);               /* Jost 300, lh 1.1 */
-  --h3:      clamp(1.25rem, 1.1rem + .7vw, 1.75rem);     /* Jost 300, lh 1.25 */
+  --h1:      clamp(2.6rem, 5.4vw, 5.8rem);               /* peso 300, lh 1.04 */
+  --h2:      clamp(1.9rem, 3.4vw, 3.4rem);               /* peso 300, lh 1.1 */
+  --h3:      clamp(1.25rem, 1.1rem + .7vw, 1.75rem);     /* peso 300, lh 1.25 */
   --corpo:   clamp(1rem, .94rem + .25vw, 1.125rem);      /* 16px mobile → 18px desktop */
   --eyebrow: clamp(.6875rem, .65rem + .15vw, .75rem);    /* 11–12px, caixa alta, tracking .28em */
   --medida:  62ch;                                       /* largura máxima de leitura */

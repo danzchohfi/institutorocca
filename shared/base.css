@@ -244,20 +244,22 @@ html.menu-aberto .nav { background: transparent; -webkit-backdrop-filter: none; 
 .nav__menu-txt { padding-top: .1em; }
 
 /* Marca: dois eixos independentes.
-   1) viewport: símbolo (.nav__simbolo) abaixo de 640px; wordmark (.nav__wordmark)
-      a partir de 640px, sempre com 250px de largura (mínimo digital do manual).
-   2) tema: .nav__logo--creme por padrão; .nav__logo--escuro (bordô) sobre seção clara. */
-.nav__marca { justify-self: center; display: block; line-height: 0; }
-.nav__wordmark { display: none; }
-.nav__simbolo { display: block; }
-.nav__simbolo .nav__logo { height: 34px; width: auto; }
-.nav__wordmark .nav__logo { width: 250px; height: auto; }
-.nav__logo--escuro { display: none; }
-html[data-tema="claro"]:not(.menu-aberto) .nav__logo--creme { display: none; }
-html[data-tema="claro"]:not(.menu-aberto) .nav__logo--escuro { display: block; }
+   1) viewport: wordmark (.nav__logo, sempre 250px — mínimo digital do manual)
+      a partir de 640px; abaixo disso o símbolo oficial (.nav__simbolo).
+   2) tema: versão creme por padrão; versão bordô (--escuro) sobre seção clara. */
+.nav__marca { justify-self: center; display: flex; align-items: center; line-height: 0; }
+.nav__logo, .nav__simbolo { display: none; }
 @media (min-width: 640px) {
-  .nav__wordmark { display: block; }
-  .nav__simbolo { display: none; }
+  .nav__logo { width: 250px; height: auto; }
+  .nav__logo--creme { display: block; }
+  html[data-tema="claro"]:not(.menu-aberto) .nav__logo--creme { display: none; }
+  html[data-tema="claro"]:not(.menu-aberto) .nav__logo--escuro { display: block; }
+}
+@media (max-width: 639.98px) {
+  .nav__simbolo { display: block; height: 32px; width: auto; }
+  .nav__simbolo--escuro { display: none; }
+  html[data-tema="claro"]:not(.menu-aberto) .nav__simbolo { display: none; }
+  html[data-tema="claro"]:not(.menu-aberto) .nav__simbolo--escuro { display: block; }
 }
 
 .nav__acoes { justify-self: end; display: flex; align-items: center; gap: 28px; }
@@ -738,9 +740,3 @@ html.js [data-split-linhas].split-pronto { opacity: 1; }
 }
 
 
-/* ---- Marca na nav: wordmark no desktop, símbolo no mobile (manual: wordmark nunca abaixo de 250 px) ---- */
-.nav__simbolo { display: none; height: 28px; width: auto; }
-@media (max-width: 640px) {
-  .nav__marca img:not(.nav__simbolo) { display: none; }
-  .nav__simbolo { display: block; }
-}

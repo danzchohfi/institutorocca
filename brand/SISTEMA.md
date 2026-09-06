@@ -123,7 +123,7 @@ node scripts/lexico.mjs                       # varre concepts/**/index.html e C
 `shot.mjs` abre o HTML via `file://` em 1440×900, 768×1024 e 390×844, rola a página inteira (dispara reveals e
 lazy), volta ao topo, salva `<prefixo>-<viewport>.png` (e `-full.png` com `--full`, com todos os reveals
 forçados) e imprime um JSON com erros de console, `pageerror`, requests falhas, overflow horizontal, tamanho do
-`app.js` e fontes carregadas (`principal` deve ser `Semplicita Pro` com `principalCarregada: true`). Sai com 1
+`app.js` e fontes carregadas (`semplicitaCarregada` deve ser `true` e `familiaDoH1` = `"Semplicita Pro"`). Sai com 1
 se houver `pageerror`. `lexico.mjs` sai com 1 se encontrar termo vetado ou "!" fora de um elemento com
 `data-lexico-ok` (HTML) ou linha `[lexico-ok]` (md). A única exceção sancionada é "Você sai entendendo o próprio
 resultado" — marque esse `<p>` com `data-lexico-ok`.
