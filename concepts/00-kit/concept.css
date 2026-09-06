@@ -1,0 +1,84 @@
+/* ============================================================================
+   Kit do sistema — estilos só desta página (o sistema vive em shared/base.css)
+   ============================================================================ */
+
+/* Hero de referência (cada conceito faz o seu) */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding-block: calc(var(--nav-altura) + 40px) 120px;
+  background:
+    radial-gradient(120% 80% at 80% 100%, rgba(51, 9, 11, .9), transparent 60%),
+    var(--cor-bordo);
+}
+.hero__in { max-width: var(--container); }
+.hero__sub { max-width: 40ch; margin-top: 2rem; }
+.hero__nota { margin-top: 3rem; font-size: .875rem; }
+.hero .acoes { margin-top: 2.6rem; }
+@media (min-width: 900px) {
+  .hero .titulo-2l { max-width: 14ch; }
+}
+
+/* Cabeça de cada bloco do kit */
+.kit-cabeca { margin-bottom: clamp(2.5rem, 6vw, 5rem); }
+.kit-cabeca h2 { max-width: 20ch; }
+.kit-cabeca p:not(.eyebrow) { margin-top: 1.2rem; color: var(--fg-2); }
+.grid-12 > .kit-cabeca { margin-bottom: 0; }
+
+.kit-classe {
+  display: inline-block;
+  font-family: var(--fonte);
+  font-size: .8em;
+  font-weight: 400;
+  letter-spacing: .03em;
+  padding: .1em .5em;
+  margin: .1em .05em;
+  background: rgba(183, 154, 124, .16);
+  color: var(--fg);
+  white-space: nowrap;
+}
+.kit-rotulo {
+  display: block;
+  font-size: var(--eyebrow);
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--rotulo);
+  margin-bottom: 1rem;
+}
+.kit-rotulo .kit-classe { text-transform: none; letter-spacing: .03em; }
+
+/* Amostras de cor */
+.kit-amostras {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem var(--coluna-gap);
+}
+@media (min-width: 640px) { .kit-amostras { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 900px) { .kit-amostras { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1200px) { .kit-amostras { grid-template-columns: repeat(6, 1fr); } }
+.amostra { display: flex; flex-direction: column; gap: .5rem; }
+.amostra__cor { display: block; aspect-ratio: 4 / 3; }
+.amostra__cor--borda { box-shadow: inset 0 0 0 1px var(--linha); }
+.amostra__nome { font-size: .875rem; font-weight: 400; letter-spacing: .02em; }
+.amostra__valor { font-size: .8rem; color: var(--fg-2); line-height: 1.5; }
+
+/* Espécime tipográfico */
+.kit-especime { display: grid; gap: clamp(2.5rem, 5vw, 4.5rem); }
+.kit-especime__linha { padding-top: 1.4rem; border-top: 1px solid var(--linha); }
+.kit-especime__linha .h1, .kit-especime__linha .h2 { max-width: 16ch; }
+.kit-especime__linha > p + p { margin-top: 1em; }
+
+/* Botões nos dois fundos */
+.kit-duplo { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .kit-duplo { grid-template-columns: 1fr 1fr; } }
+.kit-duplo__lado { padding: clamp(40px, 6vw, 96px) var(--gutter); }
+.kit-duplo__lado.sup-osso { box-shadow: inset 0 0 0 1px var(--linha); }
+.kit-duplo .acoes { margin-top: 0; }
+
+/* Parallax de demonstração */
+.kit-parallax { overflow: hidden; aspect-ratio: 4 / 5; background: var(--cor-bordo-profundo); }
+.kit-parallax img { width: 100%; height: 118%; object-fit: cover; margin-top: -9%; }
+@media (min-width: 900px) { .kit-parallax { aspect-ratio: 3 / 4; } }
