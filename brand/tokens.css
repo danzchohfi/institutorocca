@@ -6,7 +6,7 @@
 
    COMO TROCAR PELA IDENTIDADE OFICIAL (quando o material chegar):
 
-   1) Fonte — Semplicita Pro no lugar da Jost:
+   1) Fonte — Semplicita Pro JÁ está auto-hospedada (brand/fontes/, @font-face abaixo); Jost fica só como reserva:
       a) copie os arquivos da webfont para brand/fontes/ e declare aqui em cima:
          @font-face { font-family: 'Semplicita Pro'; font-weight: 300; font-style: normal;
                       src: url('fontes/SemplicitaPro-Light.woff2') format('woff2'); font-display: swap; }
@@ -27,6 +27,24 @@
    (só o círculo do WhatsApp e o do play).
    ============================================================================ */
 
+/* ---- Semplicita Pro (tipografia oficial, auto-hospedada em brand/fontes/) ---- */
+@font-face { font-family: 'Semplicita Pro'; font-weight: 300; font-style: normal; font-display: swap;
+  src: url('fontes/SemplicitaPro-300.woff2') format('woff2'), url('fontes/SemplicitaPro-300.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 300; font-style: italic; font-display: swap;
+  src: url('fontes/SemplicitaPro-300i.woff2') format('woff2'), url('fontes/SemplicitaPro-300i.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 400; font-style: normal; font-display: swap;
+  src: url('fontes/SemplicitaPro-400.woff2') format('woff2'), url('fontes/SemplicitaPro-400.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 400; font-style: italic; font-display: swap;
+  src: url('fontes/SemplicitaPro-400i.woff2') format('woff2'), url('fontes/SemplicitaPro-400i.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 500; font-style: normal; font-display: swap;
+  src: url('fontes/SemplicitaPro-500.woff2') format('woff2'), url('fontes/SemplicitaPro-500.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 500; font-style: italic; font-display: swap;
+  src: url('fontes/SemplicitaPro-500i.woff2') format('woff2'), url('fontes/SemplicitaPro-500i.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 600; font-style: normal; font-display: swap;
+  src: url('fontes/SemplicitaPro-600.woff2') format('woff2'), url('fontes/SemplicitaPro-600.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 600; font-style: italic; font-display: swap;
+  src: url('fontes/SemplicitaPro-600i.woff2') format('woff2'), url('fontes/SemplicitaPro-600i.ttf') format('truetype'); }
+
 :root {
   /* ---- Paleta — oficial do Manual de Identidade v1.0 (pág. 18) + apoio (BRIEF §4.1) ---------------------------------------------- */
   --cor-bordo:          #550000; /* Rocca 01 — Bordô (manual) */
@@ -46,7 +64,7 @@
   --cor-whatsapp:       #25D366; /* só no hover do botão flutuante */
 
   /* ---- Fonte (BRIEF §4.2) ----------------------------------------------- */
-  --fonte: 'Jost', 'Semplicita Pro', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+  --fonte: 'Semplicita Pro', 'Jost', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
 
   /* ---- Escala tipográfica ------------------------------------------------ */
   --h1:      clamp(2.6rem, 5.4vw, 5.8rem);               /* Jost 200/300, lh 1.04 */

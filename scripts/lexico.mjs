@@ -109,13 +109,25 @@ function textoDoHtml(html) {
   return decodificar([s, ...atributos].join(' \n ')).replace(/[ \t]+/g, ' ');
 }
 
+/* No .md: pula linhas com [lexico-ok], a seção cujo título fala de léxico
+   (checklist que cita os termos de propósito), menções curtas entre aspas
+   ("resultado") e a frase sancionada pela Direção. */
+const FRASE_SANCIONADA = /entendendo o pr[óo]prio resultado/gi;
 function textoDoMd(md) {
-  return md
-    .split('\n')
-    .filter((l) => !/\[lexico-ok\]/i.test(l))
+  const linhas = [];
+  let dentroDeSecaoLexico = false;
+  for (const l of md.split('\n')) {
+    const titulo = l.match(/^(#{1,6})\s+(.*)$/);
+    if (titulo) dentroDeSecaoLexico = /l[ée]xico/i.test(titulo[2]);
+    if (dentroDeSecaoLexico || /\[lexico-ok\]/i.test(l)) continue;
+    linhas.push(l);
+  }
+  return linhas
     .join('\n')
     .replace(/<!--[\s\S]*?-->/g, ' ')
-    .replace(/<[^>]+>/g, ' ');
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[\u201c"]([^\u201d"\n]{1,40})[\u201d"]/g, ' ')
+    .replace(FRASE_SANCIONADA, 'entendendo o próprio [ok]');
 }
 
 /* ---- varredura ------------------------------------------------------------- */

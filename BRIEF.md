@@ -155,16 +155,17 @@ o **símbolo** (portanto a nav no mobile usa o símbolo, não o wordmark). Símb
 que desenham uma cruz médica em espaço negativo; usar em favicon, foto de perfil, marca-d'água, padrões
 gráficos e detalhes de acabamento (o cartão do manual repete os arcos do símbolo como padrão na borda).
 
-Arquivos oficiais já vetorizados a partir do manual, em `assets/img/`: `logo.svg` (creme), `logo-branco.svg`,
+Arquivos oficiais (vetores enviados pelo cliente: LOGO_VETOR e Vetor_Simbolo) em `assets/img/`: `logo.svg` (creme), `logo-branco.svg`,
 `logo-bordo.svg` (= `logo-escuro.svg`, para fundos claros), `simbolo.svg` (creme), `simbolo-bordo.svg`,
 `simbolo-branco.svg`, `favicon.svg` (símbolo creme em círculo bordô).
 
 ### 4.2 Tipografia
 
-- **`--fonte: 'Jost', 'Semplicita Pro', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif`** (Google Fonts
-  `Jost:ital,wght@0,200;0,300;0,400;0,500;1,300`). O manual (pág. 21) confirma **Semplicita Pro** como tipografia
-  de apoio (Light, Regular, Medium, SemiBold, Bold e itálicas); a webfont ainda não foi entregue — Jost é a
-  substituta até lá. **Sem serifa em lugar nenhum.**
+- **`--fonte: 'Semplicita Pro', 'Jost', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif`**. A **Semplicita Pro**
+  (tipografia oficial, manual pág. 21) está **auto-hospedada** em `brand/fontes/` (300/400/500/600 + itálicas) via
+  `@font-face` em `brand/tokens.css`. **Não incluir `<link>` do Google Fonts** nos HTML (o Chromium desta máquina
+  não alcança o Google Fonts e a fonte local dispensa isso). Pesos: títulos 300 (Light), corpo 300/400, destaques
+  500, rótulos 400. Não existe peso 200: onde o BRIEF diz "200/300", usar 300. **Sem serifa em lugar nenhum.**
 - **H1:** Jost 200/300, `clamp(2.6rem, 5.4vw, 5.8rem)`, `line-height: 1.04`, `letter-spacing: -0.005em`,
   caixa normal (sentence case, com ponto final, como a endline). **Assinatura:** H1/H2 de 2 linhas têm a
   **2ª linha em itálico 300**; no desktop a 2ª linha desloca `padding-left: 6–12%`; no mobile, 0.
@@ -348,7 +349,6 @@ Cada conceito lista, em comentário no fim do HTML e em `CONCEITOS.md`, exatamen
 
 | Material | Onde entra | Esforço |
 |----------|-----------|---------|
-| Webfont Semplicita Pro (o manual confirma a fonte, mas não traz os arquivos) | `@font-face` + `--fonte` em `brand/tokens.css` | minutos |
 | Webfont Semplicita Pro | `@font-face` em `brand/tokens.css` + `--fonte` | minutos |
 | Foto real da entrada | `assets/img/entrada-clinica.jpg` (+ `-mobile.jpg`) | minutos |
 | Filme institucional | `assets/video/institucional.mp4` + `poster.jpg` | minutos |
