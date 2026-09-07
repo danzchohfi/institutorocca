@@ -740,3 +740,7 @@ html.js [data-split-linhas].split-pronto { opacity: 1; }
 }
 
 
+
+
+/* ---- Atributo hidden vence qualquer display de componente (img/canvas são block) ---- */
+[hidden] { display: none !important; }

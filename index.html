@@ -1,104 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Instituto Rocca — conceitos de home</title>
-<meta name="description" content="Três conceitos navegáveis para a home do site do Instituto Rocca, Moema.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;1,300&display=swap">
-<style>
-  :root{--bordo:#4A1312;--profundo:#33090B;--claro:#6B1F1E;--creme:#F2E8D9;--osso:#EFE7DA;--tinta:#2A1A16;--madeira:#B79A7C;--grafite:#534B46}
-  *{box-sizing:border-box;margin:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'Jost','Semplicita Pro','Avenir Next','Helvetica Neue',Arial,sans-serif;font-weight:300;background:var(--bordo);color:var(--creme);line-height:1.6;-webkit-font-smoothing:antialiased}
-  a{color:inherit}
-  .topo{padding:clamp(56px,9vw,120px) clamp(20px,5vw,96px) clamp(40px,6vw,80px);max-width:1440px;margin:0 auto}
-  .marca{width:min(260px,60vw);display:block;margin-bottom:clamp(40px,6vw,72px)}
-  .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--madeira);font-weight:400;margin-bottom:18px}
-  h1{font-weight:200;font-size:clamp(2.2rem,5vw,4.6rem);line-height:1.05;letter-spacing:-.005em;max-width:16ch}
-  h1 em{font-style:italic;font-weight:300;display:block;padding-left:clamp(0px,6vw,90px)}
-  .intro{max-width:60ch;margin-top:28px;color:rgba(242,232,217,.75);font-size:1.05rem}
-  .lista{max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,96px) clamp(80px,10vw,160px);display:grid;gap:clamp(20px,3vw,40px);grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
-  .card{display:block;text-decoration:none;background:var(--profundo);border:1px solid rgba(242,232,217,.12);transition:border-color .4s,transform .6s cubic-bezier(.22,1,.36,1)}
-  .card:hover{border-color:var(--madeira);transform:translateY(-4px)}
-  .card__media{aspect-ratio:16/10;overflow:hidden;background:var(--claro)}
-  .card__media img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
-  .card:hover .card__media img{transform:scale(1.04)}
-  .card__corpo{padding:26px 26px 30px}
-  .card__num{font-size:11px;letter-spacing:.28em;color:var(--madeira);font-weight:400}
-  .card h2{font-weight:300;font-size:1.7rem;margin:10px 0 8px;line-height:1.15}
-  .card h2 em{font-style:italic;color:var(--madeira)}
-  .card p{color:rgba(242,232,217,.72);font-size:.98rem}
-  .card__cta{display:inline-block;margin-top:20px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:400;border-bottom:1px solid var(--madeira);padding-bottom:4px}
-  .rodape{background:var(--osso);color:var(--tinta);padding:clamp(48px,7vw,96px) clamp(20px,5vw,96px)}
-  .rodape__in{max-width:1440px;margin:0 auto;display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
-  .rodape h3{font-weight:400;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--grafite);margin-bottom:12px}
-  .rodape p,.rodape li{font-size:.95rem;color:var(--tinta)}
-  .rodape ul{padding-left:18px}
-  .rodape a{color:var(--bordo)}
-  .kit{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:400;color:var(--bordo);text-decoration:none;border-bottom:1px solid var(--bordo);padding-bottom:3px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instituto Rocca — conceitos de home</title>
+  <meta name="description" content="Seis conceitos navegáveis para a home do site do Instituto Rocca, Moema.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#550000">
+  <link rel="stylesheet" href="brand/tokens.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { background: var(--cor-bordo); color: var(--cor-creme); font-family: var(--fonte); -webkit-font-smoothing: antialiased; }
+    body { margin: 0; min-height: 100vh; }
+    a { color: inherit; }
+    .topo { padding: clamp(40px, 7vw, 96px) var(--gutter, clamp(20px, 5vw, 96px)) clamp(24px, 4vw, 56px); max-width: 1440px; margin: 0 auto; }
+    .topo img { width: 250px; height: auto; display: block; }
+    .eyebrow { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--cor-areia); margin: clamp(32px, 5vw, 64px) 0 16px; font-weight: 400; }
+    h1 { font-weight: 300; font-size: clamp(2rem, 4.4vw, 4rem); line-height: 1.06; margin: 0; letter-spacing: -.005em; max-width: 22ch; }
+    h1 em { font-style: italic; display: block; padding-left: 8%; }
+    .intro { font-weight: 300; font-size: clamp(1rem, .96rem + .25vw, 1.125rem); line-height: 1.7; max-width: 62ch; color: var(--cor-creme-60, rgba(242,232,217,.6)); margin: 24px 0 0; }
+    .grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: clamp(20px, 3vw, 40px); padding: 0 var(--gutter, clamp(20px, 5vw, 96px)) clamp(64px, 8vw, 120px); max-width: 1440px; margin: 0 auto; }
+    .card { display: block; text-decoration: none; background: var(--cor-bordo-profundo, #3B0000); border: 1px solid rgba(242,232,217,.12); transition: border-color .4s, transform .6s cubic-bezier(.22,1,.36,1); }
+    .card:hover, .card:focus-visible { border-color: var(--cor-areia); transform: translateY(-4px); outline: none; }
+    .card__media { aspect-ratio: 16 / 10; overflow: hidden; background: #2b0000; border-bottom: 1px solid rgba(242,232,217,.12); }
+    .card__media img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 1.2s cubic-bezier(.22,1,.36,1); }
+    .card:hover .card__media img { transform: scale(1.03); }
+    .card__media--vazio { display: grid; place-items: center; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--cor-areia); }
+    .card__corpo { padding: 24px 24px 28px; }
+    .card__num { font-size: 12px; letter-spacing: .28em; color: var(--cor-areia); text-transform: uppercase; }
+    .card__titulo { font-weight: 300; font-size: 1.75rem; margin: 8px 0 6px; line-height: 1.1; }
+    .card__desc { font-weight: 300; font-size: 1rem; line-height: 1.6; color: var(--cor-creme-60, rgba(242,232,217,.6)); margin: 0 0 18px; }
+    .card__acao { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; border-bottom: 1px solid var(--cor-areia); padding-bottom: 4px; }
+    .rodape { padding: 0 var(--gutter, clamp(20px, 5vw, 96px)) clamp(48px, 6vw, 96px); max-width: 1440px; margin: 0 auto; font-weight: 300; font-size: .9rem; color: var(--cor-creme-60, rgba(242,232,217,.6)); line-height: 1.7; }
+    .rodape a { text-decoration-color: var(--cor-areia); }
+  </style>
 </head>
 <body>
-<header class="topo">
-  <img class="marca" src="assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
-  <p class="eyebrow">Conceitos de home · Setembro de 2026</p>
-  <h1>Três formas de dizer <em>Seu médico. Sua melhor versão.</em></h1>
-  <p class="intro">Mesmo sistema visual, mesmo texto da Direção de Marca, mesma espinha de seções. O que muda é o hero e o ritmo: partículas, a chegada à clínica ou o filme institucional. Abra cada um em tela cheia e role até o fim.</p>
-</header>
+  <header class="topo">
+    <img src="assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
+    <p class="eyebrow">Conceitos de home · Moema</p>
+    <h1>Seu médico. <em>Sua melhor versão.</em></h1>
+    <p class="intro">Seis caminhos para a home do site, sobre a mesma Direção de Marca, o mesmo texto e o mesmo sistema visual. O que muda é o hero, o ritmo e como a mídia atravessa a página. O racional de cada um está em <a href="CONCEITOS.md">CONCEITOS.md</a>.</p>
+  </header>
 
-<main class="lista">
-  <a class="card" href="concepts/01-materia/index.html">
-    <div class="card__media"><img src="docs/screenshots/01-materia-desktop.png" alt="Conceito 1, Matéria: partículas em creme sobre bordô" loading="lazy"></div>
-    <div class="card__corpo">
-      <span class="card__num">CONCEITO 01</span>
-      <h2>Matéria <em>— partículas</em></h2>
-      <p>O que se dispersou volta ao lugar: milhares de partículas em creme e madeira convergem para uma forma que respira, reagem ao mouse e se dissolvem no scroll. three.js + GSAP.</p>
-      <span class="card__cta">Abrir o conceito →</span>
-    </div>
-  </a>
-  <a class="card" href="concepts/02-chegada/index.html">
-    <div class="card__media"><img src="docs/screenshots/02-chegada-desktop.png" alt="Conceito 2, Chegada: foto da recepção da clínica" loading="lazy"></div>
-    <div class="card__corpo">
-      <span class="card__num">CONCEITO 02</span>
-      <h2>Chegada <em>— a entrada</em></h2>
-      <p>Você chegou: a recepção em tela cheia, madeira, mármore e luz quente, como capa de revista de arquitetura. O mais próximo da Clinique La Prairie no respiro.</p>
-      <span class="card__cta">Abrir o conceito →</span>
-    </div>
-  </a>
-  <a class="card" href="concepts/03-presenca/index.html">
-    <div class="card__media"><img src="docs/screenshots/03-presenca-desktop.png" alt="Conceito 3, Presença: filme institucional no hero" loading="lazy"></div>
-    <div class="card__corpo">
-      <span class="card__num">CONCEITO 03</span>
-      <h2>Presença <em>— o filme</em></h2>
-      <p>A casa como ela é: o filme institucional gravado na clínica ocupa o hero (por enquanto, os renders em movimento), com bastidores das duas diárias e os médicos em vídeo.</p>
-      <span class="card__cta">Abrir o conceito →</span>
-    </div>
-  </a>
-</main>
+  <main class="grade">
+    <a class="card" href="concepts/01-materia/index.html">
+      <div class="card__media"><img src="docs/screenshots/01-materia-desktop.png" alt="Conceito 1 — Matéria" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Conceito 01</span><h2 class="card__titulo">Matéria</h2><p class="card__desc">Partículas three.js em creme e areia sobre bordô: o que se dispersou volta ao lugar.</p><span class="card__acao">Abrir →</span></div>
+    </a>
+    <a class="card" href="concepts/02-chegada/index.html">
+      <div class="card__media"><img src="docs/screenshots/02-chegada-desktop.png" alt="Conceito 2 — Chegada" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Conceito 02</span><h2 class="card__titulo">Chegada</h2><p class="card__desc">A entrada da clínica em tela cheia: madeira, mármore e luz quente, como capa de revista de arquitetura.</p><span class="card__acao">Abrir →</span></div>
+    </a>
+    <a class="card" href="concepts/03-presenca/index.html">
+      <div class="card__media"><img src="docs/screenshots/03-presenca-desktop.png" alt="Conceito 3 — Presença" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Conceito 03</span><h2 class="card__titulo">Presença</h2><p class="card__desc">O filme institucional no hero, como a Direção de Marca previu; a casa com gente.</p><span class="card__acao">Abrir →</span></div>
+    </a>
+    <a class="card" href="concepts/04-conversa/index.html">
+      <div class="card__media"><img src="docs/screenshots/04-conversa-desktop.png" alt="Conceito 4 — Conversa" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Conceito 04</span><h2 class="card__titulo">Conversa</h2><p class="card__desc">Claro e tipográfico: o médico fala em vídeo vertical e as perguntas da semana conduzem a página.</p><span class="card__acao">Abrir →</span></div>
+    </a>
+    <a class="card" href="concepts/05-simbolo/index.html">
+      <div class="card__media"><img src="docs/screenshots/05-simbolo-desktop.png" alt="Conceito 5 — Símbolo" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Conceito 05</span><h2 class="card__titulo">Símbolo</h2><p class="card__desc">A geometria do símbolo em movimento: anel, máscara e frentes em scroll horizontal.</p><span class="card__acao">Abrir →</span></div>
+    </a>
+    <a class="card" href="concepts/06-slides/index.html">
+      <div class="card__media"><img src="docs/screenshots/06-slides-desktop.png" alt="Conceito 6 — Slides" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Conceito 06</span><h2 class="card__titulo">Slides</h2><p class="card__desc">Fotográfico e editorial: slides de tela cheia e tiles escuros, no ritmo da referência Seven.</p><span class="card__acao">Abrir →</span></div>
+    </a>
+  </main>
 
-<footer class="rodape">
-  <div class="rodape__in">
-    <div>
-      <h3>Documentos</h3>
-      <ul>
-        <li><a href="CONCEITOS.md">CONCEITOS.md</a> — racional, seções, produção e recomendação</li>
-        <li><a href="BRIEF.md">BRIEF.md</a> — briefing criativo consolidado</li>
-        <li><a href="brand/SISTEMA.md">brand/SISTEMA.md</a> — sistema visual</li>
-      </ul>
-      <a class="kit" href="concepts/00-kit/index.html">Ver o kit do sistema →</a>
-    </div>
-    <div>
-      <h3>O que ainda é placeholder</h3>
-      <p>Retratos e vídeos dos médicos, filme institucional, logo oficial e webfont, endereço, telefone, horários e CRM. Cada um tem um caminho de troca documentado no README.</p>
-    </div>
-    <div>
-      <h3>Produzido por</h3>
-      <p>Vitamina Publicitária · Instituto Rocca, Moema · Protótipos de apresentação, não site publicado.</p>
-    </div>
-  </div>
-</footer>
+  <footer class="rodape">
+    <p>Kit do sistema visual: <a href="concepts/00-kit/index.html">concepts/00-kit</a>. Briefing: <a href="BRIEF.md">BRIEF.md</a>. Texto da home: <a href="COPY.md">COPY.md</a>. Protótipos internos da Vitamina Publicitária para o Instituto Rocca.</p>
+  </footer>
 </body>
 </html>

@@ -145,7 +145,39 @@ for (const vp of viewports) {
       document.querySelectorAll('.preloader').forEach((el) => el.remove());
     });
     await espera(400);
-    await page.screenshot({ path: `${prefixo}-${vp.nome}-full.png`, fullPage: true });
+    // Página inteira por segmentos (o fullPage do Chromium repete o topo acima de ~8.000 px nesta máquina).
+    const alturaDoc = await page.evaluate(() => document.documentElement.scrollHeight);
+    const passo = vp.height;
+    const partes = [];
+    for (let y = 0; y < alturaDoc; y += passo) {
+      await page.evaluate((yy) => window.scrollTo(0, yy), y);
+      await page.waitForTimeout(350);
+      const parte = `${prefixo}-${vp.nome}-parte${String(partes.length).padStart(3, '0')}.png`;
+      await page.screenshot({ path: parte, fullPage: false });
+      partes.push(parte);
+    }
+    await page.evaluate(() => window.scrollTo(0, 0));
+    const ultimaAltura = alturaDoc - (partes.length - 1) * passo;
+    const py = `
+from PIL import Image
+import sys, os
+partes = sys.argv[2:]
+imgs = [Image.open(p) for p in partes]
+w = imgs[0].width; passo = imgs[0].height
+ultima = ${Math.max(1, Math.round(ultimaAltura))}
+total = passo * (len(imgs) - 1) + min(ultima, passo)
+out = Image.new('RGB', (w, total), (85, 0, 0))
+y = 0
+for i, im in enumerate(imgs):
+    if i == len(imgs) - 1 and ultima < passo:
+        im = im.crop((0, passo - ultima, w, passo))
+    out.paste(im, (0, y)); y += im.height
+out.save(sys.argv[1], optimize=True)
+for p in partes: os.remove(p)
+`;
+    const { spawnSync } = await import('node:child_process');
+    const r = spawnSync('python3', ['-c', py, `${prefixo}-${vp.nome}-full.png`, ...partes], { encoding: 'utf8' });
+    if (r.status !== 0) console.error('stitch falhou:', r.stderr);
   }
 
   relatorio.viewports[vp.nome] = r;

@@ -526,7 +526,8 @@ export function revelarHero(container = $('[data-hero]')) {
   if (prefersReducedMotion) {
     itens.forEach((el) => el.classList.add('revelado', 'split-pronto'));
     grupos.forEach((g) => g.classList.add('revelado'));
-    gsap.set($$('.linha__in', container), { clearProps: 'transform' });
+    const linhasRM = $$('.linha__in', container);
+    if (linhasRM.length) gsap.set(linhasRM, { clearProps: 'transform' });
     return null;
   }
 
