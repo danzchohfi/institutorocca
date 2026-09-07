@@ -26,6 +26,8 @@ gravação precisa entregar e a recomendação. **`BRIEF.md`** é o briefing cri
 | 5 | **Símbolo** | [abrir](https://claude.ai/code/artifact/1cc9a883-130d-4579-ac5b-33f664b28533) |
 | 6 | **Slides** | [abrir](https://claude.ai/code/artifact/47d687a7-64e2-4817-97c3-d71b42522333) |
 
+Hub com os seis: [abrir](https://claude.ai/code/artifact/fccaed8e-d9d4-469b-aef8-2f9904fc4170).
+
 Páginas privadas por padrão; compartilhe pelo menu da página. Geradas por `node scripts/build-artifacts.mjs` (cada conceito em um HTML único com fontes e imagens embutidas).
 
 ## Como rodar
