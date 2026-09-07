@@ -25,7 +25,7 @@ for f in glob.glob(src+'/*.jpg'):
     im.save(os.path.join(out, os.path.basename(f)), quality=74, optimize=True, progressive=True)
 PY`, { stdio: 'inherit' })
 
-const MIME = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.gif': 'image/gif' }
+const MIME = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.gif': 'image/gif', '.woff2': 'font/woff2', '.woff': 'font/woff', '.ttf': 'font/ttf' }
 
 function dataUri(absPath) {
   const ext = path.extname(absPath).toLowerCase()
@@ -40,6 +40,7 @@ function dataUri(absPath) {
 }
 
 function inlineCssUrls(css, cssDir) {
+  css = css.replace(/,\s*url\((['"]?)[^'")]+\.ttf\1\)\s*format\((['"]?)truetype\2\)/g, '')
   return css.replace(/url\((['"]?)([^'")]+)\1\)/g, (m, q, ref) => {
     if (/^(data:|https?:|#)/.test(ref)) return m
     const abs = path.resolve(cssDir, ref.split('?')[0].split('#')[0])
@@ -122,4 +123,5 @@ function packConcept(dir) {
   console.log('gerado', path.relative(ROOT, outPath), (fs.statSync(outPath).size / 1024 / 1024).toFixed(2), 'MB')
 }
 
-for (const dir of ['00-kit', '01-materia', '02-chegada', '03-presenca']) packConcept(dir)
+const alvo = process.argv.slice(2).filter(a => !a.startsWith('--'))
+for (const dir of (alvo.length ? alvo : ['00-kit', '01-materia', '02-chegada', '03-presenca', '04-conversa', '05-simbolo', '06-slides'])) packConcept(dir)
