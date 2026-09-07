@@ -25,6 +25,7 @@ gravação precisa entregar e a recomendação. **`BRIEF.md`** é o briefing cri
 | 4 | **Conversa** | [abrir](https://claude.ai/code/artifact/8f8ea080-dcb3-408b-ba91-ca64c7766096) |
 | 5 | **Símbolo** | [abrir](https://claude.ai/code/artifact/1cc9a883-130d-4579-ac5b-33f664b28533) |
 | 6 | **Slides** | [abrir](https://claude.ai/code/artifact/47d687a7-64e2-4817-97c3-d71b42522333) |
+| 7 | **Letras** (só o hero) | [abrir](https://claude.ai/code/artifact/396e8436-193e-4f84-bccf-efcceb4e8412) |
 
 Hub com os seis: [abrir](https://claude.ai/code/artifact/fccaed8e-d9d4-469b-aef8-2f9904fc4170).
 

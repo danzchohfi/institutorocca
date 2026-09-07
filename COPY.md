@@ -193,7 +193,7 @@ Objetivo: quem entende o que vai acontecer, aparece.
 | Passo | Título | Texto |
 |---|---|---|
 | 01 | `Você manda mensagem` | `Pelo WhatsApp. Quem responde marca a avaliação e explica o que vai acontecer — para você chegar sabendo.` |
-| 02 | `A consulta passa de uma hora` | `Começa pela escuta: sua história, sua rotina, o que parou de funcionar. Só depois vem o exame.` |
+| 02 | `A consulta começa pela escuta` | `Começa pela escuta: sua história, sua rotina, o que parou de funcionar. Só depois vem o exame.` |
 | 03 | `O exame é lido junto, na tela` | `Você vê o que o médico vê. Sem jargão, e sabendo por que cada coisa foi pedida.` |
 | 04 | `O tratamento é construído item a item` | `E você sai com o WhatsApp do seu médico — o mesmo que vai acompanhar você daqui em diante.` |
 

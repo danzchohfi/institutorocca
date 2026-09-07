@@ -20,6 +20,7 @@ const pares = [
 { src: 'src/c04-conversa/main.js', out: 'concepts/04-conversa/app.js' },
 { src: 'src/c05-simbolo/main.js', out: 'concepts/05-simbolo/app.js' },
 { src: 'src/c06-slides/main.js', out: 'concepts/06-slides/app.js' },
+{ src: 'src/c07-letras/main.js', out: 'concepts/07-letras/app.js' },
 ].filter(({ src }) => existsSync(resolve(raiz, src)));
 
 if (!pares.length) {

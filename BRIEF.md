@@ -40,7 +40,7 @@ atravessa a página.
   - CRM/RQE **[PENDENTE]** → usar "CRM-SP 000000" como placeholder visível.
 - **Provas (as únicas que a home usa):** (1) o mesmo médico do primeiro dia em diante — todo paciente sai com o
   WhatsApp pessoal de quem o atendeu; (2) o metabolismo entra no tratamento (resposta ao medo do efeito
-  sanfona); (3) a consulta que passa de uma hora; (4) o exame lido junto com você, na tela.
+  sanfona); (3) o exame lido junto com você, na tela.
 - **Público:** núcleo = a executiva de 40 (38–50, renda > R$ 15 mil/mês, decide sozinha, paga do próprio
   bolso, chega cética e cansada: "já tentei de tudo e voltou"). Segunda porta = o executivo de 40+, trazido pela
   companheira. Terceira = a paciente de pele.
@@ -249,7 +249,7 @@ Usar **este texto**, nesta ordem, nos três conceitos. Complementos (§5.1) só 
 2. **A casa** (galeria dos renders): a casa como método, não como decoração. Legendas curtas ligando espaço a
    método: "A sala onde o exame é lido com você, na tela." · "Bioimpedância: composição corporal medida, não
    estimada." · "A espera que não parece espera." · "Sem sinalização, sem nada hospitalar."
-3. **A primeira consulta** (reduz o no-show): 4 passos — Você manda mensagem · A consulta passa de uma hora ·
+3. **A primeira consulta** (reduz o no-show): 4 passos — Você manda mensagem · A consulta começa pela escuta ·
    O exame é lido junto, na tela · O tratamento é construído item a item, e você sai com o WhatsApp do seu médico.
 4. **Perguntas que a gente responde toda semana** (conteúdo, com nome e rosto): 3 títulos do banco — "Dormir
    bem e acordar cansado: o que pode estar por trás?" (Dr. Breno Gondim) · "Exame de sangue normal, mas o corpo

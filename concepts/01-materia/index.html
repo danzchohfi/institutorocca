@@ -1,646 +1,555 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Instituto Rocca — Qualidade de Vida e Bem-Estar em Moema</title>
-  <meta name="description" content="Instituto de Qualidade de Vida e Bem-Estar em Moema. Trata a causa do que parou de funcionar em você, com o mesmo médico do primeiro dia em diante.">
-  <meta property="og:title" content="Seu médico. Sua melhor versão.">
-  <meta property="og:description" content="Instituto de Qualidade de Vida e Bem-Estar em Moema. Trata a causa do que parou de funcionar em você, com o mesmo médico do primeiro dia em diante.">
-  <meta property="og:site_name" content="Instituto Rocca">
-  <meta property="og:locale" content="pt_BR">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="../../assets/img/entrada-clinica.jpg">
-  <!-- Fonte Semplicita Pro auto-hospedada via @font-face em brand/tokens.css (não usar Google Fonts) -->
-  <link rel="stylesheet" href="../../brand/tokens.css">
-  <link rel="stylesheet" href="../../shared/base.css">
-  <link rel="stylesheet" href="./concept.css">
-  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#550000">
-  <script src="./app.js" defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Instituto Rocca — Qualidade de Vida e Bem-Estar em Moema</title>
+<meta content="Instituto de Qualidade de Vida e Bem-Estar em Moema. Trata a causa do que parou de funcionar em você, com o mesmo médico do primeiro dia em diante." name="description"/>
+<meta content="Seu médico. Sua melhor versão." property="og:title"/>
+<meta content="Instituto de Qualidade de Vida e Bem-Estar em Moema. Trata a causa do que parou de funcionar em você, com o mesmo médico do primeiro dia em diante." property="og:description"/>
+<meta content="Instituto Rocca" property="og:site_name"/>
+<meta content="pt_BR" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="../../assets/img/entrada-clinica.jpg" property="og:image"/>
+<!-- Fonte Semplicita Pro auto-hospedada via @font-face em brand/tokens.css (não usar Google Fonts) -->
+<link href="../../brand/tokens.css" rel="stylesheet"/>
+<link href="../../shared/base.css" rel="stylesheet"/>
+<link href="./concept.css" rel="stylesheet"/>
+<link href="../../assets/img/favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="#550000" name="theme-color"/>
+<script defer="" src="./app.js"></script>
 </head>
 <body class="sup-bordo">
-
-  <a class="pular visualmente-oculto" href="#conteudo">Ir para o conteúdo</a>
-
-  <!-- PRELOADER (partial canônico; BRIEF §4.4: só nos conceitos 1 e 3) -->
-  <div class="preloader" aria-hidden="true">
-    <div class="preloader__marca">
-      <img src="../../assets/img/logo.svg" alt="" width="1686" height="410">
-    </div>
-    <div class="preloader__linha"></div>
-  </div>
-
-  <!-- NAV (partial canônico) -->
-  <header class="nav" id="topo">
-    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu">
-      <span class="nav__menu-linhas" aria-hidden="true"></span>
-      <span class="nav__menu-txt">Menu</span>
-    </button>
-
-    <a class="nav__marca" href="#" aria-label="Instituto Rocca — início">
-      <img class="nav__simbolo" src="../../assets/img/simbolo.svg" alt="" width="666" height="666" aria-hidden="true">
-      <img class="nav__simbolo nav__simbolo--escuro" src="../../assets/img/simbolo-bordo.svg" alt="" width="666" height="666" aria-hidden="true">
-      <img class="nav__logo nav__logo--creme" src="../../assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
-      <img class="nav__logo nav__logo--escuro" src="../../assets/img/logo-escuro.svg" alt="" aria-hidden="true" width="1686" height="410">
-    </a>
-
-    <div class="nav__acoes">
-      <a class="nav__whats" href="https://wa.me/5511999999999" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-      </a>
-      <a class="botao botao--primario" href="#contato">Agendar avaliação</a>
-    </div>
-  </header>
-
-  <!-- MENU (partial canônico) -->
-  <nav class="menu" id="menu" aria-label="Menu principal" aria-hidden="true" inert>
-    <div class="menu__in container">
-      <div class="menu__colunas">
-        <div class="menu__coluna menu__coluna--frentes">
-          <p class="menu__titulo eyebrow">Frentes</p>
-          <ul class="menu__lista menu__lista--grande">
-            <li><a href="#">Emagrecimento e metabolismo</a></li>
-            <li><a href="#">Avaliação hormonal</a></li>
-            <li><a href="#">Qualidade de vida e longevidade</a></li>
-            <li><a href="#">Dermatologia</a></li>
-            <li><a href="#">Lipedema</a></li>
-          </ul>
-        </div>
-        <div class="menu__coluna">
-          <p class="menu__titulo eyebrow">Os médicos</p>
-          <ul class="menu__lista">
-            <li><a href="#">Dr. Túlio Bovo</a></li>
-            <li><a href="#">Dr. Breno Gondim</a></li>
-            <li><a href="#">Dra. Ana Paula Bovo</a></li>
-          </ul>
-        </div>
-        <div class="menu__coluna">
-          <p class="menu__titulo eyebrow">Conteúdo</p>
-          <ul class="menu__lista">
-            <li><a href="#">Perguntas que a gente responde</a></li>
-            <li><a href="#">A primeira consulta</a></li>
-            <li><a href="#">A casa</a></li>
-          </ul>
-        </div>
-        <div class="menu__coluna">
-          <p class="menu__titulo eyebrow">Contato</p>
-          <ul class="menu__lista">
-            <li><a href="#contato">Agendar avaliação</a></li>
-            <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">Falar no WhatsApp</a></li>
-            <li><a href="#">Instagram <span class="texto-2">[PENDENTE]</span></a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="menu__rodape">
-        <span>Instituto Rocca · Moema, São Paulo</span>
-        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp (11) 99999-9999 <span class="texto-2">[PENDENTE]</span></a>
-      </div>
-    </div>
-  </nav>
-
-  <main id="conteudo">
-
-    <!-- ================= HERO · MATÉRIA =================
+<a class="pular visualmente-oculto" href="#conteudo">Ir para o conteúdo</a>
+<!-- PRELOADER (partial canônico; BRIEF §4.4: só nos conceitos 1 e 3) -->
+<div aria-hidden="true" class="preloader">
+<div class="preloader__marca">
+<img alt="" height="410" src="../../assets/img/logo.svg" width="1686"/>
+</div>
+<div class="preloader__linha"></div>
+</div>
+<!-- NAV (partial canônico) -->
+<header class="nav" id="topo">
+<button aria-controls="menu" aria-expanded="false" class="nav__menu" type="button">
+<span aria-hidden="true" class="nav__menu-linhas"></span>
+<span class="nav__menu-txt">Menu</span>
+</button>
+<a aria-label="Instituto Rocca — início" class="nav__marca" href="#">
+<img alt="" aria-hidden="true" class="nav__simbolo" height="666" src="../../assets/img/simbolo.svg" width="666"/>
+<img alt="" aria-hidden="true" class="nav__simbolo nav__simbolo--escuro" height="666" src="../../assets/img/simbolo-bordo.svg" width="666"/>
+<img alt="Instituto Rocca" class="nav__logo nav__logo--creme" height="410" src="../../assets/img/logo.svg" width="1686"/>
+<img alt="" aria-hidden="true" class="nav__logo nav__logo--escuro" height="410" src="../../assets/img/logo-escuro.svg" width="1686"/>
+</a>
+<div class="nav__acoes">
+<a aria-label="Falar no WhatsApp" class="nav__whats" href="https://wa.me/5511999999999" rel="noopener" target="_blank">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg>
+</a>
+<a class="botao botao--primario" href="#contato">Agendar avaliação</a>
+</div>
+</header>
+<!-- MENU (partial canônico) -->
+<nav aria-hidden="true" aria-label="Menu principal" class="menu" id="menu" inert="">
+<div class="menu__in container">
+<div class="menu__colunas">
+<div class="menu__coluna menu__coluna--frentes">
+<p class="menu__titulo eyebrow">Frentes</p>
+<ul class="menu__lista menu__lista--grande">
+<li><a href="#">Emagrecimento e metabolismo</a></li>
+<li><a href="#">Avaliação hormonal</a></li>
+<li><a href="#">Qualidade de vida e longevidade</a></li>
+<li><a href="#">Dermatologia</a></li>
+<li><a href="#">Lipedema</a></li>
+</ul>
+</div>
+<div class="menu__coluna">
+<p class="menu__titulo eyebrow">Os médicos</p>
+<ul class="menu__lista">
+<li><a href="#">Dr. Túlio Bovo</a></li>
+<li><a href="#">Dr. Breno Gondim</a></li>
+<li><a href="#">Dra. Ana Paula Bovo</a></li>
+</ul>
+</div>
+<div class="menu__coluna">
+<p class="menu__titulo eyebrow">Conteúdo</p>
+<ul class="menu__lista">
+<li><a href="#">Perguntas que a gente responde</a></li>
+<li><a href="#">A primeira consulta</a></li>
+<li><a href="#">A casa</a></li>
+</ul>
+</div>
+<div class="menu__coluna">
+<p class="menu__titulo eyebrow">Contato</p>
+<ul class="menu__lista">
+<li><a href="#contato">Agendar avaliação</a></li>
+<li><a href="https://wa.me/5511999999999" rel="noopener" target="_blank">Falar no WhatsApp</a></li>
+<li><a href="#">Instagram <span class="texto-2">[PENDENTE]</span></a></li>
+</ul>
+</div>
+</div>
+<div class="menu__rodape">
+<span>Instituto Rocca · Moema, São Paulo</span>
+<a href="https://wa.me/5511999999999" rel="noopener" target="_blank">WhatsApp (11) 99999-9999 <span class="texto-2">[PENDENTE]</span></a>
+</div>
+</div>
+</nav>
+<main id="conteudo">
+<!-- ================= HERO · MATÉRIA =================
          Campo de partículas three.js (canvas) atrás do texto. O SVG estático
          entra só sem WebGL ou com prefers-reduced-motion. A seção fica presa
          (sticky) enquanto o bloco seguinte, em osso, sobe por cima dela. -->
-    <div class="cortina">
-    <section class="hero hero--materia" id="inicio" data-hero aria-labelledby="titulo-hero">
-      <canvas class="hero__canvas" aria-hidden="true"></canvas>
-      <img class="hero__fallback" src="../../assets/placeholders/particulas-fallback.svg" alt="" width="1920" height="1080" hidden aria-hidden="true">
-      <div class="hero__veu" aria-hidden="true"></div>
+<div class="cortina">
+<section aria-labelledby="titulo-hero" class="hero hero--materia" data-hero="" id="inicio">
+<canvas aria-hidden="true" class="hero__canvas"></canvas>
+<img alt="" aria-hidden="true" class="hero__fallback" height="1080" hidden="" src="../../assets/placeholders/particulas-fallback.svg" width="1920"/>
+<div aria-hidden="true" class="hero__veu"></div>
+<div class="container hero__in">
+<p class="eyebrow hero__eyebrow" data-reveal="">Instituto de Qualidade de Vida e Bem-Estar · Moema</p>
+<h1 class="titulo-2l" data-split-linhas="" id="titulo-hero">Seu médico. <span class="linha-2">Sua melhor versão.</span></h1>
+<p class="hero__sub texto-grande" data-reveal="">Instituto de Qualidade de Vida e Bem-Estar em Moema. A gente trata a causa do que parou de funcionar em você — com o mesmo médico do primeiro dia em diante.</p>
+<div class="acoes hero__acoes" data-reveal="">
+<a class="botao botao--primario" href="#contato">Agendar avaliação</a>
+<a class="botao botao--secundario" href="#primeira-consulta">Como funciona a primeira consulta <span aria-hidden="true" class="seta">→</span></a>
+</div>
+<p class="hero__nota texto-2" data-reveal="">Atendimento em Moema, São Paulo</p>
+</div>
+<a aria-label="Rolar para a próxima seção" class="hero__rolar" href="#problema">
+<span aria-hidden="true" class="hero__rolar-linha"></span>
+<span class="hero__rolar-txt">Role para continuar</span>
+</a>
+</section>
+<!-- ================= 01 · O PROBLEMA ================= -->
+<section aria-labelledby="titulo-problema" class="secao sup-osso problema" data-tema="claro" id="problema">
+<div class="container grid-12">
+<header class="col-6 problema__cabeca">
+<p class="eyebrow" data-reveal=""><span class="numeral">01</span> — O problema</p>
+<h2 class="titulo-2l" data-split-linhas="" id="titulo-problema">Alguma coisa parou de funcionar. <span class="linha-2">E ninguém foi olhar.</span></h2>
+</header>
+<div class="col-5 col-inicio-8 problema__texto" data-reveal-grupo="">
+<p class="texto-grande">Dormir oito horas e acordar cansado. A disposição que sumiu. A barriga que não sai, mesmo fazendo o que sempre funcionou para você.</p>
+<p class="texto-grande destaque">Na maior parte das vezes não é a idade. É metabólico, é hormonal, e é investigável.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- ================= 02 · O MÉTODO ================= -->
+<section aria-labelledby="titulo-metodo" class="secao sup-bordo metodo" id="metodo">
+<div class="container grid-12">
+<header class="col-6 metodo__cabeca">
+<p class="eyebrow" data-reveal=""><span class="numeral">02</span> — O método</p>
+<h2 data-split-linhas="" id="titulo-metodo">Investigar antes de prescrever.</h2>
+<div class="metodo__texto" data-reveal-grupo="">
+<p class="texto-grande">A consulta começa pela escuta, passa pelo exame e só então chega à conduta. <span class="destaque">Nessa ordem, sempre.</span></p>
+<p data-lexico-ok="">Você sai entendendo o próprio resultado, sem jargão, e sabendo por que cada coisa foi pedida — com o médico que vai te acompanhar o tratamento inteiro.</p>
+</div>
+</header>
+<figure class="col-5 col-inicio-8 metodo__foto" data-reveal="escala">
+<div class="paralaxe" data-parallax-area="">
+<img alt="Consultório com luz quente indireta: mesa de mármore Emperador com laptop, luminária de parede em bronze, duas banquetas de visita, poltrona verde-oliva e painel de madeira escura com porta embutida." data-parallax="-7" decoding="async" height="1523" loading="lazy" src="../../assets/img/consultorio-05.jpg" width="2000"/>
+</div>
+<figcaption class="legenda">A sala do seu médico. O computador é o elo com o que acontece de atual aqui dentro.</figcaption>
+</figure>
+</div>
+</section>
+<!-- ================= FRENTES ================= -->
+<section aria-labelledby="titulo-frentes" class="secao sup-osso frentes" data-tema="claro" id="frentes">
+<div class="container">
+<header class="secao__cabeca frentes__cabeca">
+<p class="eyebrow" data-reveal="">Frentes</p>
+<h2 class="titulo-2l" data-split-linhas="" id="titulo-frentes">Cinco frentes. <span class="linha-2">O mesmo jeito de conduzir.</span></h2>
+</header>
+<ol class="frentes__lista" data-reveal-grupo="">
+<li class="frente">
+<span class="frente__numero numeral">01</span>
+<div class="frente__corpo">
+<span class="frente__nome">Emagrecimento e metabolismo</span>
+<h3 class="frente__titulo">Emagrecer sem reganhar depois.</h3>
 
-      <div class="container hero__in">
-        <p class="eyebrow hero__eyebrow" data-reveal>Instituto de Qualidade de Vida e Bem-Estar · Moema</p>
-        <h1 class="titulo-2l" id="titulo-hero" data-split-linhas>Seu médico. <span class="linha-2">Sua melhor versão.</span></h1>
-        <p class="hero__sub texto-grande" data-reveal>Instituto de Qualidade de Vida e Bem-Estar em Moema. A gente trata a causa do que parou de funcionar em você — com o mesmo médico do primeiro dia em diante.</p>
-        <div class="acoes hero__acoes" data-reveal>
-          <a class="botao botao--primario" href="#contato">Agendar avaliação</a>
-          <a class="botao botao--secundario" href="#primeira-consulta">Como funciona a primeira consulta <span class="seta" aria-hidden="true">→</span></a>
-        </div>
-        <p class="hero__nota texto-2" data-reveal>Atendimento em Moema, São Paulo</p>
-      </div>
+</div>
+<a aria-label="Ver a frente Emagrecimento e metabolismo" class="botao botao--secundario frente__link" href="#">Ver a frente <span aria-hidden="true" class="seta">→</span></a>
+</li>
+<li class="frente">
+<span class="frente__numero numeral">02</span>
+<div class="frente__corpo">
+<span class="frente__nome">Avaliação hormonal</span>
+<h3 class="frente__titulo">Todo mundo sabe que a mulher precisa avaliar. O homem também.</h3>
 
-      <a class="hero__rolar" href="#problema" aria-label="Rolar para a próxima seção">
-        <span class="hero__rolar-linha" aria-hidden="true"></span>
-        <span class="hero__rolar-txt">Role para continuar</span>
-      </a>
-    </section>
+</div>
+<a aria-label="Ver a frente Avaliação hormonal" class="botao botao--secundario frente__link" href="#">Ver a frente <span aria-hidden="true" class="seta">→</span></a>
+</li>
+<li class="frente">
+<span class="frente__numero numeral">03</span>
+<div class="frente__corpo">
+<span class="frente__nome">Qualidade de vida e longevidade</span>
+<h3 class="frente__titulo">O que volta primeiro: energia, sono e disposição.</h3>
 
-    <!-- ================= 01 · O PROBLEMA ================= -->
-    <section class="secao sup-osso problema" id="problema" data-tema="claro" aria-labelledby="titulo-problema">
-      <div class="container grid-12">
-        <header class="col-6 problema__cabeca">
-          <p class="eyebrow" data-reveal><span class="numeral">01</span> — O problema</p>
-          <h2 class="titulo-2l" id="titulo-problema" data-split-linhas>Alguma coisa parou de funcionar. <span class="linha-2">E ninguém foi olhar.</span></h2>
-        </header>
-        <div class="col-5 col-inicio-8 problema__texto" data-reveal-grupo>
-          <p class="texto-grande">Dormir oito horas e acordar cansado. A disposição que sumiu. A barriga que não sai, mesmo fazendo o que sempre funcionou para você.</p>
-          <p class="texto-grande destaque">Na maior parte das vezes não é a idade. É metabólico, é hormonal, e é investigável.</p>
-        </div>
-      </div>
-    </section>
-    </div>
+</div>
+<a aria-label="Ver a frente Qualidade de vida e longevidade" class="botao botao--secundario frente__link" href="#">Ver a frente <span aria-hidden="true" class="seta">→</span></a>
+</li>
+<li class="frente">
+<span class="frente__numero numeral">04</span>
+<div class="frente__corpo">
+<span class="frente__nome">Dermatologia</span>
+<h3 class="frente__titulo">Pele boa começa antes do procedimento.</h3>
 
-    <!-- ================= 02 · O MÉTODO ================= -->
-    <section class="secao sup-bordo metodo" id="metodo" aria-labelledby="titulo-metodo">
-      <div class="container grid-12">
-        <header class="col-6 metodo__cabeca">
-          <p class="eyebrow" data-reveal><span class="numeral">02</span> — O método</p>
-          <h2 id="titulo-metodo" data-split-linhas>Investigar antes de prescrever.</h2>
-          <div class="metodo__texto" data-reveal-grupo>
-            <p class="texto-grande">A consulta começa pela escuta, passa pelo exame e só então chega à conduta. <span class="destaque">Nessa ordem, sempre.</span></p>
-            <p data-lexico-ok>Você sai entendendo o próprio resultado, sem jargão, e sabendo por que cada coisa foi pedida — com o médico que vai te acompanhar o tratamento inteiro.</p>
-          </div>
-        </header>
-        <figure class="col-5 col-inicio-8 metodo__foto" data-reveal="escala">
-          <div class="paralaxe" data-parallax-area>
-          <img src="../../assets/img/consultorio-05.jpg" alt="Consultório com luz quente indireta: mesa de mármore Emperador com laptop, luminária de parede em bronze, duas banquetas de visita, poltrona verde-oliva e painel de madeira escura com porta embutida." loading="lazy" decoding="async" width="2000" height="1523" data-parallax="-7">
-          </div>
-          <figcaption class="legenda">A sala do seu médico. O computador é o elo com o que acontece de atual aqui dentro.</figcaption>
-        </figure>
-      </div>
-    </section>
+</div>
+<a aria-label="Ver a frente Dermatologia" class="botao botao--secundario frente__link" href="#">Ver a frente <span aria-hidden="true" class="seta">→</span></a>
+</li>
+<li class="frente">
+<span class="frente__numero numeral">05</span>
+<div class="frente__corpo">
+<span class="frente__nome">Lipedema</span>
+<h3 class="frente__titulo">Não é 'só gordura'.</h3>
 
-    <!-- ================= FRENTES ================= -->
-    <section class="secao sup-osso frentes" id="frentes" data-tema="claro" aria-labelledby="titulo-frentes">
-      <div class="container">
-        <header class="secao__cabeca frentes__cabeca">
-          <p class="eyebrow" data-reveal>Frentes</p>
-          <h2 class="titulo-2l" id="titulo-frentes" data-split-linhas>Cinco frentes. <span class="linha-2">O mesmo jeito de conduzir.</span></h2>
-        </header>
-        <ol class="frentes__lista" data-reveal-grupo>
-          <li class="frente">
-            <span class="frente__numero numeral">01</span>
-            <div class="frente__corpo">
-              <span class="frente__nome">Emagrecimento e metabolismo</span>
-              <h3 class="frente__titulo">Emagrecer sem reganhar depois.</h3>
-              <p class="frente__apoio">O metabolismo entra no tratamento. É isso que responde ao medo do efeito sanfona.</p>
-            </div>
-            <a class="botao botao--secundario frente__link" href="#" aria-label="Ver a frente Emagrecimento e metabolismo">Ver a frente <span class="seta" aria-hidden="true">→</span></a>
-          </li>
-          <li class="frente">
-            <span class="frente__numero numeral">02</span>
-            <div class="frente__corpo">
-              <span class="frente__nome">Avaliação hormonal</span>
-              <h3 class="frente__titulo">Todo mundo sabe que a mulher precisa avaliar. O homem também.</h3>
-              <p class="frente__apoio">A produção do próprio corpo cai com o tempo e se investiga por exame. Avaliar antes de tratar.</p>
-            </div>
-            <a class="botao botao--secundario frente__link" href="#" aria-label="Ver a frente Avaliação hormonal">Ver a frente <span class="seta" aria-hidden="true">→</span></a>
-          </li>
-          <li class="frente">
-            <span class="frente__numero numeral">03</span>
-            <div class="frente__corpo">
-              <span class="frente__nome">Qualidade de vida e longevidade</span>
-              <h3 class="frente__titulo">O que volta primeiro: energia, sono e disposição.</h3>
-              <p class="frente__apoio">Quando o metabolismo desregula, tudo isso vai junto. Quando se trata, é o que volta primeiro.</p>
-            </div>
-            <a class="botao botao--secundario frente__link" href="#" aria-label="Ver a frente Qualidade de vida e longevidade">Ver a frente <span class="seta" aria-hidden="true">→</span></a>
-          </li>
-          <li class="frente">
-            <span class="frente__numero numeral">04</span>
-            <div class="frente__corpo">
-              <span class="frente__nome">Dermatologia</span>
-              <h3 class="frente__titulo">Pele boa começa antes do procedimento.</h3>
-              <p class="frente__apoio">A consulta começa avaliando o rosto, e não escolhendo o produto.</p>
-            </div>
-            <a class="botao botao--secundario frente__link" href="#" aria-label="Ver a frente Dermatologia">Ver a frente <span class="seta" aria-hidden="true">→</span></a>
-          </li>
-          <li class="frente">
-            <span class="frente__numero numeral">05</span>
-            <div class="frente__corpo">
-              <span class="frente__nome">Lipedema</span>
-              <h3 class="frente__titulo">Não é 'só gordura'.</h3>
-              <p class="frente__apoio">Dor, inchaço e uma gordura que não responde à dieta têm nome e diagnóstico. A investigação começa por reconhecer.</p>
-            </div>
-            <a class="botao botao--secundario frente__link" href="#" aria-label="Ver a frente Lipedema">Ver a frente <span class="seta" aria-hidden="true">→</span></a>
-          </li>
-        </ol>
-        <div class="frentes__rodape" data-reveal>
-          <a class="botao botao--secundario" href="#">Ver todas as frentes <span class="seta" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
+</div>
+<a aria-label="Ver a frente Lipedema" class="botao botao--secundario frente__link" href="#">Ver a frente <span aria-hidden="true" class="seta">→</span></a>
+</li>
+</ol>
+<div class="frentes__rodape" data-reveal="">
+<a class="botao botao--secundario" href="#">Ver todas as frentes <span aria-hidden="true" class="seta">→</span></a>
+</div>
+</div>
+</section>
+<!-- ================= 03 · O MECANISMO (split-screen: foto | tela do exame) ================= -->
+<section aria-labelledby="titulo-mecanismo" class="secao sup-bordo mecanismo" id="mecanismo">
+<div class="container grid-12 mecanismo__topo">
+<header class="col-7">
+<p class="eyebrow" data-reveal=""><span class="numeral">03</span> — O mecanismo</p>
+<h2 class="titulo-2l" data-split-linhas="" id="titulo-mecanismo">Você já esteve melhor. <span class="linha-2">O que mudou não foi você.</span></h2>
+</header>
+<div class="col-5 col-inicio-8 mecanismo__texto" data-reveal-grupo="">
+<p class="texto-grande">Foi o seu metabolismo. Quando ele desregula, energia, sono, disposição e peso vão junto.</p>
+<p class="texto-grande">Metabolismo se investiga e se trata. E o que volta é o que sumiu: <span class="destaque">não uma pessoa nova, a sua melhor versão.</span></p>
+</div>
+</div>
+<div class="mecanismo__split">
+<figure class="mecanismo__foto paralaxe" data-parallax-area="" data-reveal="escala">
+<img alt="Consultório: mesa de mármore marrom com notebook, cadeiras escuras, poltrona verde-oliva e janela ampla com a cidade ao fundo." data-parallax="-6" decoding="async" height="1555" loading="lazy" src="../../assets/img/consultorio-01.jpg" width="2000"/>
+</figure>
+<figure class="mecanismo__tela" data-reveal="">
+<div class="mecanismo__tela-in">
+<img alt="Tela off-white com uma linha só, contando a evolução da composição corporal ao longo de quatro meses." decoding="async" height="1000" loading="lazy" src="../../assets/placeholders/tela-exame.svg" width="1600"/>
+</div>
+<figcaption class="mecanismo__legenda">
+<span class="mecanismo__rotulo">Uma tela, uma linha só</span>
+<span class="texto-2">Tela do exame — foto do consultório com a tela acesa [PENDENTE]</span>
+</figcaption>
+</figure>
+</div>
+</section>
+<!-- ================= AS PROVAS (poeira de partículas ao fundo) ================= -->
+<section aria-labelledby="titulo-provas" class="secao sup-bordo provas" id="provas">
+<canvas aria-hidden="true" class="provas__canvas"></canvas>
+<div class="container provas__in">
+<header class="secao__cabeca centro provas__cabeca">
+<p class="eyebrow" data-reveal="">As provas</p>
+<h2 data-split-linhas="" id="titulo-provas">O que sustenta o que a gente diz</h2>
+</header>
+<ol class="provas__lista" data-reveal-grupo="">
+<li class="prova">
+<span class="numeral">01</span>
+<h3 class="prova__titulo">O mesmo médico do primeiro dia em diante</h3>
+</li>
+<li class="prova">
+<span class="numeral">02</span>
+<h3 class="prova__titulo">O metabolismo dentro do tratamento</h3>
+</li>
+<li class="prova">
+<span class="numeral">03</span>
+<h3 class="prova__titulo">O exame lido junto com você, na tela</h3>
+</li>
+</ol>
+</div>
+</section>
+<!-- ================= O QUE A GENTE NÃO FAZ (opcional, faixa compacta) ================= -->
 
-    <!-- ================= 03 · O MECANISMO (split-screen: foto | tela do exame) ================= -->
-    <section class="secao sup-bordo mecanismo" id="mecanismo" aria-labelledby="titulo-mecanismo">
-      <div class="container grid-12 mecanismo__topo">
-        <header class="col-7">
-          <p class="eyebrow" data-reveal><span class="numeral">03</span> — O mecanismo</p>
-          <h2 class="titulo-2l" id="titulo-mecanismo" data-split-linhas>Você já esteve melhor. <span class="linha-2">O que mudou não foi você.</span></h2>
-        </header>
-        <div class="col-5 col-inicio-8 mecanismo__texto" data-reveal-grupo>
-          <p class="texto-grande">Foi o seu metabolismo. Quando ele desregula, energia, sono, disposição e peso vão junto.</p>
-          <p class="texto-grande">Metabolismo se investiga e se trata. E o que volta é o que sumiu: <span class="destaque">não uma pessoa nova, a sua melhor versão.</span></p>
-        </div>
-      </div>
-      <div class="mecanismo__split">
-        <figure class="mecanismo__foto paralaxe" data-parallax-area data-reveal="escala">
-          <img src="../../assets/img/consultorio-01.jpg" alt="Consultório: mesa de mármore marrom com notebook, cadeiras escuras, poltrona verde-oliva e janela ampla com a cidade ao fundo." loading="lazy" decoding="async" width="2000" height="1555" data-parallax="-6">
-        </figure>
-        <figure class="mecanismo__tela" data-reveal>
-          <div class="mecanismo__tela-in">
-            <img src="../../assets/placeholders/tela-exame.svg" alt="Tela off-white com uma linha só, contando a evolução da composição corporal ao longo de quatro meses." loading="lazy" decoding="async" width="1600" height="1000">
-          </div>
-          <figcaption class="mecanismo__legenda">
-            <span class="mecanismo__rotulo">Uma tela, uma linha só</span>
-            <span class="texto-2">Tela do exame — foto do consultório com a tela acesa [PENDENTE]</span>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
+<!-- ================= A CASA (galeria dos renders) ================= -->
+<section aria-labelledby="titulo-casa" class="secao sup-osso casa" data-tema="claro" id="casa">
+<div class="container">
+<header class="secao__cabeca grid-12 casa__cabeca">
+<div class="col-7">
+<p class="eyebrow" data-reveal="">A casa</p>
+<h2 class="titulo-2l" data-split-linhas="" id="titulo-casa">A casa não é decoração. <span class="linha-2">É parte do método.</span></h2>
+</div>
+<p class="col-4 col-inicio-9 casa__sub" data-reveal="">Madeira, pedra e luz quente — o ambiente é clássico. O que acontece dentro dele é atual.</p>
+</header>
+<div class="galeria casa__galeria">
+<figure class="galeria__item" data-reveal="escala">
+<div class="galeria__moldura paralaxe paralaxe--3x2" data-parallax-area="">
+<img alt="Recepção do Instituto Rocca: dois balcões de mármore marrom, luminárias suspensas, painel ripado bordô, chaise creme e cadeira de palhinha sob luz quente." data-parallax="-6" decoding="async" height="1536" loading="lazy" src="../../assets/img/entrada-clinica.jpg" width="2731"/>
+</div>
+<figcaption class="legenda"><span class="numeral">01</span>A chegada. Uma casa, não um consultório branco.</figcaption>
+</figure>
+<figure class="galeria__item galeria__item--vertical" data-reveal="escala">
+<img alt="Sala de espera: sofá curvo creme, pufes de tecido, cadeiras de palhinha, painel de madeira clara e uma copa de mármore ao fundo." decoding="async" height="1265" loading="lazy" src="../../assets/img/espera-02.jpg" width="2000"/>
+<figcaption class="legenda"><span class="numeral">02</span>A espera que não parece espera.</figcaption>
+</figure>
+<figure class="galeria__item" data-reveal="escala">
+<img alt="Corredor com painel de madeira clara, portas embutidas, arandelas de luz quente e dois pufes bege." decoding="async" height="1124" loading="lazy" src="../../assets/img/corredor-portas.jpg" width="2000"/>
+<figcaption class="legenda"><span class="numeral">03</span>O corredor até a sala do seu médico.</figcaption>
+</figure>
+<figure class="galeria__item" data-reveal="escala">
+<img alt="Consultório com painel de madeira escura ao fundo, mesa de mármore com notebook e poltrona verde-oliva." decoding="async" height="1601" loading="lazy" src="../../assets/img/consultorio-06.jpg" width="2000"/>
+<figcaption class="legenda"><span class="numeral">04</span>A sala onde o exame é lido com você, na tela.</figcaption>
+</figure>
+<figure class="galeria__item galeria__item--quadrado casa__item-5" data-reveal="escala">
+<img alt="Sala de bioimpedância: bancada de madeira clara com cuba e notebook, cadeira branca e prateleira iluminada." decoding="async" height="1499" loading="lazy" src="../../assets/img/bioimpedancia.jpg" width="1499"/>
+<figcaption class="legenda"><span class="numeral">05</span><span>Bioimpedância: composição corporal medida, não estimada. <span class="legenda__nota">Croqui — foto na diária da clínica [PENDENTE]</span></span></figcaption>
+</figure>
+<figure class="galeria__item casa__item-6" data-reveal="escala">
+<img alt="Lounge com copa: paredes de madeira clara, copa em mármore marrom iluminada, pufes e cadeiras de palhinha." decoding="async" height="1116" loading="lazy" src="../../assets/img/lounge-copa.jpg" width="2000"/>
+<figcaption class="legenda"><span class="numeral">06</span>Sem sinalização, sem nada hospitalar.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<!-- ================= OS MÉDICOS ================= -->
+<section aria-labelledby="titulo-medicos" class="secao sup-bordo medicos-secao" id="medicos">
+<div class="container">
+<header class="secao__cabeca grid-12 medicos__cabeca">
+<div class="col-6">
+<p class="eyebrow" data-reveal="">Os médicos</p>
+<h2 class="titulo-2l" data-split-linhas="" id="titulo-medicos">Três médicos, <span class="linha-2">uma casa.</span></h2>
+</div>
+<p class="col-5 col-inicio-8 texto-grande medicos__sub" data-reveal="">Aqui você não passa por um médico. Você tem um médico — o mesmo, do primeiro dia em diante.</p>
+</header>
+<div class="medicos" data-reveal-grupo="">
+<article class="medico">
+<div class="medico__video">
+<img alt="Dr. Túlio Bovo — retrato no estúdio Jacarandá, placeholder até a diária." decoding="async" height="1920" loading="lazy" src="../../assets/placeholders/retrato-tulio.svg" width="1080"/>
+<button aria-label="Reproduzir a apresentação do Dr. Túlio Bovo" class="medico__play" data-abre-lightbox="#quem-eu-sou" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M6 3.5v17l14-8.5z"></path></svg>
+</button>
+<span class="medico__rotulo">Vídeo vertical — "Quem eu sou", estúdio Jacarandá</span>
+</div>
+<h3 class="medico__nome">Dr. Túlio Bovo</h3>
+<p class="medico__frente">Cansaço, peso e hormônio — o que parou de funcionar.</p>
+<span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
 
-    <!-- ================= AS PROVAS (poeira de partículas ao fundo) ================= -->
-    <section class="secao sup-bordo provas" id="provas" aria-labelledby="titulo-provas">
-      <canvas class="provas__canvas" aria-hidden="true"></canvas>
-      <div class="container provas__in">
-        <header class="secao__cabeca centro provas__cabeca">
-          <p class="eyebrow" data-reveal>As provas</p>
-          <h2 id="titulo-provas" data-split-linhas>O que sustenta o que a gente diz</h2>
-        </header>
-        <ol class="provas__lista" data-reveal-grupo>
-          <li class="prova">
-            <span class="numeral">01</span>
-            <h3 class="prova__titulo">O mesmo médico do primeiro dia em diante</h3>
-          </li>
-          <li class="prova">
-            <span class="numeral">02</span>
-            <h3 class="prova__titulo">O metabolismo dentro do tratamento</h3>
-          </li>
-          <li class="prova">
-            <span class="numeral">03</span>
-            <h3 class="prova__titulo">O exame lido junto com você, na tela</h3>
-          </li>
-        </ol>
-      </div>
-    </section>
+<a aria-label="Ver a página do Dr. Túlio Bovo" class="botao botao--secundario medico__link" href="#">Ver página <span aria-hidden="true" class="seta">→</span></a>
+</article>
+<article class="medico">
+<div class="medico__video">
+<img alt="Dr. Breno Gondim — retrato no estúdio Jacarandá, placeholder até a diária." decoding="async" height="1920" loading="lazy" src="../../assets/placeholders/retrato-breno.svg" width="1080"/>
+<button aria-label="Reproduzir a apresentação do Dr. Breno Gondim" class="medico__play" data-abre-lightbox="#quem-eu-sou" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M6 3.5v17l14-8.5z"></path></svg>
+</button>
+<span class="medico__rotulo">Vídeo vertical — "Quem eu sou", estúdio Jacarandá</span>
+</div>
+<h3 class="medico__nome">Dr. Breno Gondim</h3>
+<p class="medico__frente">Dormir bem, acordar cansado, e o peso que voltou.</p>
+<span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
 
-    <!-- ================= O QUE A GENTE NÃO FAZ (opcional, faixa compacta) ================= -->
-    <section class="secao secao--curta sup-profundo naofaz" id="nao-fazemos" aria-labelledby="titulo-naofaz">
-      <div class="container">
-        <div class="naofaz__cabeca" data-reveal>
-          <p class="eyebrow">O que a gente não faz</p>
-          <h2 class="h3 naofaz__titulo" id="titulo-naofaz">Dizer não é o que protege quem chega.</h2>
-        </div>
-        <ul class="naofaz__lista" data-reveal-grupo>
-          <li>
-            <h3 class="naofaz__item">Hormônio para hipertrofia.</h3>
-            <p class="naofaz__apoio">Avaliação hormonal é investigar o que caiu. Não é elevar o que está normal.</p>
-          </li>
-          <li>
-            <h3 class="naofaz__item">Atalho sem investigação.</h3>
-            <p class="naofaz__apoio">Nenhum medicamento entra antes do exame. Nessa ordem, sempre.</p>
-          </li>
-          <li>
-            <h3 class="naofaz__item">Tratamento sem acompanhamento.</h3>
-            <p class="naofaz__apoio">Quem prescreve é quem acompanha. Você sai com o WhatsApp do seu médico.</p>
-          </li>
-          <li>
-            <h3 class="naofaz__item">Fotografar corpo como prova.</h3>
-            <p class="naofaz__apoio">O que a gente mostra é como atende. O que muda em você não vira vitrine.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
+<a aria-label="Ver a página do Dr. Breno Gondim" class="botao botao--secundario medico__link" href="#">Ver página <span aria-hidden="true" class="seta">→</span></a>
+</article>
+<article class="medico">
+<div class="medico__video">
+<img alt="Dra. Ana Paula Bovo — retrato no estúdio Jacarandá, placeholder até a diária." decoding="async" height="1920" loading="lazy" src="../../assets/placeholders/retrato-ana-paula.svg" width="1080"/>
+<button aria-label="Reproduzir a apresentação da Dra. Ana Paula Bovo" class="medico__play" data-abre-lightbox="#quem-eu-sou" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M6 3.5v17l14-8.5z"></path></svg>
+</button>
+<span class="medico__rotulo">Vídeo vertical — "Quem eu sou", estúdio Jacarandá</span>
+</div>
+<h3 class="medico__nome">Dra. Ana Paula Bovo</h3>
+<p class="medico__frente">Pele — pelo critério do que ela não indica.</p>
+<span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
 
-    <!-- ================= A CASA (galeria dos renders) ================= -->
-    <section class="secao sup-osso casa" id="casa" data-tema="claro" aria-labelledby="titulo-casa">
-      <div class="container">
-        <header class="secao__cabeca grid-12 casa__cabeca">
-          <div class="col-7">
-            <p class="eyebrow" data-reveal>A casa</p>
-            <h2 class="titulo-2l" id="titulo-casa" data-split-linhas>A casa não é decoração. <span class="linha-2">É parte do método.</span></h2>
-          </div>
-          <p class="col-4 col-inicio-9 casa__sub" data-reveal>Madeira, pedra e luz quente — o ambiente é clássico. O que acontece dentro dele é atual.</p>
-        </header>
-        <div class="galeria casa__galeria">
-          <figure class="galeria__item" data-reveal="escala">
-            <div class="galeria__moldura paralaxe paralaxe--3x2" data-parallax-area>
-              <img src="../../assets/img/entrada-clinica.jpg" alt="Recepção do Instituto Rocca: dois balcões de mármore marrom, luminárias suspensas, painel ripado bordô, chaise creme e cadeira de palhinha sob luz quente." loading="lazy" decoding="async" width="2731" height="1536" data-parallax="-6">
-            </div>
-            <figcaption class="legenda"><span class="numeral">01</span>A chegada. Uma casa, não um consultório branco.</figcaption>
-          </figure>
-          <figure class="galeria__item galeria__item--vertical" data-reveal="escala">
-            <img src="../../assets/img/espera-02.jpg" alt="Sala de espera: sofá curvo creme, pufes de tecido, cadeiras de palhinha, painel de madeira clara e uma copa de mármore ao fundo." loading="lazy" decoding="async" width="2000" height="1265">
-            <figcaption class="legenda"><span class="numeral">02</span>A espera que não parece espera.</figcaption>
-          </figure>
-          <figure class="galeria__item" data-reveal="escala">
-            <img src="../../assets/img/corredor-portas.jpg" alt="Corredor com painel de madeira clara, portas embutidas, arandelas de luz quente e dois pufes bege." loading="lazy" decoding="async" width="2000" height="1124">
-            <figcaption class="legenda"><span class="numeral">03</span>O corredor até a sala do seu médico.</figcaption>
-          </figure>
-          <figure class="galeria__item" data-reveal="escala">
-            <img src="../../assets/img/consultorio-06.jpg" alt="Consultório com painel de madeira escura ao fundo, mesa de mármore com notebook e poltrona verde-oliva." loading="lazy" decoding="async" width="2000" height="1601">
-            <figcaption class="legenda"><span class="numeral">04</span>A sala onde o exame é lido com você, na tela.</figcaption>
-          </figure>
-          <figure class="galeria__item galeria__item--quadrado casa__item-5" data-reveal="escala">
-            <img src="../../assets/img/bioimpedancia.jpg" alt="Sala de bioimpedância: bancada de madeira clara com cuba e notebook, cadeira branca e prateleira iluminada." loading="lazy" decoding="async" width="1499" height="1499">
-            <figcaption class="legenda"><span class="numeral">05</span><span>Bioimpedância: composição corporal medida, não estimada. <span class="legenda__nota">Croqui — foto na diária da clínica [PENDENTE]</span></span></figcaption>
-          </figure>
-          <figure class="galeria__item casa__item-6" data-reveal="escala">
-            <img src="../../assets/img/lounge-copa.jpg" alt="Lounge com copa: paredes de madeira clara, copa em mármore marrom iluminada, pufes e cadeiras de palhinha." loading="lazy" decoding="async" width="2000" height="1116">
-            <figcaption class="legenda"><span class="numeral">06</span>Sem sinalização, sem nada hospitalar.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
+<a aria-label="Ver a página da Dra. Ana Paula Bovo" class="botao botao--secundario medico__link" href="#">Ver página <span aria-hidden="true" class="seta">→</span></a>
+</article>
+</div>
+</div>
+</section>
+<!-- ================= A PRIMEIRA CONSULTA ================= -->
+<section aria-labelledby="titulo-consulta" class="secao sup-osso consulta" data-tema="claro" id="primeira-consulta">
+<div class="container">
+<header class="secao__cabeca grid-12 consulta__cabeca">
+<div class="col-6">
+<p class="eyebrow" data-reveal="">A primeira consulta</p>
+<h2 data-split-linhas="" id="titulo-consulta">O que acontece na primeira consulta.</h2>
+</div>
+<p class="col-4 col-inicio-9 texto-grande consulta__sub" data-reveal="">Para você chegar sabendo. Quatro passos, nessa ordem.</p>
+</header>
+<ol class="passos" data-reveal-grupo="">
+<li>
+<h3 class="passos__titulo">Você manda mensagem</h3>
 
-    <!-- ================= OS MÉDICOS ================= -->
-    <section class="secao sup-bordo medicos-secao" id="medicos" aria-labelledby="titulo-medicos">
-      <div class="container">
-        <header class="secao__cabeca grid-12 medicos__cabeca">
-          <div class="col-6">
-            <p class="eyebrow" data-reveal>Os médicos</p>
-            <h2 class="titulo-2l" id="titulo-medicos" data-split-linhas>Três médicos, <span class="linha-2">uma casa.</span></h2>
-          </div>
-          <p class="col-5 col-inicio-8 texto-grande medicos__sub" data-reveal>Aqui você não passa por um médico. Você tem um médico — o mesmo, do primeiro dia em diante.</p>
-        </header>
-        <div class="medicos" data-reveal-grupo>
-          <article class="medico">
-            <div class="medico__video">
-              <img src="../../assets/placeholders/retrato-tulio.svg" alt="Dr. Túlio Bovo — retrato no estúdio Jacarandá, placeholder até a diária." loading="lazy" decoding="async" width="1080" height="1920">
-              <button class="medico__play" type="button" data-abre-lightbox="#quem-eu-sou" aria-label="Reproduzir a apresentação do Dr. Túlio Bovo">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg>
-              </button>
-              <span class="medico__rotulo">Vídeo vertical — "Quem eu sou", estúdio Jacarandá</span>
-            </div>
-            <h3 class="medico__nome">Dr. Túlio Bovo</h3>
-            <p class="medico__frente">Cansaço, peso e hormônio — o que parou de funcionar.</p>
-            <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
-            <blockquote class="medico__fala">
-              <p>Exame normal e corpo que não está bem: eu vejo isso toda semana. É aí que a investigação começa.</p>
-              <span class="assinatura">— Dr. Túlio Bovo</span>
-            </blockquote>
-            <a class="botao botao--secundario medico__link" href="#" aria-label="Ver a página do Dr. Túlio Bovo">Ver página <span class="seta" aria-hidden="true">→</span></a>
-          </article>
-          <article class="medico">
-            <div class="medico__video">
-              <img src="../../assets/placeholders/retrato-breno.svg" alt="Dr. Breno Gondim — retrato no estúdio Jacarandá, placeholder até a diária." loading="lazy" decoding="async" width="1080" height="1920">
-              <button class="medico__play" type="button" data-abre-lightbox="#quem-eu-sou" aria-label="Reproduzir a apresentação do Dr. Breno Gondim">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg>
-              </button>
-              <span class="medico__rotulo">Vídeo vertical — "Quem eu sou", estúdio Jacarandá</span>
-            </div>
-            <h3 class="medico__nome">Dr. Breno Gondim</h3>
-            <p class="medico__frente">Dormir bem, acordar cansado, e o peso que voltou.</p>
-            <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
-            <blockquote class="medico__fala">
-              <p>Antes de qualquer conduta, eu quero saber como você dorme e como você acorda.</p>
-              <span class="assinatura">— Dr. Breno Gondim</span>
-            </blockquote>
-            <a class="botao botao--secundario medico__link" href="#" aria-label="Ver a página do Dr. Breno Gondim">Ver página <span class="seta" aria-hidden="true">→</span></a>
-          </article>
-          <article class="medico">
-            <div class="medico__video">
-              <img src="../../assets/placeholders/retrato-ana-paula.svg" alt="Dra. Ana Paula Bovo — retrato no estúdio Jacarandá, placeholder até a diária." loading="lazy" decoding="async" width="1080" height="1920">
-              <button class="medico__play" type="button" data-abre-lightbox="#quem-eu-sou" aria-label="Reproduzir a apresentação da Dra. Ana Paula Bovo">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg>
-              </button>
-              <span class="medico__rotulo">Vídeo vertical — "Quem eu sou", estúdio Jacarandá</span>
-            </div>
-            <h3 class="medico__nome">Dra. Ana Paula Bovo</h3>
-            <p class="medico__frente">Pele — pelo critério do que ela não indica.</p>
-            <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
-            <blockquote class="medico__fala">
-              <p>Boa parte da minha consulta é explicar o que eu não indico — e por quê.</p>
-              <span class="assinatura">— Dra. Ana Paula Bovo</span>
-            </blockquote>
-            <a class="botao botao--secundario medico__link" href="#" aria-label="Ver a página da Dra. Ana Paula Bovo">Ver página <span class="seta" aria-hidden="true">→</span></a>
-          </article>
-        </div>
-      </div>
-    </section>
+</li>
+<li>
+<h3 class="passos__titulo">A consulta começa pela escuta</h3>
 
-    <!-- ================= A PRIMEIRA CONSULTA ================= -->
-    <section class="secao sup-osso consulta" id="primeira-consulta" data-tema="claro" aria-labelledby="titulo-consulta">
-      <div class="container">
-        <header class="secao__cabeca grid-12 consulta__cabeca">
-          <div class="col-6">
-            <p class="eyebrow" data-reveal>A primeira consulta</p>
-            <h2 id="titulo-consulta" data-split-linhas>O que acontece na primeira consulta.</h2>
-          </div>
-          <p class="col-4 col-inicio-9 texto-grande consulta__sub" data-reveal>Para você chegar sabendo. Quatro passos, nessa ordem.</p>
-        </header>
-        <ol class="passos" data-reveal-grupo>
-          <li>
-            <h3 class="passos__titulo">Você manda mensagem</h3>
-            <p class="passos__texto">Pelo WhatsApp. Quem responde marca a avaliação e explica o que vai acontecer — para você chegar sabendo.</p>
-          </li>
-          <li>
-            <h3 class="passos__titulo">A consulta passa de uma hora</h3>
-            <p class="passos__texto">Começa pela escuta: sua história, sua rotina, o que parou de funcionar. Só depois vem o exame.</p>
-          </li>
-          <li>
-            <h3 class="passos__titulo">O exame é lido junto, na tela</h3>
-            <p class="passos__texto">Você vê o que o médico vê. Sem jargão, e sabendo por que cada coisa foi pedida.</p>
-          </li>
-          <li>
-            <h3 class="passos__titulo">O tratamento é construído item a item</h3>
-            <p class="passos__texto">E você sai com o WhatsApp do seu médico — o mesmo que vai acompanhar você daqui em diante.</p>
-          </li>
-        </ol>
-        <div class="acoes consulta__acoes" data-reveal>
-          <a class="botao botao--primario" href="#contato">Agendar avaliação</a>
-        </div>
-      </div>
-    </section>
+</li>
+<li>
+<h3 class="passos__titulo">O exame é lido junto, na tela</h3>
 
-    <!-- ================= PERGUNTAS DA SEMANA (conteúdo) ================= -->
-    <section class="secao sup-bordo perguntas" id="conteudo-semana" aria-labelledby="titulo-perguntas">
-      <div class="container">
-        <header class="secao__cabeca grid-12 perguntas__cabeca">
-          <div class="col-7">
-            <p class="eyebrow" data-reveal>Conteúdo</p>
-            <h2 id="titulo-perguntas" data-split-linhas>Perguntas que a gente responde toda semana.</h2>
-          </div>
-          <p class="col-4 col-inicio-9 perguntas__sub texto-2" data-reveal>Com nome e rosto. Gravadas no estúdio Jacarandá, transcritas no site.</p>
-        </header>
-        <div class="perguntas__lista" data-reveal-grupo>
-          <article class="pergunta">
-            <a class="pergunta__capa" href="#" tabindex="-1" aria-hidden="true">
-              <img src="../../assets/placeholders/retrato-breno-45.svg" alt="" loading="lazy" decoding="async" width="1080" height="1350">
-              <span class="pergunta__rotulo">Capa — série gravada no estúdio Jacarandá</span>
-            </a>
-            <h3 class="pergunta__titulo">Dormir bem e acordar cansado: o que pode estar por trás?</h3>
-            <span class="assinatura">— Dr. Breno Gondim</span>
-            <a class="botao botao--secundario pergunta__link" href="#">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
-          </article>
-          <article class="pergunta">
-            <a class="pergunta__capa" href="#" tabindex="-1" aria-hidden="true">
-              <img src="../../assets/placeholders/retrato-tulio-45.svg" alt="" loading="lazy" decoding="async" width="1080" height="1350">
-              <span class="pergunta__rotulo">Capa — série gravada no estúdio Jacarandá</span>
-            </a>
-            <h3 class="pergunta__titulo">Exame de sangue normal, mas o corpo não está bem: o que pode estar acontecendo?</h3>
-            <span class="assinatura">— Dr. Túlio Bovo</span>
-            <a class="botao botao--secundario pergunta__link" href="#">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
-          </article>
-          <article class="pergunta">
-            <a class="pergunta__capa" href="#" tabindex="-1" aria-hidden="true">
-              <img src="../../assets/placeholders/retrato-ana-paula-45.svg" alt="" loading="lazy" decoding="async" width="1080" height="1350">
-              <span class="pergunta__rotulo">Capa — série gravada no estúdio Jacarandá</span>
-            </a>
-            <h3 class="pergunta__titulo">Quando o botox não é indicado?</h3>
-            <span class="assinatura">— Dra. Ana Paula Bovo</span>
-            <a class="botao botao--secundario pergunta__link" href="#">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
-          </article>
-        </div>
-        <div class="perguntas__rodape" data-reveal>
-          <a class="botao botao--secundario" href="#">Ver mais respostas <span class="seta" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
+</li>
+<li>
+<h3 class="passos__titulo">O tratamento é construído item a item</h3>
 
-    <!-- ================= PERGUNTAS MAIS COMUNS (FAQ) ================= -->
-    <section class="secao sup-osso faq-secao" id="perguntas" data-tema="claro" aria-labelledby="titulo-faq">
-      <div class="container grid-12">
-        <header class="col-5 faq__cabeca">
-          <p class="eyebrow" data-reveal>Perguntas mais comuns</p>
-          <h2 id="titulo-faq" data-split-linhas>O que a gente mais ouve antes da primeira consulta.</h2>
-        </header>
-        <div class="col-6 col-inicio-7 faq__lista" data-reveal>
-          <details class="faq">
-            <summary>Vou ter que fazer isso para o resto da vida?</summary>
-            <div class="faq__conteudo">
-              <p>Não. O tratamento tem alta; o que continua é o acompanhamento. Com o mesmo médico, de tempos em tempos, para você não se perder de vista de novo.</p>
-              <span class="assinatura">— Dr. Túlio Bovo</span>
-            </div>
-          </details>
-          <details class="faq">
-            <summary>Isso é coisa de academia, não é?</summary>
-            <div class="faq__conteudo">
-              <p>Não. Uma coisa é a produção do próprio corpo, que cai com o tempo e se investiga por exame. Outra, completamente diferente, é hormônio para fins estéticos ou para hipertrofia. A gente faz a primeira e recusa a segunda.</p>
-              <span class="assinatura">— Dr. Breno Gondim</span>
-            </div>
-          </details>
-          <details class="faq">
-            <summary>Vai ficar com cara de feita?</summary>
-            <div class="faq__conteudo">
-              <p>Depende de onde a consulta começa. O mesmo procedimento fica melhor em uma pessoa do que em outra, por anatomia e proporção — por isso a minha consulta começa avaliando o rosto, e não escolhendo o produto. Quando não é indicado, eu digo.</p>
-              <span class="assinatura">— Dra. Ana Paula Bovo</span>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
+</li>
+</ol>
+<div class="acoes consulta__acoes" data-reveal="">
+<a class="botao botao--primario" href="#contato">Agendar avaliação</a>
+</div>
+</div>
+</section>
+<!-- ================= PERGUNTAS DA SEMANA (conteúdo) ================= -->
+<section aria-labelledby="titulo-perguntas" class="secao sup-bordo perguntas" id="conteudo-semana">
+<div class="container">
+<header class="secao__cabeca grid-12 perguntas__cabeca">
+<div class="col-7">
+<p class="eyebrow" data-reveal="">Conteúdo</p>
+<h2 data-split-linhas="" id="titulo-perguntas">Perguntas que a gente responde toda semana.</h2>
+</div>
+<p class="col-4 col-inicio-9 perguntas__sub texto-2" data-reveal="">Com nome e rosto. Gravadas no estúdio Jacarandá, transcritas no site.</p>
+</header>
+<div class="perguntas__lista" data-reveal-grupo="">
+<article class="pergunta">
+<a aria-hidden="true" class="pergunta__capa" href="#" tabindex="-1">
+<img alt="" decoding="async" height="1350" loading="lazy" src="../../assets/placeholders/retrato-breno-45.svg" width="1080"/>
+<span class="pergunta__rotulo">Capa — série gravada no estúdio Jacarandá</span>
+</a>
+<h3 class="pergunta__titulo">Dormir bem e acordar cansado: o que pode estar por trás?</h3>
+<span class="assinatura">— Dr. Breno Gondim</span>
+<a class="botao botao--secundario pergunta__link" href="#">Ver resposta <span aria-hidden="true" class="seta">→</span></a>
+</article>
+<article class="pergunta">
+<a aria-hidden="true" class="pergunta__capa" href="#" tabindex="-1">
+<img alt="" decoding="async" height="1350" loading="lazy" src="../../assets/placeholders/retrato-tulio-45.svg" width="1080"/>
+<span class="pergunta__rotulo">Capa — série gravada no estúdio Jacarandá</span>
+</a>
+<h3 class="pergunta__titulo">Exame de sangue normal, mas o corpo não está bem: o que pode estar acontecendo?</h3>
+<span class="assinatura">— Dr. Túlio Bovo</span>
+<a class="botao botao--secundario pergunta__link" href="#">Ver resposta <span aria-hidden="true" class="seta">→</span></a>
+</article>
+<article class="pergunta">
+<a aria-hidden="true" class="pergunta__capa" href="#" tabindex="-1">
+<img alt="" decoding="async" height="1350" loading="lazy" src="../../assets/placeholders/retrato-ana-paula-45.svg" width="1080"/>
+<span class="pergunta__rotulo">Capa — série gravada no estúdio Jacarandá</span>
+</a>
+<h3 class="pergunta__titulo">Quando o botox não é indicado?</h3>
+<span class="assinatura">— Dra. Ana Paula Bovo</span>
+<a class="botao botao--secundario pergunta__link" href="#">Ver resposta <span aria-hidden="true" class="seta">→</span></a>
+</article>
+</div>
+<div class="perguntas__rodape" data-reveal="">
+<a class="botao botao--secundario" href="#">Ver mais respostas <span aria-hidden="true" class="seta">→</span></a>
+</div>
+</div>
+</section>
+<!-- ================= PERGUNTAS MAIS COMUNS (FAQ) ================= -->
 
-    <!-- ================= FECHO + CONTATO ================= -->
-    <section class="secao sup-bordo fecho" id="contato" aria-labelledby="titulo-fecho">
-      <div class="container grid-12">
-        <header class="col-6 fecho__cabeca">
-          <p class="eyebrow" data-reveal>Contato</p>
-          <h2 class="titulo-2l" id="titulo-fecho" data-split-linhas>Avaliação com o médico <span class="linha-2">que vai acompanhar você.</span></h2>
-          <div class="acoes" data-reveal>
-            <a class="botao botao--primario" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." target="_blank" rel="noopener">Falar no WhatsApp</a>
-          </div>
-          <p class="fecho__nota texto-2" data-reveal>Ou deixe seu contato. A gente responde em até um dia útil.</p>
-        </header>
-        <div class="col-5 col-inicio-8" data-reveal>
-          <!-- FORMULÁRIO (partial canônico) -->
-          <form class="form" id="form-contato" action="#" method="post" novalidate>
-            <div class="form__campos form__campos--2">
-              <div class="form__campo">
-                <input type="text" id="f-nome" name="nome" placeholder=" " autocomplete="name" required>
-                <label for="f-nome">Nome</label>
-              </div>
-              <div class="form__campo">
-                <input type="tel" id="f-whats" name="whatsapp" placeholder=" " autocomplete="tel" inputmode="tel" required>
-                <label for="f-whats">WhatsApp</label>
-              </div>
-              <div class="form__campo form__campo--largo">
-                <input type="email" id="f-email" name="email" placeholder=" " autocomplete="email" required>
-                <label for="f-email">E-mail</label>
-              </div>
-              <div class="form__campo form__campo--largo">
-                <textarea id="f-msg" name="mensagem" placeholder=" " rows="3"></textarea>
-                <label for="f-msg">O que parou de funcionar</label>
-              </div>
-            </div>
-            <p class="form__privacidade">Seus dados ficam com a gente e servem só para marcar a sua avaliação. Nada de lista, nada de disparo.</p>
-            <div class="form__acoes">
-              <button class="botao botao--primario" type="submit">Enviar</button>
-            </div>
-            <div class="form__sucesso" role="status" aria-live="polite" tabindex="-1">
-              <p>Recebido. Quem te atender no primeiro dia é quem vai te acompanhar — a gente responde em até um dia útil.</p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER (partial canônico) -->
-  <footer class="footer sup-profundo" id="rodape">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__col">
-          <a class="footer__logo" href="#topo" aria-label="Instituto Rocca — voltar ao topo">
-            <img src="../../assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
-          </a>
-          <p class="footer__descritor">Instituto de Qualidade de Vida e Bem-Estar em Moema. Trata a causa do que parou de funcionar em você, com o mesmo médico do primeiro dia em diante.</p>
-        </div>
-        <div class="footer__col">
-          <p class="footer__titulo eyebrow">A casa</p>
-          <address>
-            Rua —, Moema, São Paulo <span class="footer__pendente">[PENDENTE]</span><br>
-            Segunda a sexta, — às — <span class="footer__pendente">[PENDENTE]</span><br>
-            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp (11) 99999-9999</a><br>
-            <a href="#">Instagram @institutorocca</a> <span class="footer__pendente">[PENDENTE]</span>
-          </address>
-        </div>
-        <div class="footer__col">
-          <p class="footer__titulo eyebrow">Frentes</p>
-          <ul class="footer__lista">
-            <li><a href="#">Emagrecimento e metabolismo</a></li>
-            <li><a href="#">Avaliação hormonal</a></li>
-            <li><a href="#">Qualidade de vida e longevidade</a></li>
-            <li><a href="#">Dermatologia</a></li>
-            <li><a href="#">Lipedema</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <p class="footer__titulo eyebrow">Os médicos</p>
-          <ul class="footer__lista">
-            <li><a href="#">Dr. Túlio Bovo</a></li>
-            <li><a href="#">Dr. Breno Gondim</a></li>
-            <li><a href="#">Dra. Ana Paula Bovo</a></li>
-            <li><a href="#">Conteúdo</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__base">
-        <span>Responsável técnico: Dr. — · CRM-SP 000000 <span class="footer__pendente">[PENDENTE]</span></span>
-        <a href="#">Política de privacidade</a>
-        <span>Instituto Rocca © <span data-ano>2026</span></span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- WHATSAPP FLUTUANTE (partial canônico) -->
-  <a class="whats" href="https://wa.me/5511999999999" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-  </a>
-
-  <!-- LIGHTBOX (partial canônico) -->
-  <dialog class="lightbox" id="filme" aria-label="Filme institucional">
-    <button class="lightbox__fechar" type="button" data-fecha-lightbox>Fechar</button>
-    <div class="lightbox__media">
-      <video controls playsinline preload="none" poster="../../assets/img/entrada-clinica.jpg">
-        <source src="../../assets/video/institucional.mp4" type="video/mp4">
-      </video>
-    </div>
-    <p class="lightbox__legenda">Filme institucional — gravação na clínica <span class="texto-2">[PENDENTE]</span></p>
-  </dialog>
-
-  <!-- LIGHTBOX dos vídeos "Quem eu sou" (placeholder até a diária no estúdio) -->
-  <dialog class="lightbox" id="quem-eu-sou" aria-label="Quem eu sou — apresentação do médico">
-    <button class="lightbox__fechar" type="button" data-fecha-lightbox aria-label="Fechar o vídeo">Fechar</button>
-    <div class="lightbox__media">
-      <img src="../../assets/placeholders/video-conversa.svg" alt="Estúdio Jacarandá com os bastidores à mostra — placeholder do vídeo de apresentação." loading="lazy" decoding="async" width="1920" height="1080">
-    </div>
-    <p class="lightbox__legenda">Quem eu sou — gravado no estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></p>
-  </dialog>
-
+<!-- ================= FECHO + CONTATO ================= -->
+<section aria-labelledby="titulo-fecho" class="secao sup-bordo fecho" id="contato">
+<div class="container grid-12">
+<header class="col-6 fecho__cabeca">
+<p class="eyebrow" data-reveal="">Contato</p>
+<h2 class="titulo-2l" data-split-linhas="" id="titulo-fecho">Avaliação com o médico <span class="linha-2">que vai acompanhar você.</span></h2>
+<div class="acoes" data-reveal="">
+<a class="botao botao--primario" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." rel="noopener" target="_blank">Falar no WhatsApp</a>
+</div>
+<p class="fecho__nota texto-2" data-reveal="">Ou deixe seu contato. A gente responde em até um dia útil.</p>
+</header>
+<div class="col-5 col-inicio-8" data-reveal="">
+<!-- FORMULÁRIO (partial canônico) -->
+<form action="#" class="form" id="form-contato" method="post" novalidate="">
+<div class="form__campos form__campos--2">
+<div class="form__campo">
+<input autocomplete="name" id="f-nome" name="nome" placeholder=" " required="" type="text"/>
+<label for="f-nome">Nome</label>
+</div>
+<div class="form__campo">
+<input autocomplete="tel" id="f-whats" inputmode="tel" name="whatsapp" placeholder=" " required="" type="tel"/>
+<label for="f-whats">WhatsApp</label>
+</div>
+<div class="form__campo form__campo--largo">
+<input autocomplete="email" id="f-email" name="email" placeholder=" " required="" type="email"/>
+<label for="f-email">E-mail</label>
+</div>
+<div class="form__campo form__campo--largo">
+<textarea id="f-msg" name="mensagem" placeholder=" " rows="3"></textarea>
+<label for="f-msg">O que parou de funcionar</label>
+</div>
+</div>
+<p class="form__privacidade">Seus dados ficam com a gente e servem só para marcar a sua avaliação. Nada de lista, nada de disparo.</p>
+<div class="form__acoes">
+<button class="botao botao--primario" type="submit">Enviar</button>
+</div>
+<div aria-live="polite" class="form__sucesso" role="status" tabindex="-1">
+<p>Recebido. Quem te atender no primeiro dia é quem vai te acompanhar — a gente responde em até um dia útil.</p>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER (partial canônico) -->
+<footer class="footer sup-profundo" id="rodape">
+<div class="container">
+<div class="footer__grid">
+<div class="footer__col">
+<a aria-label="Instituto Rocca — voltar ao topo" class="footer__logo" href="#topo">
+<img alt="Instituto Rocca" height="410" src="../../assets/img/logo.svg" width="1686"/>
+</a>
+<p class="footer__descritor">Instituto de Qualidade de Vida e Bem-Estar em Moema. Trata a causa do que parou de funcionar em você, com o mesmo médico do primeiro dia em diante.</p>
+</div>
+<div class="footer__col">
+<p class="footer__titulo eyebrow">A casa</p>
+<address>
+            Rua —, Moema, São Paulo <span class="footer__pendente">[PENDENTE]</span><br/>
+            Segunda a sexta, — às — <span class="footer__pendente">[PENDENTE]</span><br/>
+<a href="https://wa.me/5511999999999" rel="noopener" target="_blank">WhatsApp (11) 99999-9999</a><br/>
+<a href="#">Instagram @institutorocca</a> <span class="footer__pendente">[PENDENTE]</span>
+</address>
+</div>
+<div class="footer__col">
+<p class="footer__titulo eyebrow">Frentes</p>
+<ul class="footer__lista">
+<li><a href="#">Emagrecimento e metabolismo</a></li>
+<li><a href="#">Avaliação hormonal</a></li>
+<li><a href="#">Qualidade de vida e longevidade</a></li>
+<li><a href="#">Dermatologia</a></li>
+<li><a href="#">Lipedema</a></li>
+</ul>
+</div>
+<div class="footer__col">
+<p class="footer__titulo eyebrow">Os médicos</p>
+<ul class="footer__lista">
+<li><a href="#">Dr. Túlio Bovo</a></li>
+<li><a href="#">Dr. Breno Gondim</a></li>
+<li><a href="#">Dra. Ana Paula Bovo</a></li>
+<li><a href="#">Conteúdo</a></li>
+</ul>
+</div>
+</div>
+<div class="footer__base">
+<span>Responsável técnico: Dr. — · CRM-SP 000000 <span class="footer__pendente">[PENDENTE]</span></span>
+<a href="#">Política de privacidade</a>
+<span>Instituto Rocca © <span data-ano="">2026</span></span>
+</div>
+</div>
+</footer>
+<!-- WHATSAPP FLUTUANTE (partial canônico) -->
+<a aria-label="Falar no WhatsApp" class="whats" href="https://wa.me/5511999999999" rel="noopener" target="_blank">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg>
+</a>
+<!-- LIGHTBOX (partial canônico) -->
+<dialog aria-label="Filme institucional" class="lightbox" id="filme">
+<button class="lightbox__fechar" data-fecha-lightbox="" type="button">Fechar</button>
+<div class="lightbox__media">
+<video controls="" playsinline="" poster="../../assets/img/entrada-clinica.jpg" preload="none">
+<source src="../../assets/video/institucional.mp4" type="video/mp4"/>
+</video>
+</div>
+<p class="lightbox__legenda">Filme institucional — gravação na clínica <span class="texto-2">[PENDENTE]</span></p>
+</dialog>
+<!-- LIGHTBOX dos vídeos "Quem eu sou" (placeholder até a diária no estúdio) -->
+<dialog aria-label="Quem eu sou — apresentação do médico" class="lightbox" id="quem-eu-sou">
+<button aria-label="Fechar o vídeo" class="lightbox__fechar" data-fecha-lightbox="" type="button">Fechar</button>
+<div class="lightbox__media">
+<img alt="Estúdio Jacarandá com os bastidores à mostra — placeholder do vídeo de apresentação." decoding="async" height="1080" loading="lazy" src="../../assets/placeholders/video-conversa.svg" width="1920"/>
+</div>
+<p class="lightbox__legenda">Quem eu sou — gravado no estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></p>
+</dialog>
 </body>
 </html>
 <!-- PRODUÇÃO — o que este conceito precisa das duas diárias (BRIEF §7):

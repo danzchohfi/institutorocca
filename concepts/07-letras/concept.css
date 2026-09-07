@@ -1,0 +1,15 @@
+/* Conceito 7 — Letras: o wordmark INSTITUTO ROCCA escrito com partículas (three.js). Só o hero. */
+.visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hero--letras { position: relative; min-height: 100svh; overflow: hidden; display: grid; align-items: end; }
+.letras__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.letras__fallback { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); width: min(72vw, 1100px); height: auto; }
+.hero--letras::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 50% 42%, rgba(110, 18, 18, .55), transparent 70%); pointer-events: none; }
+.hero__conteudo { position: relative; z-index: 1; padding-bottom: clamp(56px, 10vh, 120px); text-align: center; display: grid; justify-items: center; gap: .9rem; }
+.hero__frase { font-weight: 300; font-size: clamp(1.4rem, 2.6vw, 2.2rem); line-height: 1.2; margin: 0; }
+.hero__frase em { font-style: italic; }
+.hero__acoes { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: center; margin-top: .6rem; }
+.hero__nota { margin: 0; color: var(--fg-2); font-size: .95rem; }
+.hero__dica { position: absolute; right: var(--gutter); bottom: 24px; z-index: 1; margin: 0; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--fg-2); }
+@media (max-width: 899.98px) { .hero__dica { display: none; } .letras__fallback { width: 86vw; } }
+.letras__depois { padding-block: clamp(80px, 12vw, 160px); }
+.letras__depois .texto-grande { max-width: 50ch; }
