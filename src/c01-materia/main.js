@@ -1,13 +1,12 @@
 /* ============================================================================
    Conceito 1 — Matéria · main.js
-   UI compartilhada (ui.js) + partículas do hero (three.js) + poeira em
-   "As provas". A convergência dispara no 'rocca:pronto'; o scroll do hero
-   (scrub) dissolve a forma; o texto do hero entra logo depois da matéria
-   começar a se organizar.
+   UI compartilhada (ui.js) + o wordmark em partículas (shared/letras.js),
+   menor e à direita. A montagem dispara no 'rocca:pronto'; o scroll do hero
+   (scrub) dissolve as letras; o texto entra logo depois.
    ============================================================================ */
 import { initUI, gsap, ScrollTrigger, prefersReducedMotion, revelarHero, esperarFontes } from '../../shared/ui.js';
 import { iniciarCartoes } from '../../shared/cartoes.js';
-import { Particulas, temWebGL } from './particulas.js';
+import { iniciarLetras } from '../../shared/letras.js';
 
 initUI({ lenis: true, revelarHero: false, preloader: true });
 
@@ -17,7 +16,6 @@ const fallback = document.querySelector('.hero__fallback');
 const canvasProvas = document.querySelector('.provas__canvas');
 
 const mobile = window.innerWidth < 900 || (navigator.hardwareConcurrency || 8) <= 4;
-const podeWebGL = !prefersReducedMotion && temWebGL();
 
 function mostrarFallback() {
   if (canvasHero) canvasHero.hidden = true;
@@ -25,55 +23,19 @@ function mostrarFallback() {
   if (hero) hero.classList.add('hero--estatico');
 }
 
-/* ---- hero: seixo de partículas ------------------------------------------- */
-let seixo = null;
-if (podeWebGL && canvasHero) {
-  try {
-    seixo = new Particulas(canvasHero, {
-      modo: 'seixo',
-      quantidade: mobile ? 10000 : 30000,
-      fio: 0.06,
-      mouse: true,
-      raio: 0.35,
-      opacidade: mobile ? 0.78 : 0.84,
-      ruido: 0.06,
-      converge: 0,
-    });
-  } catch (e) {
-    seixo = null;
-    mostrarFallback();
-  }
-} else {
-  mostrarFallback();
-}
-
-/* ---- as provas: poeira esparsa, quase estática --------------------------- */
-let poeira = null;
-if (podeWebGL && canvasProvas) {
-  try {
-    poeira = new Particulas(canvasProvas, {
-      modo: 'poeira',
-      quantidade: mobile ? 1400 : 2500,
-      mouse: true,
-      forca: 0.6,
-      raio: 0.55,
-      opacidade: 0.7,
-      tamanho: 1.5,
-      ruido: 0.05,
-      converge: 1,
-      altura: 4.2,
-      semente: 11,
-    });
-  } catch (e) {
-    poeira = null;
-  }
-}
+/* ---- hero: o wordmark em partículas, menor, à direita (shared/letras.js) --- */
+let letras = null;
 
 /* ---- abertura: convergência + texto do hero ------------------------------ */
 function abrir() {
   iniciarCartoes();
-  if (seixo) {
-    gsap.to(seixo.uniforms.uConverge, { value: 1, duration: 2.6, ease: 'expo.out' });
+  if (!letras && canvasHero) {
+    letras = iniciarLetras({
+      hero, canvas: canvasHero, fallback, fonte: document.getElementById('wordmark-fonte'),
+      fracao: { desktop: 0.36, mobile: 0.8 }, centro: { desktop: [0.22, 0.02], mobile: [0, 0.24] },
+      amostra: { desktop: [1100, 60000], mobile: [700, 25000] },
+    });
+    if (!letras) mostrarFallback();
   }
   if (prefersReducedMotion) {
     // sem animação: só marca tudo como revelado (evita o gsap.set vazio do ui.js)
@@ -83,7 +45,7 @@ function abrir() {
     return;
   }
   esperarFontes(1500).then(() => {
-    gsap.delayedCall(seixo ? 0.45 : 0, () => revelarHero());
+    gsap.delayedCall(letras ? 0.45 : 0, () => revelarHero());
   });
 }
 if (document.documentElement.classList.contains('pronto')) abrir();
@@ -100,7 +62,9 @@ if (hero && !prefersReducedMotion) {
       start: 'top top',
       end: 'bottom top',
       scrub: true,
-      onUpdate: (self) => { if (seixo) seixo.setProgress(self.progress); },
+      onUpdate: (self) => { if (letras) letras.setProgresso(self.progress); },
+      onLeave: () => { if (letras) letras.setAtivo(false); },
+      onEnterBack: () => { if (letras) letras.setAtivo(true); },
     },
   });
   if (heroIn) tl.to(heroIn, { opacity: 0, y: -60, duration: 0.55 }, 0);

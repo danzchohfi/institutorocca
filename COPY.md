@@ -7,6 +7,7 @@
 > nos menus, rodapé e na seção, "Frentes" passa a "Serviços" (o termo interno segue nos ids e nos nomes de classe).
 > Saem também a seção "O que sustenta o que a gente diz" (as provas) e a linha de descrição sob cada médico
 > ("Cansaço, peso e hormônio — o que parou de funcionar" etc.).
+> No 01, o seixo animado sai; entra o wordmark em partículas do 07, bem menor e à direita, com os serviços embaixo.
 
 # COPY.md — Banco de texto definitivo da home · Instituto Rocca
 
