@@ -6,7 +6,7 @@
    começar a se organizar.
    ============================================================================ */
 import { initUI, gsap, ScrollTrigger, prefersReducedMotion, revelarHero, esperarFontes } from '../../shared/ui.js';
-import { iniciarSliders } from '../../shared/slider.js';
+import { iniciarCartoes } from '../../shared/cartoes.js';
 import { Particulas, temWebGL } from './particulas.js';
 
 initUI({ lenis: true, revelarHero: false, preloader: true });
@@ -71,7 +71,7 @@ if (podeWebGL && canvasProvas) {
 
 /* ---- abertura: convergência + texto do hero ------------------------------ */
 function abrir() {
-  iniciarSliders();
+  iniciarCartoes();
   if (seixo) {
     gsap.to(seixo.uniforms.uConverge, { value: 1, duration: 2.6, ease: 'expo.out' });
   }

@@ -1,34 +1,48 @@
 /* Conceito 7 — Letras · main.js
    O wordmark INSTITUTO ROCCA é amostrado do próprio logo (SVG inline), pixel a
    pixel, e vira dezenas de milhares de partículas finas em three.js: nascem
-   dispersas, convergem para as letras, respiram, fogem do mouse e voltam; ao
-   rolar, dissolvem. Toda a integração acontece no vertex shader (a CPU só
+   espalhadas pela tela, se montam em ~2 s numa varredura em espiral, têm vida
+   própria (deriva orgânica + um pouco de pó solto), abrem caminho para o mouse
+   numa área grande e voltam; ao rolar, dissolvem. Toda a integração acontece no vertex shader (a CPU só
    atualiza uniforms), o que permite muito mais pontos, e menores. */
 import * as THREE from 'three';
 import { initUI, gsap, ScrollTrigger, revelarHero, esperarFontes, prefersReducedMotion } from '../../shared/ui.js';
-import { iniciarSliders } from '../../shared/slider.js';
+import { iniciarCartoes } from '../../shared/cartoes.js';
 import { iniciarLinhas } from '../c02-chegada/linhas.js';
 
 initUI({ lenis: true, revelarHero: false, preloader: false });
 
 const VERT = `
 attribute vec3 aInicio; attribute vec3 aDir; attribute float aSemente; attribute float aTamanho;
-uniform float uPixelRatio, uAlpha, uConverge, uProgresso, uTempo, uEscala;
+uniform float uPixelRatio, uAlpha, uConverge, uProgresso, uTempo, uEscala, uRaio, uForca;
 uniform vec2 uMouse;
 varying float vSemente; varying float vAlpha;
 void main() {
   float s = aSemente;
-  float t = clamp((uConverge - s * 0.35) / 0.65, 0.0, 1.0);
-  t = 1.0 - pow(1.0 - t, 3.0);
-  vec3 p = mix(aInicio, position, t);
-  p.xy += vec2(sin(uTempo * 0.8 + s * 40.0), cos(uTempo * 0.7 + s * 33.0)) * 0.010 * t;
+  // Montagem: varre da esquerda para a direita, com sorteio por partícula,
+  // e cada ponto chega numa espiral (gira ao redor do centro enquanto converge).
+  float ordem = clamp(position.x / 20.0 + 0.5, 0.0, 1.0);
+  float t = clamp(uConverge * 1.7 - ordem * 0.5 - s * 0.2, 0.0, 1.0);
+  t = t * t * (3.0 - 2.0 * t);
+  float ang = (1.0 - t) * 1.6; float ca = cos(ang), sa = sin(ang);
+  vec3 ini = aInicio; ini.xy = vec2(ini.x * ca - ini.y * sa, ini.x * sa + ini.y * ca);
+  vec3 p = mix(ini, position, t);
+  // Vida própria: deriva orgânica em duas oitavas; ~8% são pó solto, com amplitude bem maior.
+  float livre = step(0.92, fract(s * 13.7));
+  float amp = mix(0.055, 0.9, livre) * t;
+  p.xy += vec2(sin(uTempo * 0.9 + s * 40.0) + 0.5 * sin(uTempo * 1.7 + s * 91.0),
+               cos(uTempo * 0.8 + s * 33.0) + 0.5 * cos(uTempo * 1.4 + s * 77.0)) * amp;
+  p.z += sin(uTempo * 0.6 + s * 20.0) * 0.2 * t;
+  // Mouse: área grande, queda suave; as partículas abrem caminho e voltam.
   vec2 d = p.xy - uMouse; float dist = length(d);
-  if (dist < 2.0) { float f = 1.0 - dist / 2.0; p.xy += (d / max(dist, 0.001)) * f * f * 1.0 * t; }
+  float f = 1.0 - smoothstep(0.0, uRaio, dist);
+  p.xy += (d / max(dist, 0.001)) * f * f * uRaio * (0.32 + 0.36 * fract(s * 5.1)) * uForca * t;
   p += aDir * uProgresso * 10.0;
   vec4 mv = modelViewMatrix * vec4(p, 1.0);
   gl_Position = projectionMatrix * mv;
-  gl_PointSize = aTamanho * uPixelRatio * (uEscala / -mv.z);
-  vSemente = s; vAlpha = uAlpha * (0.55 + 0.45 * fract(s * 7.31));
+  gl_PointSize = aTamanho * uPixelRatio * (uEscala / -mv.z) * mix(1.0, 1.4, livre);
+  vSemente = s;
+  vAlpha = uAlpha * (0.55 + 0.45 * fract(s * 7.31)) * (0.78 + 0.22 * sin(uTempo * 1.6 + s * 60.0)) * mix(1.0, 0.55, livre);
 }`;
 const FRAG = `
 precision mediump float; uniform vec3 uCorA, uCorB; varying float vSemente; varying float vAlpha;
@@ -75,8 +89,7 @@ function iniciar() {
     const semente = new Float32Array(n), tam = new Float32Array(n), dir = new Float32Array(n * 3);
     for (let i = 0; i < n; i++) {
       alvo[i * 3] = pts[i][0] * W; alvo[i * 3 + 1] = pts[i][1] * W; alvo[i * 3 + 2] = (Math.random() - 0.5) * 0.3;
-      const r = W * (0.7 + Math.random() * 0.9), a = Math.random() * Math.PI * 2, b = (Math.random() - 0.5) * Math.PI;
-      inicio[i * 3] = Math.cos(a) * Math.cos(b) * r; inicio[i * 3 + 1] = Math.sin(b) * r * 0.6; inicio[i * 3 + 2] = Math.sin(a) * Math.cos(b) * r * 0.4 - 3;
+      inicio[i * 3] = (Math.random() - 0.5) * W * 1.7; inicio[i * 3 + 1] = (Math.random() - 0.5) * W * 1.0; inicio[i * 3 + 2] = (Math.random() - 0.5) * 8 - 2;
       semente[i] = Math.random(); tam[i] = 0.4 + Math.random() * 0.45;
       const dx = inicio[i * 3] - alvo[i * 3], dy = inicio[i * 3 + 1] - alvo[i * 3 + 1] + 4, dz = inicio[i * 3 + 2];
       const L = Math.hypot(dx, dy, dz) || 1; dir[i * 3] = dx / L; dir[i * 3 + 1] = dy / L; dir[i * 3 + 2] = dz / L;
@@ -91,7 +104,7 @@ function iniciar() {
     const dpr = Math.min(devicePixelRatio || 1, 2);
     const uni = {
       uPixelRatio: { value: dpr }, uAlpha: { value: 0.6 }, uConverge: { value: 0 }, uProgresso: { value: 0 },
-      uTempo: { value: 0 }, uEscala: { value: 40 }, uMouse: { value: new THREE.Vector2(1e6, 1e6) },
+      uTempo: { value: 0 }, uEscala: { value: 40 }, uRaio: { value: 4 }, uForca: { value: 0 }, uMouse: { value: new THREE.Vector2(1e6, 1e6) },
       uCorA: { value: new THREE.Color('#F2E8D9') }, uCorB: { value: new THREE.Color('#B8997D') },
     };
     const mat = new THREE.ShaderMaterial({ vertexShader: VERT, fragmentShader: FRAG, uniforms: uni, transparent: true, depthWrite: false, depthTest: false });
@@ -110,30 +123,36 @@ function iniciar() {
       pontos.position.y = visH * 0.08;
       // tamanho em pixels independente da distância da câmera: ~0,6–1,3 px de grão (pó fino)
       uni.uEscala.value = dist * (w < 900 ? 1.35 : 1.5);
+      // área de influência do mouse: ~16% da largura visível (no toque, um pouco mais)
+      uni.uRaio.value = visW * (w < 900 ? 0.22 : 0.16);
     };
     ajustar();
     let tResize; addEventListener('resize', () => { clearTimeout(tResize); tResize = setTimeout(ajustar, 200); });
 
     const estado = { converge: 0, progresso: 0 };
-    const alvoMouse = { x: 1e6, y: 1e6 }, mouse = { x: 1e6, y: 1e6 };
+    const alvoMouse = { x: 0, y: 0, forca: 0 }, mouse = { x: 0, y: 0, forca: 0 };
+    let dentro = false;
     hero.addEventListener('pointermove', (e) => {
       const r = canvas.getBoundingClientRect();
       alvoMouse.x = ((e.clientX - r.left) / r.width - 0.5) * visW; alvoMouse.y = -((e.clientY - r.top) / r.height - 0.5) * visH - pontos.position.y;
+      if (!dentro) { dentro = true; mouse.x = alvoMouse.x; mouse.y = alvoMouse.y; }
+      alvoMouse.forca = 1;
     });
-    hero.addEventListener('pointerleave', () => { alvoMouse.x = 1e6; alvoMouse.y = 1e6; });
+    hero.addEventListener('pointerleave', () => { dentro = false; alvoMouse.forca = 0; });
 
     const clock = new THREE.Clock(); let ativo = true;
     const passo = () => {
       if (!ativo || document.hidden) return;
-      mouse.x += (alvoMouse.x - mouse.x) * 0.12; mouse.y += (alvoMouse.y - mouse.y) * 0.12;
-      uni.uMouse.value.set(mouse.x, mouse.y);
+      mouse.x += (alvoMouse.x - mouse.x) * 0.1; mouse.y += (alvoMouse.y - mouse.y) * 0.1; mouse.forca += (alvoMouse.forca - mouse.forca) * 0.08;
+      uni.uMouse.value.set(mouse.x, mouse.y); uni.uForca.value = mouse.forca;
       uni.uTempo.value = clock.getElapsedTime();
       uni.uConverge.value = estado.converge; uni.uProgresso.value = estado.progresso;
-      uni.uAlpha.value = (0.55 + 0.45 * estado.converge) * (1 - estado.progresso);
+      uni.uAlpha.value = (0.35 + 0.65 * estado.converge) * (1 - estado.progresso);
       renderer.render(scene, cam);
     };
     renderer.setAnimationLoop(passo);
-    gsap.to(estado, { converge: 1, duration: 3.4, ease: 'expo.out', delay: 0.2 });
+    // Montagem visível ao carregar: ~2 s, varrendo o wordmark da esquerda para a direita.
+    gsap.to(estado, { converge: 1, duration: 2.2, ease: 'power2.inOut', delay: 0.15 });
     // scrub: true — o Lenis já suaviza; um scrub com atraso por cima ficava "de borracha".
     gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: '+=100%', pin: true, scrub: true, onLeave: () => { ativo = false; }, onEnterBack: () => { ativo = true; } } })
       .to(estado, { progresso: 1, ease: 'none' }, 0)
@@ -144,5 +163,5 @@ function iniciar() {
 
 window.addEventListener('rocca:pronto', () => {
   esperarFontes(1500).then(() => { iniciar(); iniciarLinhas();
-      iniciarSliders(); gsap.delayedCall(0.9, () => revelarHero()); ScrollTrigger.refresh(); });
+      iniciarCartoes(); gsap.delayedCall(0.9, () => revelarHero()); ScrollTrigger.refresh(); });
 }, { once: true });
