@@ -152,18 +152,20 @@ html.js [data-linha] { transform: scaleX(0); transform-origin: left center; }
 .frente__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
 .frente__cabeca { display: flex; gap: 1.2rem; align-items: baseline; }
 .frente__num { font-size: .8rem; }
-.frente__titulo { font-size: var(--h3); max-width: 22ch; }
+.frente__titulo { font-size: var(--h3); max-width: 16ch; }
+.frente__frase { color: var(--fg-2); max-width: 36ch; font-size: 1rem; line-height: 1.6; }
 .frente__apoio { margin-top: .6rem; color: var(--fg-2); max-width: 44ch; font-size: .95rem; line-height: 1.6; }
 .frente__link { justify-self: start; }
 .frentes__rodape { margin-top: clamp(2rem, 4vw, 3.5rem); }
 @media (min-width: 900px) {
   .frente {
-    grid-template-columns: 4rem minmax(0, 3fr) minmax(0, 6fr) auto;
+    grid-template-columns: 4rem minmax(0, 5fr) minmax(0, 5fr) auto;
     column-gap: var(--coluna-gap);
     align-items: start;
   }
   .frente__cabeca { display: contents; }
-  .frente__num, .frente__nome { padding-top: .55em; }
+  .frente__num { padding-top: .55em; }
+  .frente__frase { padding-top: .45em; }
   .frente__link { justify-self: end; margin-top: .55em; }
 }
 

@@ -208,6 +208,7 @@ html:not(.js) .problema, html.movimento-reduzido .problema { margin-top: 0; padd
 }
 .frente__nome { display: flex; gap: 1.1rem; align-items: baseline; }
 .frente__titulo { font-size: var(--h3); max-width: 24ch; margin-top: .4rem; }
+.frente__frase { color: var(--fg-2); font-size: 1rem; line-height: 1.6; max-width: 40ch; margin-top: .5rem; }
 .frente__apoio { color: var(--fg-2); font-size: .95rem; line-height: 1.6; max-width: 46ch; }
 .frente__link { justify-self: start; margin-top: .6rem; }
 @media (min-width: 900px) {

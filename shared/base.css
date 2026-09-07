@@ -618,6 +618,12 @@ html.menu-aberto .nav { background: transparent; -webkit-backdrop-filter: none; 
   text-transform: uppercase;
 }
 .form__campo input:user-invalid, .form__campo textarea:user-invalid { border-bottom-color: var(--cor-madeira); }
+/* Fecho sem formulário: o número do WhatsApp em destaque + uma nota */
+.fecho__whats { display: grid; gap: 1.1rem; align-content: start; justify-items: start; }
+.fecho__numero { font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.8rem); font-weight: 300; letter-spacing: .01em; line-height: 1.1; text-decoration: none; border-bottom: 1px solid var(--linha, rgba(242, 232, 217, .28)); padding-bottom: .35rem; transition: border-color var(--dur-rapida); }
+.fecho__numero:hover, .fecho__numero:focus-visible { border-bottom-color: currentColor; }
+.fecho__whats-nota { color: var(--fg-2); max-width: 36ch; font-size: .95rem; line-height: 1.6; }
+
 .form__privacidade { font-size: .8rem; line-height: 1.5; color: var(--fg-2); max-width: 44ch; }
 .form__acoes { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; }
 .form__sucesso { display: none; }
@@ -761,3 +767,22 @@ html.js [data-split-linhas].split-pronto { opacity: 1; }
 
 /* ---- Atributo hidden vence qualquer display de componente (img/canvas são block) ---- */
 [hidden] { display: none !important; }
+
+/* ---- Slider editorial ([data-slider]) --------------------------------------- */
+.slider { position: relative; margin-top: clamp(3rem, 6vw, 5.5rem); overflow: hidden; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+/* corta no alinhamento do conteúdo à esquerda; à direita os slides seguem até a borda da tela */
+.slider { clip-path: inset(0 0 0 var(--gutter)); }
+.slider:focus-visible { outline-offset: -2px; }
+.slider__pista { display: flex; column-gap: var(--coluna-gap); will-change: transform; touch-action: pan-y; cursor: grab; }
+.slider--arrastando .slider__pista { cursor: grabbing; }
+.slider__pista img { pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.slider__slide { flex: 0 0 min(80vw, 920px); margin: 0; }
+.slider__moldura { aspect-ratio: 3 / 2; overflow: hidden; background: var(--cor-bordo-profundo); }
+.slider__moldura img { width: 100%; height: 100%; object-fit: cover; }
+.slider__slide .legenda { margin-top: .9rem; }
+.slider__controles { display: flex; align-items: center; gap: .8rem; margin-top: 1.8rem; }
+.slider__contador { margin: 0 auto 0 0; font-size: .8rem; letter-spacing: .16em; }
+.slider__seta { width: 48px; height: 48px; border: 1px solid var(--linha, currentColor); border-radius: 50%; display: grid; place-items: center; font-size: 1.1rem; transition: background var(--dur-rapida), color var(--dur-rapida), opacity var(--dur-rapida); }
+.slider__seta:hover:not(:disabled), .slider__seta:focus-visible { background: var(--fg); color: var(--bg); }
+.slider__seta:disabled { opacity: .3; cursor: default; }
+@media (min-width: 900px) { .slider__slide { flex-basis: min(60vw, 880px); } }

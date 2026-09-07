@@ -6,6 +6,8 @@
    atualiza uniforms), o que permite muito mais pontos, e menores. */
 import * as THREE from 'three';
 import { initUI, gsap, ScrollTrigger, revelarHero, esperarFontes, prefersReducedMotion } from '../../shared/ui.js';
+import { iniciarSliders } from '../../shared/slider.js';
+import { iniciarLinhas } from '../c02-chegada/linhas.js';
 
 initUI({ lenis: true, revelarHero: false, preloader: false });
 
@@ -141,5 +143,6 @@ function iniciar() {
 }
 
 window.addEventListener('rocca:pronto', () => {
-  esperarFontes(1500).then(() => { iniciar(); gsap.delayedCall(0.9, () => revelarHero()); ScrollTrigger.refresh(); });
+  esperarFontes(1500).then(() => { iniciar(); iniciarLinhas();
+      iniciarSliders(); gsap.delayedCall(0.9, () => revelarHero()); ScrollTrigger.refresh(); });
 }, { once: true });

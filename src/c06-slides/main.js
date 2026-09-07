@@ -3,6 +3,7 @@
    teclado (← →), swipe; pausa em hover, em document.hidden e quando o hero sai
    da tela. Sem WebGL, sem preloader. */
 import { initUI, gsap, ScrollTrigger, revelarHero, esperarFontes, prefersReducedMotion } from '../../shared/ui.js';
+import { iniciarSliders } from '../../shared/slider.js';
 import { iniciarLinhas } from './linhas.js';
 
 initUI({ lenis: true, revelarHero: false, preloader: false });
@@ -36,6 +37,7 @@ function slideshow() {
 window.addEventListener('rocca:pronto', () => {
   esperarFontes(1500).then(() => {
     slideshow(); iniciarLinhas();
+      iniciarSliders();
     gsap.delayedCall(0.2, () => revelarHero());
     ScrollTrigger.refresh();
   });

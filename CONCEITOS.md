@@ -13,7 +13,7 @@ publica a cada push nesta branch (ou na `main`).
 
 | # | Conceito | Site | Artifact (provisório, dentro de iframe) |
 |---|----------|------|------------------------------------------|
-| 7 | **Letras** · principal (só o hero) | [abrir](https://danzchohfi.github.io/institutorocca/concepts/07-letras/) | [abrir](https://claude.ai/code/artifact/396e8436-193e-4f84-bccf-efcceb4e8412) |
+| 7 | **Letras** · principal (página completa) | [abrir](https://danzchohfi.github.io/institutorocca/concepts/07-letras/) | [abrir](https://claude.ai/code/artifact/396e8436-193e-4f84-bccf-efcceb4e8412) |
 | 1 | **Matéria** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/01-materia/) | [abrir](https://claude.ai/code/artifact/9ce3eecf-c42e-4a56-88f8-39344acbf006) |
 | 2 | **Chegada** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/02-chegada/) | [abrir](https://claude.ai/code/artifact/78e9e269-6337-4588-b6b9-c7b2b8bdcc54) |
 | 3 | **Presença** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/03-presenca/) | [abrir](https://claude.ai/code/artifact/76784ada-e7ea-4b76-ab4e-79a09df19186) |

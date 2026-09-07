@@ -4,6 +4,7 @@
    pinado no desktop; no mobile o trilho é scroll nativo com scroll-snap.
    O símbolo só gira, escala e mascara (manual: nunca distorcer nem gradiente). */
 import { initUI, gsap, ScrollTrigger, revelarHero, esperarFontes, prefersReducedMotion } from '../../shared/ui.js';
+import { iniciarSliders } from '../../shared/slider.js';
 import { iniciarLinhas } from './linhas.js';
 
 initUI({ lenis: true, revelarHero: false, preloader: false });
@@ -39,6 +40,7 @@ function frentesHorizontal() {
 window.addEventListener('rocca:pronto', () => {
   esperarFontes(1500).then(() => {
     heroAnel(); frentesHorizontal(); iniciarLinhas();
+      iniciarSliders();
     gsap.delayedCall(0.2, () => revelarHero());
     ScrollTrigger.refresh();
   });

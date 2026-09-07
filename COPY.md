@@ -1,3 +1,9 @@
+> **Rodada 4 — decisões do cliente (valem para todas as versões):** sem formulários, a chamada é sempre o WhatsApp;
+> nas Frentes o destaque é o nome do serviço (a frase vira apoio) e o link é `Saiba mais`; na seção A casa saem os
+> textos ("não é decoração", "madeira, pedra e luz quente", "não um consultório branco") e as fotos viram um slider;
+> sob o vídeo de cada médico o link é `Conheça o médico`; a seção "O que acontece na primeira consulta" foi removida;
+> o hero do 07 traz as cinco frentes, pequenas, e nenhuma dica de uso.
+
 # COPY.md — Banco de texto definitivo da home · Instituto Rocca
 
 > Fonte: Direção de Marca (BRIEF §5, copiada literalmente) + complementos permitidos (BRIEF §5.1), escritos na
@@ -145,7 +151,7 @@ Posição: após O MÉTODO (conceitos 1 e 2) ou após OS MÉDICOS (conceito 3), 
 | 4 | Dermatologia | `Pele boa começa antes do procedimento.` | `A consulta começa avaliando o rosto, e não escolhendo o produto.` |
 | 5 | Lipedema | `Não é 'só gordura'.` | `Dor, inchaço e uma gordura que não responde à dieta têm nome e diagnóstico. A investigação começa por reconhecer.` |
 
-Link de cada item: `Ver a frente →` · `aria-label="Ver a frente Emagrecimento e metabolismo"` (e assim por
+Link de cada item: `Saiba mais →` · `aria-label="Saiba mais sobre Emagrecimento e metabolismo"` (e assim por
 diante). "Conteúdo" é item de nav, não frente — não entra aqui.
 
 ---
@@ -306,7 +312,7 @@ obrigatório).
 
 - Primário: `Agendar avaliação`
 - WhatsApp: `Falar no WhatsApp`
-- Secundários: `Ver página` · `Ver a frente →` · `Ver resposta →` · `Ver mais respostas →` · `Ver todas as frentes →` · `Conhecer a casa →` · `Como funciona a primeira consulta →` · `Assistir ao filme` · `Assistir` · `Fechar` · `Voltar ao topo`
+- Secundários: `Conheça o médico` · `Saiba mais →` · `Ver resposta →` · `Ver mais respostas →` · `Ver todas as frentes →` · `Conhecer a casa →` · `Como funciona a primeira consulta →` · `Assistir ao filme` · `Assistir` · `Fechar` · `Voltar ao topo`
 - Controles de mídia: `Reproduzir` · `Pausar` · `Anterior` · `Próxima` · `Ativar som` · `Desativar som`
 - Mensagem pré-preenchida do WhatsApp (`wa.me/[PENDENTE número]?text=`): `Olá. Quero agendar uma avaliação no Instituto Rocca.`
 
@@ -315,6 +321,8 @@ obrigatório).
 - `aria-label="Falar no WhatsApp"` · aparece após a primeira dobra · hover: fundo `--cor-whatsapp`, glifo creme.
 
 ### Formulário (no FECHO, opcional ao WhatsApp)
+
+> **Removido na rodada 3, por decisão do cliente:** sem formulários em nenhuma versão. A chamada para ação é sempre o WhatsApp (botão flutuante + fecho com o número em destaque). O que segue fica só como registro.
 
 - Intro (opcional, abaixo do H2 do fecho): `Ou deixe seu contato. A gente responde em até um dia útil.`
 - `Nome` — placeholder `Como você quer ser chamado`

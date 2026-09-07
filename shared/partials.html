@@ -161,37 +161,13 @@
 </dialog>
 
 
-<!-- ===== 7. FORMULÁRIO (seção #contato) =====
-     Campos só com linha inferior; rótulo flutuante (o <label> vem DEPOIS do
-     input e o input precisa de placeholder=" "). ui.js valida e adiciona
-     .form--enviado, que esconde os campos e mostra .form__sucesso. -->
-<form class="form" id="form-contato" action="#" method="post" novalidate>
-  <div class="form__campos form__campos--2">
-    <div class="form__campo">
-      <input type="text" id="f-nome" name="nome" placeholder=" " autocomplete="name" required>
-      <label for="f-nome">Nome</label>
-    </div>
-    <div class="form__campo">
-      <input type="tel" id="f-whats" name="whatsapp" placeholder=" " autocomplete="tel" inputmode="tel" required>
-      <label for="f-whats">WhatsApp</label>
-    </div>
-    <div class="form__campo form__campo--largo">
-      <input type="email" id="f-email" name="email" placeholder=" " autocomplete="email" required>
-      <label for="f-email">E-mail</label>
-    </div>
-    <div class="form__campo form__campo--largo">
-      <textarea id="f-msg" name="mensagem" placeholder=" " rows="3"></textarea>
-      <label for="f-msg">O que parou de funcionar</label>
-    </div>
-  </div>
-  <p class="form__privacidade">Seus dados ficam com a gente e servem só para marcar a sua avaliação. Nada de lista, nada de disparo.</p>
-  <div class="form__acoes">
-    <button class="botao botao--primario" type="submit">Enviar</button>
-  </div>
-  <div class="form__sucesso" role="status" aria-live="polite" tabindex="-1">
-    <p>Recebido. Quem te atender no primeiro dia é quem vai te acompanhar — a gente responde em até um dia útil.</p>
-  </div>
-</form>
+<!-- ===== 7. CONTATO (seção #contato) =====
+     Sem formulário (decisão do cliente, rodada 3): a chamada é sempre o WhatsApp. -->
+<div class="col-5 col-inicio-8 fecho__whats" data-reveal="">
+<p class="eyebrow">WhatsApp</p>
+<a class="fecho__numero" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." rel="noopener" target="_blank">+55 11 99999-9999</a>
+<p class="fecho__whats-nota">Quem responde é o Instituto. Você conta o que parou de funcionar e a avaliação é marcada na conversa, em até um dia útil.</p>
+</div>
 
 
 <!-- ===== 8. FOOTER (bordô-profundo; 4 colunas → 2 no tablet → 1 no mobile) ===== -->
@@ -254,7 +230,7 @@
     <span class="assinatura">— Dr. Túlio Bovo</span>
 
   Botão secundário (a seta é um span, sempre):
-    <a class="botao botao--secundario" href="#">Ver página <span class="seta" aria-hidden="true">→</span></a>
+    <a class="botao botao--secundario" href="#">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
 
   Tile:
     <a class="tile" href="#">
@@ -274,7 +250,7 @@
       <h3 class="medico__nome">Dr. Túlio Bovo</h3>
       <p class="medico__frente">Metabolismo, avaliação hormonal, emagrecimento e lipedema.</p>
       <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
-      <a class="botao botao--secundario medico__link" href="#">Ver página <span class="seta" aria-hidden="true">→</span></a>
+      <a class="botao botao--secundario medico__link" href="#">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
     </article>
 
   Pilares (provas):
