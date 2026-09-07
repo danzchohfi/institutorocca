@@ -17,6 +17,9 @@ const pares = [
   { src: 'src/c01-materia/main.js',  out: 'concepts/01-materia/app.js' },
   { src: 'src/c02-chegada/main.js',  out: 'concepts/02-chegada/app.js' },
   { src: 'src/c03-presenca/main.js', out: 'concepts/03-presenca/app.js' },
+{ src: 'src/c04-conversa/main.js', out: 'concepts/04-conversa/app.js' },
+{ src: 'src/c05-simbolo/main.js', out: 'concepts/05-simbolo/app.js' },
+{ src: 'src/c06-slides/main.js', out: 'concepts/06-slides/app.js' },
 ].filter(({ src }) => existsSync(resolve(raiz, src)));
 
 if (!pares.length) {

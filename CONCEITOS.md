@@ -91,7 +91,40 @@ lá, os renders sustentam bem, mas bioimpedância, aplicação e procedimento ai
 em 4:5; consultório com a tela acesa e captura frontal da tela; recepção, espera, corredor, consultório,
 bioimpedância e lounge para a galeria; vídeos verticais, retratos 9:16 e capas 4:5 dos três (estúdio).
 
-<!-- CONCEITOS 3–6: preencher a partir dos relatórios dos construtores -->
+## 4. Conceito 4 — Conversa (claro, tipográfico, o médico fala)
+
+**Frase de apresentação:** *"Aqui quem fala é uma pessoa."* É o único conceito claro: base osso de ponta a
+ponta e o bordô entrando como ponto, exatamente como a regra do feed pede. O hero é quase só tipografia: a
+frase-mãe enorme à esquerda e, à direita, uma moldura vertical 9:16 com o médico se apresentando ("Quem eu
+sou", gravado no estúdio). Um seletor com os três nomes troca vídeo, nome, frente e a fala em primeira pessoa;
+"o seu médico" vira escolha de quem chega, antes mesmo da consulta.
+
+**Hero:** H1 em duas linhas com a segunda em itálico, sub, "Agendar avaliação" e "Como funciona a primeira
+consulta"; fala em primeira pessoa com assinatura ("— Dr. Túlio Bovo"); moldura com retrato placeholder que
+cede ao vídeo vertical assim que o arquivo existir (sondagem só em http, pausa fora da tela); seletor acessível
+por teclado; nav em bordô sobre o fundo claro.
+
+**Percurso:** Hero → 01 O problema e 03 O mecanismo como texto corrido grande, tipo carta (coluna de 62
+caracteres com o rótulo na margem) → 02 O método em bordô (único bloco escuro até o fecho) → Frentes como
+lista tipográfica de cinco linhas com seta → As provas em três frases bordô sobre osso → A casa em faixa
+horizontal de fotos pequenas com scroll lateral nativo → Os médicos (três cards) → A primeira consulta →
+**Perguntas que a gente responde toda semana** como dispositivo principal: dez perguntas do banco com o nome
+do médico, "Ver resposta" e filtro por médico → Perguntas mais comuns → Fecho em bordô → Footer.
+
+**Motion:** moldura abre por máscara de baixo para cima; crossfade do seletor; linhas finas que se desenham
+nas listas; filtro com entrada em cascata; parallax sutil no retrato e no consultório. Sem pin, sem WebGL, sem
+preloader: é o mais leve de todos.
+
+**Pontos de atenção:** o risco é parecer blog; a escala da tipografia, o respiro e a moldura vertical
+dominando o hero seguram o conceito como site de marca. Sobre osso, as assinaturas usam bordô (areia não
+passa no contraste). É o conceito que mais depende da diária no estúdio: sem os vídeos verticais, o hero fica
+com retratos estáticos.
+
+**O que precisa das diárias:** vídeos verticais "Quem eu sou" e retratos 9:16/4:5 dos três, e as respostas
+das dez perguntas listadas (estúdio); consultório com a tela acesa, captura da tela e as seis fotos da casa
+para a faixa (clínica).
+
+<!-- CONCEITOS 3, 5 e 6: preencher a partir dos relatórios dos construtores -->
 
 ## 4. Comparativo e recomendação
 
