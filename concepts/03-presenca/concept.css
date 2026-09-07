@@ -77,12 +77,14 @@ html:not(.js) .hero--presenca, html.movimento-reduzido .hero--presenca { positio
   will-change: transform, opacity;
 }
 .hero__placeholder img:first-child { opacity: 1; transform: scale(1.06); }
-/* Grão leve (feTurbulence) e véu bordô 35–45% para o texto creme */
+/* Grão leve (feTurbulence) e véu bordô 35–45% para o texto creme.
+   Sem mix-blend-mode de propósito: o blend obriga a recompor o hero inteiro
+   a cada quadro do Ken Burns (medido: 13 → 60 fps só tirando o blend); em
+   alfa normal a .08 o grão fica igual e o filtro é cacheado. */
 .hero__grao {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   opacity: .08;
-  mix-blend-mode: soft-light;
   pointer-events: none;
 }
 .hero__veu {

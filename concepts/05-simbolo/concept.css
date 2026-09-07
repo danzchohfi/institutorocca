@@ -1,0 +1,273 @@
+/* ============================================================================
+   CONCEITO 2 — CHEGADA · estilos só deste conceito
+   ----------------------------------------------------------------------------
+   O sistema (tokens, tipografia, nav, componentes) vive em brand/tokens.css e
+   shared/base.css. Aqui: o hero fotográfico com pin, a grade editorial da
+   casa, o split-screen do mecanismo, as listas de Frentes/Perguntas e o
+   respiro maior — este é o conceito mais próximo da Clinique La Prairie.
+   Mobile-first; breakpoints 640 / 900 / 1200 / 1440.
+   ============================================================================ */
+
+:root {
+  /* Mais respiro que o padrão (BRIEF §6.2: "muito respiro, seções longas") */
+  --secao: clamp(104px, 13vw, 224px);
+}
+
+/* ---- Skip link ------------------------------------------------------------- */
+.skip-link {
+  position: fixed; left: var(--gutter); top: -100px; z-index: calc(var(--z-nav) + 1);
+  padding: 14px 20px;
+  background: var(--cor-creme); color: var(--cor-bordo);
+  font-size: var(--eyebrow); font-weight: 400; letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
+  transition: top var(--dur-rapida);
+}
+.skip-link:focus-visible { top: 16px; outline-color: var(--cor-bordo); }
+
+/* ---- Paralaxe: moldura com overflow hidden + camada interna maior ------------ */
+.paralaxe { position: relative; overflow: hidden; }
+.paralaxe__in { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; }
+.paralaxe__in img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Linhas finas que se desenham ([data-linha]) */
+html.js [data-linha] { transform: scaleX(0); transform-origin: left center; }
+
+/* ---- 01 · O problema --------------------------------------------------------- */
+.problema .grid-12 { align-items: end; row-gap: var(--espaco-5); }
+.problema h2 { max-width: 16ch; }
+.problema__texto p + p { margin-top: 1.5em; }
+
+/* ---- 02 · O método (respiro) ------------------------------------------------- */
+.metodo h2 { max-width: 20ch; }
+.metodo .texto-grande { margin-top: 2rem; }
+
+/* ---- Frentes: lista editorial em linhas ------------------------------------- */
+.frentes { padding-top: 0; }
+.frentes__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+.frentes__cabeca h2 { max-width: 18ch; }
+.frentes__lista { border-bottom: 1px solid var(--linha); }
+.frente {
+  position: relative;
+  display: grid; grid-template-columns: 1fr; gap: .9rem;
+  padding-block: clamp(1.8rem, 3.2vw, 2.8rem);
+}
+.frente__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+.frente__cabeca { display: flex; gap: 1.2rem; align-items: baseline; }
+.frente__num { font-size: .8rem; }
+.frente__titulo { font-size: var(--h3); max-width: 22ch; }
+.frente__apoio { margin-top: .6rem; color: var(--fg-2); max-width: 44ch; font-size: .95rem; line-height: 1.6; }
+.frente__link { justify-self: start; }
+.frentes__rodape { margin-top: clamp(2rem, 4vw, 3.5rem); }
+@media (min-width: 900px) {
+  .frente {
+    grid-template-columns: 4rem minmax(0, 3fr) minmax(0, 6fr) auto;
+    column-gap: var(--coluna-gap);
+    align-items: start;
+  }
+  .frente__cabeca { display: contents; }
+  .frente__num, .frente__nome { padding-top: .55em; }
+  .frente__link { justify-self: end; margin-top: .55em; }
+}
+
+/* ---- 03 · O mecanismo: split-screen foto | tela ------------------------------ */
+.mecanismo__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+.mecanismo__cabeca h2 { max-width: 18ch; }
+.split {
+  display: grid; grid-template-columns: 1fr;
+  width: 100%;
+  background: var(--cor-bordo-profundo);
+}
+.split__foto { aspect-ratio: 4 / 5; }
+.split__tela {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--cor-osso);
+  color: var(--cor-tinta);
+  display: grid; place-items: center;
+  padding: clamp(24px, 5vw, 72px);
+}
+.split__tela img { width: 100%; height: 100%; object-fit: contain; }
+.split__legenda {
+  position: absolute; left: clamp(24px, 5vw, 72px); bottom: clamp(20px, 3vw, 40px);
+  color: var(--cor-grafite);
+}
+.mecanismo__texto { margin-top: clamp(3rem, 6vw, 6rem); }
+.mecanismo__texto p + p { margin-top: 1.4em; }
+@media (min-width: 900px) {
+  .split { grid-template-columns: 1fr 1fr; }
+  .split__foto, .split__tela { aspect-ratio: auto; height: clamp(520px, 76vh, 760px); }
+}
+
+/* ---- As provas (respiro): três colunas com linha no topo --------------------- */
+.provas-secao h2 { max-width: 20ch; }
+.provas {
+  display: grid; grid-template-columns: 1fr; gap: 1.6rem;
+  margin-top: clamp(3.5rem, 7vw, 6.5rem);
+  text-align: left;
+  width: 100%;
+}
+.provas > li { border-top: 1px solid var(--linha); padding-top: 1.4rem; }
+.provas__num { display: block; margin-bottom: 1rem; }
+.provas__titulo { font-size: var(--h3); }
+@media (min-width: 640px) {
+  .provas { grid-template-columns: repeat(3, 1fr); gap: var(--coluna-gap); }
+  .provas > li { padding-top: 1.8rem; }
+  .provas__titulo { max-width: 15ch; }
+}
+@media (min-width: 900px) {
+  .provas { width: min(100%, 1100px); }
+}
+
+/* ---- O que a gente não faz (faixa compacta) ---------------------------------- */
+.nao .grid-12 { row-gap: var(--espaco-4); align-items: start; }
+.nao__abertura { margin-top: 1.2rem; font-size: var(--h3); line-height: 1.3; max-width: 18ch; }
+.nao__lista { display: grid; grid-template-columns: 1fr; gap: 1.6rem 2.5rem; }
+.nao__item { display: block; font-weight: 400; }
+.nao__apoio { display: block; margin-top: .35rem; color: var(--fg-2); font-size: .95rem; line-height: 1.55; max-width: 34ch; }
+@media (min-width: 640px) { .nao__lista { grid-template-columns: 1fr 1fr; } }
+
+/* ---- A casa: porta em destaque + grade editorial assimétrica ---------------- */
+.casa__abertura { align-items: center; row-gap: var(--espaco-5); }
+.casa__moldura { position: relative; overflow: hidden; background: var(--cor-bordo-profundo); aspect-ratio: 3 / 2; }
+.casa__moldura--4x5 { aspect-ratio: 4 / 5; }
+.casa__moldura--1x1 { aspect-ratio: 1; }
+.casa__moldura--larga { aspect-ratio: 3 / 2; }
+.casa__moldura > img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-imagem) var(--ease-out); }
+.casa__moldura .paralaxe__in img { transition: transform var(--dur-imagem) var(--ease-out); }
+.casa__item:hover .casa__moldura img, .casa__porta:hover .casa__moldura img { transform: scale(1.04); }
+.casa__cabeca h2 { max-width: 14ch; }
+.casa__cabeca p:not(.eyebrow) { max-width: 34ch; }
+.casa__grade {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 72px) var(--coluna-gap);
+  align-items: start;
+  margin-top: clamp(4rem, 9vw, 9rem);
+}
+.casa__item { grid-column: 1 / -1; }
+.casa__item .legenda { max-width: 36ch; }
+@media (min-width: 640px) {
+  .casa__item--2 { grid-column: 1 / 7; }
+  .casa__item--3 { grid-column: 7 / -1; margin-top: 18%; }
+  .casa__item--3 .casa__moldura { aspect-ratio: 4 / 5; }
+  .casa__item--5 { grid-column: 1 / 7; }
+  .casa__item--6 { grid-column: 7 / -1; margin-top: 12%; }
+  .casa__item--6 .casa__moldura { aspect-ratio: 1; }
+}
+@media (min-width: 900px) {
+  .casa__item--1 { grid-column: 1 / 9; }
+  .casa__item--2 { grid-column: 9 / -1; margin-top: 28%; }
+  .casa__item--3 { grid-column: 2 / 7; margin-top: 0; }
+  .casa__item--3 .casa__moldura { aspect-ratio: 3 / 2; }
+  .casa__item--4 { grid-column: 7 / -1; margin-top: 14%; }
+  .casa__item--5 { grid-column: 3 / 7; }
+  .casa__item--6 { grid-column: 1 / -1; margin-top: 4%; }
+  .casa__item--6 .casa__moldura { aspect-ratio: 21 / 9; }
+  .casa__item--6 .legenda { margin-left: auto; justify-content: flex-end; }
+}
+
+/* ---- Os médicos --------------------------------------------------------------- */
+.medicos__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); align-items: end; }
+.medicos__cabeca h2 { max-width: 12ch; }
+.medicos__sub p { max-width: 30ch; }
+.medico__fala { margin-top: .8rem; font-size: .95rem; line-height: 1.55; max-width: 30ch; }
+.medico__fala::before { content: "“"; }
+.medico__fala::after { content: "”"; }
+/* O placeholder do retrato já traz nome e legenda no rodapé; o rótulo do vídeo vai para o topo. */
+.medico__rotulo { top: 16px; bottom: auto; line-height: 1.5; }
+
+/* ---- A primeira consulta ------------------------------------------------------ */
+.consulta__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); align-items: end; }
+.consulta__cabeca h2 { max-width: 16ch; }
+.consulta__acoes { margin-top: clamp(3rem, 5vw, 4.5rem); }
+
+/* ---- Perguntas da semana ------------------------------------------------------- */
+.perguntas__cabeca { margin-bottom: clamp(2.5rem, 5vw, 4.5rem); align-items: end; }
+.perguntas__cabeca h2 { max-width: 16ch; }
+.perguntas__sub p { max-width: 30ch; }
+.perguntas { border-bottom: 1px solid var(--linha); }
+.pergunta {
+  position: relative;
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+  padding-block: clamp(1.6rem, 3vw, 2.4rem);
+}
+.pergunta__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+.pergunta__capa { width: 72px; aspect-ratio: 4 / 5; overflow: hidden; background: var(--cor-bordo-profundo); }
+.pergunta__capa img { width: 100%; height: 100%; object-fit: cover; }
+.pergunta__titulo { font-size: var(--h3); max-width: 28ch; }
+.pergunta .assinatura { margin-top: .6rem; }
+.pergunta__link { justify-self: start; }
+.perguntas__rodape { margin-top: clamp(2rem, 4vw, 3.5rem); }
+@media (min-width: 900px) {
+  .pergunta { grid-template-columns: 96px minmax(0, 1fr) auto; column-gap: clamp(24px, 3vw, 48px); align-items: center; }
+  .pergunta__capa { width: 96px; }
+  .pergunta__link { justify-self: end; }
+}
+
+/* ---- Perguntas mais comuns ----------------------------------------------------- */
+.faq-secao h2 { max-width: 16ch; }
+.faq-secao .grid-12 { align-items: start; }
+
+/* ---- Fecho --------------------------------------------------------------------- */
+.fecho .grid-12 { align-items: start; row-gap: var(--espaco-5); }
+.fecho__chamada h2 { max-width: 14ch; }
+.fecho__chamada .acoes { margin-top: 2.6rem; }
+.fecho__intro { margin-bottom: 2.2rem; max-width: 32ch; }
+.fecho .form { max-width: none; }
+
+/* ---- Movimento reduzido ---------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-linha] { transform: none; }
+  .hero__rolar-linha::after { animation: none; transform: none; }
+  .hero__midia { will-change: auto; }
+}
+
+/* ---- Footer: folga para o WhatsApp flutuante não cobrir a linha legal ------------ */
+.footer { padding-bottom: 96px; }
+
+
+/* ============================ Conceito 5 — Símbolo ============================ */
+.hero--simbolo { position: relative; min-height: 100svh; display: grid; align-items: center; overflow: hidden; }
+.hero__grade { display: grid; gap: clamp(2rem, 5vw, 4rem); padding-block: clamp(110px, 16vh, 160px) clamp(80px, 12vh, 120px); align-items: center; }
+@media (min-width: 900px) { .hero__grade { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.hero--simbolo h1 { font-size: clamp(2.4rem, 4.4vw, 4.8rem); }
+.hero__sub { margin-top: 1.4rem; max-width: 40ch; font-size: var(--corpo); line-height: 1.65; color: var(--fg-2); }
+.hero__acoes { margin-top: 1.7rem; gap: 1.1rem 2.2rem; display: flex; flex-wrap: wrap; align-items: center; }
+.hero__nota { font-size: .95rem; color: var(--fg-2); margin: 0; }
+.hero__rolar { position: absolute; right: var(--gutter); bottom: 32px; display: inline-flex; align-items: center; gap: 14px; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--fg-2); text-decoration: none; }
+.hero__rolar-linha { width: 40px; height: 1px; background: var(--cor-areia); }
+.anel { position: relative; width: min(66vh, 86vw); aspect-ratio: 1; margin-inline: auto; animation: anel-entra 1.6s var(--ease-out) both; }
+@keyframes anel-entra { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+@media (max-width: 899.98px) { .anel { width: min(52vh, 80vw); order: -1; } }
+.anel__svg { position: absolute; inset: 0; width: 100%; height: 100%; fill: var(--cor-creme); transform-origin: 50% 50%; will-change: transform; }
+.anel__midia { position: absolute; inset: 10.5%; border-radius: 50%; overflow: hidden; background: var(--cor-bordo-profundo); }
+.anel__midia img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); filter: saturate(.9); }
+.anel__midia::after { content: ""; position: absolute; inset: 0; background: rgba(85, 0, 0, .28); }
+.anel__textos { position: absolute; left: 50%; bottom: -3.6rem; transform: translateX(-50%); width: 120%; text-align: center; min-height: 2.6em; }
+.anel__texto { position: absolute; inset: 0; margin: 0; opacity: 0; transform: translateY(8px); font-size: clamp(.95rem, 1.1vw, 1.15rem); color: var(--cor-creme); letter-spacing: .02em; }
+html:not(.js) .anel__texto:first-child, .anel__texto.anel__texto--visivel { opacity: 1; transform: none; }
+/* Padrão de arcos (eco do cartão do manual) como textura da seção 01 */
+.problema { position: relative; }
+.problema::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 276 276' width='276' height='276'><g fill='%23F2E8D9'><path d='M271.217 46.249 L271.217 0.007 C133.879 25.430 25.402 133.920 0.000 271.269 L46.235 271.269 C70.320 158.846 158.801 70.353 271.217 46.249 Z'/><path d='M619.737 271.269 L665.971 271.269 C640.567 133.907 532.071 25.409 394.715 0.000 L394.715 46.240 C507.150 70.331 595.649 158.832 619.737 271.269 Z'/><path d='M394.715 619.738 L394.715 665.977 C532.053 640.573 640.537 532.102 665.962 394.766 L619.724 394.766 C595.618 507.176 507.131 595.650 394.715 619.738 Z'/><path d='M46.248 394.767 L0.011 394.767 C25.432 532.088 133.898 640.552 271.217 665.971 L271.217 619.728 C158.820 595.629 70.351 507.163 46.248 394.767 Z'/></g></svg>"); background-size: 140px 140px; }
+/* Frentes em scroll horizontal (pin no desktop; nativo com scroll-snap no mobile) */
+.frentes--horizontal { padding-bottom: 0; overflow: hidden; }
+.frentes--horizontal .frentes__cabeca { margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.trilho { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.trilho::-webkit-scrollbar { display: none; }
+.paineis { list-style: none; margin: 0; padding: 0 var(--gutter); display: flex; gap: clamp(16px, 2vw, 32px); width: max-content; }
+.painel { scroll-snap-align: start; width: min(78vw, 560px); display: grid; gap: 1.2rem; align-content: start; }
+.painel__media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--cor-oliva-escuro); }
+.painel__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+.painel:hover .painel__media img { transform: scale(1.04); }
+.painel__titulo { font-weight: 300; font-size: clamp(1.4rem, 2vw, 1.9rem); line-height: 1.15; margin: .4rem 0 0; }
+.painel__apoio { margin: .6rem 0 1rem; color: var(--fg-2); max-width: 44ch; }
+.frentes--horizontal .frentes__rodape { padding-block: clamp(2rem, 4vw, 3.5rem) var(--secao); }
+@media (min-width: 900px) {
+  html.js .frentes--horizontal.frentes--pin .trilho { overflow: visible; }
+  .painel { width: min(38vw, 620px); }
+}
+/* As provas dentro de círculos finos */
+.provas-secao .prova, .provas-secao li { border: 0; }
+@media (min-width: 900px) {
+  .provas-secao .prova, .provas-secao li { aspect-ratio: 1; border: 1px solid var(--linha); border-radius: 50%; display: grid; place-content: center; text-align: center; padding: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) { .anel__texto { opacity: 1; position: static; transform: none; } .anel__textos { position: static; width: auto; transform: none; display: grid; gap: .3rem; margin-top: 1rem; } }

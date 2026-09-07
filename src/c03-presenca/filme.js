@@ -24,6 +24,16 @@ function deveEconomizar() {
   return Boolean(conexao && conexao.saveData) || window.innerWidth < 640 || prefersReducedMotion;
 }
 
+/* Remove o <source> E reinicia a seleção de fonte: só tirar o elemento não
+   basta — o navegador já escolheu a URL ao analisar o HTML e um play()
+   posterior (o ui.js dá play ao abrir o lightbox) retomaria o download do
+   arquivo ausente. load() sem fonte deixa o vídeo vazio, sem requisição. */
+function descartarFonte(video, source) {
+  if (source) source.remove();
+  video.removeAttribute('src');
+  try { video.load(); } catch (e) { /* sem fonte, nada a carregar */ }
+}
+
 export function iniciarFilmeHero({ aoAssumir } = {}) {
   const hero = document.querySelector('.hero--presenca');
   const video = hero && hero.querySelector('.hero__video');
@@ -41,7 +51,7 @@ export function iniciarFilmeHero({ aoAssumir } = {}) {
   };
 
   if (pendente || deveEconomizar()) {
-    if (source) source.remove();
+    descartarFonte(video, source);
     manter(pendente ? 'pendente' : 'economia');
     return { estado: pendente ? 'pendente' : 'economia' };
   }
@@ -116,7 +126,7 @@ export function iniciarLightboxFilme() {
   };
 
   if (video.dataset.filme === 'pendente') {
-    if (source) source.remove();
+    descartarFonte(video, source);
     semFilme();
     return;
   }

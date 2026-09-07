@@ -124,13 +124,94 @@ com retratos estáticos.
 das dez perguntas listadas (estúdio); consultório com a tela acesa, captura da tela e as seis fotos da casa
 para a faixa (clínica).
 
-<!-- CONCEITOS 3, 5 e 6: preencher a partir dos relatórios dos construtores -->
+## 3. Conceito 3 — Presença (o filme institucional no hero)
 
-## 4. Comparativo e recomendação
+**Frase de apresentação:** *"A casa como ela é."* É o hero que a própria Direção de Marca previu: a frase-mãe
+centralizada sobre o filme institucional, mudo e em loop, com a casa com gente. Até a diária na clínica, o
+lugar do filme é ocupado por uma sequência lenta dos renders (pan e zoom, crossfade, véu bordô e um grão
+leve) com o rótulo "Filme institucional — gravação na clínica"; quando `assets/video/institucional.mp4`
+existir, o vídeo assume sozinho.
 
-<!-- COMPARATIVO: preencher a partir da crítica de consistência -->
+**Hero:** eyebrow, H1 em duas linhas com a segunda em itálico, sub, "Agendar avaliação" e "Assistir ao filme"
+(abre o filme completo com som em um lightbox; enquanto não há arquivo, mostra "Filme em produção"). Ao
+rolar, o hero fica preso, o texto sobe e a mídia encolhe para uma janela em formato cinema que acompanha
+"O problema".
 
-## 5. O que cada diária precisa entregar para o site
+**Percurso:** o mesmo dos conceitos 1 e 2, com uma seção "Bastidores" (três clipes das duas diárias) antes de
+A casa e um bloco "Conversa" (o retrato dos três no estúdio, com os equipamentos à mostra, e o play) acima
+dos cards dos médicos.
+
+**Pontos de atenção:** é o conceito que mais depende da diária na clínica e da qualidade do filme; sem ele, a
+sequência de renders segura a apresentação, mas o efeito final só aparece com a casa real e as pessoas.
+No celular com economia de dados o vídeo não carrega: fica o poster.
+
+**O que precisa das diárias:** filme institucional em loop mudo (12–20 s) e a versão completa com som; três
+clipes curtos de bastidores (chegada, espera, exame na tela); retrato horizontal dos três no estúdio;
+vídeos verticais e retratos dos médicos; as fotos da casa.
+
+## 5. Conceito 5 — Símbolo (a geometria da marca em movimento)
+
+**Frase de apresentação:** *"Quatro aberturas, uma casa."* O símbolo oficial vira o dispositivo visual: um
+anel gigante em creme sobre bordô, com a casa visível dentro do círculo, ao lado da frase-mãe. Ao rolar, o
+hero fica preso, o anel gira 90 graus e as quatro provas da marca entram uma a uma sob o círculo ("O mesmo
+médico do primeiro dia em diante", "O metabolismo dentro do tratamento", "O exame lido junto com você, na
+tela", "A consulta que passa de uma hora"); no fim o anel cresce e se desfaz. O padrão de arcos do símbolo
+volta como textura sutil em "O problema".
+
+**Frentes em scroll horizontal:** cinco painéis (foto, nome da frente, o H1 da página e uma linha) deslizam
+com a rolagem vertical no desktop; no celular viram um trilho nativo com encaixe por painel.
+
+**Pontos de atenção:** o símbolo só gira, escala e mascara, como o manual exige (nunca distorcido, nunca com
+gradiente). É o mais "cinético" dos seis; o pin do hero e o das frentes precisam de teste em celulares reais
+antes de ir ao ar. Em movimento reduzido, tudo fica visível sem pin.
+
+**O que precisa das diárias:** uma foto quadrada da espera ou da recepção para dentro do anel; cinco fotos
+horizontais, uma por frente (consultório, sala de soroterapia, espera, dermatologia); o restante igual ao
+conceito 2.
+
+## 6. Conceito 6 — Slides (fotográfico, no ritmo da referência Seven)
+
+**Frase de apresentação:** *"Três médicos, uma casa — em tela cheia."* O hero é um slideshow fotográfico de
+tela cheia que avança sozinho a cada sete segundos ou pelas setas, teclado e gesto: a recepção com a
+frase-mãe; os três no estúdio com "Três médicos, uma casa."; a tela do exame acesa com "Investigar antes de
+prescrever."; o consultório escuro com "Todo mundo sabe da mulher. E o homem?". Títulos dos slides em caixa
+alta com tracking, indicador fino em creme, transição por crossfade e zoom lento; pausa ao passar o mouse e
+quando a aba ou o hero saem de vista.
+
+**Estrutura:** depois do hero, "O problema" vira uma declaração em caixa alta com respiro enorme; as frentes
+viram uma grade de tiles escuros com foto sangrada, rótulo em caixa alta e o H1 da página; os médicos
+aparecem em retratos 4:5 em preto e branco com nome e frente em caixa alta, sem idade e sem depoimento.
+
+**Pontos de atenção:** é o mais "campanha" dos seis e o que mais depende de fotografia de nível editorial;
+com os renders funciona como maquete, com a diária vira o conceito. Mantém a régua da marca: sem
+exclamação, sem antes-e-depois, sem promessa.
+
+**O que precisa das diárias:** retrato horizontal dos três no estúdio com equipamentos à mostra; a tela do
+exame acesa no consultório; o consultório escuro; cinco fotos horizontais para os tiles; retratos 4:5 dos
+três; o restante igual ao conceito 2.
+
+
+## 7. Comparativo e recomendação
+
+| Conceito | O que diz primeiro | Força | Risco | Depende de |
+|---|---|---|---|---|
+| 1 Matéria | "Avançado na medicina" | Assinatura própria, memorável; motion que o cliente pediu (partículas) | Peso (three.js) e leitura "tech" se a cor sair da paleta | Nada além do sistema; a mídia real só melhora |
+| 2 Chegada | "Clássico no vínculo" | A casa como argumento; o mais próximo da Clinique La Prairie; leve | Vive da foto da entrada | Diária na clínica |
+| 3 Presença | "A casa com gente" | É o hero que a Direção previu; o filme faz o trabalho | Sem o filme, é o conceito 2 com vídeo simulado | Diária na clínica (filme) |
+| 4 Conversa | "Seu médico é uma pessoa" | O único claro; a promessa de relação vira interface; o mais leve | Pode parecer blog se a tipografia encolher | Diária no estúdio (vídeos verticais) |
+| 5 Símbolo | "Método, geometria, precisão" | Marca em movimento; moderno e monocromático | Pins exigem teste em celulares; menos calor humano | Pouco: renders bastam |
+| 6 Slides | "Campanha fotográfica" | Impacto imediato; estrutura direta de conversão | Depende de fotografia editorial; mais próximo da concorrência | Diárias (fotos) |
+
+**Recomendação para apresentar ao cliente:** levar o **2 (Chegada)** como o caminho seguro e mais fiel à
+Direção ("clássico no vínculo"), o **1 (Matéria)** como o caminho assinatura, que mostra "avançado na
+medicina" logo na primeira dobra e responde ao pedido das partículas, e o **4 (Conversa)** como o
+contraponto claro em que o médico fala. O 3 é a evolução natural do 2 quando o filme existir; o 5 e o 6
+ficam como alternativas se o cliente quiser algo mais cinético ou mais campanha. Em qualquer escolha,
+o sistema, o texto e a estrutura de conversão são os mesmos, então a decisão é sobre o hero e o ritmo,
+não sobre refazer o site.
+
+
+## 8. O que cada diária precisa entregar para o site
 
 ### Diária 01 — Estúdio Jacarandá (fundação)
 
@@ -156,7 +237,7 @@ para a faixa (clínica).
 | Jornada encenada: chegada → espera → bioimpedância → consulta | 16:9, clipes de 5 s | Bastidores (conceito 3) e A primeira consulta |
 | B-roll de detalhe: madeira, mármore, luminárias, painel ripado bordô | 16:9 | Transições e fundos |
 
-## 6. O que ainda é placeholder (e como trocar)
+## 9. O que ainda é placeholder (e como trocar)
 
 | Material | Caminho | Estado |
 |----------|---------|--------|

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-tema="claro">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -139,15 +139,15 @@
           <div class="moldura" data-parallax-area>
             <figure class="moldura__camada ativa" data-medico="tulio">
               <img class="moldura__retrato" src="../../assets/placeholders/retrato-tulio.svg" alt="Vídeo vertical — Quem eu sou, estúdio Jacarandá: Dr. Túlio Bovo (placeholder)" width="1080" height="1920" fetchpriority="high" decoding="async" data-parallax="-4">
-              <video class="moldura__video" muted loop playsinline preload="none" data-video="../../assets/video/tulio.mp4" aria-label="Apresentação do Dr. Túlio Bovo, sem som"></video>
+              <video class="moldura__video" autoplay muted loop playsinline preload="none" data-filme="pendente" data-video="../../assets/video/tulio.mp4" aria-label="Apresentação do Dr. Túlio Bovo, sem som"></video>
             </figure>
             <figure class="moldura__camada" data-medico="breno" aria-hidden="true">
               <img class="moldura__retrato" src="../../assets/placeholders/retrato-breno.svg" alt="Vídeo vertical — Quem eu sou, estúdio Jacarandá: Dr. Breno Gondim (placeholder)" width="1080" height="1920" loading="lazy" decoding="async" data-parallax="-4">
-              <video class="moldura__video" muted loop playsinline preload="none" data-video="../../assets/video/breno.mp4" aria-label="Apresentação do Dr. Breno Gondim, sem som"></video>
+              <video class="moldura__video" autoplay muted loop playsinline preload="none" data-filme="pendente" data-video="../../assets/video/breno.mp4" aria-label="Apresentação do Dr. Breno Gondim, sem som"></video>
             </figure>
             <figure class="moldura__camada" data-medico="ana-paula" aria-hidden="true">
               <img class="moldura__retrato" src="../../assets/placeholders/retrato-ana-paula.svg" alt="Vídeo vertical — Quem eu sou, estúdio Jacarandá: Dra. Ana Paula Bovo (placeholder)" width="1080" height="1920" loading="lazy" decoding="async" data-parallax="-4">
-              <video class="moldura__video" muted loop playsinline preload="none" data-video="../../assets/video/ana-paula.mp4" aria-label="Apresentação da Dra. Ana Paula Bovo, sem som"></video>
+              <video class="moldura__video" autoplay muted loop playsinline preload="none" data-filme="pendente" data-video="../../assets/video/ana-paula.mp4" aria-label="Apresentação da Dra. Ana Paula Bovo, sem som"></video>
             </figure>
             <span class="moldura__rotulo eyebrow" aria-hidden="true">Quem eu sou — estúdio Jacarandá</span>
           </div>
@@ -268,6 +268,9 @@
           </li>
           <li class="frente frente--fim" aria-hidden="true"><span class="frente__linha" data-linha></span></li>
         </ol>
+        <div class="frentes__rodape" data-reveal>
+          <a class="botao botao--secundario" href="#">Ver todas as frentes <span class="seta" aria-hidden="true">→</span></a>
+        </div>
       </div>
     </section>
 
@@ -414,9 +417,9 @@
 
         <div class="medicos" data-reveal-grupo>
           <article class="medico">
-            <div class="medico__video">
-              <img src="../../assets/placeholders/retrato-tulio.svg" alt="Vídeo vertical — Quem eu sou, estúdio Jacarandá: Dr. Túlio Bovo (placeholder)" width="1080" height="1920" loading="lazy" decoding="async">
-              <button class="medico__play" type="button" data-abre-lightbox="#filme" aria-label="Reproduzir a apresentação do Dr. Túlio Bovo">
+            <div class="medico__video" data-parallax-area>
+              <img src="../../assets/placeholders/retrato-tulio.svg" alt="Vídeo vertical — Quem eu sou, estúdio Jacarandá: Dr. Túlio Bovo (placeholder)" width="1080" height="1920" loading="lazy" decoding="async" data-parallax="-4">
+              <button class="medico__play" type="button" data-abre-lightbox="#apresentacao" data-medico="tulio" data-nome="Dr. Túlio Bovo" data-retrato="../../assets/placeholders/retrato-tulio.svg" data-video="../../assets/video/tulio.mp4" aria-label="Reproduzir a apresentação do Dr. Túlio Bovo">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg>
               </button>
               <span class="medico__rotulo">Quem eu sou — gravado no estúdio Jacarandá</span>
@@ -427,9 +430,9 @@
             <a class="botao botao--secundario medico__link" href="#" aria-label="Ver a página do Dr. Túlio Bovo">Ver página <span class="seta" aria-hidden="true">→</span></a>
           </article>
           <article class="medico">
-            <div class="medico__video">
-              <img src="../../assets/placeholders/retrato-breno.svg" alt="Vídeo vertical — Quem eu sou, estúdio Jacarandá: Dr. Breno Gondim (placeholder)" width="1080" height="1920" loading="lazy" decoding="async">
-              <button class="medico__play" type="button" data-abre-lightbox="#filme" aria-label="Reproduzir a apresentação do Dr. Breno Gondim">
+            <div class="medico__video" data-parallax-area>
+              <img src="../../assets/placeholders/retrato-breno.svg" alt="Vídeo vertical — Quem eu sou, estúdio Jacarandá: Dr. Breno Gondim (placeholder)" width="1080" height="1920" loading="lazy" decoding="async" data-parallax="-4">
+              <button class="medico__play" type="button" data-abre-lightbox="#apresentacao" data-medico="breno" data-nome="Dr. Breno Gondim" data-retrato="../../assets/placeholders/retrato-breno.svg" data-video="../../assets/video/breno.mp4" aria-label="Reproduzir a apresentação do Dr. Breno Gondim">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg>
               </button>
               <span class="medico__rotulo">Quem eu sou — gravado no estúdio Jacarandá</span>
@@ -440,9 +443,9 @@
             <a class="botao botao--secundario medico__link" href="#" aria-label="Ver a página do Dr. Breno Gondim">Ver página <span class="seta" aria-hidden="true">→</span></a>
           </article>
           <article class="medico">
-            <div class="medico__video">
-              <img src="../../assets/placeholders/retrato-ana-paula.svg" alt="Vídeo vertical — Quem eu sou, estúdio Jacarandá: Dra. Ana Paula Bovo (placeholder)" width="1080" height="1920" loading="lazy" decoding="async">
-              <button class="medico__play" type="button" data-abre-lightbox="#filme" aria-label="Reproduzir a apresentação da Dra. Ana Paula Bovo">
+            <div class="medico__video" data-parallax-area>
+              <img src="../../assets/placeholders/retrato-ana-paula.svg" alt="Vídeo vertical — Quem eu sou, estúdio Jacarandá: Dra. Ana Paula Bovo (placeholder)" width="1080" height="1920" loading="lazy" decoding="async" data-parallax="-4">
+              <button class="medico__play" type="button" data-abre-lightbox="#apresentacao" data-medico="ana-paula" data-nome="Dra. Ana Paula Bovo" data-retrato="../../assets/placeholders/retrato-ana-paula.svg" data-video="../../assets/video/ana-paula.mp4" aria-label="Reproduzir a apresentação da Dra. Ana Paula Bovo">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg>
               </button>
               <span class="medico__rotulo">Quem eu sou — gravado no estúdio Jacarandá</span>
@@ -517,6 +520,7 @@
         <ol class="perguntas" data-reveal-grupo>
           <li class="pergunta" data-medico="breno">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-breno-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">Dormir bem e acordar cansado: o que pode estar por trás?</h3>
               <span class="assinatura">— Dr. Breno Gondim</span>
@@ -525,6 +529,7 @@
           </li>
           <li class="pergunta" data-medico="tulio">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-tulio-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">Exame de sangue normal, mas o corpo não está bem: o que pode estar acontecendo?</h3>
               <span class="assinatura">— Dr. Túlio Bovo</span>
@@ -533,6 +538,7 @@
           </li>
           <li class="pergunta" data-medico="ana-paula">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-ana-paula-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">Quando o botox não é indicado?</h3>
               <span class="assinatura">— Dra. Ana Paula Bovo</span>
@@ -541,6 +547,7 @@
           </li>
           <li class="pergunta" data-medico="tulio">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-tulio-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">Tratamento de emagrecimento é para o resto da vida?</h3>
               <span class="assinatura">— Dr. Túlio Bovo</span>
@@ -549,6 +556,7 @@
           </li>
           <li class="pergunta" data-medico="breno">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-breno-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">Por que as dietas funcionam por um tempo e depois o peso volta?</h3>
               <span class="assinatura">— Dr. Breno Gondim</span>
@@ -557,6 +565,7 @@
           </li>
           <li class="pergunta" data-medico="ana-paula">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-ana-paula-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">É possível fazer procedimento estético sem parecer que fez?</h3>
               <span class="assinatura">— Dra. Ana Paula Bovo</span>
@@ -565,6 +574,7 @@
           </li>
           <li class="pergunta" data-medico="tulio">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-tulio-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">Tireoide pode ser a causa do ganho de peso?</h3>
               <span class="assinatura">— Dr. Túlio Bovo</span>
@@ -573,6 +583,7 @@
           </li>
           <li class="pergunta" data-medico="breno">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-breno-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">Homem também precisa fazer avaliação hormonal?</h3>
               <span class="assinatura">— Dr. Breno Gondim</span>
@@ -581,6 +592,7 @@
           </li>
           <li class="pergunta" data-medico="ana-paula">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-ana-paula-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">Flacidez na pele depois do emagrecimento: o que fazer?</h3>
               <span class="assinatura">— Dra. Ana Paula Bovo</span>
@@ -589,6 +601,7 @@
           </li>
           <li class="pergunta" data-medico="breno">
             <span class="pergunta__linha" aria-hidden="true" data-linha></span>
+            <span class="pergunta__rosto" aria-hidden="true"><img src="../../assets/placeholders/retrato-breno-45.svg" alt="" width="1080" height="1350" loading="lazy" decoding="async"></span>
             <div class="pergunta__corpo">
               <h3 class="pergunta__titulo">Cansaço e queda de libido podem ser sinais de testosterona baixa?</h3>
               <span class="assinatura">— Dr. Breno Gondim</span>
@@ -745,7 +758,20 @@
     <p class="lightbox__legenda">Filme institucional — gravação na clínica <span class="texto-2">[PENDENTE]</span></p>
   </dialog>
 
-  <!-- PRODUÇÃO — planos que o Conceito 4 (Conversa) precisa das duas diárias (BRIEF §7):
+  <!-- LIGHTBOX VERTICAL — a apresentação "Quem eu sou" (9:16), aberta pelos cards de OS MÉDICOS.
+       data-filme="pendente" no <video> = ponto de troca: enquanto existir, mostra o retrato e o rótulo;
+       quando assets/video/<nome>.mp4 existir, remova o atributo e apresentacao.js liga o src do card. -->
+  <dialog class="lightbox lightbox--vertical" id="apresentacao" aria-label="Apresentação do médico">
+    <button class="lightbox__fechar" type="button" data-fecha-lightbox>Fechar</button>
+    <div class="lightbox__media">
+      <video controls playsinline preload="none" data-filme="pendente" aria-label="Apresentação do médico, vídeo vertical" hidden></video>
+      <img class="lightbox__retrato" src="../../assets/placeholders/retrato-tulio.svg" alt="Retrato — diária no estúdio Jacarandá: Dr. Túlio Bovo (placeholder)" width="1080" height="1920" loading="lazy" decoding="async">
+      <p class="lightbox__vazio">Vídeo vertical — "Quem eu sou", estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></p>
+    </div>
+    <p class="lightbox__legenda"><span class="lightbox__nome">Dr. Túlio Bovo</span> <span>Quem eu sou — gravado no estúdio Jacarandá</span></p>
+  </dialog>
+
+  <!-- PRODUÇÃO: planos que o Conceito 4 (Conversa) precisa das duas diárias (BRIEF §7).
     Diária 01 — Estúdio Jacarandá (fundação) — é a diária que sustenta este conceito:
       · Vídeos verticais "Quem eu sou" (9:16, 60–90 s, loop mudo para o site) do Dr. Túlio, do Dr. Breno e da Dra. Ana Paula
         → moldura do hero (assets/video/tulio.mp4, breno.mp4, ana-paula.mp4) e cards de OS MÉDICOS
@@ -764,8 +790,9 @@
         → faixa horizontal de A CASA (substituem entrada-clinica, espera-02, corredor-portas, consultorio-01, bioimpedancia — hoje croqui — e lounge-copa)
       · Filme institucional completo, com som
         → lightbox #filme (assets/video/institucional.mp4 + poster)
-    Observação técnica: a sondagem dos vídeos verticais do hero (seletor.js) roda só em http(s); aberto por file://
-    o navegador não devolve 404 e o protótipo mantém o retrato.
+    Observação técnica: os <video> do hero e do lightbox vertical trazem data-filme="pendente" (ponto de troca):
+    enquanto o atributo existir, o retrato fica e nenhum .mp4 é pedido; ao remover, o JS liga o src e o vídeo
+    assume no 'loadeddata' (ou volta ao retrato no 'error'), como no conceito 3.
   -->
 
 </body>

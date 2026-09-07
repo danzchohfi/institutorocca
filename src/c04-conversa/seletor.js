@@ -5,31 +5,52 @@
    crossfade GSAP, a camada da moldura (retrato ou vídeo), o nome + frente e a
    linha em primeira pessoa. Setas do teclado percorrem os botões.
 
-   Vídeo: cada camada tem um <video preload="none" data-video="…mp4">. Quando o
-   arquivo existir, o vídeo assume (loadeddata → .tem-video); se não existir
-   (error), o retrato fica. A sondagem só roda em http(s): aberto por file://
-   o navegador não devolve 404, registra erro de rede — o protótipo mantém o
-   retrato e não dispara requisição falha.
+   Vídeo (mesma lógica do conceito 3):
+     · cada camada tem <video autoplay muted loop playsinline preload="none"
+       data-video="…/tulio.mp4" data-filme="pendente">. Sem src no HTML, o
+       navegador não pede um arquivo que ainda não existe (zero requisição
+       falha, zero erro de console).
+     · data-filme="pendente" é o PONTO DE TROCA: enquanto existir, o retrato
+       fica e o vídeo não é tentado. Quando o .mp4 chegar, basta remover.
+     · sem o atributo: o JS promove data-video → src; 'loadeddata' → a camada
+       ganha .tem-video (o vídeo assume, o retrato some); 'error' (ou rede
+       parada por 6 s) → o retrato fica.
+     · saveData ou prefers-reduced-motion: não tenta o vídeo.
    ============================================================================ */
 
 import { gsap, prefersReducedMotion } from '../../shared/ui.js';
 
 const $$ = (sel, raiz = document) => Array.from(raiz.querySelectorAll(sel));
-const podeSondar = /^https?:$/.test(window.location.protocol);
+
+function deveEconomizar() {
+  const conexao = navigator.connection;
+  return Boolean(conexao && conexao.saveData) || prefersReducedMotion;
+}
 
 function ligarVideo(camada) {
   const video = camada.querySelector('video[data-video]');
   if (!video || video.dataset.ligado) return;
   video.dataset.ligado = '1';
-  if (!podeSondar || prefersReducedMotion) return;
+  if (video.dataset.filme === 'pendente' || deveEconomizar()) return;
 
-  video.addEventListener('loadeddata', () => {
+  let resolvido = false;
+  const assumir = () => {
+    if (resolvido) return;
+    resolvido = true;
     camada.classList.add('tem-video');
-    if (camada.classList.contains('ativa')) { const p = video.play(); if (p && p.catch) p.catch(() => {}); }
-  }, { once: true });
-  video.addEventListener('error', () => { camada.classList.remove('tem-video'); }, { once: true });
+    if (camada.classList.contains('ativa')) tocar(camada);
+  };
+  const falhar = () => {
+    if (resolvido) return;
+    resolvido = true;
+    camada.classList.remove('tem-video');
+  };
+  video.addEventListener('loadeddata', assumir, { once: true });
+  video.addEventListener('error', falhar, { once: true });
   video.src = video.dataset.video;
   video.load();
+  if (video.readyState >= 2) assumir();
+  setTimeout(() => { if (!resolvido && video.networkState === 3) falhar(); }, 6000);
 }
 
 function tocar(camada) {
@@ -91,7 +112,9 @@ export function iniciarSeletor() {
     marcar(para.camada, true);
     gsap.set(para.camada, { opacity: 0, zIndex: 2 });
     gsap.set(de.camada, { zIndex: 1 });
-    const midiaPara = para.camada.querySelector('.tem-video .moldura__video, .moldura__retrato');
+    const midiaPara = para.camada.classList.contains('tem-video')
+      ? para.camada.querySelector('.moldura__video')
+      : para.camada.querySelector('.moldura__retrato');
 
     const tl = gsap.timeline({
       defaults: { ease: 'power3.out' },
@@ -104,7 +127,7 @@ export function iniciarSeletor() {
     });
 
     tl.to(para.camada, { opacity: 1, duration: 0.9 }, 0);
-    if (midiaPara) tl.fromTo(midiaPara, { scale: 1.05 }, { scale: 1, duration: 1.4, clearProps: 'transform' }, 0);
+    if (midiaPara) tl.fromTo(midiaPara, { scale: 1.05 }, { scale: 1, duration: 1.4, clearProps: 'scale' }, 0);
     tocar(para.camada);
 
     // Textos: saem para cima, entram de baixo — nome, frente e a fala com stagger.
@@ -134,16 +157,22 @@ export function iniciarSeletor() {
     });
   });
 
-  // Fora da tela, o vídeo ativo pausa (economia no mobile); volta ao entrar.
+  // Fora da tela (ou com a aba oculta), o vídeo ativo pausa; volta ao entrar.
+  let visivel = true;
+  const sincronizar = () => {
+    const camada = porMedico(camadas, atual);
+    if (!camada) return;
+    if (visivel && !document.hidden) tocar(camada); else pausar(camada);
+  };
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entradas) => {
-      entradas.forEach(({ isIntersecting }) => {
-        const camada = porMedico(camadas, atual);
-        if (!camada) return;
-        if (isIntersecting) tocar(camada); else pausar(camada);
-      });
+      entradas.forEach(({ isIntersecting }) => { visivel = isIntersecting; });
+      sincronizar();
     }, { threshold: 0.2 });
     const moldura = hero.querySelector('.moldura');
     if (moldura) io.observe(moldura);
   }
+  document.addEventListener('visibilitychange', sincronizar);
+
+  return { trocar };
 }

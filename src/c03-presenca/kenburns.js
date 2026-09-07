@@ -32,8 +32,10 @@ export function iniciarKenBurns() {
   const slides = Array.from(caixa.querySelectorAll('img'));
   if (!slides.length) return null;
 
-  gsap.set(slides, { opacity: 0 });
-  gsap.set(slides[0], { opacity: 1 });
+  // autoAlpha (opacity + visibility): o slide coberto sai da composição —
+  // no celular, cinco camadas em tela cheia custam memória e quadros.
+  gsap.set(slides, { autoAlpha: 0 });
+  gsap.set(slides[0], { autoAlpha: 1 });
 
   const parado = { tocar() {}, pausar() {}, parar() {} };
   if (prefersReducedMotion || slides.length < 2) {
@@ -48,16 +50,16 @@ export function iniciarKenBurns() {
     const plano = PLANOS[i % PLANOS.length];
     const inicio = i * DURACAO;
     tl.fromTo(img, plano.de, { ...plano.para, duration: DURACAO + FUSAO, ease: 'none' }, inicio);
-    if (i > 0) tl.fromTo(img, { opacity: 0 }, { opacity: 1, duration: FUSAO, ease: 'power1.inOut' }, inicio);
+    if (i > 0) tl.fromTo(img, { autoAlpha: 0 }, { autoAlpha: 1, duration: FUSAO, ease: 'power1.inOut' }, inicio);
     // coberto pelo seguinte → some (o último fica para o fecho do ciclo)
-    if (i > 0 && i < n - 1) tl.set(img, { opacity: 0 }, (i + 1) * DURACAO + FUSAO + 0.05);
+    if (i > 0 && i < n - 1) tl.set(img, { autoAlpha: 0 }, (i + 1) * DURACAO + FUSAO + 0.05);
   });
 
   // Fecho do ciclo: o primeiro volta ao enquadramento inicial (ainda coberto)
   // e o último dissolve sobre ele. O ciclo dura n × DURACAO + FUSAO.
   const fim = n * DURACAO;
   tl.set(slides[0], PLANOS[0].de, fim - 0.02);
-  tl.fromTo(slides[n - 1], { opacity: 1 }, { opacity: 0, duration: FUSAO, ease: 'power1.inOut', immediateRender: false }, fim);
+  tl.fromTo(slides[n - 1], { autoAlpha: 1 }, { autoAlpha: 0, duration: FUSAO, ease: 'power1.inOut', immediateRender: false }, fim);
 
   // Só roda quando o hero está na tela, a aba está visível e ninguém pediu para parar.
   let ativo = false;

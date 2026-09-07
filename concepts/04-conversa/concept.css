@@ -4,7 +4,7 @@
    "Aqui quem fala é uma pessoa." O único conceito claro: base osso e o bordô
    entrando como ponto (regra do feed). Quase só tipografia, muito respiro, a
    moldura vertical 9:16 do médico dominando o hero, e as perguntas da semana
-   como dispositivo principal. Sem pin, sem WebGL.
+   como dispositivo principal. Sem pin, sem WebGL, sem preloader.
    O sistema (tokens, tipografia, nav, componentes) vive em brand/tokens.css e
    shared/base.css. Mobile-first; breakpoints 640 / 900 / 1200 / 1440.
    ============================================================================ */
@@ -18,8 +18,8 @@
 /* A página é clara de ponta a ponta: o overscroll e a área fora do body também. */
 html { background: var(--cor-osso); color: var(--cor-tinta); }
 
-/* Bordô como ponto: assinaturas e numerais de destaque sobre osso ganham a cor
-   principal (areia sobre osso não passa AA em 14px). Sobre bordô continuam areia. */
+/* Bordô como ponto: as assinaturas sobre osso ganham a cor principal
+   (areia sobre osso não passa AA em 14px). Sobre bordô continuam areia. */
 .sup-osso .assinatura { color: var(--cor-bordo); }
 
 /* ---- Skip link ------------------------------------------------------------- */
@@ -38,8 +38,8 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
 .hero--conversa {
   position: relative;
   min-height: 100svh;
-  padding-top: calc(var(--nav-altura) + clamp(16px, 3vh, 36px));
-  padding-bottom: clamp(40px, 6vh, 72px);
+  padding-top: calc(var(--nav-altura) + clamp(12px, 2vh, 28px));
+  padding-bottom: clamp(28px, 4vh, 56px);
   display: flex;
   align-items: stretch;
 }
@@ -64,8 +64,7 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
 .hero__acoes { margin-top: clamp(1.6rem, 2.6vw, 2.4rem); gap: 1.1rem 2.4rem; }
 .hero__nota { margin-top: 1.1rem; font-size: .95rem; }
 
-/* A linha em primeira pessoa: um traço bordô à esquerda, a frase, a assinatura.
-   No desktop desce para o pé da coluna e se alinha com a base da moldura. */
+/* A linha em primeira pessoa: um traço bordô à esquerda, a frase, a assinatura. */
 .hero__fala { margin-top: clamp(2.6rem, 5vw, 4rem); }
 .fala { display: grid; }
 .fala__item {
@@ -85,7 +84,7 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
 .fala__item .assinatura { margin-top: .9rem; }
 
 /* Coluna da mídia */
-.hero__midia { display: flex; flex-direction: column; gap: 1rem; }
+.hero__midia { display: flex; flex-direction: column; gap: .9rem; }
 
 .seletor { display: flex; flex-wrap: wrap; gap: .4rem 1.6rem; }
 .seletor__botao {
@@ -155,50 +154,58 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
   .hero__midia { order: 3; margin-top: 2.6rem; }
   .hero__fala { order: 4; margin-top: 2.4rem; }
 }
-/* De 640 em diante: duas colunas, a moldura à direita (menor no tablet). */
-@media (min-width: 640px) {
-  .hero--conversa { --moldura-h: clamp(400px, 56vh, 600px); }
+/* Tablet e desktop estreito (640–1199): a frase-mãe atravessa a largura toda;
+   embaixo, a intro à esquerda e a moldura à direita; a fala fecha a coluna
+   alinhada pela base com o nome do médico. */
+@media (min-width: 640px) and (max-width: 1199.98px) {
+  .hero--conversa { --moldura-h: clamp(400px, min(60vh, 60vw), 660px); }
   .hero__grid {
     grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: clamp(32px, 5vw, 96px);
-    align-items: end;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    column-gap: clamp(32px, 5vw, 80px);
+    row-gap: clamp(1.2rem, 3vh, 2.4rem);
+    align-items: start;
   }
-  .hero__texto { min-height: 100%; }
-  .hero__texto h1 { font-size: clamp(2.5rem, 5.2vw, 6.6rem); }
-  .hero__fala { margin-top: auto; padding-top: clamp(2.5rem, 5vh, 4rem); }
-  .hero__midia { align-items: flex-start; }
+  .hero__texto { display: contents; }
+  .hero__texto h1 { grid-column: 1 / -1; grid-row: 1; font-size: clamp(3rem, 7vw, 5.6rem); }
+  .hero__intro { grid-column: 1; grid-row: 2; }
+  .hero__sub { margin-top: 0; }
+  .hero__fala { grid-column: 1; grid-row: 3; align-self: end; margin-top: 0; padding-top: 2rem; }
+  .hero__midia { grid-column: 2; grid-row: 2 / span 2; align-items: flex-start; }
   .moldura { width: auto; height: var(--moldura-h); }
   .apresenta { width: calc(var(--moldura-h) * 9 / 16); }
 }
-@media (min-width: 900px) {
-  .hero--conversa { --moldura-h: clamp(420px, 62vh, 640px); }
-  .hero__texto h1 { font-size: clamp(2.9rem, 6.3vw, 6.6rem); }
-}
-/* Desktop largo: a fala sai de baixo dos botões e vai para o meio, ao lado da
-   moldura, alinhada pela base — quem está na foto é quem fala. */
+/* Desktop largo: texto à esquerda em duas sub-colunas (intro | fala), a fala
+   alinhada pela base com a moldura — quem está na foto é quem fala. */
 @media (min-width: 1200px) {
-  .hero--conversa { --moldura-h: clamp(440px, 66vh, 660px); }
-  .hero__grid { column-gap: clamp(56px, 6vw, 112px); }
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: clamp(56px, 6vw, 112px);
+    align-items: end;
+  }
   .hero__texto {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(17rem, 22rem);
     grid-template-rows: auto minmax(0, 1fr);
     column-gap: clamp(32px, 4vw, 72px);
+    min-height: 100%;
   }
   .hero__texto h1 { grid-column: 1 / -1; }
   .hero__intro { grid-column: 1; grid-row: 2; align-self: start; }
   .hero__fala { grid-column: 2; grid-row: 2; align-self: end; margin-top: 0; padding-top: 3rem; }
+  .hero__midia { align-items: flex-start; }
+  .moldura { width: auto; height: var(--moldura-h); }
+  .apresenta { width: calc(var(--moldura-h) * 9 / 16); }
 }
 
 /* ============================================================================
    CARTA — 01 O problema e 03 O mecanismo (e 02 O método, em bordô)
-   Uma coluna de leitura de 62ch, H2 grande, parágrafos com respiro; o
-   rótulo fica na margem esquerda no desktop.
+   Uma coluna de leitura de 62ch, H2 grande em duas linhas, parágrafos com
+   respiro; o rótulo fica na margem esquerda no desktop.
    ============================================================================ */
 .carta { display: grid; grid-template-columns: 1fr; row-gap: 1.6rem; }
-.carta__corpo { max-width: 62ch; }
-.carta__corpo h2 { font-size: clamp(2.1rem, 3.6vw, 3.7rem); }
-.carta__texto { margin-top: clamp(2rem, 3.4vw, 3rem); }
+.carta__corpo h2 { font-size: clamp(2.1rem, 3.6vw, 3.7rem); max-width: none; }
+.carta__texto { margin-top: clamp(2rem, 3.4vw, 3rem); max-width: 62ch; }
 .carta__texto p {
   font-size: clamp(1.12rem, 1rem + .55vw, 1.5rem);
   line-height: 1.5;
@@ -207,22 +214,18 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
 @media (min-width: 900px) {
   .carta { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--coluna-gap); align-items: start; }
   .carta__rotulo { grid-column: 1 / span 2; padding-top: .9em; }
-  .carta__corpo { grid-column: 3 / span 9; }
-}
-@media (min-width: 1200px) {
-  .carta__corpo { grid-column: 3 / span 8; }
+  .carta__corpo { grid-column: 3 / span 10; }
 }
 
 /* 02 O método: o único bloco bordô até o fecho — curto */
 .metodo { padding-block: clamp(88px, 10vw, 160px); }
-.metodo .carta__corpo h2 { max-width: 16ch; }
 
 /* ============================================================================
    FRENTES — lista tipográfica: cinco linhas grandes com seta, sem imagens
    ============================================================================ */
 .frentes { padding-top: calc(var(--secao) * .7); }
 .frentes__cabeca { margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
-.frentes__cabeca h2 { max-width: 16ch; }
+.frentes__cabeca h2 { max-width: 24ch; }
 .frente { position: relative; }
 .frente__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
 .frente--fim { height: 1px; }
@@ -259,6 +262,7 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
 .frente__link:hover .frente__titulo, .frente__link:focus-visible .frente__titulo { color: var(--cor-bordo); }
 .frente__link:hover .frente__seta, .frente__link:focus-visible .frente__seta { transform: translateX(12px); }
 .frente__link:focus-visible { outline-offset: -2px; }
+.frentes__rodape { margin-top: clamp(2rem, 4vw, 3.2rem); }
 @media (min-width: 900px) {
   .frente__link { grid-template-columns: 5rem minmax(0, 1fr) auto; column-gap: var(--coluna-gap); }
   .frente__nome { margin-bottom: .7rem; }
@@ -310,7 +314,7 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
 }
 .provas__num { display: block; padding-top: .55em; }
 .provas__titulo {
-  font-size: clamp(1.55rem, 1.1rem + 1.5vw, 2.4rem);
+  font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.6rem);
   line-height: 1.15;
   color: var(--cor-bordo);
   max-width: 17ch;
@@ -408,9 +412,29 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
 .medico__nome { font-size: calc(var(--corpo) * 1.15); font-weight: 400; }
 .medico__link { margin-top: .2rem; }
 /* O placeholder do retrato traz nome e legenda no rodapé: o card corta esse rodapé
-   (o vídeo real não tem nome gravado) e o rótulo do vídeo vai para o topo. */
-.medico__video img { height: 116%; object-position: 50% 0; }
-.medico__rotulo { top: 16px; bottom: auto; line-height: 1.5; }
+   (o vídeo real não tem nome gravado). A imagem é maior que a moldura para o
+   parallax (±4%) não abrir fresta; o rótulo do vídeo vai para o topo, em uma linha. */
+.medico__video img { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; object-position: 50% 0; }
+.medico:hover .medico__video img { transform: none; }
+.medico__rotulo { top: 14px; bottom: auto; font-size: .62rem; letter-spacing: .16em; line-height: 1.5; }
+
+/* Lightbox vertical da apresentação (9:16): abre pelos botões de play dos cards.
+   Enquanto o vídeo está pendente, mostra o retrato do médico e o rótulo. */
+dialog.lightbox--vertical { width: min(92vw, 400px); }
+.lightbox--vertical .lightbox__media { position: relative; aspect-ratio: 9 / 16; overflow: hidden; }
+.lightbox--vertical .lightbox__media video,
+.lightbox--vertical .lightbox__media img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  aspect-ratio: auto; object-fit: cover;
+}
+.lightbox__vazio {
+  position: absolute; left: 18px; right: 18px; top: 18px;
+  font-size: .68rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; line-height: 1.5;
+  color: var(--cor-creme-60);
+  max-width: none;
+}
+.lightbox--vertical .lightbox__legenda { display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
+.lightbox__nome { color: var(--cor-creme); }
 
 /* ============================================================================
    A PRIMEIRA CONSULTA
@@ -420,7 +444,8 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
 .consulta__acoes { margin-top: clamp(3rem, 5vw, 4.5rem); }
 
 /* ============================================================================
-   PERGUNTAS DA SEMANA — o dispositivo principal: lista longa, filtro por médico
+   PERGUNTAS DA SEMANA — o dispositivo principal: lista longa com nome e rosto,
+   filtro por médico, linhas que se desenham
    ============================================================================ */
 .perguntas-secao { padding-block: calc(var(--secao) * 1.1); }
 .perguntas__cabeca { margin-bottom: clamp(2.5rem, 5vw, 4rem); align-items: end; }
@@ -455,14 +480,32 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
 .filtro__botao[aria-pressed="true"] { color: var(--cor-bordo); }
 .filtro__botao[aria-pressed="true"]::after { transform: scaleX(1); }
 .filtro__botao:focus-visible { outline-color: var(--cor-bordo); outline-offset: 6px; }
+@media (max-width: 639.98px) {
+  .filtro__rotulo { flex-basis: 100%; margin-right: 0; }
+}
 
 .pergunta { position: relative; }
 .pergunta:not(.pergunta--fim) {
-  display: grid; grid-template-columns: 1fr; gap: .9rem;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  column-gap: 1.1rem; row-gap: .9rem;
+  align-items: start;
   padding-block: clamp(1.5rem, 2.6vw, 2.3rem);
 }
 .pergunta--fim { height: 1px; }
 .pergunta__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+/* O rosto: capa 4:5 da série (placeholder = retrato no estúdio, com o rodapé cortado) */
+.pergunta__rosto {
+  grid-column: 1; grid-row: 1 / span 2;
+  width: 52px; aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--cor-oliva-escuro);
+}
+.pergunta__rosto img {
+  width: 100%; height: 118%; object-fit: cover; object-position: 50% 0;
+  transition: transform var(--dur-imagem) var(--ease-out);
+}
+.pergunta__corpo { grid-column: 2; }
 .pergunta__titulo {
   font-size: clamp(1.35rem, 1rem + 1.2vw, 2.1rem);
   line-height: 1.22;
@@ -470,13 +513,15 @@ html { background: var(--cor-osso); color: var(--cor-tinta); }
   transition: color var(--dur-media) var(--ease-out);
 }
 .pergunta .assinatura { margin-top: .7rem; }
-.pergunta__link { justify-self: start; }
+.pergunta__link { grid-column: 2; justify-self: start; }
 .pergunta:has(.pergunta__link:hover) .pergunta__titulo,
 .pergunta:has(.pergunta__link:focus-visible) .pergunta__titulo { color: var(--cor-bordo); }
+.pergunta:has(.pergunta__link:hover) .pergunta__rosto img { transform: scale(1.05); }
 .perguntas__rodape { margin-top: clamp(2.2rem, 4vw, 3.5rem); }
 @media (min-width: 900px) {
-  .pergunta:not(.pergunta--fim) { grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(24px, 3vw, 48px); align-items: start; }
-  .pergunta__link { justify-self: end; margin-top: .55rem; }
+  .pergunta:not(.pergunta--fim) { grid-template-columns: 72px minmax(0, 1fr) auto; column-gap: clamp(24px, 3vw, 48px); }
+  .pergunta__rosto { grid-row: 1; width: 72px; }
+  .pergunta__link { grid-column: 3; justify-self: end; margin-top: .55rem; }
 }
 
 /* ============================================================================
@@ -505,4 +550,5 @@ html.js [data-linha] { transform: scaleX(0); transform-origin: left center; }
 @media (prefers-reduced-motion: reduce) {
   html.js [data-linha] { transform: none; }
   .moldura__retrato { top: -2%; height: 114%; }
+  .medico__video img { top: -4%; height: 110%; }
 }
