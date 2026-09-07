@@ -6,3 +6,6 @@ docs/screenshots/*.tmp.png
 
 # capturas de página inteira são pesadas; ficam só locais
 docs/screenshots/*-full.png
+
+# capturas temporárias do scripts/shot.mjs (segmentos antes da costura)
+docs/screenshots/*-parte*.png
