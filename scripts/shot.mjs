@@ -151,12 +151,16 @@ for (const vp of viewports) {
     const partes = [];
     for (let y = 0; y < alturaDoc; y += passo) {
       await page.evaluate((yy) => window.scrollTo(0, yy), y);
+      // Depois do primeiro segmento, esconde nav fixa e WhatsApp flutuante para não repetirem na costura.
+      await page.evaluate((primeiro) => {
+        document.querySelectorAll('header.nav, .whats').forEach((el) => { el.style.visibility = primeiro ? '' : 'hidden'; });
+      }, y === 0);
       await page.waitForTimeout(350);
       const parte = `${prefixo}-${vp.nome}-parte${String(partes.length).padStart(3, '0')}.png`;
       await page.screenshot({ path: parte, fullPage: false });
       partes.push(parte);
     }
-    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.evaluate(() => { window.scrollTo(0, 0); document.querySelectorAll('header.nav, .whats').forEach((el) => { el.style.visibility = ''; }); });
     const ultimaAltura = alturaDoc - (partes.length - 1) * passo;
     const py = `
 from PIL import Image
