@@ -3,7 +3,7 @@
    dissolvido pelo scroll. O resto da página segue a espinha do conceito 2. */
 import { initUI, gsap, ScrollTrigger, revelarHero, esperarFontes } from '../../shared/ui.js';
 import { iniciarLinhas } from '../c02-chegada/linhas.js';
-import { iniciarCartoes } from '../../shared/cartoes.js';
+import { iniciarMosaico } from '../../shared/mosaico.js';
 import { iniciarLetras } from '../../shared/letras.js';
 
 initUI({ lenis: true, revelarHero: false, preloader: false });
@@ -24,5 +24,5 @@ function iniciar() {
 }
 
 window.addEventListener('rocca:pronto', () => {
-  esperarFontes(1500).then(() => { iniciar(); iniciarLinhas(); iniciarCartoes(); gsap.delayedCall(0.9, () => revelarHero()); ScrollTrigger.refresh(); });
+  esperarFontes(1500).then(() => { iniciar(); iniciarLinhas(); iniciarMosaico(); gsap.delayedCall(0.9, () => revelarHero()); ScrollTrigger.refresh(); });
 }, { once: true });

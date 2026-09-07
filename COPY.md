@@ -1,7 +1,7 @@
 > **Rodada 4 — decisões do cliente (valem para todas as versões):** sem formulários, a chamada é sempre o WhatsApp;
 > nas Frentes o destaque é o nome do serviço (a frase vira apoio) e o link é `Saiba mais`; na seção A casa saem os
-> textos ("não é decoração", "madeira, pedra e luz quente", "não um consultório branco") e as fotos viram cartões
-> em tela cheia que se empilham ao rolar (referência Artur 73), com a foto grande;
+> textos ("não é decoração", "madeira, pedra e luz quente", "não um consultório branco") e as fotos viram um
+> mosaico grande que cabe numa tela (as seis de uma vez, entrada em cascata e paralaxe leve), sem pin;
 > sob o vídeo de cada médico o link é `Conheça o médico`; a seção "O que acontece na primeira consulta" foi removida;
 > o hero do 07 traz as cinco frentes, pequenas, e nenhuma dica de uso (também sem "role para continuar");
 > nos menus, rodapé e na seção, "Frentes" passa a "Serviços" (o termo interno segue nos ids e nos nomes de classe).

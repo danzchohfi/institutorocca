@@ -9,7 +9,7 @@
    ============================================================================ */
 
 import { initUI, gsap, ScrollTrigger, revelarHero, esperarFontes } from '../../shared/ui.js';
-import { iniciarCartoes } from '../../shared/cartoes.js';
+import { iniciarMosaico } from '../../shared/mosaico.js';
 import { iniciarKenBurns } from './kenburns.js';
 import { iniciarFilmeHero, iniciarLightboxFilme } from './filme.js';
 import { iniciarHeroScroll } from './hero.js';
@@ -25,7 +25,7 @@ function abrir() {
   // Mesma espera do ui.js: garante que o split por linhas já aconteceu.
   esperarFontes(1500).then(() => {
     iniciarHeroScroll();
-    iniciarCartoes();
+    iniciarMosaico();
     if (kenBurns) kenBurns.tocar();
     // A imagem assenta primeiro; o texto entra logo depois, em ordem do DOM.
     gsap.delayedCall(0.3, () => revelarHero());

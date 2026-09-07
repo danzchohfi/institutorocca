@@ -8,7 +8,7 @@
    ============================================================================ */
 
 import { initUI, gsap, ScrollTrigger, revelarHero, esperarFontes } from '../../shared/ui.js';
-import { iniciarCartoes } from '../../shared/cartoes.js';
+import { iniciarMosaico } from '../../shared/mosaico.js';
 import { iniciarHero } from './hero.js';
 import { iniciarLinhas } from './linhas.js';
 
@@ -21,7 +21,7 @@ window.addEventListener(
     esperarFontes(1500).then(() => {
       iniciarHero();
       iniciarLinhas();
-      iniciarCartoes();
+      iniciarMosaico();
       // A foto assenta primeiro; o texto entra logo depois, em ordem do DOM.
       gsap.delayedCall(0.35, () => revelarHero());
       ScrollTrigger.refresh();

@@ -5,7 +5,7 @@
    (scrub) dissolve as letras; o texto entra logo depois.
    ============================================================================ */
 import { initUI, gsap, ScrollTrigger, prefersReducedMotion, revelarHero, esperarFontes } from '../../shared/ui.js';
-import { iniciarCartoes } from '../../shared/cartoes.js';
+import { iniciarMosaico } from '../../shared/mosaico.js';
 import { iniciarLetras } from '../../shared/letras.js';
 
 initUI({ lenis: true, revelarHero: false, preloader: true });
@@ -28,7 +28,7 @@ let letras = null;
 
 /* ---- abertura: convergência + texto do hero ------------------------------ */
 function abrir() {
-  iniciarCartoes();
+  iniciarMosaico();
   if (!letras && canvasHero) {
     letras = iniciarLetras({
       hero, canvas: canvasHero, fallback, fonte: document.getElementById('wordmark-fonte'),
