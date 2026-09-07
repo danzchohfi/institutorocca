@@ -27,7 +27,71 @@ avançado. Nenhum conceito tem só um dos dois.
 formulário curto no fecho, seção "A primeira consulta" para reduzir o no-show (quem entende o que vai acontecer,
 aparece), FAQ com as três objeções das personas.
 
-<!-- CONCEITOS: preencher a partir dos relatórios dos construtores -->
+## 1. Conceito 1 — Matéria (partículas three.js)
+
+**Frase de apresentação:** *"O que se dispersou volta ao lugar."* É a frase-mãe em movimento: milhares de
+partículas em creme e areia sobre bordô-profundo nascem dispersas e, em 2,6 segundos, convergem para um seixo
+orgânico que respira, reage ao mouse e solta um fio de poeira de luz pelo topo. Não é transformação em outra
+coisa: é matéria voltando a se organizar. Ao rolar, a forma se dissolve para cima enquanto o bloco "O
+problema", em osso, sobe por cima do hero como uma cortina.
+
+**Onde ele se apoia nas referências:** a partícula da Totanka e a poeira de cobre da Clinique La Prairie,
+traduzidas para a paleta Rocca. É o conceito que mais diz "avançado na medicina" logo na primeira dobra.
+
+**Hero:** texto à esquerda (eyebrow, H1 em duas linhas com a segunda em itálico, sub, "Agendar avaliação" e
+"Como funciona a primeira consulta"), forma centro-direita; no mobile a forma fica acima do texto, sobre um
+véu de leitura. ~30 mil partículas no desktop, 10 mil no mobile; DPR limitado a 1,5; o loop pausa fora da tela
+e com a aba oculta; sem WebGL ou com `prefers-reduced-motion` entra um SVG estático de partículas.
+
+**Percurso:** Hero → 01 O problema (osso, cortina) → 02 O método (bordô, consultório com o computador) →
+Frentes (osso, lista numerada) → 03 O mecanismo (bordô, split-screen consultório | tela do exame) → As provas
+(bordô com poeira esparsa ao fundo) → O que a gente não faz (faixa) → A casa (osso, galeria de seis renders) →
+Os médicos (bordô, três cards 9:16) → A primeira consulta (osso, quatro passos) → Perguntas da semana (bordô)
+→ Perguntas mais comuns (osso) → Fecho com WhatsApp e formulário → Footer.
+
+**Motion:** preloader com o wordmark; convergência das partículas e depois o hero por linhas; scrub do hero
+dissolve a forma; reveals e split por linhas em todos os títulos; parallax sutil em três imagens; poeira
+quase estática como textura em As provas.
+
+**Pontos de atenção:** é o mais pesado (app.js com three.js ≈ 630 KB) e depende de GPU para o hero; em
+celulares antigos cai para o fallback estático. Cuidar para nunca parecer "startup de IA": sem azul, sem
+neon, sem grid.
+
+**O que precisa das diárias:** vídeos verticais "Quem eu sou" e retratos 9:16 dos três (estúdio); capas 4:5
+das séries (estúdio); consultório com a tela off-white acesa, mesa com o computador visto pela tampa,
+recepção, espera, corredor, consultório, bioimpedância e lounge (clínica).
+
+## 2. Conceito 2 — Chegada (a entrada da clínica)
+
+**Frase de apresentação:** *"Você chegou."* A recepção do Instituto em tela cheia, como capa de revista de
+arquitetura: madeira, mármore Emperador, luz quente e o wordmark na parede. É o conceito mais próximo da
+Clinique La Prairie no ritmo: seções longas, muito respiro, duas declarações em osso com quase nada além do
+título, listas editoriais em linhas finas que se desenham.
+
+**Hero:** foto da recepção (render tratado com o logo real; a foto da diária entra no mesmo arquivo) com a nav
+em bordô sobre o teto claro, texto no terço inferior esquerdo sobre um véu bordô que sobe da base sem sujar a
+imagem, e o bloco dimensionado para não cobrir o wordmark da parede. Ao rolar, o hero fica preso, o texto some,
+a foto sobe com parallax e encolhe para dentro de uma moldura bordô enquanto "O problema" entra por baixo.
+No mobile e no tablet retrato entra a versão 4:5 da imagem.
+
+**Percurso:** Hero → 01 O problema (bordô) → 02 O método (declaração em osso) → Frentes (osso, lista editorial)
+→ 03 O mecanismo (bordô, split-screen de largura total: consultório | tela do exame) → As provas (declaração
+em osso) → O que a gente não faz (faixa) → A casa (aberta pela porta vista do corredor, depois grade editorial
+assimétrica com seis renders) → Os médicos → A primeira consulta → Perguntas da semana (linhas com miniatura)
+→ Perguntas mais comuns → Fecho → Footer.
+
+**Motion:** foto assenta ao carregar; pin + scrub do hero; nav troca de tema conforme a superfície; linhas
+finas que se desenham nas listas; parallax em três imagens; hover que amplia as fotos da casa. Sem WebGL e sem
+preloader: é o mais leve dos três primeiros (app.js ≈ 138 KB).
+
+**Pontos de atenção:** a página vive da fotografia, então a diária na clínica define a qualidade final; até
+lá, os renders sustentam bem, mas bioimpedância, aplicação e procedimento ainda são croquis do projeto.
+
+**O que precisa das diárias:** recepção em 3:2 e 4:5 com o wordmark visível (clínica); a porta vista do hall
+em 4:5; consultório com a tela acesa e captura frontal da tela; recepção, espera, corredor, consultório,
+bioimpedância e lounge para a galeria; vídeos verticais, retratos 9:16 e capas 4:5 dos três (estúdio).
+
+<!-- CONCEITOS 3–6: preencher a partir dos relatórios dos construtores -->
 
 ## 4. Comparativo e recomendação
 
