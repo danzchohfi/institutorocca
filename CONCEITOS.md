@@ -4,7 +4,20 @@
 > Os três nascem da mesma Direção de Marca, usam o mesmo sistema visual e o mesmo texto; o que muda é o hero,
 > o ritmo e a forma como a mídia atravessa a página.
 
-## 0. O que os três têm em comum
+## Previews hospedadas
+
+| # | Conceito | Preview |
+|---|----------|---------|
+| 1 | **Matéria** | [abrir](https://claude.ai/code/artifact/d09b6cd9-5ef1-40ea-bce0-eb290422ddfb) |
+| 2 | **Chegada** | [abrir](https://claude.ai/code/artifact/0a80f870-4a3d-4eb2-9161-a5626a6b3c32) |
+| 3 | **Presença** | [abrir](https://claude.ai/code/artifact/d845e270-9a8c-48bf-88d6-523e668a0b95) |
+| 4 | **Conversa** | [abrir](https://claude.ai/code/artifact/8f8ea080-dcb3-408b-ba91-ca64c7766096) |
+| 5 | **Símbolo** | [abrir](https://claude.ai/code/artifact/1cc9a883-130d-4579-ac5b-33f664b28533) |
+| 6 | **Slides** | [abrir](https://claude.ai/code/artifact/47d687a7-64e2-4817-97c3-d71b42522333) |
+
+Páginas privadas por padrão; compartilhe pelo menu da página. Geradas por `node scripts/build-artifacts.mjs` (cada conceito em um HTML único com fontes e imagens embutidas).
+
+## 0. O que os seis têm em comum
 
 **A frase-mãe como régua.** "Seu médico. Sua melhor versão." abre os três heros, com a segunda linha em itálico
 como assinatura tipográfica. Cada dobra paga as duas metades: de quem é (a relação) e o que devolve (o
