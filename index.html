@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Instituto Rocca — conceitos de home</title>
-  <meta name="description" content="Seis conceitos navegáveis para a home do site do Instituto Rocca, Moema.">
+  <meta name="description" content="Conceitos navegáveis para a home do site do Instituto Rocca, Moema.">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#550000">
   <link rel="stylesheet" href="brand/tokens.css">
@@ -27,6 +27,8 @@
     .card:hover .card__media img { transform: scale(1.03); }
     .card__media--vazio { display: grid; place-items: center; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--cor-areia); }
     .card__corpo { padding: 24px 24px 28px; }
+    .eyebrow--secao { max-width: 1440px; margin: 0 auto 20px; padding: 0 var(--gutter, clamp(20px, 5vw, 96px)); }
+    .grade--arquivo .card { opacity: .72; }
     .card__num { font-size: 12px; letter-spacing: .28em; color: var(--cor-areia); text-transform: uppercase; }
     .card__titulo { font-weight: 300; font-size: 1.75rem; margin: 8px 0 6px; line-height: 1.1; }
     .card__desc { font-weight: 300; font-size: 1rem; line-height: 1.6; color: var(--cor-creme-60, rgba(242,232,217,.6)); margin: 0 0 18px; }
@@ -40,10 +42,15 @@
     <img src="assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
     <p class="eyebrow">Conceitos de home · Moema</p>
     <h1>Seu médico. <em>Sua melhor versão.</em></h1>
-    <p class="intro">Sete caminhos para a home do site, sobre a mesma Direção de Marca, o mesmo texto e o mesmo sistema visual. O que muda é o hero, o ritmo e como a mídia atravessa a página. O racional de cada um está em <a href="CONCEITOS.md">CONCEITOS.md</a>.</p>
+    <p class="intro">Quatro versões seguem em trabalho: o 07 (Letras) como principal, e os conceitos 01, 02 e 03. As demais ficam de arquivo. Todas sobre a mesma Direção de Marca, o mesmo texto e o mesmo sistema visual. O racional de cada um está em <a href="CONCEITOS.md">CONCEITOS.md</a>.</p>
   </header>
 
+  <p class="eyebrow eyebrow--secao">Versões campeãs · rodada 3</p>
   <main class="grade">
+    <a class="card" href="concepts/07-letras/index.html">
+      <div class="card__media"><img src="docs/screenshots/07-letras-desktop.png" alt="Conceito 7 — Letras" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Conceito 07 · principal · só o hero</span><h2 class="card__titulo">Letras</h2><p class="card__desc">O wordmark INSTITUTO ROCCA escrito com partículas: converge, reage ao mouse e se dissolve ao rolar.</p><span class="card__acao">Abrir →</span></div>
+    </a>
     <a class="card" href="concepts/01-materia/index.html">
       <div class="card__media"><img src="docs/screenshots/01-materia-desktop.png" alt="Conceito 1 — Matéria" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
       <div class="card__corpo"><span class="card__num">Conceito 01</span><h2 class="card__titulo">Matéria</h2><p class="card__desc">Partículas three.js em creme e areia sobre bordô: o que se dispersou volta ao lugar.</p><span class="card__acao">Abrir →</span></div>
@@ -56,6 +63,9 @@
       <div class="card__media"><img src="docs/screenshots/03-presenca-desktop.png" alt="Conceito 3 — Presença" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
       <div class="card__corpo"><span class="card__num">Conceito 03</span><h2 class="card__titulo">Presença</h2><p class="card__desc">O filme institucional no hero, como a Direção de Marca previu; a casa com gente.</p><span class="card__acao">Abrir →</span></div>
     </a>
+  </main>
+  <p class="eyebrow eyebrow--secao">Arquivo · rodada 1</p>
+  <div class="grade grade--arquivo">
     <a class="card" href="concepts/04-conversa/index.html">
       <div class="card__media"><img src="docs/screenshots/04-conversa-desktop.png" alt="Conceito 4 — Conversa" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
       <div class="card__corpo"><span class="card__num">Conceito 04</span><h2 class="card__titulo">Conversa</h2><p class="card__desc">Claro e tipográfico: o médico fala em vídeo vertical e as perguntas da semana conduzem a página.</p><span class="card__acao">Abrir →</span></div>
@@ -68,11 +78,7 @@
       <div class="card__media"><img src="docs/screenshots/06-slides-desktop.png" alt="Conceito 6 — Slides" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
       <div class="card__corpo"><span class="card__num">Conceito 06</span><h2 class="card__titulo">Slides</h2><p class="card__desc">Fotográfico e editorial: slides de tela cheia e tiles escuros, no ritmo da referência Seven.</p><span class="card__acao">Abrir →</span></div>
     </a>
-    <a class="card" href="concepts/07-letras/index.html">
-      <div class="card__media"><img src="docs/screenshots/07-letras-desktop.png" alt="Conceito 7 — Letras" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
-      <div class="card__corpo"><span class="card__num">Conceito 07 · só o hero</span><h2 class="card__titulo">Letras</h2><p class="card__desc">O wordmark INSTITUTO ROCCA escrito com partículas: converge, reage ao mouse e se dissolve ao rolar.</p><span class="card__acao">Abrir →</span></div>
-    </a>
-  </main>
+  </div>
 
   <footer class="rodape">
     <p>Kit do sistema visual: <a href="concepts/00-kit/index.html">concepts/00-kit</a>. Briefing: <a href="BRIEF.md">BRIEF.md</a>. Texto da home: <a href="COPY.md">COPY.md</a>. Protótipos internos da Vitamina Publicitária para o Instituto Rocca.</p>

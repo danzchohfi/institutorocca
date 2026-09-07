@@ -39,7 +39,6 @@ export function iniciarHero() {
       end: '+=75%',
       pin: true,
       scrub: true,
-      anticipatePin: 1,
       // Criado depois dos triggers do ui.js: prioridade alta para que o
       // espaço do pin entre na conta dos triggers da nav, do WhatsApp e dos reveals.
       refreshPriority: 1,

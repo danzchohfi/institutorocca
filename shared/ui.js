@@ -66,9 +66,14 @@ function disparaPronto() {
    --------------------------------------------------------------------------- */
 function iniciarScroll(opcoes) {
   gsap.registerPlugin(ScrollTrigger);
+  // A barra de endereço do mobile muda a altura da janela a cada rolada; sem
+  // isto o ScrollTrigger recalcula tudo no meio do gesto e os pins pulam.
+  ScrollTrigger.config({ ignoreMobileResize: true });
   if (prefersReducedMotion || opcoes.lenis === false) return;
 
-  lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+  // lerp .1 = o padrão do Lenis: acompanha a roda sem "boiar". Os scrubs dos
+  // conceitos usam scrub: true (sem atraso extra): o Lenis já é a suavização.
+  lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 1.5 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
