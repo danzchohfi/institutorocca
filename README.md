@@ -17,17 +17,21 @@ gravação precisa entregar e a recomendação. **`BRIEF.md`** é o briefing cri
 
 ## Previews hospedadas
 
-| # | Conceito | Preview |
-|---|----------|---------|
-| 1 | **Matéria** | [abrir](https://claude.ai/code/artifact/d09b6cd9-5ef1-40ea-bce0-eb290422ddfb) |
-| 2 | **Chegada** | [abrir](https://claude.ai/code/artifact/78e9e269-6337-4588-b6b9-c7b2b8bdcc54) |
-| 3 | **Presença** | [abrir](https://claude.ai/code/artifact/29c238e3-20bf-4cc9-a0a2-cb13e84bb6bc) |
-| 4 | **Conversa** | [abrir](https://claude.ai/code/artifact/09347f2e-9418-45c6-972f-1f2748888485) |
-| 5 | **Símbolo** | [abrir](https://claude.ai/code/artifact/09a7a2bc-3761-40d6-9e07-b512ad29cdfd) |
-| 6 | **Slides** | [abrir](https://claude.ai/code/artifact/47d687a7-64e2-4817-97c3-d71b42522333) |
-| 7 | **Letras** (só o hero) | [abrir](https://claude.ai/code/artifact/396e8436-193e-4f84-bccf-efcceb4e8412) |
+**Site (GitHub Pages, o próprio repositório):** https://danzchohfi.github.io/institutorocca/ — o hub abre com as quatro
+versões campeãs; o scroll é o da página real, sem iframe. Precisa ser ativado uma vez pelo dono do repositório
+(Settings → Pages → Build and deployment → Source: **GitHub Actions**); a partir daí `.github/workflows/pages.yml`
+publica a cada push nesta branch (ou na `main`).
 
-Hub com os seis: [abrir](https://claude.ai/code/artifact/fccaed8e-d9d4-469b-aef8-2f9904fc4170).
+| # | Conceito | Site | Artifact (provisório, dentro de iframe) |
+|---|----------|------|------------------------------------------|
+| 7 | **Letras** · principal (só o hero) | [abrir](https://danzchohfi.github.io/institutorocca/concepts/07-letras/) | [abrir](https://claude.ai/code/artifact/396e8436-193e-4f84-bccf-efcceb4e8412) |
+| 1 | **Matéria** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/01-materia/) | [abrir](https://claude.ai/code/artifact/9ce3eecf-c42e-4a56-88f8-39344acbf006) |
+| 2 | **Chegada** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/02-chegada/) | [abrir](https://claude.ai/code/artifact/78e9e269-6337-4588-b6b9-c7b2b8bdcc54) |
+| 3 | **Presença** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/03-presenca/) | [abrir](https://claude.ai/code/artifact/76784ada-e7ea-4b76-ab4e-79a09df19186) |
+
+Arquivo (rodada 1, sem os ajustes de scroll): 4 Conversa [abrir](https://claude.ai/code/artifact/09347f2e-9418-45c6-972f-1f2748888485) ·
+5 Símbolo [abrir](https://claude.ai/code/artifact/09a7a2bc-3761-40d6-9e07-b512ad29cdfd) ·
+6 Slides [abrir](https://claude.ai/code/artifact/47d687a7-64e2-4817-97c3-d71b42522333).
 
 Páginas privadas por padrão; compartilhe pelo menu da página. Geradas por `node scripts/build-artifacts.mjs` (cada conceito em um HTML único com fontes e imagens embutidas).
 
