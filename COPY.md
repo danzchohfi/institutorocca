@@ -5,6 +5,8 @@
 > sob o vídeo de cada médico o link é `Conheça o médico`; a seção "O que acontece na primeira consulta" foi removida;
 > o hero do 07 traz as cinco frentes, pequenas, e nenhuma dica de uso (também sem "role para continuar");
 > nos menus, rodapé e na seção, "Frentes" passa a "Serviços" (o termo interno segue nos ids e nos nomes de classe).
+> Saem também a seção "O que sustenta o que a gente diz" (as provas) e a linha de descrição sob cada médico
+> ("Cansaço, peso e hormônio — o que parou de funcionar" etc.).
 
 # COPY.md — Banco de texto definitivo da home · Instituto Rocca
 
