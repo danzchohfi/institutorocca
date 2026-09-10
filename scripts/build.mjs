@@ -21,6 +21,7 @@ const pares = [
 { src: 'src/c05-simbolo/main.js', out: 'concepts/05-simbolo/app.js' },
 { src: 'src/c06-slides/main.js', out: 'concepts/06-slides/app.js' },
 { src: 'src/c07-letras/main.js', out: 'concepts/07-letras/app.js' },
+{ src: 'src/c08-retrato/main.js', out: 'concepts/08-retrato/app.js' },
 ].filter(({ src }) => existsSync(resolve(raiz, src)));
 
 if (!pares.length) {

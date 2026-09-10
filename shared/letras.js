@@ -54,6 +54,29 @@ void main() {
 
 /* Amostra o logo pixel a pixel (passo 1) numa largura dada; devolve pontos
    normalizados pela largura, centrados. Se passar do teto, sorteia. */
+/* Amostra um texto (linhas) desenhado com a fonte da marca, na largura dada.
+   Cada linha: { t, italico }. Alinhado à esquerda; o bloco é centrado. */
+function amostrarTexto(linhas, largura, teto) {
+  const fam = '"Semplicita Pro", Jost, sans-serif';
+  const medir = document.createElement('canvas').getContext('2d');
+  let px = 100, maior = 1;
+  linhas.forEach((l) => { medir.font = `${l.italico ? 'italic ' : ''}300 ${px}px ${fam}`; maior = Math.max(maior, medir.measureText(l.t).width); });
+  px = Math.floor(px * (largura / maior));
+  const lh = Math.round(px * 1.08), w = largura, h = lh * linhas.length + Math.round(px * 0.2);
+  const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+  const ctx = cv.getContext('2d', { willReadFrequently: true }); ctx.fillStyle = '#fff'; ctx.textBaseline = 'alphabetic';
+  linhas.forEach((l, i) => { ctx.font = `${l.italico ? 'italic ' : ''}300 ${px}px ${fam}`; ctx.fillText(l.t, 0, Math.round(px * 0.92) + i * lh); });
+  return amostrarPixels(ctx, w, h, teto);
+}
+function amostrarPixels(ctx, w, h, teto) {
+  const px = ctx.getImageData(0, 0, w, h).data; const pts = [];
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const a = px[(y * w + x) * 4 + 3];
+    if (a > 60) pts.push([(x - w / 2 + Math.random() - 0.5) / w, -(y - h / 2 + Math.random() - 0.5) / w]);
+  }
+  if (pts.length > teto) { const p = teto / pts.length; return pts.filter(() => Math.random() < p); }
+  return pts;
+}
 function amostrarLogo(img, largura, teto) {
   const escala = largura / img.naturalWidth;
   const w = Math.round(img.naturalWidth * escala), h = Math.round(img.naturalHeight * escala);
@@ -74,14 +97,14 @@ export function iniciarLetras(op) {
   if (!temWebGL || prefersReducedMotion) { canvas.hidden = true; if (fallback) fallback.hidden = false; return null; }
   const estado = { converge: 0, progresso: 0 }; let ativo = true;
 
-  const svgTexto = new XMLSerializer().serializeToString(fonte).replace(' hidden=""', '');
-  const img = new Image(); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgTexto);
+  const img = new Image();
+  if (!op.texto) { const svgTexto = new XMLSerializer().serializeToString(fonte).replace(' hidden=""', ''); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgTexto); }
 
   let iniciado = false;
   const depois = () => {
     if (iniciado) return; iniciado = true;
     const mobile = window.innerWidth < 900;
-    const [larg, teto] = mobile ? op.amostra.mobile : op.amostra.desktop; const pts = amostrarLogo(img, larg, teto);
+    const [larg, teto] = mobile ? op.amostra.mobile : op.amostra.desktop; const pts = op.texto ? amostrarTexto(op.texto, larg, teto) : amostrarLogo(img, larg, teto);
     const n = pts.length; const W = 20;
     const alvo = new Float32Array(n * 3), inicio = new Float32Array(n * 3);
     const semente = new Float32Array(n), tam = new Float32Array(n), dir = new Float32Array(n * 3);
@@ -151,7 +174,7 @@ export function iniciarLetras(op) {
     // Montagem visível ao carregar: ~2 s, varrendo o wordmark da esquerda para a direita.
     gsap.to(estado, { converge: 1, duration: 2.2, ease: 'power2.inOut', delay: 0.15 });
   };
-  img.onload = depois; if (img.complete && img.naturalWidth) depois();
+  if (op.texto) depois(); else { img.onload = depois; if (img.complete && img.naturalWidth) depois(); }
   return { estado, setAtivo: (v) => { ativo = v; }, setProgresso: (p) => { estado.progresso = p; } };
 }
 

@@ -124,4 +124,4 @@ function packConcept(dir) {
 }
 
 const alvo = process.argv.slice(2).filter(a => !a.startsWith('--'))
-for (const dir of (alvo.length ? alvo : ['00-kit', '01-materia', '02-chegada', '03-presenca', '04-conversa', '05-simbolo', '06-slides', '07-letras'])) packConcept(dir)
+for (const dir of (alvo.length ? alvo : ['00-kit', '01-materia', '02-chegada', '03-presenca', '04-conversa', '05-simbolo', '06-slides', '07-letras', '08-retrato'])) packConcept(dir)

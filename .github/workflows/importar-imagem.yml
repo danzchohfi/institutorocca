@@ -1,0 +1,40 @@
+# Traz um arquivo de uma URL para dentro do repositório e faz o commit na branch
+# em que o workflow foi disparado. Usado para as imagens geradas no Higgsfield
+# (o ambiente de trabalho não alcança o CDN deles; o runner do Actions alcança).
+name: Importar imagem por URL
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: URL pública do arquivo
+        required: true
+      destino:
+        description: Caminho de destino no repositório (ex. assets/img/medicos-hero.jpg)
+        required: true
+      mensagem:
+        description: Mensagem do commit
+        required: false
+        default: "Imagem importada do Higgsfield"
+
+permissions:
+  contents: write
+
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Baixar
+        run: |
+          mkdir -p "$(dirname '${{ inputs.destino }}')"
+          curl -fL --retry 3 -o '${{ inputs.destino }}' '${{ inputs.url }}'
+          ls -la '${{ inputs.destino }}'
+          file '${{ inputs.destino }}'
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '${{ inputs.destino }}'
+          git commit -m '${{ inputs.mensagem }}' || echo "nada a commitar"
+          git push

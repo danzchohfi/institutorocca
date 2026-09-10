@@ -14,6 +14,7 @@ publica a cada push nesta branch (ou na `main`).
 | # | Conceito | Site | Artifact (provisório, dentro de iframe) |
 |---|----------|------|------------------------------------------|
 | 7 | **Letras** · principal (página completa) | [abrir](https://danzchohfi.github.io/institutorocca/concepts/07-letras/) | [abrir](https://claude.ai/code/artifact/396e8436-193e-4f84-bccf-efcceb4e8412) |
+| 8 | **Retrato** · os três médicos no hero (Higgsfield) | [abrir](https://danzchohfi.github.io/institutorocca/concepts/08-retrato/) | — |
 | 1 | **Matéria** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/01-materia/) | [abrir](https://claude.ai/code/artifact/9ce3eecf-c42e-4a56-88f8-39344acbf006) |
 | 2 | **Chegada** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/02-chegada/) | [abrir](https://claude.ai/code/artifact/78e9e269-6337-4588-b6b9-c7b2b8bdcc54) |
 | 3 | **Presença** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/03-presenca/) | [abrir](https://claude.ai/code/artifact/beb00a86-fcd1-4331-abf7-2d3a54b2a446) |
@@ -283,3 +284,13 @@ Interiores e do Manual de Identidade; sistema visual compartilhado (`brand/`, `s
 conceito; QA técnico (console, overflow, reduced-motion, formulário, menu, léxico) e crítica de direção de arte
 por conceito, com rodadas de correção; crítica de consistência entre os três. Screenshots em
 `docs/screenshots/`.
+
+## Conceito 08 — Retrato (Higgsfield)
+
+Os três médicos no hero, sobre o bordô, com a mensagem principal ("Seu médico. Sua melhor versão.")
+escrita em partículas (o mesmo sistema do 07, em modo texto, à esquerda) e os serviços embaixo.
+A imagem dos médicos foi gerada no Higgsfield com os Souls treinados de cada um (Soul 2.0), um
+retrato por médico com a mesma luz e o mesmo fundo, montados numa única composição; quando a foto
+real do estúdio Jacarandá existir, ela entra no mesmo arquivo (`assets/img/medicos-hero.jpg`), sem
+mexer na página. O briefing da foto e da edição está em `docs/higgsfield-hero.md`. O resto da página
+segue a espinha do conceito 2 (mesma do 07).
