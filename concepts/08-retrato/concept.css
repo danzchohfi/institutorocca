@@ -1,24 +1,30 @@
-/* Conceito 8 — Retrato: os três médicos no hero (foto com o fundo de madeira do
-   estúdio Jacarandá, na metade direita) e, no bordô da esquerda, a mensagem
-   principal escrita em partículas (shared/letras.js, modo texto). A foto real
+/* Conceito 8 — Retrato: a foto dos três médicos (parede do estúdio Jacarandá com
+   luz vermelha) cobre o hero; na parede livre, à esquerda, a mensagem principal
+   escrita em partículas (shared/letras.js, modo texto) e os serviços, sem
+   passar sobre os rostos. A foto real
    sai do estúdio; enquanto isso, a imagem gerada no Higgsfield com os três
    (assets/img/medicos-hero.jpg) ocupa o lugar. O resto segue o conceito 2. */
 .visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .hero--retrato { position: relative; min-height: 100svh; overflow: hidden; display: grid; align-items: end; background: var(--cor-bordo); }
-.hero--retrato::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 60% at 22% 45%, rgba(110, 18, 18, .7), transparent 70%); pointer-events: none; }
-/* Zona da mensagem em partículas: a metade esquerda inteira (o canvas cobre só ela) */
-.hero__mensagem { position: absolute; left: 0; top: 0; bottom: 0; width: 44%; z-index: 2; }
-.letras__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-/* A foto (parede do estúdio com luz vermelha) ocupa a metade direita inteira, borda reta. */
-.hero__medicos { position: absolute; right: 0; top: 0; bottom: 0; width: 56%; z-index: 1; overflow: hidden; background: var(--cor-bordo-profundo); }
-.hero__medicos img { width: 100%; height: 100%; object-fit: cover; object-position: 80% 30%; display: block; }
+/* A foto cobre o hero inteiro; o grupo fica à direita, a parede livre à esquerda recebe a mensagem e o texto. */
+.hero__medicos { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: var(--cor-bordo-profundo); }
+.hero__medicos img { width: 100%; height: 100%; object-fit: cover; object-position: 78% 30%; display: block; }
 html.js .hero__medicos img { animation: retrato-entra 1.8s var(--ease-out, ease-out) both; }
 @keyframes retrato-entra { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: none; } }
-.hero__medicos::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(59, 0, 0, .35) 0%, rgba(59, 0, 0, 0) 28%); pointer-events: none; }
+/* Véu: bordô denso na esquerda (onde ficam a mensagem e o texto) que some antes dos rostos; base escurecida para o texto. */
+.hero__medicos::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(85, 0, 0, .94) 0%, rgba(85, 0, 0, .82) 26%, rgba(85, 0, 0, .42) 46%, rgba(85, 0, 0, .06) 62%, rgba(85, 0, 0, 0) 72%),
+    linear-gradient(to top, rgba(59, 0, 0, .55) 0%, rgba(59, 0, 0, 0) 34%);
+}
+/* Zona da mensagem em partículas: a parte livre da parede (o canvas cobre só ela) */
+.hero__mensagem { position: absolute; left: 0; top: 0; bottom: 0; width: 46%; z-index: 2; }
+.letras__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hero__titulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
 .hero--estatico .hero__titulo { position: relative; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; z-index: 3; padding: 0 var(--gutter); font-weight: 300; font-size: clamp(2.2rem, 5vw, 5rem); line-height: 1.04; max-width: 12ch; }
 .hero__titulo em { font-style: italic; }
-.hero__conteudo { position: relative; z-index: 3; margin: 0; max-width: none; width: 44%; padding-bottom: clamp(48px, 8vh, 96px); display: grid; gap: .9rem; justify-items: start; }
+.hero__conteudo { position: relative; z-index: 3; margin: 0; max-width: none; width: 46%; padding-bottom: clamp(48px, 8vh, 96px); display: grid; gap: .9rem; justify-items: start; }
 .hero__acoes { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; margin-top: .4rem; }
 .hero__nota { margin: 0; color: var(--fg-2); font-size: .95rem; }
 .hero__frentes { display: flex; flex-wrap: wrap; gap: .5rem 0; margin: 0; padding: 0; list-style: none; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--cor-areia); }
@@ -27,15 +33,15 @@ html.js .hero__medicos img { animation: retrato-entra 1.8s var(--ease-out, ease-
 .hero__frentes a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-rapida), color var(--dur-rapida); }
 .hero__frentes a:hover, .hero__frentes a:focus-visible { color: var(--cor-creme); border-bottom-color: currentColor; }
 @media (max-width: 899.98px) {
-  /* Mobile em fluxo: foto, zona da mensagem, texto */
-  .hero--retrato { display: block; padding-top: var(--nav-altura); }
-  .hero--retrato::before { background: radial-gradient(70% 30% at 50% 58%, rgba(110, 18, 18, .7), transparent 70%); }
-  .hero__medicos { position: relative; width: 100%; right: auto; top: auto; bottom: auto; height: 44svh; }
-  .hero__medicos img { object-position: 80% 25%; }
-  .hero__medicos::after { background: linear-gradient(to top, var(--cor-bordo) 0%, rgba(85, 0, 0, 0) 26%); }
-  .hero__mensagem { position: relative; width: 100%; left: auto; top: auto; bottom: auto; height: 24svh; }
-  .hero__conteudo { width: 100%; justify-items: center; text-align: center; padding-top: 4px; padding-bottom: 40px; }
-  .hero__frentes { justify-content: center; font-size: 10px; letter-spacing: .18em; max-width: 34ch; }
+  /* Mobile: os rostos ficam no terço de cima, livres; a metade de baixo vira bordô e recebe a mensagem e o texto. */
+  .hero--retrato { min-height: max(100svh, 720px); }
+  /* a foto ocupa o alto do hero e mostra os três; a base se funde no bordô */
+  .hero__medicos { bottom: auto; height: 56%; }
+  .hero__medicos img { object-position: 70% 12%; }
+  .hero__medicos::after { background: linear-gradient(to top, rgba(85, 0, 0, 1) 0%, rgba(85, 0, 0, .92) 18%, rgba(85, 0, 0, .35) 42%, rgba(85, 0, 0, 0) 60%); }
+  .hero__mensagem { left: 0; right: 0; top: 43%; bottom: auto; width: 100%; height: 13%; }
+  .hero__conteudo { width: 100%; justify-items: center; text-align: center; padding-bottom: 36px; }
+  .hero__frentes { justify-content: center; font-size: 10px; letter-spacing: .18em; max-width: none; }
   .hero__frentes li + li::before { margin: 0 .7rem; }
   .hero__acoes { justify-content: center; }
 }
