@@ -11,10 +11,11 @@ initUI({ lenis: true, revelarHero: false, preloader: false });
 
 function iniciar() {
   const hero = document.querySelector('.hero--retrato');
+  const zona = hero.querySelector('.hero__mensagem');
   const letras = iniciarLetras({
-    hero, canvas: hero.querySelector('.letras__canvas'), fallback: null, fonte: null,
+    hero: zona, canvas: zona.querySelector('.letras__canvas'), fallback: null, fonte: null, raio: 0.3,
     texto: [{ t: 'Seu médico.' }, { t: 'Sua melhor versão.', italico: true }],
-    fracao: { desktop: 0.36, mobile: 0.86 }, centro: { desktop: [-0.27, 0.1], mobile: [0, -0.12] },
+    fracao: { desktop: 0.8, mobile: 0.86 }, centro: { desktop: [0.02, 0.1], mobile: [0, 0] },
     amostra: { desktop: [1500, 90000], mobile: [800, 35000] },
   });
   if (!letras) { hero.classList.add('hero--estatico'); return; }

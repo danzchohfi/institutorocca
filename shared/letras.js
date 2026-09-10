@@ -137,15 +137,16 @@ export function iniciarLetras(op) {
     let visW = 1, visH = 1;
     const ajustar = () => {
       const w = hero.clientWidth, h = hero.clientHeight; renderer.setSize(w, h, false); cam.aspect = w / h;
-      const fracao = w < 900 ? op.fracao.mobile : op.fracao.desktop;
+      const mob = window.innerWidth < 900;
+      const fracao = mob ? op.fracao.mobile : op.fracao.desktop;
       const dist = (W / fracao / 2) / (Math.tan(THREE.MathUtils.degToRad(15)) * cam.aspect);
       cam.position.set(0, 0, dist); cam.updateProjectionMatrix();
       visH = 2 * dist * Math.tan(THREE.MathUtils.degToRad(15)); visW = visH * cam.aspect;
-      const c = w < 900 ? op.centro.mobile : op.centro.desktop; pontos.position.x = visW * c[0]; pontos.position.y = visH * c[1];
+      const c = mob ? op.centro.mobile : op.centro.desktop; pontos.position.x = visW * c[0]; pontos.position.y = visH * c[1];
       // tamanho em pixels independente da distância da câmera: ~0,6–1,3 px de grão (pó fino)
-      uni.uEscala.value = dist * (w < 900 ? 1.35 : 1.5);
+      uni.uEscala.value = dist * (mob ? 1.35 : 1.5);
       // área de influência do mouse: ~16% da largura visível (no toque, um pouco mais)
-      uni.uRaio.value = visW * (w < 900 ? 0.22 : 0.16);
+      uni.uRaio.value = visW * (op.raio || (mob ? 0.22 : 0.16));
     };
     ajustar();
     let tResize; addEventListener('resize', () => { clearTimeout(tResize); tResize = setTimeout(ajustar, 200); });

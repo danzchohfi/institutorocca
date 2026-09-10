@@ -6,11 +6,14 @@
 .visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .hero--retrato { position: relative; min-height: 100svh; overflow: hidden; display: grid; align-items: end; background: var(--cor-bordo); }
 .hero--retrato::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 60% at 22% 45%, rgba(110, 18, 18, .7), transparent 70%); pointer-events: none; }
-.letras__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 2; pointer-events: none; }
-/* A foto (fundo de madeira do estúdio) ocupa a metade direita inteira, borda reta: bordô de um lado, madeira do outro. */
+/* Zona da mensagem em partículas: a metade esquerda inteira (o canvas cobre só ela) */
+.hero__mensagem { position: absolute; left: 0; top: 0; bottom: 0; width: 44%; z-index: 2; }
+.letras__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* A foto (parede do estúdio com luz vermelha) ocupa a metade direita inteira, borda reta. */
 .hero__medicos { position: absolute; right: 0; top: 0; bottom: 0; width: 56%; z-index: 1; overflow: hidden; background: var(--cor-bordo-profundo); }
-.hero__medicos img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 30%; display: block; }
-/* véu leve na base, só para o texto do mobile; no desktop é quase invisível */
+.hero__medicos img { width: 100%; height: 100%; object-fit: cover; object-position: 80% 30%; display: block; }
+html.js .hero__medicos img { animation: retrato-entra 1.8s var(--ease-out, ease-out) both; }
+@keyframes retrato-entra { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: none; } }
 .hero__medicos::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(59, 0, 0, .35) 0%, rgba(59, 0, 0, 0) 28%); pointer-events: none; }
 .hero__titulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
 .hero--estatico .hero__titulo { position: relative; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; z-index: 3; padding: 0 var(--gutter); font-weight: 300; font-size: clamp(2.2rem, 5vw, 5rem); line-height: 1.04; max-width: 12ch; }
@@ -24,11 +27,14 @@
 .hero__frentes a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-rapida), color var(--dur-rapida); }
 .hero__frentes a:hover, .hero__frentes a:focus-visible { color: var(--cor-creme); border-bottom-color: currentColor; }
 @media (max-width: 899.98px) {
-  .hero--retrato::before { background: radial-gradient(70% 40% at 50% 72%, rgba(110, 18, 18, .7), transparent 70%); }
-  .hero__medicos { width: 100%; right: auto; left: 0; top: 0; bottom: auto; height: 52svh; }
-  .hero__medicos img { object-position: 50% 25%; }
-  .hero__medicos::after { background: linear-gradient(to top, var(--cor-bordo) 0%, rgba(85, 0, 0, 0) 30%); }
-  .hero__conteudo { width: 100%; justify-items: center; text-align: center; padding-bottom: 48px; }
+  /* Mobile em fluxo: foto, zona da mensagem, texto */
+  .hero--retrato { display: block; padding-top: var(--nav-altura); }
+  .hero--retrato::before { background: radial-gradient(70% 30% at 50% 58%, rgba(110, 18, 18, .7), transparent 70%); }
+  .hero__medicos { position: relative; width: 100%; right: auto; top: auto; bottom: auto; height: 44svh; }
+  .hero__medicos img { object-position: 80% 25%; }
+  .hero__medicos::after { background: linear-gradient(to top, var(--cor-bordo) 0%, rgba(85, 0, 0, 0) 26%); }
+  .hero__mensagem { position: relative; width: 100%; left: auto; top: auto; bottom: auto; height: 24svh; }
+  .hero__conteudo { width: 100%; justify-items: center; text-align: center; padding-top: 4px; padding-bottom: 40px; }
   .hero__frentes { justify-content: center; font-size: 10px; letter-spacing: .18em; max-width: 34ch; }
   .hero__frentes li + li::before { margin: 0 .7rem; }
   .hero__acoes { justify-content: center; }
