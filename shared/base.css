@@ -90,6 +90,9 @@ small { font-size: .85em; }
   color: var(--rotulo);
   max-width: none;
 }
+/* No hero o eyebrow quebra em duas linhas no celular: equilibra as linhas em vez de
+   deixar "BEM-" pendurado no fim da primeira. */
+.hero .eyebrow { text-wrap: balance; }
 .eyebrow + h1, .eyebrow + h2, .eyebrow + .h1, .eyebrow + .h2 { margin-top: 1.4rem; }
 h1 + p, h2 + p, .h1 + p, .h2 + p { margin-top: 1.6rem; }
 h3 + p { margin-top: .8rem; }

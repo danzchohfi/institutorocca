@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Instituto Rocca — conceitos de home</title>
-  <meta name="description" content="Conceitos navegáveis para a home do site do Instituto Rocca, Moema.">
+  <title>Instituto Rocca — versões da home para aprovação</title>
+  <meta name="description" content="Cinco versões da home do site do Instituto Rocca, para escolha da versão principal.">
+  <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#550000">
   <link rel="stylesheet" href="brand/tokens.css">
@@ -13,79 +14,89 @@
     html { background: var(--cor-bordo); color: var(--cor-creme); font-family: var(--fonte); -webkit-font-smoothing: antialiased; }
     body { margin: 0; min-height: 100vh; }
     a { color: inherit; }
-    .topo { padding: clamp(40px, 7vw, 96px) var(--gutter, clamp(20px, 5vw, 96px)) clamp(24px, 4vw, 56px); max-width: 1440px; margin: 0 auto; }
-    .topo img { width: 250px; height: auto; display: block; }
-    .eyebrow { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--cor-areia); margin: clamp(32px, 5vw, 64px) 0 16px; font-weight: 400; }
-    h1 { font-weight: 300; font-size: clamp(2rem, 4.4vw, 4rem); line-height: 1.06; margin: 0; letter-spacing: -.005em; max-width: 22ch; }
-    h1 em { font-style: italic; display: block; padding-left: 8%; }
-    .intro { font-weight: 300; font-size: clamp(1rem, .96rem + .25vw, 1.125rem); line-height: 1.7; max-width: 62ch; color: var(--cor-creme-60, rgba(242,232,217,.6)); margin: 24px 0 0; }
-    .grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: clamp(20px, 3vw, 40px); padding: 0 var(--gutter, clamp(20px, 5vw, 96px)) clamp(64px, 8vw, 120px); max-width: 1440px; margin: 0 auto; }
-    .card { display: block; text-decoration: none; background: var(--cor-bordo-profundo, #3B0000); border: 1px solid rgba(242,232,217,.12); transition: border-color .4s, transform .6s cubic-bezier(.22,1,.36,1); }
+    :focus-visible { outline: 2px solid var(--cor-creme); outline-offset: 4px; }
+    .miolo { max-width: 1440px; margin: 0 auto; padding-inline: var(--gutter, clamp(20px, 5vw, 96px)); }
+
+    /* ---- Abertura -------------------------------------------------------- */
+    .topo { padding-block: clamp(40px, 7vw, 96px) clamp(40px, 6vw, 72px); }
+    .topo__marca { width: min(250px, 64vw); height: auto; display: block; }
+    .eyebrow { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--cor-areia); margin: clamp(40px, 6vw, 72px) 0 18px; font-weight: 400; line-height: 1.5; text-wrap: balance; }
+    h1 { font-weight: 300; font-size: clamp(2.1rem, 4.6vw, 4.2rem); line-height: 1.06; margin: 0; letter-spacing: -.005em; max-width: 18ch; text-wrap: balance; }
+    h1 em { font-style: italic; display: block; }
+    @media (min-width: 900px) { h1 em { padding-left: 8%; } }
+    .intro { font-weight: 300; font-size: clamp(1rem, .96rem + .25vw, 1.125rem); line-height: 1.7; max-width: 58ch; color: var(--cor-creme-60); margin: clamp(24px, 3vw, 32px) 0 0; }
+    .intro strong { font-weight: 400; color: var(--cor-creme); }
+    .passos { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: clamp(28px, 4vw, 40px) 0 0; padding: 0; list-style: none; font-size: .95rem; line-height: 1.6; color: var(--cor-creme-60); }
+    .passos li { display: flex; gap: 12px; align-items: baseline; }
+    .passos .num { font-size: 12px; letter-spacing: .2em; color: var(--cor-areia); font-variant-numeric: tabular-nums; }
+
+    /* ---- Grade das versões ---------------------------------------------- */
+    .grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: clamp(20px, 3vw, 40px); padding-bottom: clamp(64px, 8vw, 120px); }
+    .card { position: relative; display: flex; flex-direction: column; text-decoration: none; background: var(--cor-bordo-profundo); border: 1px solid rgba(242, 232, 217, .12); transition: border-color .4s, transform .6s cubic-bezier(.22, 1, .36, 1); }
     .card:hover, .card:focus-visible { border-color: var(--cor-areia); transform: translateY(-4px); outline: none; }
-    .card__media { aspect-ratio: 16 / 10; overflow: hidden; background: #2b0000; border-bottom: 1px solid rgba(242,232,217,.12); }
-    .card__media img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 1.2s cubic-bezier(.22,1,.36,1); }
+    .card__media { aspect-ratio: 16 / 10; overflow: hidden; background: #2b0000; border-bottom: 1px solid rgba(242, 232, 217, .12); }
+    .card__media img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 1.2s cubic-bezier(.22, 1, .36, 1); }
     .card:hover .card__media img { transform: scale(1.03); }
     .card__media--vazio { display: grid; place-items: center; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--cor-areia); }
-    .card__corpo { padding: 24px 24px 28px; }
-    .eyebrow--secao { max-width: 1440px; margin: 0 auto 20px; padding: 0 var(--gutter, clamp(20px, 5vw, 96px)); }
-    .grade--arquivo .card { opacity: .72; }
+    .card__corpo { display: flex; flex-direction: column; flex: 1; padding: 24px 24px 28px; }
     .card__num { font-size: 12px; letter-spacing: .28em; color: var(--cor-areia); text-transform: uppercase; }
-    .card__titulo { font-weight: 300; font-size: 1.75rem; margin: 8px 0 6px; line-height: 1.1; }
-    .card__desc { font-weight: 300; font-size: 1rem; line-height: 1.6; color: var(--cor-creme-60, rgba(242,232,217,.6)); margin: 0 0 18px; }
-    .card__acao { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; border-bottom: 1px solid var(--cor-areia); padding-bottom: 4px; }
-    .rodape { padding: 0 var(--gutter, clamp(20px, 5vw, 96px)) clamp(48px, 6vw, 96px); max-width: 1440px; margin: 0 auto; font-weight: 300; font-size: .9rem; color: var(--cor-creme-60, rgba(242,232,217,.6)); line-height: 1.7; }
-    .rodape a { text-decoration-color: var(--cor-areia); }
+    .card__titulo { font-weight: 300; font-size: 1.75rem; margin: 10px 0 8px; line-height: 1.1; }
+    .card__desc { font-weight: 300; font-size: 1rem; line-height: 1.6; color: var(--cor-creme-60); margin: 0 0 22px; }
+    .card__acao { margin-top: auto; align-self: flex-start; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; border-bottom: 1px solid var(--cor-areia); padding-bottom: 4px; }
+    .card__tag { position: absolute; left: 16px; top: 16px; z-index: 1; padding: 8px 12px; background: var(--cor-creme); color: var(--cor-bordo); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; font-weight: 400; }
+    @media (prefers-reduced-motion: reduce) { .card, .card__media img { transition: none; } .card:hover { transform: none; } }
+
+    /* ---- Rodapé ----------------------------------------------------------- */
+    .rodape { border-top: 1px solid rgba(242, 232, 217, .14); padding-block: clamp(32px, 4vw, 48px) clamp(40px, 6vw, 72px); display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: center; justify-content: space-between; font-weight: 300; font-size: .9rem; line-height: 1.7; color: var(--cor-creme-60); }
+    .rodape__agencia { display: flex; align-items: center; gap: 18px; text-decoration: none; color: var(--cor-creme-60); }
+    .rodape__agencia img { width: 118px; height: auto; display: block; }
+    .rodape__agencia span { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; }
+    .rodape p { margin: 0; max-width: 52ch; }
   </style>
 </head>
 <body>
-  <header class="topo">
-    <img src="assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
-    <p class="eyebrow">Conceitos de home · Moema</p>
-    <h1>Seu médico. <em>Sua melhor versão.</em></h1>
-    <p class="intro">Cinco versões seguem em trabalho: o 07 (Letras) como principal, o 08 (Retrato, com os médicos no hero) e os conceitos 01, 02 e 03. As demais ficam de arquivo. Todas sobre a mesma Direção de Marca, o mesmo texto e o mesmo sistema visual. O racional de cada um está em <a href="CONCEITOS.md">CONCEITOS.md</a>.</p>
+  <header class="topo miolo">
+    <img class="topo__marca" src="assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
+    <p class="eyebrow">Home do site · Versões para aprovação</p>
+    <h1>Escolha a versão principal <em>para seguirmos no refinamento.</em></h1>
+    <p class="intro">São <strong>cinco versões navegáveis</strong> da home do Instituto Rocca, todas sobre a mesma direção de marca, o mesmo texto e o mesmo sistema visual. O que muda é a abertura, o ritmo e a forma como a casa e os médicos aparecem. A versão escolhida vira a base do refinamento; as demais ficam como referência.</p>
+    <ul class="passos" aria-label="Como avaliar">
+      <li><span class="num">01</span><span>Abra cada versão no computador e no celular.</span></li>
+      <li><span class="num">02</span><span>Fotos, vídeos e dados marcados como [pendente] são provisórios.</span></li>
+      <li><span class="num">03</span><span>Escolha a principal e nos conte o que ajustar nela.</span></li>
+    </ul>
   </header>
 
-  <p class="eyebrow eyebrow--secao">Versões campeãs · rodada 3</p>
-  <main class="grade">
+  <main class="grade miolo" aria-label="Versões da home">
     <a class="card" href="concepts/07-letras/index.html">
-      <div class="card__media"><img src="docs/screenshots/07-letras-desktop.png" alt="Conceito 7 — Letras" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
-      <div class="card__corpo"><span class="card__num">Conceito 07 · principal</span><h2 class="card__titulo">Letras</h2><p class="card__desc">O wordmark INSTITUTO ROCCA escrito com partículas finas: converge, reage ao mouse e se dissolve ao rolar. Página completa.</p><span class="card__acao">Abrir →</span></div>
+      <span class="card__tag">Recomendação da agência</span>
+      <div class="card__media"><img src="docs/screenshots/07-letras-desktop.png" alt="Versão 01 — Letras" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 01</span><h2 class="card__titulo">Letras</h2><p class="card__desc">A marca escrita em partículas finas que se formam na abertura, reagem ao toque e se dissolvem ao rolar. A página mais completa.</p><span class="card__acao">Abrir versão →</span></div>
     </a>
     <a class="card" href="concepts/08-retrato/index.html">
-      <div class="card__media"><img src="docs/screenshots/08-retrato-desktop.png" alt="Conceito 8 — Retrato" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
-      <div class="card__corpo"><span class="card__num">Conceito 08 · Higgsfield</span><h2 class="card__titulo">Retrato</h2><p class="card__desc">Os três médicos no hero, sobre bordô, com a mensagem principal escrita em partículas. Imagem gerada no Higgsfield até a foto de estúdio.</p><span class="card__acao">Abrir →</span></div>
+      <div class="card__media"><img src="docs/screenshots/08-retrato-desktop.png" alt="Versão 02 — Retrato" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 02</span><h2 class="card__titulo">Retrato</h2><p class="card__desc">Os três médicos na abertura, sobre o bordô, com a mensagem principal escrita em partículas. A foto atual é provisória até a sessão de estúdio.</p><span class="card__acao">Abrir versão →</span></div>
     </a>
     <a class="card" href="concepts/01-materia/index.html">
-      <div class="card__media"><img src="docs/screenshots/01-materia-desktop.png" alt="Conceito 1 — Matéria" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
-      <div class="card__corpo"><span class="card__num">Conceito 01</span><h2 class="card__titulo">Matéria</h2><p class="card__desc">Hero editorial à esquerda e o wordmark em partículas, menor, à direita, com os serviços embaixo.</p><span class="card__acao">Abrir →</span></div>
+      <div class="card__media"><img src="docs/screenshots/01-materia-desktop.png" alt="Versão 03 — Matéria" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 03</span><h2 class="card__titulo">Matéria</h2><p class="card__desc">Abertura editorial: o texto à esquerda, a marca em partículas à direita e os serviços logo abaixo.</p><span class="card__acao">Abrir versão →</span></div>
     </a>
     <a class="card" href="concepts/02-chegada/index.html">
-      <div class="card__media"><img src="docs/screenshots/02-chegada-desktop.png" alt="Conceito 2 — Chegada" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
-      <div class="card__corpo"><span class="card__num">Conceito 02</span><h2 class="card__titulo">Chegada</h2><p class="card__desc">A entrada da clínica em tela cheia: madeira, mármore e luz quente, como capa de revista de arquitetura.</p><span class="card__acao">Abrir →</span></div>
+      <div class="card__media"><img src="docs/screenshots/02-chegada-desktop.png" alt="Versão 04 — Chegada" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 04</span><h2 class="card__titulo">Chegada</h2><p class="card__desc">A entrada da clínica em tela cheia: madeira, mármore e luz quente, como uma capa de revista de arquitetura.</p><span class="card__acao">Abrir versão →</span></div>
     </a>
     <a class="card" href="concepts/03-presenca/index.html">
-      <div class="card__media"><img src="docs/screenshots/03-presenca-desktop.png" alt="Conceito 3 — Presença" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
-      <div class="card__corpo"><span class="card__num">Conceito 03</span><h2 class="card__titulo">Presença</h2><p class="card__desc">O filme institucional no hero, como a Direção de Marca previu; a casa com gente.</p><span class="card__acao">Abrir →</span></div>
+      <div class="card__media"><img src="docs/screenshots/03-presenca-desktop.png" alt="Versão 05 — Presença" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 05</span><h2 class="card__titulo">Presença</h2><p class="card__desc">O filme institucional na abertura e a casa com gente. Até a gravação, as imagens do projeto ocupam o lugar do filme.</p><span class="card__acao">Abrir versão →</span></div>
     </a>
   </main>
-  <p class="eyebrow eyebrow--secao">Arquivo · rodada 1</p>
-  <div class="grade grade--arquivo">
-    <a class="card" href="concepts/04-conversa/index.html">
-      <div class="card__media"><img src="docs/screenshots/04-conversa-desktop.png" alt="Conceito 4 — Conversa" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
-      <div class="card__corpo"><span class="card__num">Conceito 04</span><h2 class="card__titulo">Conversa</h2><p class="card__desc">Claro e tipográfico: o médico fala em vídeo vertical e as perguntas da semana conduzem a página.</p><span class="card__acao">Abrir →</span></div>
-    </a>
-    <a class="card" href="concepts/05-simbolo/index.html">
-      <div class="card__media"><img src="docs/screenshots/05-simbolo-desktop.png" alt="Conceito 5 — Símbolo" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
-      <div class="card__corpo"><span class="card__num">Conceito 05</span><h2 class="card__titulo">Símbolo</h2><p class="card__desc">A geometria do símbolo em movimento: anel, máscara e frentes em scroll horizontal.</p><span class="card__acao">Abrir →</span></div>
-    </a>
-    <a class="card" href="concepts/06-slides/index.html">
-      <div class="card__media"><img src="docs/screenshots/06-slides-desktop.png" alt="Conceito 6 — Slides" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
-      <div class="card__corpo"><span class="card__num">Conceito 06</span><h2 class="card__titulo">Slides</h2><p class="card__desc">Fotográfico e editorial: slides de tela cheia e tiles escuros, no ritmo da referência Seven.</p><span class="card__acao">Abrir →</span></div>
-    </a>
-  </div>
 
-  <footer class="rodape">
-    <p>Kit do sistema visual: <a href="concepts/00-kit/index.html">concepts/00-kit</a>. Briefing: <a href="BRIEF.md">BRIEF.md</a>. Texto da home: <a href="COPY.md">COPY.md</a>. Protótipos internos da Vitamina Publicitária para o Instituto Rocca.</p>
+  <footer class="rodape miolo">
+    <a class="rodape__agencia" href="https://vitaminapublicitaria.com.br" target="_blank" rel="noopener">
+      <img src="assets/img/vitamina.svg" alt="Vitamina Publicitária" width="398" height="83">
+      <span>Direção de marca e site</span>
+    </a>
+    <p>Apresentação preparada pela Vitamina Publicitária para o Instituto Rocca. Material confidencial, para avaliação interna.</p>
   </footer>
 </body>
 </html>

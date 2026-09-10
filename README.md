@@ -1,24 +1,29 @@
-# Instituto Rocca — conceitos de home
+# Instituto Rocca — versões da home
 
-Seis conceitos navegáveis para a **home** do site do Instituto Rocca (Moema, São Paulo), construídos sobre a
-Direção de Marca, o Planejamento de Conteúdo e o projeto de interiores da clínica.
+Cinco versões navegáveis da **home** do site do Instituto Rocca (Moema, São Paulo), construídas sobre a
+Direção de Marca, o Planejamento de Conteúdo e o projeto de interiores da clínica. O hub (`index.html`) é a
+página que o cliente vê: apresenta as cinco versões, numeradas de 01 a 05, para a escolha da versão principal.
 
-| # | Conceito | Hero | Abrir |
-|---|----------|------|-------|
-| 1 | **Matéria** | Partículas three.js em creme/madeira sobre bordô | `concepts/01-materia/index.html` |
-| 2 | **Chegada** | Foto da entrada/recepção da clínica | `concepts/02-chegada/index.html` |
-| 3 | **Presença** | Vídeo institucional (placeholder até a gravação) | `concepts/03-presenca/index.html` |
-| 4 | **Conversa** | Claro, tipográfico, o médico em vídeo vertical | `concepts/04-conversa/index.html` |
-| 5 | **Símbolo** | O símbolo da marca como máscara e dispositivo de scroll | `concepts/05-simbolo/index.html` |
-| 6 | **Slides** | Slides fotográficos de tela cheia, ritmo de campanha | `concepts/06-slides/index.html` |
+| Versão | Nome | Hero | Pasta |
+|--------|------|------|-------|
+| 01 | **Letras** (recomendação) | O wordmark em partículas, página completa | `concepts/07-letras/` |
+| 02 | **Retrato** | Os três médicos no hero, mensagem em partículas | `concepts/08-retrato/` |
+| 03 | **Matéria** | Hero editorial + wordmark em partículas à direita | `concepts/01-materia/` |
+| 04 | **Chegada** | Foto da entrada/recepção da clínica | `concepts/02-chegada/` |
+| 05 | **Presença** | Vídeo institucional (placeholder até a gravação) | `concepts/03-presenca/` |
+
+As pastas mantêm a numeração interna original (01, 02, 03, 07, 08) para os links já compartilhados não
+quebrarem; a numeração que o cliente vê é a do hub. Os conceitos 04 (Conversa), 05 (Símbolo) e 06 (Slides)
+saíram do repositório na rodada de aprovação; estão no histórico do git.
 
 Leia **`CONCEITOS.md`** para o racional de cada conceito, a estrutura seção a seção, o que cada diária de
-gravação precisa entregar e a recomendação. **`BRIEF.md`** é o briefing criativo que ancorou tudo.
+gravação precisa entregar e a recomendação. **`BRIEF.md`** é o briefing criativo que ancorou tudo. Nada disso
+é linkado no hub: o que o cliente vê são só as versões.
 
 ## Previews hospedadas
 
-**Site (GitHub Pages, o próprio repositório):** https://danzchohfi.github.io/institutorocca/ — o hub abre com as quatro
-versões campeãs; o scroll é o da página real, sem iframe. Precisa ser ativado uma vez pelo dono do repositório
+**Site (GitHub Pages, o próprio repositório):** https://danzchohfi.github.io/institutorocca/ — o hub abre com as cinco
+versões para aprovação; o scroll é o da página real, sem iframe. Precisa ser ativado uma vez pelo dono do repositório
 (Settings → Pages → Build and deployment → Source: **GitHub Actions**); a partir daí `.github/workflows/pages.yml`
 publica a cada push nesta branch (ou na `main`).
 
@@ -30,10 +35,6 @@ publica a cada push nesta branch (ou na `main`).
 | 2 | **Chegada** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/02-chegada/) | [abrir](https://claude.ai/code/artifact/78e9e269-6337-4588-b6b9-c7b2b8bdcc54) |
 | 3 | **Presença** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/03-presenca/) | [abrir](https://claude.ai/code/artifact/beb00a86-fcd1-4331-abf7-2d3a54b2a446) |
 
-Arquivo (rodada 1, sem os ajustes de scroll): 4 Conversa [abrir](https://claude.ai/code/artifact/09347f2e-9418-45c6-972f-1f2748888485) ·
-5 Símbolo [abrir](https://claude.ai/code/artifact/09a7a2bc-3761-40d6-9e07-b512ad29cdfd) ·
-6 Slides [abrir](https://claude.ai/code/artifact/47d687a7-64e2-4817-97c3-d71b42522333).
-
 Páginas privadas por padrão; compartilhe pelo menu da página. Geradas por `node scripts/build-artifacts.mjs` (cada conceito em um HTML único com fontes e imagens embutidas).
 
 ## Como rodar
@@ -44,7 +45,7 @@ npm run build        # empacota src/<conceito>/main.js → concepts/<conceito>/a
 npm run dev          # http-server na porta 8080 → http://localhost:8080/
 ```
 
-Abrir `index.html` (hub) ou cada `concepts/<conceito>/index.html`. Os arquivos também funcionam direto do
+Abrir `index.html` (hub de aprovação) ou cada `concepts/<conceito>/index.html`. Os arquivos também funcionam direto do
 disco (`file://`), sem servidor.
 
 ## Estrutura
@@ -60,7 +61,7 @@ shared/partials.html    marcação canônica de nav, menu, WhatsApp, formulário
 src/<conceito>/         código-fonte JS de cada conceito (empacotado por esbuild)
 concepts/<conceito>/    index.html + concept.css + app.js (bundle) de cada conceito
 concepts/00-kit/        kit do sistema (style guide vivo)
-assets/img/             renders do projeto de interiores + logo e símbolo oficiais (SVG) + favicon
+assets/img/             renders do projeto de interiores + logo e símbolo oficiais (SVG) + favicon + vitamina.svg (assinatura da agência no hub)
 assets/placeholders/    SVGs que ocupam o lugar de retratos, vídeos e telas até a mídia real chegar
 assets/video/           ponha aqui institucional.mp4 (hero do conceito 3) e os vídeos dos médicos
 scripts/build.mjs       build (esbuild)
