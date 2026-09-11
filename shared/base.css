@@ -768,6 +768,12 @@ html.js [data-split-linhas].split-pronto { opacity: 1; }
 
 
 
+/* ---- Fim da prévia (rodada de aprovação da primeira dobra) ------------------
+   Faixa curta que fecha a página enquanto o restante está guardado no <template>. */
+.previa-fim { text-align: center; }
+.previa-fim__texto { max-width: 38ch; margin: 1.2rem auto 2rem; color: var(--fg-2); line-height: 1.6; }
+.previa-fim .botao { margin-inline: auto; }
+
 /* ---- Atributo hidden vence qualquer display de componente (img/canvas são block) ---- */
 [hidden] { display: none !important; }
 

@@ -12,6 +12,11 @@ página que o cliente vê: apresenta as cinco versões, numeradas de 01 a 05, pa
 | 04 | **Chegada** | Foto da entrada/recepção da clínica | `concepts/02-chegada/` |
 | 05 | **Presença** | Vídeo institucional (placeholder até a gravação) | `concepts/03-presenca/` |
 
+**Rodada de aprovação da primeira dobra:** em cada versão só o hero e a primeira seção estão à mostra. O
+restante da página continua no HTML, dentro de `<template data-oculto="aprovacao">` (o navegador não renderiza
+nem carrega o que está lá dentro), fechado por uma faixa `.previa-fim`. O aviso `FIM DA PRÉVIA` em cada
+`index.html` diz como restaurar a página inteira.
+
 As pastas mantêm a numeração interna original (01, 02, 03, 07, 08) para os links já compartilhados não
 quebrarem; a numeração que o cliente vê é a do hub. Os conceitos 04 (Conversa), 05 (Símbolo) e 06 (Slides)
 saíram do repositório na rodada de aprovação; estão no histórico do git.
