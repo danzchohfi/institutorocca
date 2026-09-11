@@ -1,0 +1,44 @@
+# Publica os protótipos no GitHub Pages a cada push (branch de trabalho ou main).
+# O site é o próprio repositório, sem build: as páginas usam caminhos relativos
+# e os bundles (concepts/*/app.js) já estão versionados. Ficam de fora só o
+# que não é site (fonte dos bundles, scripts, dependências, capturas pesadas).
+name: Publicar no GitHub Pages
+
+on:
+  push:
+    branches:
+      - claude/instituto-rocca-home-concepts-fzadlo
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Montar o site
+        run: |
+          mkdir -p _site
+          rsync -a ./ _site/ \
+            --exclude '.git' --exclude '.github' --exclude '_site' \
+            --exclude 'node_modules' --exclude 'dist' --exclude 'src' --exclude 'scripts' \
+            --exclude 'docs/screenshots/*-full.png' --exclude 'docs/screenshots/*-parte*.png'
+          du -sh _site
+      - uses: actions/upload-pages-artifact@v3
+      - id: deploy
+        uses: actions/deploy-pages@v4

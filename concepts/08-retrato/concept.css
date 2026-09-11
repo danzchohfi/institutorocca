@@ -1,0 +1,282 @@
+/* Conceito 8 — Retrato: a foto dos três médicos (parede do estúdio Jacarandá com
+   luz vermelha) cobre o hero; na parede livre, à esquerda, a mensagem principal
+   escrita em partículas (shared/letras.js, modo texto) e os serviços, sem
+   passar sobre os rostos. A foto real
+   sai do estúdio; enquanto isso, a imagem gerada no Higgsfield com os três
+   (assets/img/medicos-hero.jpg) ocupa o lugar. O resto segue o conceito 2. */
+.visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hero--retrato { position: relative; min-height: 100svh; overflow: hidden; display: grid; align-items: end; background: var(--cor-bordo); }
+/* A foto cobre o hero inteiro; o grupo fica à direita, a parede livre à esquerda recebe a mensagem e o texto. */
+.hero__medicos { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: var(--cor-bordo-profundo); }
+.hero__medicos img { width: 100%; height: 100%; object-fit: cover; object-position: 78% 30%; display: block; }
+html.js .hero__medicos img { animation: retrato-entra 1.8s var(--ease-out, ease-out) both; }
+@keyframes retrato-entra { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: none; } }
+/* Véu: bordô denso na esquerda (onde ficam a mensagem e o texto) que some antes dos rostos; base escurecida para o texto. */
+.hero__medicos::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(85, 0, 0, .94) 0%, rgba(85, 0, 0, .82) 26%, rgba(85, 0, 0, .42) 46%, rgba(85, 0, 0, .06) 62%, rgba(85, 0, 0, 0) 72%),
+    linear-gradient(to top, rgba(59, 0, 0, .55) 0%, rgba(59, 0, 0, 0) 34%);
+}
+/* Zona da mensagem em partículas: a parte livre da parede (o canvas cobre só ela) */
+.hero__mensagem { position: absolute; left: 0; top: 0; bottom: 0; width: 46%; z-index: 2; }
+.letras__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero__titulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+.hero--estatico .hero__titulo { position: relative; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; z-index: 3; padding: 0 var(--gutter); font-weight: 300; font-size: clamp(2.2rem, 5vw, 5rem); line-height: 1.04; max-width: 12ch; }
+.hero__titulo em { font-style: italic; }
+.hero__conteudo { position: relative; z-index: 3; margin: 0; max-width: none; width: 46%; padding-bottom: clamp(48px, 8vh, 96px); display: grid; gap: .9rem; justify-items: start; }
+.hero__acoes { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; margin-top: .4rem; }
+.hero__nota { margin: 0; color: var(--fg-2); font-size: .95rem; }
+.hero__frentes { display: flex; flex-wrap: wrap; gap: .5rem 0; margin: 0; padding: 0; list-style: none; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--cor-areia); }
+.hero__frentes li { display: flex; align-items: center; }
+/* O ponto separador fica preso ao item anterior (::after): quando a lista quebra
+   de linha no celular, a linha nova nunca começa com um ponto solto. */
+.hero__frentes li:not(:last-child)::after { content: ""; width: 3px; height: 3px; border-radius: 50%; background: currentColor; margin: 0 1rem; opacity: .7; }
+.hero__frentes a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-rapida), color var(--dur-rapida); }
+.hero__frentes a:hover, .hero__frentes a:focus-visible { color: var(--cor-creme); border-bottom-color: currentColor; }
+@media (max-width: 899.98px) {
+  /* Mobile: os rostos ficam no terço de cima, livres; a metade de baixo vira bordô e recebe a mensagem e o texto. */
+  .hero--retrato { min-height: max(100svh, 720px); }
+  /* a foto ocupa o alto do hero e mostra os três; a base se funde no bordô bem antes
+     da zona da mensagem (que começa em 48%), para as letras não passarem sobre os ternos */
+  .hero__medicos { bottom: auto; height: 58%; }
+  .hero__medicos img { object-position: 70% 12%; }
+  .hero__medicos::after { background: linear-gradient(to top, rgba(85, 0, 0, 1) 0%, rgba(85, 0, 0, 1) 16%, rgba(85, 0, 0, .9) 28%, rgba(85, 0, 0, .5) 42%, rgba(85, 0, 0, 0) 60%); }
+  .hero__mensagem { left: 0; right: 0; top: 48%; bottom: auto; width: 100%; height: 13%; }
+  .hero__conteudo { width: 100%; justify-items: center; text-align: center; padding-bottom: 40px; gap: 1rem; }
+  .hero__frentes { justify-content: center; font-size: 10px; letter-spacing: .18em; gap: .55rem 0; }
+  .hero__frentes li:not(:last-child)::after { margin: 0 .7rem; }
+  .hero__acoes { justify-content: center; }
+}
+@media (min-width: 640px) and (max-width: 899.98px) {
+  /* Tablet retrato: a zona da mensagem fica mais estreita e mais alta, senão as
+     letras (86% da largura da zona) passam da altura e saem cortadas. */
+  .hero__mensagem { left: 14%; width: 72%; top: 46%; height: 16%; }
+}
+@media (max-width: 639.98px) {
+  /* Celular: os serviços em coluna, sem os pontos (em linha, cada item quebrava e os
+     pontos ficavam soltos no fim das linhas). O hero mede a tela (sem o mínimo de
+     720px: com pin, o que passa da tela nunca aparece). */
+  .hero--retrato { min-height: 100svh; }
+  .hero__conteudo .eyebrow { max-width: 30ch; }
+  .hero__frentes { flex-direction: column; align-items: center; gap: .45rem; }
+  .hero__frentes li { white-space: nowrap; }
+  .hero__frentes li:not(:last-child)::after { display: none; }
+}
+@media (max-width: 639.98px) and (max-height: 760px) {
+  /* Telas baixas: foto e mensagem sobem um pouco e a nota sai, para o botão caber
+     abaixo da mensagem sem se sobrepor a ela. */
+  .hero__medicos { height: 54%; }
+  .hero__mensagem { top: 46%; height: 11%; }
+  .hero__conteudo { gap: .8rem; padding-bottom: 32px; }
+  .hero__frentes { gap: .35rem; }
+  .hero__nota { display: none; }
+}
+
+/* ---- Seções (mesmas regras do conceito 2) ---------------------------------- */
+:root {
+  /* Mais respiro que o padrão (BRIEF §6.2: "muito respiro, seções longas") */
+  --secao: clamp(104px, 13vw, 224px);
+}
+
+/* ---- Paralaxe: moldura com overflow hidden + camada interna maior ------------ */
+.paralaxe { position: relative; overflow: hidden; }
+.paralaxe__in { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; }
+.paralaxe__in img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Linhas finas que se desenham ([data-linha]) */
+html.js [data-linha] { transform: scaleX(0); transform-origin: left center; }
+
+/* ---- 01 · O problema --------------------------------------------------------- */
+.problema .grid-12 { align-items: end; row-gap: var(--espaco-5); }
+.problema h2 { max-width: 16ch; }
+.problema__texto p + p { margin-top: 1.5em; }
+
+/* ---- 02 · O método (respiro) ------------------------------------------------- */
+.metodo h2 { max-width: 20ch; }
+.metodo .texto-grande { margin-top: 2rem; }
+
+/* ---- Frentes: lista editorial em linhas ------------------------------------- */
+.frentes { padding-top: 0; }
+.frentes__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+.frentes__cabeca h2 { max-width: 18ch; }
+.frentes__lista { border-bottom: 1px solid var(--linha); }
+.frente {
+  position: relative;
+  display: grid; grid-template-columns: 1fr; gap: .9rem;
+  padding-block: clamp(1.8rem, 3.2vw, 2.8rem);
+}
+.frente__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+.frente__cabeca { display: flex; gap: 1.2rem; align-items: baseline; }
+.frente__num { font-size: .8rem; }
+.frente__titulo { font-size: var(--h3); max-width: 16ch; }
+.frente__frase { color: var(--fg-2); max-width: 36ch; font-size: 1rem; line-height: 1.6; }
+.frente__apoio { margin-top: .6rem; color: var(--fg-2); max-width: 44ch; font-size: .95rem; line-height: 1.6; }
+.frente__link { justify-self: start; }
+.frentes__rodape { margin-top: clamp(2rem, 4vw, 3.5rem); }
+@media (min-width: 900px) {
+  .frente {
+    grid-template-columns: 4rem minmax(0, 5fr) minmax(0, 5fr) auto;
+    column-gap: var(--coluna-gap);
+    align-items: start;
+  }
+  .frente__cabeca { display: contents; }
+  .frente__num { padding-top: .55em; }
+  .frente__frase { padding-top: .45em; }
+  .frente__link { justify-self: end; margin-top: .55em; }
+}
+
+/* ---- 03 · O mecanismo: split-screen foto | tela ------------------------------ */
+.mecanismo__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+.mecanismo__cabeca h2 { max-width: 18ch; }
+.split {
+  display: grid; grid-template-columns: 1fr;
+  width: 100%;
+  background: var(--cor-bordo-profundo);
+}
+.split__foto { aspect-ratio: 4 / 5; }
+.split__tela {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--cor-osso);
+  color: var(--cor-tinta);
+  display: grid; place-items: center;
+  padding: clamp(24px, 5vw, 72px);
+}
+.split__tela img { width: 100%; height: 100%; object-fit: contain; }
+.split__legenda {
+  position: absolute; left: clamp(24px, 5vw, 72px); bottom: clamp(20px, 3vw, 40px);
+  color: var(--cor-grafite);
+}
+.mecanismo__texto { margin-top: clamp(3rem, 6vw, 6rem); }
+.mecanismo__texto p + p { margin-top: 1.4em; }
+@media (min-width: 900px) {
+  .split { grid-template-columns: 1fr 1fr; }
+  .split__foto, .split__tela { aspect-ratio: auto; height: clamp(520px, 76vh, 760px); }
+}
+
+/* ---- As provas (respiro): três colunas com linha no topo --------------------- */
+.provas-secao h2 { max-width: 20ch; }
+.provas {
+  display: grid; grid-template-columns: 1fr; gap: 1.6rem;
+  margin-top: clamp(3.5rem, 7vw, 6.5rem);
+  text-align: left;
+  width: 100%;
+}
+.provas > li { border-top: 1px solid var(--linha); padding-top: 1.4rem; }
+.provas__num { display: block; margin-bottom: 1rem; }
+.provas__titulo { font-size: var(--h3); }
+@media (min-width: 640px) {
+  .provas { grid-template-columns: repeat(3, 1fr); gap: var(--coluna-gap); }
+  .provas > li { padding-top: 1.8rem; }
+  .provas__titulo { max-width: 15ch; }
+}
+@media (min-width: 900px) {
+  .provas { width: min(100%, 1100px); }
+}
+
+/* ---- O que a gente não faz (faixa compacta) ---------------------------------- */
+.nao .grid-12 { row-gap: var(--espaco-4); align-items: start; }
+.nao__abertura { margin-top: 1.2rem; font-size: var(--h3); line-height: 1.3; max-width: 18ch; }
+.nao__lista { display: grid; grid-template-columns: 1fr; gap: 1.6rem 2.5rem; }
+.nao__item { display: block; font-weight: 400; }
+.nao__apoio { display: block; margin-top: .35rem; color: var(--fg-2); font-size: .95rem; line-height: 1.55; max-width: 34ch; }
+@media (min-width: 640px) { .nao__lista { grid-template-columns: 1fr 1fr; } }
+
+/* ---- A casa: porta em destaque + grade editorial assimétrica ---------------- */
+.casa__abertura { align-items: center; row-gap: var(--espaco-5); }
+.casa__moldura { position: relative; overflow: hidden; background: var(--cor-bordo-profundo); aspect-ratio: 3 / 2; }
+.casa__moldura--4x5 { aspect-ratio: 4 / 5; }
+.casa__moldura--1x1 { aspect-ratio: 1; }
+.casa__moldura--larga { aspect-ratio: 3 / 2; }
+.casa__moldura > img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-imagem) var(--ease-out); }
+.casa__moldura .paralaxe__in img { transition: transform var(--dur-imagem) var(--ease-out); }
+.casa__item:hover .casa__moldura img, .casa__porta:hover .casa__moldura img { transform: scale(1.04); }
+.casa__cabeca h2 { max-width: 14ch; }
+.casa__cabeca p:not(.eyebrow) { max-width: 34ch; }
+.casa__grade {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 72px) var(--coluna-gap);
+  align-items: start;
+  margin-top: clamp(4rem, 9vw, 9rem);
+}
+.casa__item { grid-column: 1 / -1; }
+.casa__item .legenda { max-width: 36ch; }
+@media (min-width: 640px) {
+  .casa__item--2 { grid-column: 1 / 7; }
+  .casa__item--3 { grid-column: 7 / -1; margin-top: 18%; }
+  .casa__item--3 .casa__moldura { aspect-ratio: 4 / 5; }
+  .casa__item--5 { grid-column: 1 / 7; }
+  .casa__item--6 { grid-column: 7 / -1; margin-top: 12%; }
+  .casa__item--6 .casa__moldura { aspect-ratio: 1; }
+}
+@media (min-width: 900px) {
+  .casa__item--1 { grid-column: 1 / 9; }
+  .casa__item--2 { grid-column: 9 / -1; margin-top: 28%; }
+  .casa__item--3 { grid-column: 2 / 7; margin-top: 0; }
+  .casa__item--3 .casa__moldura { aspect-ratio: 3 / 2; }
+  .casa__item--4 { grid-column: 7 / -1; margin-top: 14%; }
+  .casa__item--5 { grid-column: 3 / 7; }
+  .casa__item--6 { grid-column: 1 / -1; margin-top: 4%; }
+  .casa__item--6 .casa__moldura { aspect-ratio: 21 / 9; }
+  .casa__item--6 .legenda { margin-left: auto; justify-content: flex-end; }
+}
+
+/* ---- Os médicos --------------------------------------------------------------- */
+.medicos__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); align-items: end; }
+.medicos__cabeca h2 { max-width: 12ch; }
+.medicos__sub p { max-width: 30ch; }
+.medico__fala { margin-top: .8rem; font-size: .95rem; line-height: 1.55; max-width: 30ch; }
+.medico__fala::before { content: "“"; }
+.medico__fala::after { content: "”"; }
+/* O placeholder do retrato já traz nome e legenda no rodapé; o rótulo do vídeo vai para o topo. */
+.medico__rotulo { top: 16px; bottom: auto; line-height: 1.5; }
+
+/* ---- A primeira consulta ------------------------------------------------------ */
+.consulta__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); align-items: end; }
+.consulta__cabeca h2 { max-width: 16ch; }
+.consulta__acoes { margin-top: clamp(3rem, 5vw, 4.5rem); }
+
+/* ---- Perguntas da semana ------------------------------------------------------- */
+.perguntas__cabeca { margin-bottom: clamp(2.5rem, 5vw, 4.5rem); align-items: end; }
+.perguntas__cabeca h2 { max-width: 16ch; }
+.perguntas__sub p { max-width: 30ch; }
+.perguntas { border-bottom: 1px solid var(--linha); }
+.pergunta {
+  position: relative;
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+  padding-block: clamp(1.6rem, 3vw, 2.4rem);
+}
+.pergunta__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+.pergunta__capa { width: 72px; aspect-ratio: 4 / 5; overflow: hidden; background: var(--cor-bordo-profundo); }
+.pergunta__capa img { width: 100%; height: 100%; object-fit: cover; }
+.pergunta__titulo { font-size: var(--h3); max-width: 28ch; }
+.pergunta .assinatura { margin-top: .6rem; }
+.pergunta__link { justify-self: start; }
+.perguntas__rodape { margin-top: clamp(2rem, 4vw, 3.5rem); }
+@media (min-width: 900px) {
+  .pergunta { grid-template-columns: 96px minmax(0, 1fr) auto; column-gap: clamp(24px, 3vw, 48px); align-items: center; }
+  .pergunta__capa { width: 96px; }
+  .pergunta__link { justify-self: end; }
+}
+
+/* ---- Perguntas mais comuns ----------------------------------------------------- */
+.faq-secao h2 { max-width: 16ch; }
+.faq-secao .grid-12 { align-items: start; }
+
+/* ---- Fecho --------------------------------------------------------------------- */
+.fecho .grid-12 { align-items: start; row-gap: var(--espaco-5); }
+.fecho__chamada h2 { max-width: 14ch; }
+.fecho__chamada .acoes { margin-top: 2.6rem; }
+.fecho__intro { margin-bottom: 2.2rem; max-width: 32ch; }
+.fecho .form { max-width: none; }
+
+/* ---- Movimento reduzido ---------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-linha] { transform: none; }
+  .hero__rolar-linha::after { animation: none; transform: none; }
+  .hero__midia { will-change: auto; }
+}
+
+/* ---- Footer: folga para o WhatsApp flutuante não cobrir a linha legal ------------ */
+.footer { padding-bottom: 96px; }

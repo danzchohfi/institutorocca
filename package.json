@@ -1,0 +1,17 @@
+{
+  "name": "institutorocca-home-concepts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Conceitos de home para o site do Instituto Rocca",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "http-server -p 8080 -c-1 ."
+  },
+  "dependencies": {
+    "esbuild": "^0.24.2",
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.18",
+    "three": "^0.170.0"
+  }
+}

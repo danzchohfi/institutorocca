@@ -1,0 +1,282 @@
+<!--
+  ============================================================================
+  INSTITUTO ROCCA — partials canônicos
+  ----------------------------------------------------------------------------
+  Copie os blocos abaixo TAL QUAL para concepts/XX/index.html. Os caminhos são
+  relativos a concepts/XX/ (../../assets/...). Todo href interno é "#" ou
+  âncora até as páginas existirem. Os itens marcados [PENDENTE] são pontos de
+  troca (BRIEF §9) — trocar aqui e copiar nos três HTML.
+
+  Ordem no <body>:
+    1. .preloader   (só conceitos 1 e 3)
+    2. header.nav
+    3. nav.menu
+    4. <main> … seções do conceito …
+    5. footer.footer
+    6. a.whats
+    7. dialog.lightbox
+    8. <script src="./app.js" defer>
+
+  No <head>:
+    <!-- Fonte Semplicita Pro auto-hospedada via @font-face em brand/tokens.css (não usar Google Fonts) -->
+    <link rel="stylesheet" href="../../brand/tokens.css">
+    <link rel="stylesheet" href="../../shared/base.css">
+    <link rel="stylesheet" href="./concept.css">
+    <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#550000">
+    <script src="./app.js" defer></script>
+  ============================================================================
+-->
+
+
+<!-- ===== 1. PRELOADER (≤ 1,2 s; só nos conceitos 1 e 3). ui.js remove do DOM
+     e dispara window 'rocca:pronto'. Sem JS ele não aparece (html:not(.js)). -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__marca">
+    <img src="../../assets/img/logo.svg" alt="" width="1686" height="410">
+  </div>
+  <div class="preloader__linha"></div>
+</div>
+
+
+<!-- ===== 2. NAV (padrão CLP: MENU | marca | WhatsApp + botão) =====
+     - ui.js adiciona .nav--solida ao rolar > 40px.
+     - html[data-tema="claro"] (seção com data-tema="claro" sob a nav) troca
+       o logo creme pelo bordô e o botão para bordô. Os <img> ficam todos no
+       HTML; o CSS alterna.
+     - Marca: wordmark de 250px (mínimo digital do manual) a partir de 640px;
+       abaixo disso, o símbolo oficial (creme / bordô conforme o tema).
+     - No mobile o botão "Agendar avaliação" some (fica MENU + símbolo + WhatsApp). -->
+<header class="nav" id="topo">
+  <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu">
+    <span class="nav__menu-linhas" aria-hidden="true"></span>
+    <span class="nav__menu-txt">Menu</span>
+  </button>
+
+  <a class="nav__marca" href="#" aria-label="Instituto Rocca — início">
+    <img class="nav__simbolo" src="../../assets/img/simbolo.svg" alt="" width="666" height="666" aria-hidden="true">
+    <img class="nav__simbolo nav__simbolo--escuro" src="../../assets/img/simbolo-bordo.svg" alt="" width="666" height="666" aria-hidden="true">
+    <img class="nav__logo nav__logo--creme" src="../../assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
+    <img class="nav__logo nav__logo--escuro" src="../../assets/img/logo-escuro.svg" alt="" aria-hidden="true" width="1686" height="410">
+  </a>
+
+  <div class="nav__acoes">
+    <a class="nav__whats" href="https://wa.me/5511999999999" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    </a>
+    <a class="botao botao--primario" href="#contato">Agendar avaliação</a>
+  </div>
+</header>
+
+
+<!-- ===== 3. MENU EM TELA CHEIA =====
+     ui.js alterna .menu--aberto, aria-hidden/inert, aria-expanded no botão,
+     trava o scroll e fecha com Esc ou clique em qualquer link. -->
+<nav class="menu" id="menu" aria-label="Menu principal" aria-hidden="true" inert>
+  <div class="menu__in container">
+    <div class="menu__colunas">
+      <div class="menu__coluna menu__coluna--frentes">
+        <p class="menu__titulo eyebrow">Serviços</p>
+        <ul class="menu__lista menu__lista--grande">
+          <li><a href="#">Emagrecimento e metabolismo</a></li>
+          <li><a href="#">Avaliação hormonal</a></li>
+          <li><a href="#">Qualidade de vida e longevidade</a></li>
+          <li><a href="#">Dermatologia</a></li>
+          <li><a href="#">Lipedema</a></li>
+        </ul>
+      </div>
+      <div class="menu__coluna">
+        <p class="menu__titulo eyebrow">Os médicos</p>
+        <ul class="menu__lista">
+          <li><a href="#">Dr. Túlio Bovo</a></li>
+          <li><a href="#">Dr. Breno Gondim</a></li>
+          <li><a href="#">Dra. Ana Paula Bovo</a></li>
+        </ul>
+      </div>
+      <div class="menu__coluna">
+        <p class="menu__titulo eyebrow">Conteúdo</p>
+        <ul class="menu__lista">
+          <li><a href="#">Perguntas que a gente responde</a></li>
+          <li><a href="#">A primeira consulta</a></li>
+          <li><a href="#">A casa</a></li>
+        </ul>
+      </div>
+      <div class="menu__coluna">
+        <p class="menu__titulo eyebrow">Contato</p>
+        <ul class="menu__lista">
+          <li><a href="#contato">Agendar avaliação</a></li>
+          <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">Falar no WhatsApp</a></li>
+          <li><a href="#">Instagram <span class="texto-2">[PENDENTE]</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu__rodape">
+      <span>Instituto Rocca · Moema, São Paulo</span>
+      <a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp (11) 99999-9999 <span class="texto-2">[PENDENTE]</span></a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ===== 4. HERO (esqueleto de referência; cada conceito faz o seu) =====
+     - data-hero: ui.js chama revelarHero() no 'rocca:pronto' e usa a saída
+       dele da tela para mostrar o WhatsApp flutuante.
+     - data-split-linhas no H1: quebra por linha e anima cada .linha__in.
+     - data-reveal nos demais itens: revelarHero anima em ordem do DOM.
+<section class="hero sup-bordo" data-hero>
+  <div class="container hero__in">
+    <p class="eyebrow" data-reveal>Instituto de Qualidade de Vida e Bem-Estar em Moema</p>
+    <h1 class="titulo-2l" data-split-linhas>Seu médico. <span class="linha-2">Sua melhor versão.</span></h1>
+    <p class="hero__sub texto-grande" data-reveal>A gente trata a causa do que parou de funcionar em você — com o mesmo médico do primeiro dia em diante.</p>
+    <div class="acoes" data-reveal>
+      <a class="botao botao--primario" href="#contato">Agendar avaliação</a>
+      <a class="botao botao--secundario" href="#metodo">Como funciona <span class="seta" aria-hidden="true">→</span></a>
+    </div>
+    <p class="hero__nota texto-2" data-reveal>Atendimento em Moema, São Paulo</p>
+  </div>
+  <div class="scroll-dica" aria-hidden="true"></div>
+</section>
+-->
+
+
+<!-- ===== 5. WHATSAPP FLUTUANTE =====
+     ui.js adiciona .whats--visivel quando [data-hero] sai da tela. -->
+<a class="whats" href="https://wa.me/5511999999999" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+
+<!-- ===== 6. LIGHTBOX (dialog nativo) =====
+     Abre com qualquer [data-abre-lightbox="#filme"]. ui.js dá play no <video>
+     interno ao abrir e pausa ao fechar; clique no backdrop fecha.
+     Troque o <video> pelo institucional completo quando existir. -->
+<dialog class="lightbox" id="filme" aria-label="Filme institucional">
+  <button class="lightbox__fechar" type="button" data-fecha-lightbox>Fechar</button>
+  <div class="lightbox__media">
+    <video controls playsinline preload="none" poster="../../assets/img/entrada-clinica.jpg">
+      <source src="../../assets/video/institucional.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="lightbox__legenda">Filme institucional — gravação na clínica <span class="texto-2">[PENDENTE]</span></p>
+</dialog>
+
+
+<!-- ===== 7. CONTATO (seção #contato) =====
+     Sem formulário (decisão do cliente, rodada 3): a chamada é sempre o WhatsApp. -->
+<div class="col-5 col-inicio-8 fecho__whats" data-reveal="">
+<p class="eyebrow">WhatsApp</p>
+<a class="fecho__numero" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." rel="noopener" target="_blank">+55 11 99999-9999</a>
+<p class="fecho__whats-nota">Quem responde é o Instituto. Você conta o que parou de funcionar e a avaliação é marcada na conversa, em até um dia útil.</p>
+</div>
+
+
+<!-- ===== 8. FOOTER (bordô-profundo; 4 colunas → 2 no tablet → 1 no mobile) ===== -->
+<footer class="footer sup-profundo" id="rodape">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <a class="footer__logo" href="#topo" aria-label="Instituto Rocca — voltar ao topo">
+          <img src="../../assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
+        </a>
+        <p class="footer__descritor">Instituto de Qualidade de Vida e Bem-Estar em Moema. Trata a causa do que parou de funcionar em você, com o mesmo médico do primeiro dia em diante.</p>
+      </div>
+      <div class="footer__col">
+        <p class="footer__titulo eyebrow">A casa</p>
+        <address>
+          Rua —, Moema, São Paulo <span class="footer__pendente">[PENDENTE]</span><br>
+          Segunda a sexta, — às — <span class="footer__pendente">[PENDENTE]</span><br>
+          <a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp (11) 99999-9999</a><br>
+          <a href="#">Instagram @institutorocca</a> <span class="footer__pendente">[PENDENTE]</span>
+        </address>
+      </div>
+      <div class="footer__col">
+        <p class="footer__titulo eyebrow">Serviços</p>
+        <ul class="footer__lista">
+          <li><a href="#">Emagrecimento e metabolismo</a></li>
+          <li><a href="#">Avaliação hormonal</a></li>
+          <li><a href="#">Qualidade de vida e longevidade</a></li>
+          <li><a href="#">Dermatologia</a></li>
+          <li><a href="#">Lipedema</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__titulo eyebrow">Os médicos</p>
+        <ul class="footer__lista">
+          <li><a href="#">Dr. Túlio Bovo</a></li>
+          <li><a href="#">Dr. Breno Gondim</a></li>
+          <li><a href="#">Dra. Ana Paula Bovo</a></li>
+          <li><a href="#">Conteúdo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__base">
+      <span>Responsável técnico: Dr. — · CRM-SP 000000 <span class="footer__pendente">[PENDENTE]</span></span>
+      <a href="#">Política de privacidade</a>
+      <span>Instituto Rocca © <span data-ano>2026</span></span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ===== 9. FRAGMENTOS MENORES (referência) =====
+
+  Eyebrow de seção com numeral:
+    <p class="eyebrow"><span class="numeral">02</span> — O problema</p>
+
+  Título de 2 linhas (2ª itálica):
+    <h2 class="titulo-2l">Alguma coisa parou de funcionar. <span class="linha-2">E ninguém foi olhar.</span></h2>
+
+  Assinatura de médico:
+    <span class="assinatura">— Dr. Túlio Bovo</span>
+
+  Botão secundário (a seta é um span, sempre):
+    <a class="botao botao--secundario" href="#">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+
+  Tile:
+    <a class="tile" href="#">
+      <div class="tile__media"><img src="../../assets/img/consultorio-01.jpg" alt="…" loading="lazy" width="1600" height="1200"></div>
+      <div class="tile__corpo"><span class="tile__rotulo">Emagrecimento e metabolismo</span><span class="tile__sub">Emagrecer sem reganhar depois.</span></div>
+    </a>
+
+  Card de médico (vídeo 9:16; placeholder = retrato):
+    <article class="medico">
+      <div class="medico__video">
+        <img src="../../assets/img/consultorio-02.jpg" alt="…" loading="lazy">
+        <button class="medico__play" type="button" data-abre-lightbox="#filme" aria-label="Assistir: Quem eu sou — Dr. Túlio Bovo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg>
+        </button>
+        <span class="medico__rotulo">Quem eu sou · 60 s [PENDENTE]</span>
+      </div>
+      <h3 class="medico__nome">Dr. Túlio Bovo</h3>
+      <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
+      <a class="botao botao--secundario medico__link" href="#">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+    </article>
+
+  Pilares (provas):
+    <ol class="pilares">
+      <li><h3 class="pilares__titulo">O mesmo médico do primeiro dia em diante</h3><p class="pilares__texto">…</p></li>
+    </ol>
+
+  Passos (a primeira consulta):
+    <ol class="passos">
+      <li><h3 class="passos__titulo">Você manda mensagem</h3><p class="passos__texto">…</p></li>
+    </ol>
+
+  FAQ:
+    <details class="faq">
+      <summary>Vou ter que fazer isso para o resto da vida?</summary>
+      <div class="faq__conteudo"><p>…</p><span class="assinatura">— Dr. Túlio Bovo</span></div>
+    </details>
+
+  Galeria editorial (padrão assimétrico automático a cada 4 itens):
+    <div class="galeria">
+      <figure class="galeria__item"><img …><figcaption class="legenda"><span class="numeral">01</span>A sala onde o exame é lido com você, na tela.</figcaption></figure>
+      <figure class="galeria__item galeria__item--vertical">…</figure>
+    </div>
+
+  Reveal / parallax / contador:
+    <div data-reveal>…</div>              (opacity 0→1, y 24→0)
+    <div data-reveal-grupo>…filhos…</div> (mesmo, com stagger .08 nos filhos)
+    <img data-parallax="-8">              (yPercent ±8 com scrub)
+    <span data-contador="60">0</span>     (conta até o valor ao entrar)
+-->

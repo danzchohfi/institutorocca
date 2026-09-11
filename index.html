@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instituto Rocca — versões da home para aprovação</title>
+  <meta name="description" content="Cinco versões da home do site do Instituto Rocca, para escolha da versão principal.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#550000">
+  <link rel="stylesheet" href="brand/tokens.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { background: var(--cor-bordo); color: var(--cor-creme); font-family: var(--fonte); -webkit-font-smoothing: antialiased; }
+    body { margin: 0; min-height: 100vh; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--cor-creme); outline-offset: 4px; }
+    .miolo { max-width: 1440px; margin: 0 auto; padding-inline: var(--gutter, clamp(20px, 5vw, 96px)); }
+
+    /* ---- Abertura -------------------------------------------------------- */
+    .topo { padding-block: clamp(40px, 7vw, 96px) clamp(40px, 6vw, 72px); }
+    .topo__marca { width: min(250px, 64vw); height: auto; display: block; }
+    .eyebrow { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--cor-areia); margin: clamp(40px, 6vw, 72px) 0 18px; font-weight: 400; line-height: 1.5; text-wrap: balance; }
+    h1 { font-weight: 300; font-size: clamp(2.1rem, 4.6vw, 4.2rem); line-height: 1.06; margin: 0; letter-spacing: -.005em; max-width: 18ch; text-wrap: balance; }
+    h1 em { font-style: italic; display: block; }
+    @media (min-width: 900px) { h1 em { padding-left: 8%; } }
+    .intro { font-weight: 300; font-size: clamp(1rem, .96rem + .25vw, 1.125rem); line-height: 1.7; max-width: 58ch; color: var(--cor-creme-60); margin: clamp(24px, 3vw, 32px) 0 0; }
+    .intro strong { font-weight: 400; color: var(--cor-creme); }
+    .passos { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: clamp(28px, 4vw, 40px) 0 0; padding: 0; list-style: none; font-size: .95rem; line-height: 1.6; color: var(--cor-creme-60); }
+    .passos li { display: flex; gap: 12px; align-items: baseline; }
+    .passos .num { font-size: 12px; letter-spacing: .2em; color: var(--cor-areia); font-variant-numeric: tabular-nums; }
+
+    /* ---- Grade das versões ---------------------------------------------- */
+    .grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: clamp(20px, 3vw, 40px); padding-bottom: clamp(64px, 8vw, 120px); }
+    .card { position: relative; display: flex; flex-direction: column; text-decoration: none; background: var(--cor-bordo-profundo); border: 1px solid rgba(242, 232, 217, .12); transition: border-color .4s, transform .6s cubic-bezier(.22, 1, .36, 1); }
+    .card:hover, .card:focus-visible { border-color: var(--cor-areia); transform: translateY(-4px); outline: none; }
+    .card__media { aspect-ratio: 16 / 10; overflow: hidden; background: #2b0000; border-bottom: 1px solid rgba(242, 232, 217, .12); }
+    .card__media img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 1.2s cubic-bezier(.22, 1, .36, 1); }
+    .card:hover .card__media img { transform: scale(1.03); }
+    .card__media--vazio { display: grid; place-items: center; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--cor-areia); }
+    .card__corpo { display: flex; flex-direction: column; flex: 1; padding: 24px 24px 28px; }
+    .card__num { font-size: 12px; letter-spacing: .28em; color: var(--cor-areia); text-transform: uppercase; }
+    .card__titulo { font-weight: 300; font-size: 1.75rem; margin: 10px 0 8px; line-height: 1.1; }
+    .card__desc { font-weight: 300; font-size: 1rem; line-height: 1.6; color: var(--cor-creme-60); margin: 0 0 22px; }
+    .card__acao { margin-top: auto; align-self: flex-start; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; border-bottom: 1px solid var(--cor-areia); padding-bottom: 4px; }
+    .card__tag { position: absolute; left: 16px; top: 16px; z-index: 1; padding: 8px 12px; background: var(--cor-creme); color: var(--cor-bordo); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; font-weight: 400; }
+    @media (prefers-reduced-motion: reduce) { .card, .card__media img { transition: none; } .card:hover { transform: none; } }
+
+    /* ---- Rodapé ----------------------------------------------------------- */
+    .rodape { border-top: 1px solid rgba(242, 232, 217, .14); padding-block: clamp(32px, 4vw, 48px) clamp(40px, 6vw, 72px); display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: center; justify-content: space-between; font-weight: 300; font-size: .9rem; line-height: 1.7; color: var(--cor-creme-60); }
+    .rodape__agencia { display: flex; align-items: center; gap: 18px; text-decoration: none; color: var(--cor-creme-60); }
+    .rodape__agencia img { width: 118px; height: auto; display: block; }
+    .rodape__agencia span { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; }
+    .rodape p { margin: 0; max-width: 52ch; }
+  </style>
+</head>
+<body>
+  <header class="topo miolo">
+    <img class="topo__marca" src="assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410">
+    <p class="eyebrow">Home do site · Versões para aprovação</p>
+    <h1>Escolha a versão principal <em>para seguirmos no refinamento.</em></h1>
+    <p class="intro">São <strong>cinco aberturas</strong> para a home do Instituto Rocca, todas sobre a mesma direção de marca, o mesmo texto e o mesmo sistema visual. O que muda é a primeira dobra: a ideia, o ritmo e a forma como a marca, a casa e os médicos aparecem. Cada versão mostra a abertura e a primeira rolada; o restante da página é construído sobre a versão escolhida.</p>
+    <ul class="passos" aria-label="Como avaliar">
+      <li><span class="num">01</span><span>Abra cada versão no computador e no celular e role uma vez.</span></li>
+      <li><span class="num">02</span><span>Fotos, vídeos e dados marcados como [pendente] são provisórios.</span></li>
+      <li><span class="num">03</span><span>Escolha a abertura e nos conte o que ajustar nela.</span></li>
+    </ul>
+  </header>
+
+  <main class="grade miolo" aria-label="Versões da home">
+    <a class="card" href="concepts/07-letras/index.html">
+      <span class="card__tag">Recomendação da agência</span>
+      <div class="card__media"><img src="docs/screenshots/07-letras-desktop.png" alt="Versão 01 — Letras" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 01</span><h2 class="card__titulo">Letras</h2><p class="card__desc">A marca escrita em partículas finas que se formam na abertura, reagem ao toque e se dissolvem ao rolar. A página mais completa.</p><span class="card__acao">Abrir versão →</span></div>
+    </a>
+    <a class="card" href="concepts/08-retrato/index.html">
+      <div class="card__media"><img src="docs/screenshots/08-retrato-desktop.png" alt="Versão 02 — Retrato" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 02</span><h2 class="card__titulo">Retrato</h2><p class="card__desc">Os três médicos na abertura, sobre o bordô, com a mensagem principal escrita em partículas. A foto atual é provisória até a sessão de estúdio.</p><span class="card__acao">Abrir versão →</span></div>
+    </a>
+    <a class="card" href="concepts/01-materia/index.html">
+      <div class="card__media"><img src="docs/screenshots/01-materia-desktop.png" alt="Versão 03 — Matéria" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 03</span><h2 class="card__titulo">Matéria</h2><p class="card__desc">Abertura editorial: o texto à esquerda, a marca em partículas à direita e os serviços logo abaixo.</p><span class="card__acao">Abrir versão →</span></div>
+    </a>
+    <a class="card" href="concepts/02-chegada/index.html">
+      <div class="card__media"><img src="docs/screenshots/02-chegada-desktop.png" alt="Versão 04 — Chegada" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 04</span><h2 class="card__titulo">Chegada</h2><p class="card__desc">A entrada da clínica em tela cheia: madeira, mármore e luz quente, como uma capa de revista de arquitetura.</p><span class="card__acao">Abrir versão →</span></div>
+    </a>
+    <a class="card" href="concepts/03-presenca/index.html">
+      <div class="card__media"><img src="docs/screenshots/03-presenca-desktop.png" alt="Versão 05 — Presença" loading="lazy" onerror="this.parentElement.classList.add('card__media--vazio');this.replaceWith('em construção')"></div>
+      <div class="card__corpo"><span class="card__num">Versão 05</span><h2 class="card__titulo">Presença</h2><p class="card__desc">O filme institucional na abertura e a casa com gente. Até a gravação, as imagens do projeto ocupam o lugar do filme.</p><span class="card__acao">Abrir versão →</span></div>
+    </a>
+  </main>
+
+  <footer class="rodape miolo">
+    <a class="rodape__agencia" href="https://vitaminapublicitaria.com.br" target="_blank" rel="noopener">
+      <img src="assets/img/vitamina.svg" alt="Vitamina Publicitária" width="398" height="83">
+      <span>Direção de marca e site</span>
+    </a>
+    <p>Apresentação preparada pela Vitamina Publicitária para o Instituto Rocca. Material confidencial, para avaliação interna.</p>
+  </footer>
+</body>
+</html>

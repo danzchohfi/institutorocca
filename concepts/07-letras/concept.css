@@ -1,0 +1,246 @@
+/* Conceito 7 — Letras: o wordmark INSTITUTO ROCCA escrito com partículas (three.js).
+   Hero próprio; o resto da página segue a espinha do conceito 2 (regras copiadas abaixo). */
+.visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hero--letras { position: relative; min-height: 100svh; overflow: hidden; display: grid; align-items: end; }
+.letras__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.letras__fallback { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); width: min(72vw, 1100px); height: auto; }
+.hero--letras::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 50% 42%, rgba(110, 18, 18, .55), transparent 70%); pointer-events: none; }
+.hero__conteudo { position: relative; z-index: 1; padding-bottom: clamp(56px, 10vh, 120px); text-align: center; display: grid; justify-items: center; gap: 1.1rem; }
+.hero__frase { font-weight: 300; font-size: clamp(1.4rem, 2.6vw, 2.2rem); line-height: 1.2; margin: 0; }
+.hero__frase em { font-style: italic; }
+.hero__acoes { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: center; margin-top: .6rem; }
+.hero__nota { margin: 0; color: var(--fg-2); font-size: .95rem; }
+.hero__frentes { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 0; margin: .2rem 0 0; padding: 0; list-style: none; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--cor-areia); }
+.hero__frentes li { display: flex; align-items: center; }
+/* O ponto separador fica preso ao item anterior (::after): quando a lista quebra
+   de linha no celular, a linha nova nunca começa com um ponto solto. */
+.hero__frentes li:not(:last-child)::after { content: ""; width: 3px; height: 3px; border-radius: 50%; background: currentColor; margin: 0 1.1rem; opacity: .7; }
+.hero__frentes a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-rapida), color var(--dur-rapida); }
+.hero__frentes a:hover, .hero__frentes a:focus-visible { color: var(--cor-creme); border-bottom-color: currentColor; }
+@media (max-width: 899.98px) {
+  /* Celular e tablet retrato: o wordmark sobe (letras.js, centro.mobile) e o bloco de
+     texto fica na metade de baixo, sem passar por cima das letras. */
+  .hero__conteudo { padding-bottom: clamp(40px, 7vh, 72px); gap: 1rem; }
+  .hero__frase { font-size: clamp(1.4rem, 2.8vw, 2rem); }
+  .hero__frentes { font-size: 10px; letter-spacing: .18em; gap: .55rem 0; }
+  .hero__frentes li:not(:last-child)::after { margin: 0 .7rem; }
+  .hero--letras::before { background: radial-gradient(70% 40% at 50% 30%, rgba(110, 18, 18, .55), transparent 70%); }
+  .letras__fallback { top: 30%; width: min(84vw, 520px); }
+}
+@media (max-width: 639.98px) {
+  /* Celular: os serviços em coluna, sem os pontos (em linha, cada item quebrava e os
+     pontos ficavam soltos no fim das linhas). */
+  .hero__conteudo .eyebrow { max-width: 30ch; }
+  .hero__frase { font-size: clamp(1.4rem, 5.6vw, 2rem); }
+  .hero__frentes { flex-direction: column; align-items: center; gap: .45rem; }
+  .hero__frentes li { white-space: nowrap; }
+  .hero__frentes li:not(:last-child)::after { display: none; }
+}
+
+/* ---- Seções (mesmas regras do conceito 2) ---------------------------------- */
+:root {
+  /* Mais respiro que o padrão (BRIEF §6.2: "muito respiro, seções longas") */
+  --secao: clamp(104px, 13vw, 224px);
+}
+
+/* ---- Paralaxe: moldura com overflow hidden + camada interna maior ------------ */
+.paralaxe { position: relative; overflow: hidden; }
+.paralaxe__in { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; }
+.paralaxe__in img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Linhas finas que se desenham ([data-linha]) */
+html.js [data-linha] { transform: scaleX(0); transform-origin: left center; }
+
+/* ---- 01 · O problema --------------------------------------------------------- */
+.problema .grid-12 { align-items: end; row-gap: var(--espaco-5); }
+.problema h2 { max-width: 16ch; }
+.problema__texto p + p { margin-top: 1.5em; }
+
+/* ---- 02 · O método (respiro) ------------------------------------------------- */
+.metodo h2 { max-width: 20ch; }
+.metodo .texto-grande { margin-top: 2rem; }
+
+/* ---- Frentes: lista editorial em linhas ------------------------------------- */
+.frentes { padding-top: 0; }
+.frentes__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+.frentes__cabeca h2 { max-width: 18ch; }
+.frentes__lista { border-bottom: 1px solid var(--linha); }
+.frente {
+  position: relative;
+  display: grid; grid-template-columns: 1fr; gap: .9rem;
+  padding-block: clamp(1.8rem, 3.2vw, 2.8rem);
+}
+.frente__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+.frente__cabeca { display: flex; gap: 1.2rem; align-items: baseline; }
+.frente__num { font-size: .8rem; }
+.frente__titulo { font-size: var(--h3); max-width: 16ch; }
+.frente__frase { color: var(--fg-2); max-width: 36ch; font-size: 1rem; line-height: 1.6; }
+.frente__apoio { margin-top: .6rem; color: var(--fg-2); max-width: 44ch; font-size: .95rem; line-height: 1.6; }
+.frente__link { justify-self: start; }
+.frentes__rodape { margin-top: clamp(2rem, 4vw, 3.5rem); }
+@media (min-width: 900px) {
+  .frente {
+    grid-template-columns: 4rem minmax(0, 5fr) minmax(0, 5fr) auto;
+    column-gap: var(--coluna-gap);
+    align-items: start;
+  }
+  .frente__cabeca { display: contents; }
+  .frente__num { padding-top: .55em; }
+  .frente__frase { padding-top: .45em; }
+  .frente__link { justify-self: end; margin-top: .55em; }
+}
+
+/* ---- 03 · O mecanismo: split-screen foto | tela ------------------------------ */
+.mecanismo__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+.mecanismo__cabeca h2 { max-width: 18ch; }
+.split {
+  display: grid; grid-template-columns: 1fr;
+  width: 100%;
+  background: var(--cor-bordo-profundo);
+}
+.split__foto { aspect-ratio: 4 / 5; }
+.split__tela {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--cor-osso);
+  color: var(--cor-tinta);
+  display: grid; place-items: center;
+  padding: clamp(24px, 5vw, 72px);
+}
+.split__tela img { width: 100%; height: 100%; object-fit: contain; }
+.split__legenda {
+  position: absolute; left: clamp(24px, 5vw, 72px); bottom: clamp(20px, 3vw, 40px);
+  color: var(--cor-grafite);
+}
+.mecanismo__texto { margin-top: clamp(3rem, 6vw, 6rem); }
+.mecanismo__texto p + p { margin-top: 1.4em; }
+@media (min-width: 900px) {
+  .split { grid-template-columns: 1fr 1fr; }
+  .split__foto, .split__tela { aspect-ratio: auto; height: clamp(520px, 76vh, 760px); }
+}
+
+/* ---- As provas (respiro): três colunas com linha no topo --------------------- */
+.provas-secao h2 { max-width: 20ch; }
+.provas {
+  display: grid; grid-template-columns: 1fr; gap: 1.6rem;
+  margin-top: clamp(3.5rem, 7vw, 6.5rem);
+  text-align: left;
+  width: 100%;
+}
+.provas > li { border-top: 1px solid var(--linha); padding-top: 1.4rem; }
+.provas__num { display: block; margin-bottom: 1rem; }
+.provas__titulo { font-size: var(--h3); }
+@media (min-width: 640px) {
+  .provas { grid-template-columns: repeat(3, 1fr); gap: var(--coluna-gap); }
+  .provas > li { padding-top: 1.8rem; }
+  .provas__titulo { max-width: 15ch; }
+}
+@media (min-width: 900px) {
+  .provas { width: min(100%, 1100px); }
+}
+
+/* ---- O que a gente não faz (faixa compacta) ---------------------------------- */
+.nao .grid-12 { row-gap: var(--espaco-4); align-items: start; }
+.nao__abertura { margin-top: 1.2rem; font-size: var(--h3); line-height: 1.3; max-width: 18ch; }
+.nao__lista { display: grid; grid-template-columns: 1fr; gap: 1.6rem 2.5rem; }
+.nao__item { display: block; font-weight: 400; }
+.nao__apoio { display: block; margin-top: .35rem; color: var(--fg-2); font-size: .95rem; line-height: 1.55; max-width: 34ch; }
+@media (min-width: 640px) { .nao__lista { grid-template-columns: 1fr 1fr; } }
+
+/* ---- A casa: porta em destaque + grade editorial assimétrica ---------------- */
+.casa__abertura { align-items: center; row-gap: var(--espaco-5); }
+.casa__moldura { position: relative; overflow: hidden; background: var(--cor-bordo-profundo); aspect-ratio: 3 / 2; }
+.casa__moldura--4x5 { aspect-ratio: 4 / 5; }
+.casa__moldura--1x1 { aspect-ratio: 1; }
+.casa__moldura--larga { aspect-ratio: 3 / 2; }
+.casa__moldura > img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-imagem) var(--ease-out); }
+.casa__moldura .paralaxe__in img { transition: transform var(--dur-imagem) var(--ease-out); }
+.casa__item:hover .casa__moldura img, .casa__porta:hover .casa__moldura img { transform: scale(1.04); }
+.casa__cabeca h2 { max-width: 14ch; }
+.casa__cabeca p:not(.eyebrow) { max-width: 34ch; }
+.casa__grade {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 72px) var(--coluna-gap);
+  align-items: start;
+  margin-top: clamp(4rem, 9vw, 9rem);
+}
+.casa__item { grid-column: 1 / -1; }
+.casa__item .legenda { max-width: 36ch; }
+@media (min-width: 640px) {
+  .casa__item--2 { grid-column: 1 / 7; }
+  .casa__item--3 { grid-column: 7 / -1; margin-top: 18%; }
+  .casa__item--3 .casa__moldura { aspect-ratio: 4 / 5; }
+  .casa__item--5 { grid-column: 1 / 7; }
+  .casa__item--6 { grid-column: 7 / -1; margin-top: 12%; }
+  .casa__item--6 .casa__moldura { aspect-ratio: 1; }
+}
+@media (min-width: 900px) {
+  .casa__item--1 { grid-column: 1 / 9; }
+  .casa__item--2 { grid-column: 9 / -1; margin-top: 28%; }
+  .casa__item--3 { grid-column: 2 / 7; margin-top: 0; }
+  .casa__item--3 .casa__moldura { aspect-ratio: 3 / 2; }
+  .casa__item--4 { grid-column: 7 / -1; margin-top: 14%; }
+  .casa__item--5 { grid-column: 3 / 7; }
+  .casa__item--6 { grid-column: 1 / -1; margin-top: 4%; }
+  .casa__item--6 .casa__moldura { aspect-ratio: 21 / 9; }
+  .casa__item--6 .legenda { margin-left: auto; justify-content: flex-end; }
+}
+
+/* ---- Os médicos --------------------------------------------------------------- */
+.medicos__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); align-items: end; }
+.medicos__cabeca h2 { max-width: 12ch; }
+.medicos__sub p { max-width: 30ch; }
+.medico__fala { margin-top: .8rem; font-size: .95rem; line-height: 1.55; max-width: 30ch; }
+.medico__fala::before { content: "“"; }
+.medico__fala::after { content: "”"; }
+/* O placeholder do retrato já traz nome e legenda no rodapé; o rótulo do vídeo vai para o topo. */
+.medico__rotulo { top: 16px; bottom: auto; line-height: 1.5; }
+
+/* ---- A primeira consulta ------------------------------------------------------ */
+.consulta__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); align-items: end; }
+.consulta__cabeca h2 { max-width: 16ch; }
+.consulta__acoes { margin-top: clamp(3rem, 5vw, 4.5rem); }
+
+/* ---- Perguntas da semana ------------------------------------------------------- */
+.perguntas__cabeca { margin-bottom: clamp(2.5rem, 5vw, 4.5rem); align-items: end; }
+.perguntas__cabeca h2 { max-width: 16ch; }
+.perguntas__sub p { max-width: 30ch; }
+.perguntas { border-bottom: 1px solid var(--linha); }
+.pergunta {
+  position: relative;
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+  padding-block: clamp(1.6rem, 3vw, 2.4rem);
+}
+.pergunta__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+.pergunta__capa { width: 72px; aspect-ratio: 4 / 5; overflow: hidden; background: var(--cor-bordo-profundo); }
+.pergunta__capa img { width: 100%; height: 100%; object-fit: cover; }
+.pergunta__titulo { font-size: var(--h3); max-width: 28ch; }
+.pergunta .assinatura { margin-top: .6rem; }
+.pergunta__link { justify-self: start; }
+.perguntas__rodape { margin-top: clamp(2rem, 4vw, 3.5rem); }
+@media (min-width: 900px) {
+  .pergunta { grid-template-columns: 96px minmax(0, 1fr) auto; column-gap: clamp(24px, 3vw, 48px); align-items: center; }
+  .pergunta__capa { width: 96px; }
+  .pergunta__link { justify-self: end; }
+}
+
+/* ---- Perguntas mais comuns ----------------------------------------------------- */
+.faq-secao h2 { max-width: 16ch; }
+.faq-secao .grid-12 { align-items: start; }
+
+/* ---- Fecho --------------------------------------------------------------------- */
+.fecho .grid-12 { align-items: start; row-gap: var(--espaco-5); }
+.fecho__chamada h2 { max-width: 14ch; }
+.fecho__chamada .acoes { margin-top: 2.6rem; }
+.fecho__intro { margin-bottom: 2.2rem; max-width: 32ch; }
+.fecho .form { max-width: none; }
+
+/* ---- Movimento reduzido ---------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-linha] { transform: none; }
+  .hero__rolar-linha::after { animation: none; transform: none; }
+  .hero__midia { will-change: auto; }
+}
+
+/* ---- Footer: folga para o WhatsApp flutuante não cobrir a linha legal ------------ */
+.footer { padding-bottom: 96px; }

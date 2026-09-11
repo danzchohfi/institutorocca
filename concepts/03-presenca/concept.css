@@ -1,0 +1,475 @@
+/* ============================================================================
+   CONCEITO 3 — PRESENÇA · estilos só deste conceito
+   ----------------------------------------------------------------------------
+   O sistema (tokens, tipografia, nav, componentes) vive em brand/tokens.css e
+   shared/base.css. Aqui: o hero em vídeo (com o "Ken Burns" dos renders como
+   placeholder até a diária na clínica), a janela 21:9 que acompanha o bloco
+   01, os tiles de Bastidores, o bloco Conversa e as variações de ritmo desta
+   página — "a casa como ela é": cinema, cotidiano, a casa com gente.
+   Mobile-first; breakpoints 640 / 900 / 1200 / 1440.
+   ============================================================================ */
+
+:root {
+  /* A janela 21:9 em que o hero se transforma ao rolar. O bloco 01 reserva o
+     mesmo espaço no topo (padding) para o vídeo "acompanhar" o texto. As
+     porcentagens resolvem contra a largura do bloco (hero e #problema têm a
+     mesma largura), por isso vale usar a mesma variável nos dois lugares. */
+  --janela-top: calc(var(--nav-altura) + 24px);
+  --janela-w: min(100% - 2 * var(--gutter), var(--container) - 2 * var(--gutter));
+}
+
+/* ---- Skip link ------------------------------------------------------------- */
+.skip-link {
+  position: fixed; left: var(--gutter); top: -100px; z-index: calc(var(--z-nav) + 1);
+  padding: 14px 20px;
+  background: var(--cor-creme); color: var(--cor-bordo);
+  font-size: var(--eyebrow); font-weight: 400; letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
+  transition: top var(--dur-rapida);
+}
+.skip-link:focus-visible { top: 16px; outline-color: var(--cor-bordo); }
+
+/* ---- Hero: o filme (ou a sequência dos renders) em tela cheia ----------------
+   A "pista" tem o dobro da altura do hero; o hero fica preso (sticky) na
+   primeira metade enquanto o JS faz o scrub (texto some, mídia vira a janela
+   21:9). O bloco 01 sobe por cima dessa segunda metade (margem negativa) com
+   o topo transparente, então a janela "acompanha" o texto dele e, quando a
+   pista acaba, se solta e sobe junto. Sem JS ou com movimento reduzido a
+   pista tem altura normal e o bloco 01 volta ao fluxo. */
+:root { --hero-h: max(100svh, 620px); }
+.hero-pista { position: relative; height: calc(2 * var(--hero-h)); }
+.hero--presenca {
+  position: sticky; top: 0;
+  height: var(--hero-h);
+  overflow: hidden;
+  background: var(--cor-bordo);
+  color: var(--cor-creme);
+}
+html:not(.js) .hero-pista, html.movimento-reduzido .hero-pista { height: auto; }
+html:not(.js) .hero--presenca, html.movimento-reduzido .hero--presenca { position: relative; }
+/* Camada externa: a "moldura" que vira a janela 21:9 (scaleX/scaleY + translate).
+   Camada interna (.hero__quadro): o quadro 16:9 que cobre a tela; o JS o
+   dimensiona e o contra-escala para o conteúdo nunca distorcer. */
+.hero__midia {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  background: var(--cor-bordo-profundo);
+  transform-origin: 0 0;
+  will-change: transform;
+}
+.hero__quadro {
+  position: absolute; left: 0; top: 0;
+  width: 100%; height: 100%;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+.hero__video,
+.hero__placeholder {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+}
+.hero__video { object-fit: cover; background: var(--cor-bordo-profundo); }
+.hero__placeholder { overflow: hidden; }
+.hero__placeholder img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.hero__placeholder img:first-child { opacity: 1; transform: scale(1.06); }
+/* Grão leve (feTurbulence) e véu bordô 35–45% para o texto creme.
+   Sem mix-blend-mode de propósito: o blend obriga a recompor o hero inteiro
+   a cada quadro do Ken Burns (medido: 13 → 60 fps só tirando o blend); em
+   alfa normal a .08 o grão fica igual e o filtro é cacheado. */
+.hero__grao {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: .08;
+  pointer-events: none;
+}
+.hero__veu {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  /* véu bordô 35–45% + um halo suave atrás do bloco de texto (o wordmark da
+     parede, no render da recepção, passa exatamente por trás do parágrafo) */
+  background:
+    radial-gradient(ellipse 56% 44% at 50% 50%, rgba(59, 0, 0, .30), rgba(59, 0, 0, 0) 100%),
+    linear-gradient(to bottom, rgba(85, 0, 0, .35) 0%, rgba(85, 0, 0, .38) 45%, rgba(85, 0, 0, .46) 100%);
+}
+/* Alvo invisível: onde a janela 21:9 termina. O JS mede este elemento. */
+.hero__alvo {
+  position: absolute;
+  left: 50%; top: var(--janela-top);
+  transform: translateX(-50%);
+  width: var(--janela-w);
+  aspect-ratio: 21 / 9;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Texto centralizado (padrão CLP) */
+.hero__conteudo {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  padding: calc(var(--nav-altura) + 24px) 0 132px;
+  text-align: center;
+}
+.hero__in > * { margin-inline: auto; }
+.hero__conteudo .eyebrow { color: var(--cor-creme); opacity: .82; text-wrap: balance; max-width: 34ch; }
+@media (min-width: 900px) { .hero__conteudo .eyebrow { max-width: none; } }
+.hero__conteudo h1 { max-width: 13ch; }
+.hero__sub {
+  margin-top: 1.5rem;
+  max-width: 34ch;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.hero__acoes { justify-content: center; margin-top: 2rem; gap: 1.25rem 2.4rem; }
+.hero__filme { gap: .9em; }
+.hero__filme svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.2; flex: none; }
+.hero__nota { margin-top: 1.8rem; font-size: 1rem; color: var(--cor-creme); opacity: .78; }
+
+/* Pé do hero: rótulo do placeholder à esquerda, "role para continuar" à direita */
+.hero__pe {
+  position: absolute; left: 0; right: 0; bottom: 26px;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+  padding-inline: var(--gutter);
+  pointer-events: none;
+}
+.hero__pe > * { pointer-events: auto; }
+.hero__rotulo {
+  font-size: var(--eyebrow); font-weight: 400; letter-spacing: .24em; text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--cor-creme);
+  opacity: .8;
+  max-width: 24ch;
+}
+@media (min-width: 640px) { .hero__rotulo { max-width: none; white-space: nowrap; } }
+.hero__rolar {
+  display: inline-flex; align-items: center; gap: 16px;
+  font-size: var(--eyebrow); font-weight: 400; letter-spacing: .28em; text-transform: uppercase;
+  line-height: 1;
+  text-decoration: none; color: var(--cor-creme);
+  white-space: nowrap;
+}
+.hero__rolar-linha {
+  position: relative; width: 48px; height: 1px; overflow: hidden;
+  background: rgba(242, 232, 217, .28);
+}
+.hero__rolar-linha::after {
+  content: ""; position: absolute; inset: 0; background: currentColor;
+  transform: translateX(-100%);
+  animation: hero-rolar 2.6s var(--ease-inout) infinite;
+}
+@keyframes hero-rolar { 0% { transform: translateX(-100%); } 50% { transform: none; } 100% { transform: translateX(100%); } }
+@media (max-width: 639.98px) {
+  .hero__rolar span:first-child { display: none; }
+  .hero__rolar-linha { width: 36px; }
+  /* Celular: o bloco de texto cobre quase a tela inteira sobre os renders (e o
+     wordmark da parede passa atrás do parágrafo): véu mais denso e halo maior. */
+  .hero__veu {
+    background:
+      radial-gradient(ellipse 80% 52% at 50% 50%, rgba(59, 0, 0, .42), rgba(59, 0, 0, 0) 100%),
+      linear-gradient(to bottom, rgba(85, 0, 0, .46) 0%, rgba(85, 0, 0, .52) 45%, rgba(85, 0, 0, .6) 100%);
+  }
+  .hero__conteudo { padding-bottom: 112px; }
+  .hero__conteudo .eyebrow { max-width: 30ch; }
+  .hero__sub { margin-top: 1.3rem; }
+  .hero__acoes { margin-top: 1.7rem; gap: 1.1rem 2rem; }
+  .hero__nota { margin-top: 1.4rem; }
+}
+@media (min-width: 640px) {
+  .hero__sub { max-width: 44ch; font-size: calc(var(--corpo) * 1.05); }
+  .hero__conteudo { padding-bottom: 120px; }
+}
+@media (min-width: 900px) {
+  .hero__sub { margin-top: 1.8rem; }
+  .hero__acoes { margin-top: 2.4rem; }
+  .hero__nota { margin-top: 2.2rem; }
+}
+
+/* ---- Paralaxe: moldura com overflow hidden + camada interna maior ------------ */
+.paralaxe { position: relative; overflow: hidden; }
+.paralaxe__in { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; }
+.paralaxe__in img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---- 01 · O problema: o texto entra sob a janela 21:9 do hero ----------------- */
+.problema.sup-bordo { background: transparent; }
+.problema {
+  margin-top: calc(-1 * var(--hero-h));
+  padding-top: calc(var(--janela-top) + var(--janela-w) * 9 / 21 + clamp(64px, 9vw, 136px));
+}
+html:not(.js) .problema, html.movimento-reduzido .problema { margin-top: 0; padding-top: var(--secao); }
+.problema .grid-12 { align-items: end; row-gap: var(--espaco-5); }
+.problema h2 { max-width: 16ch; }
+.problema__texto p + p { margin-top: 1.5em; }
+
+/* ---- 02 · O método (declaração com respiro) ----------------------------------- */
+.metodo h2 { max-width: 18ch; }
+.metodo .texto-grande { margin-top: 2rem; }
+
+/* ---- Frentes: cabeça fixa à esquerda, cinco linhas à direita ------------------ */
+.frentes .grid-12 { align-items: start; row-gap: var(--espaco-5); }
+.frentes__cabeca h2 { max-width: 14ch; }
+/* "Ver todos os serviços" vem depois da lista (no celular a cabeça fica em cima
+   e o link, antes da lista, parecia um item solto). */
+.frentes__rodape { margin-top: calc(-1 * var(--espaco-5) + 2.2rem); }
+.frentes__lista { border-top: 1px solid var(--linha); }
+.frente {
+  display: grid; grid-template-columns: 1fr; gap: .6rem;
+  padding-block: clamp(1.8rem, 3vw, 2.6rem);
+  border-bottom: 1px solid var(--linha);
+}
+.frente__nome { display: flex; gap: 1.1rem; align-items: baseline; }
+.frente__titulo { font-size: var(--h3); max-width: 24ch; margin-top: .4rem; }
+.frente__frase { color: var(--fg-2); font-size: 1rem; line-height: 1.6; max-width: 40ch; margin-top: .5rem; }
+.frente__apoio { color: var(--fg-2); font-size: .95rem; line-height: 1.6; max-width: 46ch; }
+.frente__link { justify-self: start; margin-top: .6rem; }
+@media (min-width: 900px) {
+  .frentes__cabeca { position: sticky; top: calc(var(--nav-altura) + 40px); }
+  .frente { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--coluna-gap); }
+  .frente__link { grid-column: 2; grid-row: 1 / span 3; align-self: start; margin-top: .3rem; }
+}
+
+/* ---- 03 · O mecanismo: split foto | tela, dentro da grade -------------------- */
+.mecanismo__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+.mecanismo__cabeca h2 { max-width: 18ch; }
+.split {
+  display: grid; grid-template-columns: 1fr;
+  background: var(--cor-bordo-profundo);
+}
+.split__foto { aspect-ratio: 4 / 3; }
+.split__tela {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--cor-osso);
+  color: var(--cor-tinta);
+  display: grid; place-items: center;
+  padding: clamp(24px, 4vw, 48px) clamp(24px, 4vw, 48px) clamp(64px, 8vw, 96px);
+}
+/* O SVG da tela traz o próprio título no topo; a moldura corta essa faixa e a
+   legenda abaixo faz o papel dele. */
+.split__tela-in { position: relative; width: 100%; max-height: 100%; aspect-ratio: 1600 / 840; overflow: hidden; }
+.split__tela-in img { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; }
+.split__legenda {
+  position: absolute; left: clamp(24px, 5vw, 64px); bottom: clamp(20px, 3vw, 36px);
+  color: var(--cor-grafite);
+}
+.mecanismo__texto { margin-top: clamp(3rem, 6vw, 6rem); }
+.mecanismo__texto p + p { margin-top: 1.4em; }
+@media (min-width: 900px) {
+  .split { grid-template-columns: 7fr 5fr; }
+  .split__foto, .split__tela { aspect-ratio: auto; height: clamp(440px, 58vh, 600px); }
+}
+
+/* ---- As provas: três colunas com numerais grandes ------------------------------ */
+.provas-secao h2 { max-width: 20ch; }
+.provas {
+  display: grid; grid-template-columns: 1fr; gap: 2rem;
+  margin-top: clamp(3.5rem, 7vw, 6.5rem);
+  text-align: left;
+  width: 100%;
+}
+.provas > li { border-top: 1px solid var(--linha); padding-top: 1.4rem; }
+.provas__num {
+  display: block; margin-bottom: 1.4rem;
+  font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; line-height: 1;
+  letter-spacing: .04em;
+  color: var(--cor-madeira);
+  font-variant-numeric: tabular-nums;
+}
+.provas__titulo { font-size: var(--h3); max-width: 16ch; }
+@media (min-width: 640px) {
+  .provas { grid-template-columns: repeat(3, 1fr); gap: var(--coluna-gap); }
+  .provas > li { padding-top: 1.8rem; }
+}
+@media (min-width: 900px) { .provas { width: min(100%, 1120px); } }
+
+/* ---- O que a gente não faz (faixa compacta) ------------------------------------ */
+.nao .grid-12 { row-gap: var(--espaco-4); align-items: start; }
+.nao__abertura { margin-top: 1.2rem; font-size: var(--h3); line-height: 1.3; max-width: 18ch; }
+.nao__lista { display: grid; grid-template-columns: 1fr; gap: 1.6rem 2.5rem; }
+.nao__item { display: block; font-weight: 400; }
+.nao__apoio { display: block; margin-top: .35rem; color: var(--fg-2); font-size: .95rem; line-height: 1.55; max-width: 34ch; }
+@media (min-width: 640px) { .nao__lista { grid-template-columns: 1fr 1fr; } }
+
+/* ---- Bastidores: três tiles de clipes ---------------------------------------- */
+.bastidores__cabeca { margin-bottom: clamp(2.5rem, 5vw, 4.5rem); align-items: end; }
+.bastidores__cabeca h2 { max-width: 12ch; }
+.bastidores__cabeca p:not(.eyebrow) { max-width: 36ch; }
+.bastidores__tiles { display: grid; grid-template-columns: 1fr; gap: clamp(16px, 2vw, 24px); }
+.bastidores__tile { margin: 0; }
+.bastidores__tile .tile__media { position: relative; aspect-ratio: 3 / 2; }
+.bastidores__tile .tile__media img { object-position: 50% 0; }
+.bastidores__clipe {
+  position: absolute; left: 20px; bottom: 18px; right: 20px;
+  font-size: .7rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; line-height: 1.5;
+  color: var(--cor-creme); opacity: .8;
+}
+.bastidores__tile .tile__corpo { padding: 22px 0 8px; }
+.bastidores__tile .tile__sub { color: var(--cor-creme-60); font-size: 1rem; }
+.sup-bordo .bastidores__tile { background: transparent; }
+.sup-bordo .bastidores__tile .tile__media { background: var(--cor-bordo-profundo); }
+@media (min-width: 640px) { .bastidores__tiles { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---- A casa: galeria editorial (padrão do sistema) com ajustes ----------------- */
+.casa__cabeca { margin-bottom: clamp(3.5rem, 8vw, 7.5rem); align-items: end; }
+.casa__cabeca h2 { max-width: 14ch; }
+.casa__cabeca p:not(.eyebrow) { max-width: 36ch; }
+.casa__moldura { position: relative; overflow: hidden; background: var(--cor-bordo-profundo); aspect-ratio: 3 / 2; }
+.casa__moldura > img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: auto; transition: transform var(--dur-imagem) var(--ease-out); }
+.casa__moldura .paralaxe__in img { aspect-ratio: auto; transition: transform var(--dur-imagem) var(--ease-out); }
+.casa__item:hover .casa__moldura img { transform: scale(1.04); }
+.casa__item .legenda { max-width: 38ch; }
+.casa__moldura--4x5 { aspect-ratio: 4 / 5; }
+.casa__moldura--1x1 { aspect-ratio: 1; }
+.casa__moldura--3x4 { aspect-ratio: 3 / 4; }
+/* O lounge é lido pela direita (copa de mármore, cadeiras): as plaquinhas das
+   portas ficam fora do corte — a legenda diz "sem sinalização". */
+.casa__moldura--direita > img { object-position: 100% 50%; }
+.casa .galeria { row-gap: clamp(32px, 6vw, 80px); }
+@media (min-width: 640px) {
+  .casa .galeria > .casa__item--5 { grid-column: span 6; }
+  .casa .galeria > .casa__item--6 { grid-column: span 6; }
+}
+@media (min-width: 900px) {
+  .casa .galeria > .galeria__item.casa__item--5 { grid-column: 2 / span 5; margin-top: 0; }
+  .casa .galeria > .galeria__item.casa__item--6 { grid-column: 8 / span 5; margin-top: 14%; }
+}
+
+/* ---- Os médicos: cabeça + Conversa + três cards verticais ----------------------- */
+.medicos__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); align-items: end; }
+.medicos__cabeca h2 { max-width: 12ch; }
+.medicos__sub p { max-width: 32ch; }
+
+.conversa { margin-bottom: clamp(4rem, 9vw, 9rem); }
+.conversa__cabeca { margin-bottom: clamp(2rem, 4vw, 3.5rem); align-items: end; }
+.conversa__cabeca h2 { max-width: 14ch; }
+.conversa__legenda { color: var(--fg-2); max-width: 40ch; }
+/* 21:9 (como a janela do hero): corta o rótulo interno do placeholder e o
+   play desenhado nele fica sob o botão real. */
+.conversa__video {
+  position: relative; margin: 0;
+  overflow: hidden;
+  background: var(--cor-bordo-profundo);
+  aspect-ratio: 16 / 9;
+}
+.conversa__video > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; transform: scale(1.22); transition: transform var(--dur-imagem) var(--ease-out); }
+@media (min-width: 640px) {
+  .conversa__video { aspect-ratio: 21 / 9; }
+  .conversa__video > img { transform: none; }
+}
+.conversa__video:hover > img { transform: scale(1.25); }
+@media (min-width: 640px) { .conversa__video:hover > img { transform: scale(1.03); } }
+.conversa__play {
+  position: absolute; inset: 0; margin: auto;
+  width: 88px; height: 88px;
+  border-radius: 50%; /* exceção sancionada: o círculo do play */
+  background: rgba(242, 232, 217, .94);
+  color: var(--cor-bordo);
+  display: grid; place-items: center;
+  transition: background-color var(--dur-rapida), transform var(--dur-media) var(--ease-out);
+}
+.conversa__play svg { width: 22px; height: 22px; fill: currentColor; margin-left: 4px; }
+.conversa__play:hover, .conversa__play:focus-visible { background: var(--cor-creme); transform: scale(1.06); }
+/* Base escurecida sob o rótulo: no celular (16:9) a legenda desenhada no
+   placeholder ainda aparecia atrás do texto do rótulo. */
+.conversa__video::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42%;
+  background: linear-gradient(to top, rgba(42, 26, 22, .82), rgba(42, 26, 22, 0));
+  pointer-events: none;
+}
+.conversa__rotulo {
+  position: absolute; left: 20px; bottom: 18px; right: 20px; z-index: 1;
+  font-size: .7rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; line-height: 1.5;
+  color: var(--cor-creme); opacity: .8;
+  pointer-events: none;
+}
+.conversa__pe { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; align-items: center; justify-content: space-between; }
+.conversa__pe .assinatura { margin-top: 0; }
+@media (min-width: 640px) {
+  .conversa__play { width: 104px; height: 104px; }
+}
+
+/* Cards maiores: a grade dos médicos usa a largura toda do container */
+.medicos--grande { gap: clamp(32px, 4vw, 48px) var(--coluna-gap); }
+/* Os retratos placeholder trazem nome e legenda no rodapé: o corte por cima
+   (escala ancorada no topo) tira isso do quadro; o card já diz o nome. */
+.medico__video img { transform-origin: 50% 0; transform: scale(1.15); }
+.medico:hover .medico__video img { transform: scale(1.19); }
+.medico__rotulo { top: 16px; bottom: auto; line-height: 1.5; }
+.medico__fala { margin-top: .8rem; font-size: .95rem; line-height: 1.55; max-width: 30ch; }
+.medico__fala::before { content: "“"; }
+.medico__fala::after { content: "”"; }
+@media (max-width: 639.98px) {
+  .medicos--grande { grid-template-columns: 1fr; max-width: 420px; }
+}
+@media (min-width: 640px) and (max-width: 899.98px) {
+  .medicos--grande { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---- A primeira consulta ------------------------------------------------------- */
+.consulta__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); align-items: end; }
+.consulta__cabeca h2 { max-width: 16ch; }
+.consulta__acoes { margin-top: clamp(3rem, 5vw, 4.5rem); }
+
+/* ---- Perguntas da semana: três cards com capa 4:5 ------------------------------- */
+.perguntas__cabeca { margin-bottom: clamp(2.5rem, 5vw, 4.5rem); align-items: end; }
+.perguntas__cabeca h2 { max-width: 16ch; }
+.perguntas__sub p { max-width: 30ch; }
+.perguntas { display: grid; grid-template-columns: 1fr; gap: clamp(32px, 4vw, 48px) var(--coluna-gap); }
+.pergunta { display: flex; flex-direction: column; }
+.pergunta__capa {
+  position: relative; display: block;
+  aspect-ratio: 4 / 5; overflow: hidden;
+  background: var(--cor-bordo-profundo);
+}
+.pergunta__capa img { width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 0; transform: scale(1.15); transition: transform var(--dur-imagem) var(--ease-out); }
+.pergunta:hover .pergunta__capa img { transform: scale(1.19); }
+.pergunta__capa-rotulo {
+  position: absolute; left: 16px; bottom: 14px; right: 16px;
+  font-size: .7rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; line-height: 1.5;
+  color: var(--cor-creme); opacity: .8;
+}
+.pergunta__titulo { margin-top: 1.4rem; font-size: var(--h3); max-width: 24ch; }
+.pergunta .assinatura { margin-top: .8rem; }
+.pergunta__link { align-self: flex-start; margin-top: 1.2rem; }
+.perguntas__rodape { margin-top: clamp(2.5rem, 5vw, 4rem); }
+@media (min-width: 640px) { .perguntas { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 639.98px) { .perguntas { max-width: 420px; } }
+
+/* ---- Perguntas mais comuns ------------------------------------------------------ */
+.faq-secao h2 { max-width: 16ch; }
+.faq-secao .grid-12 { align-items: start; }
+
+/* ---- Fecho ------------------------------------------------------------------------ */
+.fecho .grid-12 { align-items: start; row-gap: var(--espaco-5); }
+.fecho__chamada h2 { max-width: 14ch; }
+.fecho__chamada .acoes { margin-top: 2.6rem; }
+.fecho__intro { margin-bottom: 2.2rem; max-width: 32ch; }
+.fecho .form { max-width: none; }
+
+/* ---- Lightbox: fallback enquanto o filme não existe ----------------------------- */
+.lightbox__media { position: relative; }
+.lightbox__vazio { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--cor-bordo-profundo); }
+.lightbox__vazio img { width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+.lightbox__aviso {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  padding: 24px;
+  text-align: center;
+  font-size: calc(var(--corpo) * 1.15);
+  color: var(--cor-creme);
+  max-width: none;
+}
+.lightbox--sem-filme video { display: none; }
+
+/* ---- Movimento reduzido ----------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero__rolar-linha::after { animation: none; transform: none; }
+  .hero__midia, .hero__quadro, .hero__placeholder img { will-change: auto; }
+  .hero__placeholder img:first-child { transform: none; }
+}
+
+/* ---- Footer: folga para o WhatsApp flutuante não cobrir a linha legal -------------- */
+.footer { padding-bottom: 96px; }
