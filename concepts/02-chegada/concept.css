@@ -109,6 +109,33 @@
 }
 @keyframes hero-rolar { 0% { transform: translateX(-100%); } 50% { transform: none; } 100% { transform: translateX(100%); } }
 
+@media (max-width: 639.98px) {
+  /* Celular: a foto sobe (o wordmark da parede fica no terço de cima, longe do título)
+     e o véu cobre até onde o título começa — o texto lê sobre o mármore escurecido,
+     não sobre os monitores. */
+  .hero--chegada { --hero-img-top: -28%; --hero-img-h: 128%; }
+  .hero__veu {
+    background: linear-gradient(
+      to top,
+      rgba(59, 0, 0, 1) 0%,
+      rgba(59, 0, 0, .96) 10%,
+      rgba(50, 8, 6, .84) 22%,
+      rgba(42, 26, 22, .66) 34%,
+      rgba(42, 26, 22, .44) 46%,
+      rgba(42, 26, 22, .18) 58%,
+      rgba(42, 26, 22, 0) 68%
+    );
+  }
+  .hero__midia::after {
+    background:
+      linear-gradient(to top, rgba(59, 0, 0, .62) 0%, rgba(59, 0, 0, .34) 24%, rgba(59, 0, 0, 0) 46%),
+      linear-gradient(to right, rgba(42, 26, 22, .18) 0%, rgba(42, 26, 22, 0) 14%, rgba(42, 26, 22, 0) 86%, rgba(42, 26, 22, .18) 100%);
+  }
+  .hero__conteudo { padding-bottom: 40px; }
+  .hero__conteudo h1 { font-size: clamp(2.2rem, 9vw, 2.6rem); }
+  .hero__sub { margin-top: 1.1rem; }
+  .hero__acoes { margin-top: 1.5rem; }
+}
 @media (min-width: 640px) {
   .hero--chegada { --hero-img-top: -8%; --hero-img-h: 116%; }
   .hero__sub { font-size: calc(var(--corpo) * 1.05); max-width: 40ch; }

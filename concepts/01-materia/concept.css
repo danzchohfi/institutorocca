@@ -44,11 +44,35 @@
 .hero__fallback { inset: auto; left: 10%; top: 26%; width: 80%; height: auto; transform: translateY(-50%); }
 /* Serviços, pequenos, logo abaixo das letras */
 /* Mobile: grade em três linhas — espaço para as letras (o canvas desenha ali), a lista, o texto. */
-.hero--materia { grid-template-rows: minmax(36svh, 1fr) auto auto; }
-.hero__frentes { position: relative; z-index: 2; grid-row: 2; display: flex; flex-wrap: wrap; justify-content: flex-start; gap: .4rem 0; margin: 0 0 1.4rem; padding: 0 var(--gutter); list-style: none; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--cor-areia); }
+.hero--materia { grid-template-rows: minmax(38svh, 1fr) auto auto; }
+.hero__frentes { position: relative; z-index: 2; grid-row: 2; display: flex; flex-wrap: wrap; justify-content: flex-start; gap: .5rem 0; margin: 0 0 1.6rem; padding: 0 var(--gutter); list-style: none; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--cor-areia); }
 .hero--materia .hero__in { grid-row: 3; }
 .hero__frentes li { display: flex; align-items: center; }
-.hero__frentes li + li::before { content: ""; width: 3px; height: 3px; border-radius: 50%; background: currentColor; margin: 0 .7rem; opacity: .7; }
+/* O ponto separador fica preso ao item anterior (::after): quando a lista quebra
+   de linha no celular, a linha nova nunca começa com um ponto solto. */
+.hero__frentes li:not(:last-child)::after { content: ""; width: 3px; height: 3px; border-radius: 50%; background: currentColor; margin: 0 .7rem; opacity: .7; }
+@media (max-width: 899.98px) {
+  /* Celular: o hero cresce com o conteúdo em vez de cortá-lo (height fixa + overflow
+     hidden escondia o botão em telas baixas); o wordmark fica no terço de cima. */
+  .hero--materia { height: auto; min-height: 100svh; }
+  .hero__in { padding-bottom: 56px; }
+  .hero__eyebrow { max-width: 30ch; }
+  .hero__sub { margin-top: 1.2rem; }
+  .hero__acoes { margin-top: 1.6rem; }
+  .hero__nota { margin-top: 1.4rem; }
+}
+@media (max-width: 639.98px) {
+  /* Celular: os serviços em coluna, sem os pontos (em linha, os pontos ficavam
+     soltos no fim das linhas). */
+  .hero__frentes { flex-direction: column; align-items: flex-start; gap: .45rem; }
+  .hero__frentes li { white-space: nowrap; }
+  .hero__frentes li:not(:last-child)::after { display: none; }
+}
+@media (max-width: 899.98px) and (max-height: 720px) {
+  .hero--materia { grid-template-rows: minmax(34svh, 1fr) auto auto; }
+  .hero__frentes { margin-bottom: 1.2rem; }
+  .hero__nota { display: none; }
+}
 .hero__frentes a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-rapida), color var(--dur-rapida); }
 .hero__frentes a:hover, .hero__frentes a:focus-visible { color: var(--cor-creme); border-bottom-color: currentColor; }
 .hero__canvas[hidden], .hero__fallback[hidden] { display: none; }

@@ -32,8 +32,10 @@ function abrir() {
   if (!letras && canvasHero) {
     letras = iniciarLetras({
       hero, canvas: canvasHero, fallback, fonte: document.getElementById('wordmark-fonte'),
-      fracao: { desktop: 0.36, mobile: 0.8 }, centro: { desktop: [0.22, 0.02], mobile: [0, 0.24] },
-      amostra: { desktop: [1100, 60000], mobile: [700, 25000] },
+      // mobile: wordmark no terço de cima (a grade do hero reserva 38svh para ele) e
+      // amostragem mais densa, para o "INSTITUTO" pequeno não virar poeira solta.
+      fracao: { desktop: 0.36, mobile: 0.8 }, centro: { desktop: [0.22, 0.02], mobile: [0, 0.28] },
+      amostra: { desktop: [1100, 60000], mobile: [900, 40000] },
     });
     if (!letras) mostrarFallback();
   }

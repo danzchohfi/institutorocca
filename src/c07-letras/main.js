@@ -13,7 +13,9 @@ function iniciar() {
   const letras = iniciarLetras({
     hero, canvas: hero.querySelector('.letras__canvas'), fallback: hero.querySelector('.letras__fallback'),
     fonte: document.getElementById('wordmark-fonte'),
-    fracao: { desktop: 0.74, mobile: 0.9 }, centro: { desktop: [0, 0.08], mobile: [0, 0.08] },
+    // mobile: o wordmark sobe para o terço de cima (centro.y = fração da altura visível
+    // acima do meio) e deixa a metade de baixo para o eyebrow, a frase e os serviços.
+    fracao: { desktop: 0.74, mobile: 0.86 }, centro: { desktop: [0, 0.08], mobile: [0, 0.22] },
     amostra: { desktop: [1900, 150000], mobile: [900, 45000] },
   });
   if (!letras) return;

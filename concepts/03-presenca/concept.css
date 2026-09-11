@@ -165,6 +165,18 @@ html:not(.js) .hero--presenca, html.movimento-reduzido .hero--presenca { positio
 @media (max-width: 639.98px) {
   .hero__rolar span:first-child { display: none; }
   .hero__rolar-linha { width: 36px; }
+  /* Celular: o bloco de texto cobre quase a tela inteira sobre os renders (e o
+     wordmark da parede passa atrás do parágrafo): véu mais denso e halo maior. */
+  .hero__veu {
+    background:
+      radial-gradient(ellipse 80% 52% at 50% 50%, rgba(59, 0, 0, .42), rgba(59, 0, 0, 0) 100%),
+      linear-gradient(to bottom, rgba(85, 0, 0, .46) 0%, rgba(85, 0, 0, .52) 45%, rgba(85, 0, 0, .6) 100%);
+  }
+  .hero__conteudo { padding-bottom: 112px; }
+  .hero__conteudo .eyebrow { max-width: 30ch; }
+  .hero__sub { margin-top: 1.3rem; }
+  .hero__acoes { margin-top: 1.7rem; gap: 1.1rem 2rem; }
+  .hero__nota { margin-top: 1.4rem; }
 }
 @media (min-width: 640px) {
   .hero__sub { max-width: 44ch; font-size: calc(var(--corpo) * 1.05); }
@@ -199,7 +211,9 @@ html:not(.js) .problema, html.movimento-reduzido .problema { margin-top: 0; padd
 /* ---- Frentes: cabeça fixa à esquerda, cinco linhas à direita ------------------ */
 .frentes .grid-12 { align-items: start; row-gap: var(--espaco-5); }
 .frentes__cabeca h2 { max-width: 14ch; }
-.frentes__cabeca .botao { margin-top: 2.4rem; }
+/* "Ver todos os serviços" vem depois da lista (no celular a cabeça fica em cima
+   e o link, antes da lista, parecia um item solto). */
+.frentes__rodape { margin-top: calc(-1 * var(--espaco-5) + 2.2rem); }
 .frentes__lista { border-top: 1px solid var(--linha); }
 .frente {
   display: grid; grid-template-columns: 1fr; gap: .6rem;
@@ -358,8 +372,15 @@ html:not(.js) .problema, html.movimento-reduzido .problema { margin-top: 0; padd
 }
 .conversa__play svg { width: 22px; height: 22px; fill: currentColor; margin-left: 4px; }
 .conversa__play:hover, .conversa__play:focus-visible { background: var(--cor-creme); transform: scale(1.06); }
+/* Base escurecida sob o rótulo: no celular (16:9) a legenda desenhada no
+   placeholder ainda aparecia atrás do texto do rótulo. */
+.conversa__video::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42%;
+  background: linear-gradient(to top, rgba(42, 26, 22, .82), rgba(42, 26, 22, 0));
+  pointer-events: none;
+}
 .conversa__rotulo {
-  position: absolute; left: 20px; bottom: 18px; right: 20px;
+  position: absolute; left: 20px; bottom: 18px; right: 20px; z-index: 1;
   font-size: .7rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; line-height: 1.5;
   color: var(--cor-creme); opacity: .8;
   pointer-events: none;

@@ -5,17 +5,37 @@
 .letras__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .letras__fallback { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); width: min(72vw, 1100px); height: auto; }
 .hero--letras::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 50% 42%, rgba(110, 18, 18, .55), transparent 70%); pointer-events: none; }
-.hero__conteudo { position: relative; z-index: 1; padding-bottom: clamp(56px, 10vh, 120px); text-align: center; display: grid; justify-items: center; gap: .9rem; }
+.hero__conteudo { position: relative; z-index: 1; padding-bottom: clamp(56px, 10vh, 120px); text-align: center; display: grid; justify-items: center; gap: 1.1rem; }
 .hero__frase { font-weight: 300; font-size: clamp(1.4rem, 2.6vw, 2.2rem); line-height: 1.2; margin: 0; }
 .hero__frase em { font-style: italic; }
 .hero__acoes { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: center; margin-top: .6rem; }
 .hero__nota { margin: 0; color: var(--fg-2); font-size: .95rem; }
 .hero__frentes { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 0; margin: .2rem 0 0; padding: 0; list-style: none; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--cor-areia); }
 .hero__frentes li { display: flex; align-items: center; }
-.hero__frentes li + li::before { content: ""; width: 3px; height: 3px; border-radius: 50%; background: currentColor; margin: 0 1.1rem; opacity: .7; }
+/* O ponto separador fica preso ao item anterior (::after): quando a lista quebra
+   de linha no celular, a linha nova nunca começa com um ponto solto. */
+.hero__frentes li:not(:last-child)::after { content: ""; width: 3px; height: 3px; border-radius: 50%; background: currentColor; margin: 0 1.1rem; opacity: .7; }
 .hero__frentes a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-rapida), color var(--dur-rapida); }
 .hero__frentes a:hover, .hero__frentes a:focus-visible { color: var(--cor-creme); border-bottom-color: currentColor; }
-@media (max-width: 639.98px) { .hero__frentes { font-size: 10px; letter-spacing: .18em; max-width: 34ch; } .hero__frentes li + li::before { margin: 0 .7rem; } }
+@media (max-width: 899.98px) {
+  /* Celular e tablet retrato: o wordmark sobe (letras.js, centro.mobile) e o bloco de
+     texto fica na metade de baixo, sem passar por cima das letras. */
+  .hero__conteudo { padding-bottom: clamp(40px, 7vh, 72px); gap: 1rem; }
+  .hero__frase { font-size: clamp(1.4rem, 2.8vw, 2rem); }
+  .hero__frentes { font-size: 10px; letter-spacing: .18em; gap: .55rem 0; }
+  .hero__frentes li:not(:last-child)::after { margin: 0 .7rem; }
+  .hero--letras::before { background: radial-gradient(70% 40% at 50% 30%, rgba(110, 18, 18, .55), transparent 70%); }
+  .letras__fallback { top: 30%; width: min(84vw, 520px); }
+}
+@media (max-width: 639.98px) {
+  /* Celular: os serviços em coluna, sem os pontos (em linha, cada item quebrava e os
+     pontos ficavam soltos no fim das linhas). */
+  .hero__conteudo .eyebrow { max-width: 30ch; }
+  .hero__frase { font-size: clamp(1.4rem, 5.6vw, 2rem); }
+  .hero__frentes { flex-direction: column; align-items: center; gap: .45rem; }
+  .hero__frentes li { white-space: nowrap; }
+  .hero__frentes li:not(:last-child)::after { display: none; }
+}
 
 /* ---- Seções (mesmas regras do conceito 2) ---------------------------------- */
 :root {
