@@ -1,0 +1,45 @@
+<!-- pagina
+titulo: Dermatologia em Moema — Instituto Rocca
+descricao: Dermatologia no Instituto Rocca, em Moema: pele, estética facial e tricologia. Pele boa começa antes do procedimento, com a mesma médica do primeiro dia em diante.
+og_titulo: Dermatologia — Instituto Rocca
+og_imagem: assets/img/consultorio-dermatologia-01.jpg
+css: dermatologia
+corpo: sup-bordo pagina pagina--dermatologia
+whats_msg: Olá. Quero agendar uma avaliação em Dermatologia no Instituto Rocca.
+fecho_h2: Avaliação com a médica / que vai acompanhar você.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+{{head}}
+<body class="{{corpo}}">
+{{skip}}
+{{nav}}
+{{menu}}
+<main id="conteudo">
+  <!-- ESQUELETO DA FASE BASE: só o hero, para os links do site apontarem para uma página que existe.
+       O construtor desta página substitui este arquivo inteiro (scratchpad/site/internas.md §3). -->
+  <section class="hero hero--interno sup-bordo" id="inicio" data-hero>
+    <div class="container hero__in">
+      <div class="hero__texto">
+        <p class="eyebrow" data-reveal>Especialidade · Dermatologia</p>
+        <h1 class="titulo-2l" data-split-linhas>Pele boa começa <span class="linha-2">antes do procedimento.</span></h1>
+        <p class="hero__sub texto-grande" data-reveal>Pele, estética facial e cabelo, pelo critério do que a médica não indica. A consulta começa pela pele que você tem, não pelo procedimento que você pediu.</p>
+        <div class="acoes" data-reveal>
+          <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Agendar avaliação</a>
+          <a class="botao botao--secundario" href="{{site}}" aria-label="Voltar para a página inicial">Página inicial <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="hero__foto paralaxe" data-parallax-area data-reveal="escala">
+        <div class="paralaxe__in" data-parallax="-6">
+          <img src="{{raiz}}assets/img/consultorio-dermatologia-01.jpg" alt="Consultório de dermatologia do Instituto Rocca, com maca e luz quente." width="1600" height="1200" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{{fecho}}
+{{footer}}
+{{whats}}
+{{lightbox}}
+</body>
+</html>

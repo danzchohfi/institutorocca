@@ -1,0 +1,40 @@
+<!-- pagina
+titulo: Contato — Instituto Rocca, Moema
+descricao: Fale com o Instituto Rocca, em Moema, pelo WhatsApp. Endereço, horários e como chegar. Quem te atender no primeiro dia é quem vai te acompanhar.
+og_titulo: Contato — Instituto Rocca
+og_imagem: assets/img/entrada-clinica.jpg
+css: contato
+corpo: sup-bordo pagina pagina--contato
+whats_msg: Olá. Quero agendar uma avaliação no Instituto Rocca.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+{{head}}
+<body class="{{corpo}}">
+{{skip}}
+{{nav}}
+{{menu}}
+<main id="conteudo">
+  <!-- ESQUELETO DA FASE BASE: só o hero, para os links do site apontarem para uma página que existe.
+       O construtor desta página substitui este arquivo inteiro (scratchpad/site/internas.md §9). -->
+  <section class="hero hero--interno sup-bordo hero--sem-foto contato-topo" id="inicio" data-hero>
+    <div class="container hero__in">
+      <div class="hero__texto">
+        <p class="eyebrow" data-reveal>Contato</p>
+        <h1 class="titulo-2l" data-split-linhas>Avaliação com o médico <span class="linha-2">que vai acompanhar você.</span></h1>
+        <p class="hero__sub texto-grande" data-reveal>A conversa começa no WhatsApp. Você conta o que parou de funcionar; quem responde marca a avaliação e explica o que vai acontecer — para você chegar sabendo.</p>
+        <a class="fecho__numero" href="{{wa}}" target="_blank" rel="noopener">{{whats_numero_visivel}}</a>
+        <p class="fecho__pendente texto-2">[PENDENTE]</p>
+        <div class="acoes" data-reveal>
+          <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="botao botao--secundario" href="{{site}}" aria-label="Voltar para a página inicial">Página inicial <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{{footer}}
+{{whats}}
+{{lightbox}}
+</body>
+</html>
