@@ -6,8 +6,8 @@
 
 ## Previews hospedadas
 
-**Site (GitHub Pages, o próprio repositório):** https://danzchohfi.github.io/institutorocca/ — o hub abre com as quatro
-versões campeãs; o scroll é o da página real, sem iframe. Precisa ser ativado uma vez pelo dono do repositório
+**Site (GitHub Pages, o próprio repositório):** https://danzchohfi.github.io/institutorocca/ — o hub abre a versão final;
+as versões abaixo continuam publicadas para consulta. O scroll é o da página real, sem iframe. Precisa ser ativado uma vez pelo dono do repositório
 (Settings → Pages → Build and deployment → Source: **GitHub Actions**); a partir daí `.github/workflows/pages.yml`
 publica a cada push nesta branch (ou na `main`).
 
@@ -24,6 +24,18 @@ Arquivo (rodada 1, sem os ajustes de scroll): 4 Conversa [abrir](https://claude.
 6 Slides [abrir](https://claude.ai/code/artifact/47d687a7-64e2-4817-97c3-d71b42522333).
 
 Páginas privadas por padrão; compartilhe pelo menu da página. Geradas por `node scripts/build-artifacts.mjs` (cada conceito em um HTML único com fontes e imagens embutidas).
+
+## Rodada 7 — o site final
+
+O cliente escolheu uma **mistura**: a abertura da versão Letras (o wordmark em partículas) seguida, logo abaixo,
+das fotos da clínica com a frase, como na versão Presença ("que fique como a versão 1; quando abaixe, continue como
+está, mas que rapidamente dê para ver a clínica também; a imagem não precisa estar em vermelho"). A identidade
+pedida em dois níveis: primeiro **clínica de Nutrologia, Endocrinologia e Dermatologia**; depois o que tratamos
+(emagrecimento, lipedema, tricologia, estética facial, menopausa…), com o emagrecimento em destaque discreto.
+
+O resultado está em `site/` (home e internas), documentado em **`docs/site.md`**, com preview em
+https://danzchohfi.github.io/institutorocca/site/ enquanto está em refinamento. As versões abaixo seguem como
+arquivo.
 
 ## 0. O que os seis têm em comum
 
