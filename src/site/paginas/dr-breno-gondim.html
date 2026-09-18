@@ -1,6 +1,6 @@
 <!-- pagina
 titulo: Dr. Breno Gondim — Instituto Rocca, Moema
-descricao: Dr. Breno Gondim, do Instituto Rocca, em Moema: metabolismo, sono, avaliação hormonal e emagrecimento. Investiga antes de prescrever e acompanha você.
+descricao: Dr. Breno Gondim, do Instituto Rocca, em Moema: metabolismo, avaliação hormonal, emagrecimento e lipedema. Antes de qualquer conduta, como você dorme.
 og_titulo: Dr. Breno Gondim — Instituto Rocca
 og_imagem: assets/img/producao/dr-breno-gondim.jpg
 css: dr-breno-gondim
@@ -18,22 +18,228 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Br
 {{nav}}
 {{menu}}
 <main id="conteudo">
-  <!-- ESQUELETO DA FASE BASE: só o hero, para os links do site apontarem para uma página que existe.
-       O construtor desta página substitui este arquivo inteiro (scratchpad/site/internas.md §5). -->
-  <section class="hero hero--interno sup-bordo hero--retrato" id="inicio" data-hero>
+  <!-- PÁGINA DO DR. BRENO GONDIM (scratchpad/site/internas.md §5; estrutura comum aos médicos em §4).
+       Hero (bordô) · 01 Quem eu sou (osso) · 02 Como eu conduzo (bordô) · 03 O que eu trato (osso)
+       · 04 Perguntas que eu respondo (bordô) · 05 A casa, por dentro (osso) · fecho · rodapé.
+       Sem formulário: toda chamada vai para o WhatsApp. Dados que o cliente não enviou ficam [PENDENTE]. -->
+
+  <!-- ===== HERO: retrato 2:3 à direita, texto à esquerda (no celular o retrato vai acima) ===== -->
+  <section class="hero hero--interno hero--retrato sup-bordo" id="inicio" data-hero>
     <div class="container hero__in">
       <div class="hero__texto">
         <p class="eyebrow" data-reveal>O seu médico</p>
-        <h1 class="titulo-2l" data-split-linhas>Dr. Breno Gondim</h1>
-        <p class="hero__sub texto-grande" data-reveal>O mesmo território, começando pelo sono: o que parou de funcionar se investiga antes de qualquer conduta.</p>
+        <h1 data-split-linhas>Dr. Breno Gondim</h1>
+        <!-- Especialidade de registro (RQE) e CRM ainda não confirmados pelo cliente (internas.md §11, itens 2 e 3). -->
+        <p class="hero__rotulo" data-reveal>
+          <span class="hero__rotulo-linha">Nutrologia · Endocrinologia <span class="hero__pendente">[PENDENTE — confirmar a especialidade de registro]</span></span>
+          <span class="hero__rotulo-linha">CRM-SP 000000 · RQE 00000 <span class="hero__pendente">[PENDENTE]</span></span>
+        </p>
+        <blockquote class="hero__citacao texto-grande" data-reveal>
+          <p>Antes de qualquer conduta, eu quero saber como você dorme e como você acorda.</p>
+          <span class="assinatura">— Dr. Breno Gondim</span>
+        </blockquote>
         <div class="acoes" data-reveal>
           <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Agendar avaliação</a>
-          <a class="botao botao--secundario" href="{{site}}" aria-label="Voltar para a página inicial">Página inicial <span class="seta" aria-hidden="true">→</span></a>
+          <!-- Com UID no Stream, o stream.js tira o hidden deste link: ele abre o lightbox com o vídeo 9:16
+               do bloco 01 (herda UID, título e proporção). Sem UID, ele fica escondido e o link seguinte,
+               que leva ao bloco 01, faz as vezes dele (o site nunca mostra "filme em produção"). -->
+          <a class="botao botao--secundario hero__assistir" href="#quem-eu-sou" data-abre-lightbox="#filme" data-stream-de="#video-quem-eu-sou" data-stream-precisa="#video-quem-eu-sou" hidden aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim">Assistir: Quem eu sou <span class="seta" aria-hidden="true">→</span></a>
+          <a class="botao botao--secundario hero__quem" href="#quem-eu-sou">Quem eu sou <span class="seta" aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="hero__foto paralaxe" data-parallax-area data-reveal="escala">
         <div class="paralaxe__in" data-parallax="-6">
           <img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 01 · QUEM EU SOU (osso): vídeo vertical à esquerda, texto à direita ===== -->
+  <section class="secao sup-osso quem" id="quem-eu-sou" data-tema="claro">
+    <div class="container grid-12 quem__grid">
+      <div class="col-4 quem__video" data-reveal="escala">
+        <!-- Vídeo "Quem eu sou" (9:16). Sem UID mostra o poster (o retrato) com o rótulo; com UID toca no lugar. -->
+        <div class="stream" id="video-quem-eu-sou" data-stream="{{stream_breno}}" data-stream-modo="player" data-stream-titulo="Quem eu sou — Dr. Breno Gondim" data-stream-proporcao="9/16">
+          <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async">
+          <button class="stream__play" type="button" hidden aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          <span class="stream__rotulo">Quem eu sou — gravado no estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></span>
+        </div>
+      </div>
+      <div class="col-7 col-inicio-6 quem__texto">
+        <p class="eyebrow" data-reveal><span class="numeral">01</span> — Quem eu sou</p>
+        <h2 data-split-linhas>Sem currículo lido em voz alta.</h2>
+        <p class="texto-grande" data-reveal>O que constrói confiança é o critério, não o diploma. Em um minuto e meio, gravado no estúdio Jacarandá, eu conto:</p>
+        <ol class="quem__lista" data-reveal-grupo>
+          <li>O que eu trato — dito como o paciente descreve, não como a especialidade se chama.</li>
+          <li>Por que eu escolhi isso.</li>
+          <li>O que eu faço diferente: investigo antes de propor.</li>
+          <li>E onde eu atendo agora: no Instituto Rocca, em Moema.</li>
+        </ol>
+        <!-- Uma linha de formação e titulação, como o médico quiser que apareça (internas.md §11, item 4). -->
+        <p class="quem__formacao texto-2" data-reveal>[PENDENTE — formação e titulação, em uma linha, como o Dr. Breno quiser que apareça]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 · COMO EU CONDUZO (bordô) ===== -->
+  <section class="secao sup-bordo conduzo" id="como-eu-conduzo">
+    <div class="container">
+      <div class="secao__cabeca grid-12 conduzo__cabeca">
+        <div class="col-6">
+          <p class="eyebrow" data-reveal><span class="numeral">02</span> — Como eu conduzo</p>
+          <h2 class="titulo-2l" data-split-linhas>Ele é meu médico. <span class="linha-2">É isso que a gente quer dizer.</span></h2>
+        </div>
+        <div class="col-5 col-inicio-8 conduzo__abertura" data-reveal-grupo>
+          <!-- Citação adaptada do roteiro do anúncio 02 da Direção — a validar com o Dr. Breno antes de ir ao ar (internas.md §10). -->
+          <blockquote class="conduzo__citacao texto-grande">
+            <p>Semana passada uma paciente me mandou mensagem pedindo um exame que não tem nada a ver com o que eu trato. Ela não perguntou porque era a minha área. Ela perguntou porque, quando apareceu a dúvida, o médico dela era eu.</p>
+          </blockquote>
+          <p>Não é quem te atende uma vez. É quem conhece o seu exame, o seu histórico e a sua rotina — e continua ali quando o tratamento muda.</p>
+          <span class="assinatura">— Dr. Breno Gondim</span>
+        </div>
+      </div>
+      <ol class="tres" data-reveal-grupo>
+        <li>
+          <h3 class="tres__titulo">Começo pelo sono.</h3>
+          <p class="tres__texto">Como você dorme e como você acorda dizem muito antes de qualquer exame.</p>
+        </li>
+        <li>
+          <h3 class="tres__titulo">Leio o exame com você, na tela.</h3>
+          <p class="tres__texto">Antes de qualquer conduta. E quem lê é quem vai te acompanhar o tratamento inteiro.</p>
+        </li>
+        <li>
+          <h3 class="tres__titulo">Quem prescreve é quem acompanha.</h3>
+          <p class="tres__texto">Você sai com o meu WhatsApp. O tratamento tem alta; o acompanhamento continua.</p>
+        </li>
+      </ol>
+      <figure class="figura-apoio conduzo__figura" data-reveal="escala">
+        <div class="paralaxe conduzo__moldura" data-parallax-area>
+          <div class="paralaxe__in" data-parallax="-5">
+            <img src="{{raiz}}assets/img/consultorio-03.jpg" alt="Consultório: parede de madeira escura, mesa de mármore com notebook, luminária articulada e poltrona verde-oliva junto à janela." width="1600" height="1256" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <figcaption class="legenda">A sala onde o exame é lido com você, na tela.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 03 · O QUE EU TRATO (osso) ===== -->
+  <section class="secao sup-osso trato" id="o-que-eu-trato" data-tema="claro">
+    <div class="container grid-12 trato__grid">
+      <div class="col-5 trato__cabeca">
+        <p class="eyebrow" data-reveal><span class="numeral">03</span> — O que eu trato</p>
+        <h2 class="titulo-2l" data-split-linhas>O que parou de funcionar, <span class="linha-2">dito como você descreve.</span></h2>
+      </div>
+      <!-- [PENDENTE] confirmar a lista com o Dr. Breno, dentro do mapa de especialidades (internas.md §0.1, proposta a confirmar). -->
+      <ul class="lista-links col-6 col-inicio-7 trato__lista" data-reveal-grupo>
+        <li>
+          <a href="{{site}}nutrologia/#emagrecimento">
+            <span class="lista-links__nome">Emagrecimento e metabolismo</span>
+            <span class="lista-links__linha">O medo de engordar tudo de novo. O metabolismo entra no tratamento.</span>
+            <span class="seta" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{site}}nutrologia/#lipedema">
+            <span class="lista-links__nome">Lipedema</span>
+            <span class="lista-links__linha">Não é 'só gordura'.</span>
+            <span class="seta" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{site}}endocrinologia/#avaliacao-hormonal">
+            <span class="lista-links__nome">Avaliação hormonal</span>
+            <span class="lista-links__linha">Será que é hormonal? Isso se mede, e se investiga.</span>
+            <span class="seta" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{site}}endocrinologia/#menopausa">
+            <span class="lista-links__nome">Menopausa</span>
+            <span class="lista-links__linha">Sem eufemismo.</span>
+            <span class="seta" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 04 · PERGUNTAS QUE EU RESPONDO (bordô) ===== -->
+  <section class="secao sup-bordo respondo" id="perguntas">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal><span class="numeral">04</span> — Conteúdo</p>
+          <h2 data-split-linhas>Perguntas que eu respondo toda semana.</h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p>Uma pergunta, uma resposta. Gravadas no estúdio Jacarandá e transcritas aqui.</p>
+        </div>
+      </div>
+      <!-- As páginas de resposta ainda não existem: os links apontam para "#" com [PENDENTE] visível (internas.md §0.5 e §11, item 11). -->
+      <ol class="perguntas-lista" data-reveal-grupo>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">Por que o tratamento de emagrecimento funciona para uma pessoa e não para outra?</h3>
+          <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Por que o tratamento de emagrecimento funciona para uma pessoa e não para outra?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+          <span class="pergunta-item__pendente">[PENDENTE]</span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">Remédio para emagrecer resolve sozinho?</h3>
+          <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Remédio para emagrecer resolve sozinho?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+          <span class="pergunta-item__pendente">[PENDENTE]</span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">Por que a barriga não sai mesmo com o peso caindo?</h3>
+          <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Por que a barriga não sai mesmo com o peso caindo?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+          <span class="pergunta-item__pendente">[PENDENTE]</span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">Dormir bem e acordar cansado: o que pode estar por trás?</h3>
+          <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Dormir bem e acordar cansado: o que pode estar por trás?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+          <span class="pergunta-item__pendente">[PENDENTE]</span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">O que é resistência à insulina e por que ela atrapalha o emagrecimento?</h3>
+          <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: O que é resistência à insulina e por que ela atrapalha o emagrecimento?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+          <span class="pergunta-item__pendente">[PENDENTE]</span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">Cansaço e queda de libido podem ser sinais de testosterona baixa?</h3>
+          <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Cansaço e queda de libido podem ser sinais de testosterona baixa?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+          <span class="pergunta-item__pendente">[PENDENTE]</span>
+        </li>
+      </ol>
+      <div class="secao__rodape" data-reveal>
+        <a class="botao botao--secundario" href="{{site}}conteudo/">Ver todas as respostas <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 05 · A CASA, POR DENTRO (osso) ===== -->
+  <section class="secao sup-osso casa" id="a-casa" data-tema="claro">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal><span class="numeral">05</span> — A casa, por dentro</p>
+          <h2 data-split-linhas>A casa, pelo meu ponto de vista.</h2>
+        </div>
+      </div>
+      <!-- Vídeo 16:9 "A casa, por dentro — com o Dr. Breno Gondim". Sem UID fica o poster com o rótulo. -->
+      <div class="stream casa__video" id="video-casa" data-stream="{{stream_casa_breno}}" data-stream-modo="player" data-stream-titulo="A casa, por dentro — com o Dr. Breno Gondim" data-reveal="escala">
+        <img class="stream__poster" src="{{raiz}}assets/img/consultorio-03.jpg" alt="" width="1600" height="1256" loading="lazy" decoding="async">
+        <button class="stream__play" type="button" hidden aria-label="Reproduzir: A casa, por dentro — com o Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+        <span class="stream__rotulo">A casa, por dentro — com o Dr. Breno Gondim <span class="texto-2">[PENDENTE]</span></span>
+      </div>
+      <div class="ligacoes" data-reveal>
+        <a class="botao botao--secundario" href="{{site}}a-casa/">Conhecer a casa <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+      <!-- Linha de links do fecho (internas.md §5): os outros dois médicos da casa. Fica aqui porque o partial do fecho é fixo. -->
+      <div class="outros" data-reveal>
+        <p class="eyebrow">Os outros médicos da casa</p>
+        <div class="ligacoes">
+          <a class="botao botao--secundario" href="{{site}}dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Dr. Túlio Bovo <span class="seta" aria-hidden="true">→</span></a>
+          <a class="botao botao--secundario" href="{{site}}dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Dra. Ana Paula Bovo <span class="seta" aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>

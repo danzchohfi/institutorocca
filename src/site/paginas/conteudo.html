@@ -1,12 +1,13 @@
 <!-- pagina
-titulo: Perguntas que a gente responde — Instituto Rocca
-descricao: As perguntas que chegam toda semana ao Instituto Rocca, em Moema, respondidas pelos três médicos: uma pergunta, uma resposta, sem jargão.
-og_titulo: Conteúdo — Instituto Rocca
+titulo: Conteúdo — Perguntas que a gente responde · Instituto Rocca
+descricao: As perguntas que os médicos do Instituto Rocca respondem toda semana, em vídeo e transcritas: emagrecimento, hormônio, lipedema e pele. Com nome e rosto.
+og_titulo: Perguntas que a gente responde toda semana — Instituto Rocca
 og_imagem: assets/img/producao/medicos-trio-horizontal.jpg
 css: conteudo
 corpo: sup-bordo pagina pagina--conteudo
 whats_msg: Olá. Quero agendar uma avaliação no Instituto Rocca.
 fecho_h2: A sua pergunta / pode ser a próxima.
+fecho_sub: Dúvida sobre o seu caso é conversa de consulta — e a consulta começa no WhatsApp.
 -->
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -16,24 +17,766 @@ fecho_h2: A sua pergunta / pode ser a próxima.
 {{nav}}
 {{menu}}
 <main id="conteudo">
-  <!-- ESQUELETO DA FASE BASE: só o hero, para os links do site apontarem para uma página que existe.
-       O construtor desta página substitui este arquivo inteiro (scratchpad/site/internas.md §8). -->
-  <section class="hero hero--interno sup-bordo" id="inicio" data-hero>
-    <div class="container hero__in">
-      <div class="hero__texto">
-        <p class="eyebrow" data-reveal>Conteúdo</p>
-        <h1 class="titulo-2l" data-split-linhas>Perguntas que a gente <span class="linha-2">responde toda semana.</span></h1>
-        <p class="hero__sub texto-grande" data-reveal>Uma pergunta, uma resposta. Gravadas no estúdio Jacarandá e transcritas aqui, sem jargão.</p>
-        <div class="acoes" data-reveal>
-          <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Agendar avaliação</a>
-          <a class="botao botao--secundario" href="{{site}}" aria-label="Voltar para a página inicial">Página inicial <span class="seta" aria-hidden="true">→</span></a>
+  <!-- /conteudo/ — o banco de respostas (scratchpad/site/internas.md §8).
+       Estrutura: hero (texto + foto dos três) · 01 Como funciona (osso) · 02 As séries (cabeçalho bordô
+       + índice, depois oito blocos alternando osso/bordô) · 03 Por médico (osso) · fecho (partial).
+       Os vídeos de resposta ainda não têm UID nem página: todo "Ver resposta" e "Ver a série" aponta
+       para # com [PENDENTE] ao lado. As capas pequenas são os retratos reais, ampliados no rosto pelo CSS. -->
+
+  <!-- HERO: texto em cima; a foto dos três, inteira, embaixo (horizontal ≥ 640 px, vertical antes) -->
+  <section class="hero hero--interno hero--conteudo sup-bordo" id="inicio" data-hero>
+    <div class="container">
+      <div class="hero__texto grid-12">
+        <div class="col-8 hero__bloco">
+          <p class="eyebrow" data-reveal>Conteúdo</p>
+          <h1 class="titulo-2l" data-split-linhas>Perguntas que a gente <span class="linha-2">responde toda semana.</span></h1>
+          <p class="hero__sub texto-grande" data-reveal>Cada resposta é um vídeo de um dos três médicos, em primeira pessoa, gravado no estúdio Jacarandá — e publicado aqui com a transcrição. Sem nome de medicamento, sem promessa de prazo ou de número.</p>
+        </div>
+        <div class="col-4 col-inicio-9 hero__lado" data-reveal>
+          <p class="hero__nota">Dúvida sobre o seu caso é conversa de consulta.</p>
+          <a class="botao botao--secundario" href="{{wa}}" target="_blank" rel="noopener">Falar no WhatsApp <span class="seta" aria-hidden="true">→</span></a>
         </div>
       </div>
-      <div class="hero__foto paralaxe" data-parallax-area data-reveal="escala">
-        <div class="paralaxe__in" data-parallax="-6">
-          <img src="{{raiz}}assets/img/producao/medicos-trio-horizontal.jpg" alt="Dr. Túlio Bovo, Dra. Ana Paula Bovo e Dr. Breno Gondim no estúdio Jacarandá, diante da parede de madeira ripada com luz vermelha." width="1280" height="853" decoding="async">
+      <figure class="trio paralaxe" data-parallax-area data-reveal="escala">
+        <div class="paralaxe__in" data-parallax="-5">
+          <picture>
+            <source media="(max-width: 639.98px)" srcset="{{raiz}}assets/img/producao/medicos-trio-vertical.jpg">
+            <img src="{{raiz}}assets/img/producao/medicos-trio-horizontal.jpg" width="1280" height="853" decoding="async" alt="Dr. Túlio Bovo em pé à esquerda, Dra. Ana Paula Bovo sentada na poltrona creme e Dr. Breno Gondim em pé à direita, no estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha">
+          </picture>
+        </div>
+        <figcaption class="trio__legenda eyebrow">Estúdio Jacarandá</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 01 — COMO FUNCIONA (osso): três itens curtos -->
+  <section class="secao sup-osso como-funciona" id="como-funciona" data-tema="claro">
+    <div class="container">
+      <h2 class="eyebrow" data-reveal>01 — Como funciona</h2>
+      <ol class="tres" data-reveal-grupo>
+        <li>
+          <h3 class="tres__titulo">Uma pergunta, uma peça.</h3>
+          <p class="tres__texto">Cada vídeo responde uma pergunta só, em 40 a 90 segundos. Cabe uma resposta, não uma aula.</p>
+        </li>
+        <li>
+          <h3 class="tres__titulo">Sempre uma pessoa, com nome e rosto.</h3>
+          <p class="tres__texto">Quem responde é um dos três médicos, em primeira pessoa. Nunca a casa.</p>
+        </li>
+        <li>
+          <h3 class="tres__titulo">Transcrito no site.</h3>
+          <p class="tres__texto">Cada vídeo publicado vira uma página com a transcrição limpa, para ler quando não der para ouvir.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 02 — AS SÉRIES (bordô): cabeçalho + índice das oito; os blocos vêm em seguida, alternando osso/bordô -->
+  <section class="secao sup-bordo series" id="series">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal>02 — As séries</p>
+          <h2 class="titulo-2l" data-split-linhas>Oito assuntos. <span class="linha-2">Um banco de respostas, não uma fila.</span></h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p class="texto-grande">Os títulos são as perguntas como o paciente faz — item a item, validados por quem responde.</p>
         </div>
       </div>
+      <nav aria-label="As oito séries">
+        <ol class="series-indice" data-reveal-grupo>
+        <li><a href="#serie-01"><span class="numeral">01</span><span class="series-indice__titulo">Não é mais uma tentativa</span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="#serie-02"><span class="numeral">02</span><span class="series-indice__titulo">A causa tem nome e tem exame</span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="#serie-03"><span class="numeral">03</span><span class="series-indice__titulo">Não foi falta de disciplina</span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="#serie-04"><span class="numeral">04</span><span class="series-indice__titulo">A régua da casa é outra</span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="#serie-05"><span class="numeral">05</span><span class="series-indice__titulo">O homem que não se trata</span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="#serie-06"><span class="numeral">06</span><span class="series-indice__titulo">O não é o argumento</span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="#serie-07"><span class="numeral">07</span><span class="series-indice__titulo">Pele é rotina, não procedimento</span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="#serie-08"><span class="numeral">08</span><span class="series-indice__titulo">A casa e quem conduz</span><span class="seta" aria-hidden="true">→</span></a></li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section class="serie sup-osso" id="serie-01" aria-labelledby="serie-01-titulo" data-tema="claro">
+    <div class="container serie__in">
+      <div class="serie__cabeca" data-reveal-grupo>
+        <p class="numeral serie__num">01</p>
+        <h3 class="serie__titulo" id="serie-01-titulo">Não é mais uma tentativa</h3>
+        <p class="serie__constroi">Que esta casa é diferente de tudo que a pessoa já tentou — porque fala do que acontece depois.</p>
+        <p class="serie__para"><span class="eyebrow">Para quem</span>Quem já tentou e voltou à estaca zero.</p>
+        <p class="serie__link">
+          <a class="botao botao--secundario" href="#" aria-label="Ver a série: Não é mais uma tentativa">Ver a série <span class="seta" aria-hidden="true">→</span></a>
+          <span class="resposta__pendente texto-2">[PENDENTE]</span>
+        </p>
+      </div>
+      <ol class="respostas" data-reveal-grupo aria-label="Perguntas da série 01">
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Tratamento de emagrecimento é para o resto da vida?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Tratamento de emagrecimento é para o resto da vida?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Ao parar o tratamento de emagrecimento, o paciente engorda de novo?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Ao parar o tratamento de emagrecimento, o paciente engorda de novo?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que as dietas funcionam por um tempo e depois o peso volta?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que as dietas funcionam por um tempo e depois o peso volta?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Efeito sanfona: por que o peso perdido sempre volta?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Efeito sanfona: por que o peso perdido sempre volta?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Platô no emagrecimento: por que o peso trava?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Platô no emagrecimento: por que o peso trava?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Tratamento de emagrecimento tem efeito colateral?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Tratamento de emagrecimento tem efeito colateral?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="serie sup-bordo" id="serie-02" aria-labelledby="serie-02-titulo">
+    <div class="container serie__in">
+      <div class="serie__cabeca" data-reveal-grupo>
+        <p class="numeral serie__num">02</p>
+        <h3 class="serie__titulo" id="serie-02-titulo">A causa tem nome e tem exame</h3>
+        <p class="serie__constroi">Que aqui alguém investiga antes de propor — e que o que a pessoa sente tem nome e tem exame.</p>
+        <p class="serie__para"><span class="eyebrow">Para quem</span>Quem ouviu “está tudo normal” e não está bem.</p>
+        <p class="serie__link">
+          <a class="botao botao--secundario" href="#" aria-label="Ver a série: A causa tem nome e tem exame">Ver a série <span class="seta" aria-hidden="true">→</span></a>
+          <span class="resposta__pendente texto-2">[PENDENTE]</span>
+        </p>
+      </div>
+      <ol class="respostas" data-reveal-grupo aria-label="Perguntas da série 02">
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Exame de sangue normal, mas o corpo não está bem: o que pode estar acontecendo?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Exame de sangue normal, mas o corpo não está bem: o que pode estar acontecendo?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Glicemia normal já descarta pré-diabetes?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Glicemia normal já descarta pré-diabetes?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Tireoide pode ser a causa do ganho de peso?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Tireoide pode ser a causa do ganho de peso?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">O que é resistência à insulina e por que ela atrapalha o emagrecimento?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: O que é resistência à insulina e por que ela atrapalha o emagrecimento?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Colesterol alto em quem se alimenta bem: por que acontece?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Colesterol alto em quem se alimenta bem: por que acontece?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Gordura no fígado em quem não bebe: por que acontece?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Gordura no fígado em quem não bebe: por que acontece?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="serie sup-osso" id="serie-03" aria-labelledby="serie-03-titulo" data-tema="claro">
+    <div class="container serie__in">
+      <div class="serie__cabeca" data-reveal-grupo>
+        <p class="numeral serie__num">03</p>
+        <h3 class="serie__titulo" id="serie-03-titulo">Não foi falta de disciplina</h3>
+        <p class="serie__constroi">Que a casa não julga. O que mudou não foi a pessoa — e dizer isso é o oposto do que a categoria faz.</p>
+        <p class="serie__para"><span class="eyebrow">Para quem</span>Quem se culpa.</p>
+        <p class="serie__link">
+          <a class="botao botao--secundario" href="#" aria-label="Ver a série: Não foi falta de disciplina">Ver a série <span class="seta" aria-hidden="true">→</span></a>
+          <span class="resposta__pendente texto-2">[PENDENTE]</span>
+        </p>
+      </div>
+      <ol class="respostas" data-reveal-grupo aria-label="Perguntas da série 03">
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que a fome aumenta depois da dieta?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que a fome aumenta depois da dieta?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que a vontade de doce aumenta à noite?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que a vontade de doce aumenta à noite?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que a menopausa faz engordar?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que a menopausa faz engordar?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Dormir bem e acordar cansado: o que pode estar por trás?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Dormir bem e acordar cansado: o que pode estar por trás?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Dormir mal engorda?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Dormir mal engorda?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Estresse engorda?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Estresse engorda?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="serie sup-bordo" id="serie-04" aria-labelledby="serie-04-titulo">
+    <div class="container serie__in">
+      <div class="serie__cabeca" data-reveal-grupo>
+        <p class="numeral serie__num">04</p>
+        <h3 class="serie__titulo" id="serie-04-titulo">A régua da casa é outra</h3>
+        <p class="serie__constroi">Que existe uma medida melhor do que a do mercado — e que a casa mede em vez de fotografar.</p>
+        <p class="serie__para"><span class="eyebrow">Para quem</span>Quem se pesa e se frustra.</p>
+        <p class="serie__link">
+          <a class="botao botao--secundario" href="#" aria-label="Ver a série: A régua da casa é outra">Ver a série <span class="seta" aria-hidden="true">→</span></a>
+          <span class="resposta__pendente texto-2">[PENDENTE]</span>
+        </p>
+      </div>
+      <ol class="respostas" data-reveal-grupo aria-label="Perguntas da série 04">
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Perder peso é a mesma coisa que perder gordura?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Perder peso é a mesma coisa que perder gordura?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">O IMC ainda serve para dizer se o seu peso está bom?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: O IMC ainda serve para dizer se o seu peso está bom?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que a barriga não sai mesmo com o peso caindo?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que a barriga não sai mesmo com o peso caindo?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">É preciso estar acima do peso para procurar um médico?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: É preciso estar acima do peso para procurar um médico?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">O que é bioimpedância e o que ela mede?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: O que é bioimpedância e o que ela mede?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que a medida da cintura importa mais que a balança?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que a medida da cintura importa mais que a balança?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="serie sup-osso" id="serie-05" aria-labelledby="serie-05-titulo" data-tema="claro">
+    <div class="container serie__in">
+      <div class="serie__cabeca" data-reveal-grupo>
+        <p class="numeral serie__num">05</p>
+        <h3 class="serie__titulo" id="serie-05-titulo">O homem que não se trata</h3>
+        <p class="serie__constroi">Que hormônio aqui é medicina investigada, e não o universo da academia.</p>
+        <p class="serie__para"><span class="eyebrow">Para quem</span>O homem de 40 e poucos, que chega trazido.</p>
+        <p class="serie__link">
+          <a class="botao botao--secundario" href="#" aria-label="Ver a série: O homem que não se trata">Ver a série <span class="seta" aria-hidden="true">→</span></a>
+          <span class="resposta__pendente texto-2">[PENDENTE]</span>
+        </p>
+      </div>
+      <!-- [PENDENTE] os títulos 43, 46 e 47 do Planejamento usam um termo que o léxico da marca não usa na chamada; entram no site quando os médicos validarem a redação (ou com data-lexico-ok, se a casa mantiver as palavras do paciente). -->
+      <ol class="respostas" data-reveal-grupo aria-label="Perguntas da série 05">
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Homem também precisa fazer avaliação hormonal?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Homem também precisa fazer avaliação hormonal?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que o homem perde disposição depois dos 40?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que o homem perde disposição depois dos 40?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Como saber se a testosterona está baixa?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Como saber se a testosterona está baixa?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Cansaço e queda de libido podem ser sinais de testosterona baixa?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Cansaço e queda de libido podem ser sinais de testosterona baixa?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">O que pode estar diminuindo a sua testosterona depois dos 30 anos?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: O que pode estar diminuindo a sua testosterona depois dos 30 anos?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="serie sup-bordo" id="serie-06" aria-labelledby="serie-06-titulo">
+    <div class="container serie__in">
+      <div class="serie__cabeca" data-reveal-grupo>
+        <p class="numeral serie__num">06</p>
+        <h3 class="serie__titulo" id="serie-06-titulo">O não é o argumento</h3>
+        <p class="serie__constroi">Que esta é a casa que recusa caso. Num mercado que aceita tudo, o não é a prova de critério.</p>
+        <p class="serie__para"><span class="eyebrow">Para quem</span>Quem pesquisa e teme ficar com cara de feita.</p>
+        <p class="serie__link">
+          <a class="botao botao--secundario" href="#" aria-label="Ver a série: O não é o argumento">Ver a série <span class="seta" aria-hidden="true">→</span></a>
+          <span class="resposta__pendente texto-2">[PENDENTE]</span>
+        </p>
+      </div>
+      <ol class="respostas" data-reveal-grupo aria-label="Perguntas da série 06">
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Quando o botox não é indicado?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Quando o botox não é indicado?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Harmonização facial serve para qualquer rosto?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Harmonização facial serve para qualquer rosto?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">O que o preenchimento resolve e o que ele não resolve?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: O que o preenchimento resolve e o que ele não resolve?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que o mesmo procedimento estético fica melhor em uma pessoa do que em outra?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que o mesmo procedimento estético fica melhor em uma pessoa do que em outra?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">É possível fazer procedimento estético sem parecer que fez?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: É possível fazer procedimento estético sem parecer que fez?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Preenchimento facial pode ser revertido?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Preenchimento facial pode ser revertido?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Como escolher uma clínica de estética sem olhar só o preço?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Como escolher uma clínica de estética sem olhar só o preço?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="serie sup-osso" id="serie-07" aria-labelledby="serie-07-titulo" data-tema="claro">
+    <div class="container serie__in">
+      <div class="serie__cabeca" data-reveal-grupo>
+        <p class="numeral serie__num">07</p>
+        <h3 class="serie__titulo" id="serie-07-titulo">Pele é rotina, não procedimento</h3>
+        <p class="serie__constroi">Que o que mantém a pele não é o procedimento — e a casa fala disso mesmo sem vender nada com isso.</p>
+        <p class="serie__para"><span class="eyebrow">Para quem</span>Quem viu conteúdo demais e confia de menos.</p>
+        <p class="serie__link">
+          <a class="botao botao--secundario" href="#" aria-label="Ver a série: Pele é rotina, não procedimento">Ver a série <span class="seta" aria-hidden="true">→</span></a>
+          <span class="resposta__pendente texto-2">[PENDENTE]</span>
+        </p>
+      </div>
+      <ol class="respostas" data-reveal-grupo aria-label="Perguntas da série 07">
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Pele bonita é procedimento ou é rotina de cuidados?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Pele bonita é procedimento ou é rotina de cuidados?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">É preciso usar protetor solar todos os dias, mesmo sem sol?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: É preciso usar protetor solar todos os dias, mesmo sem sol?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Mudanças na pele depois dos 40: é hormônio?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Mudanças na pele depois dos 40: é hormônio?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Manchas no rosto: qual a diferença entre sol, hormônio e idade?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Manchas no rosto: qual a diferença entre sol, hormônio e idade?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Flacidez na pele depois do emagrecimento: o que fazer?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Flacidez na pele depois do emagrecimento: o que fazer?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que a acne continua aparecendo depois dos 30?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que a acne continua aparecendo depois dos 30?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="serie sup-bordo" id="serie-08" aria-labelledby="serie-08-titulo">
+    <div class="container serie__in">
+      <div class="serie__cabeca" data-reveal-grupo>
+        <p class="numeral serie__num">08</p>
+        <h3 class="serie__titulo" id="serie-08-titulo">A casa e quem conduz</h3>
+        <p class="serie__constroi">Que “seu médico” é uma pessoa com nome e rosto — e que a casa existe, tem método e endereço.</p>
+        <p class="serie__para"><span class="eyebrow">Para quem</span>Quem chega pelo anúncio e confere antes de mandar mensagem.</p>
+        <p class="serie__link">
+          <a class="botao botao--secundario" href="#" aria-label="Ver a série: A casa e quem conduz">Ver a série <span class="seta" aria-hidden="true">→</span></a>
+          <span class="resposta__pendente texto-2">[PENDENTE]</span>
+        </p>
+      </div>
+      <ol class="respostas" data-reveal-grupo aria-label="Perguntas da série 08">
+        <li class="resposta">
+          <span class="resposta__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Remédio para emagrecer resolve sozinho?</h4>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Remédio para emagrecer resolve sozinho?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Quais exames são pedidos na primeira consulta de emagrecimento?</h4>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Quais exames são pedidos na primeira consulta de emagrecimento?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+        <li class="resposta">
+          <span class="resposta__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span>
+          <div class="resposta__corpo">
+            <h4 class="resposta__titulo">Por que a consulta de dermatologia começa sem falar de procedimento?</h4>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <p class="resposta__acao">
+            <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que a consulta de dermatologia começa sem falar de procedimento?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="resposta__pendente texto-2">[PENDENTE]</span>
+          </p>
+        </li>
+      </ol>
+    </div>
+    <div class="container">
+      <div class="serie__videos">
+        <p class="eyebrow" data-reveal>Apresentação — três vídeos, um por médico</p>
+        <div class="medicos" data-reveal-grupo>
+          <article class="medico">
+            <div class="medico__midia stream" data-stream="{{stream_tulio}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Conheça o Dr. Túlio Bovo, do Instituto Rocca">
+              <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+              <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Conheça o Dr. Túlio Bovo, do Instituto Rocca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+              <span class="stream__rotulo">Quem eu sou — gravado no estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></span>
+            </div>
+            <h4 class="medico__nome">Conheça o Dr. Túlio Bovo, do Instituto Rocca</h4>
+            <a class="botao botao--secundario medico__link" href="{{site}}dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+          </article>
+          <article class="medico">
+            <div class="medico__midia stream" data-stream="{{stream_breno}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Conheça o Dr. Breno Gondim, do Instituto Rocca">
+              <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+              <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Conheça o Dr. Breno Gondim, do Instituto Rocca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+              <span class="stream__rotulo">Quem eu sou — gravado no estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></span>
+            </div>
+            <h4 class="medico__nome">Conheça o Dr. Breno Gondim, do Instituto Rocca</h4>
+            <a class="botao botao--secundario medico__link" href="{{site}}dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+          </article>
+          <article class="medico">
+            <div class="medico__midia stream" data-stream="{{stream_ana}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Conheça a Dra. Ana Paula Bovo, do Instituto Rocca">
+              <img class="stream__poster" src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="Dra. Ana Paula Bovo sentada na poltrona creme, de terno branco, diante de uma estante com luminária acesa" width="853" height="1280" loading="lazy" decoding="async">
+              <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Conheça a Dra. Ana Paula Bovo, do Instituto Rocca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+              <span class="stream__rotulo">Quem eu sou — gravado no estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></span>
+            </div>
+            <h4 class="medico__nome">Conheça a Dra. Ana Paula Bovo, do Instituto Rocca</h4>
+            <a class="botao botao--secundario medico__link" href="{{site}}dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Conheça a médica <span class="seta" aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — POR MÉDICO (osso): três links grandes para as páginas dos médicos -->
+  <section class="secao sup-osso por-medico" id="por-medico" data-tema="claro">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal>03 — Por médico</p>
+          <h2 data-split-linhas>Escolha quem responde.</h2>
+        </div>
+      </div>
+      <ul class="lista-links lista-links--capas" data-reveal-grupo>
+        <li><a href="{{site}}dr-tulio-bovo/"><span class="lista-links__capa capa capa--tulio" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span><span class="lista-links__nome">Dr. Túlio Bovo</span><span class="lista-links__linha">Metabolismo, hormônio, emagrecimento e lipedema.</span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="{{site}}dr-breno-gondim/"><span class="lista-links__capa capa capa--breno" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></span><span class="lista-links__nome">Dr. Breno Gondim</span><span class="lista-links__linha">O mesmo território, do mesmo jeito: como você dorme e como você acorda.</span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="{{site}}dra-ana-paula-bovo/"><span class="lista-links__capa capa capa--ana" aria-hidden="true"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="853" height="1280" loading="lazy" decoding="async"></span><span class="lista-links__nome">Dra. Ana Paula Bovo</span><span class="lista-links__linha">Pele, pelo critério do que ela não indica.</span><span class="seta" aria-hidden="true">→</span></a></li>
+      </ul>
     </div>
   </section>
 </main>

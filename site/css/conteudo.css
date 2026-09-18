@@ -1,0 +1,113 @@
+/* ============================================================================
+   INSTITUTO ROCCA — /conteudo/ · regras só desta página
+   ----------------------------------------------------------------------------
+   Lê brand/tokens.css, shared/base.css e site/site.css (hero interno, .trio,
+   .tres, .lista-links, cards de médico, componente .stream). Aqui entra só o
+   que esta página acrescenta: o hero com a foto dos três abaixo do texto, o
+   índice das séries, os oito blocos de série (cabeça fixa + lista de respostas
+   com capa), as capas ampliadas no rosto, os cards de apresentação da série 08
+   e a lista "Por médico" com capa. Mobile-first; breakpoints 640 / 900 / 1200;
+   sem border-radius. URLs em CSS resolvem a partir deste arquivo: ../../assets/…
+   ============================================================================ */
+
+/* ---- Hero: texto em cima (bloco à esquerda, nota à direita), a foto inteira embaixo ------ */
+.hero--conteudo .hero__texto { align-items: end; row-gap: var(--espaco-4); }
+.hero--conteudo .hero__texto h1 { max-width: 16ch; }
+.hero--conteudo .hero__sub { max-width: 46ch; }
+.hero--conteudo .hero__lado { display: grid; gap: 1rem; justify-items: start; }
+.hero--conteudo .hero__nota { margin-top: 0; color: var(--fg-2); font-size: .95rem; max-width: 30ch; }
+/* a figura .trio (site.css) fica dentro do hero; no celular a fonte vertical 2:3 já entra pelo <picture> */
+.hero--conteudo .trio { margin-top: clamp(3rem, 7vw, 6rem); }
+@media (min-width: 900px) {
+  .hero--conteudo { display: block; }             /* o grid de fim do hero interno não tem par aqui */
+  .hero--conteudo .hero__lado { padding-bottom: .4rem; }
+}
+
+/* ---- 01 Como funciona: só eyebrow + três itens; os títulos ganham corpo para não ficar magro ---- */
+.como-funciona .tres { margin-top: clamp(2rem, 4vw, 3.5rem); }
+.como-funciona .tres__titulo { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.4rem); line-height: 1.15; max-width: 14ch; }
+.como-funciona .tres__texto { margin-top: .9rem; }
+
+/* ---- 02 As séries: cabeçalho + índice das oito (âncoras para os blocos) ---------------------- */
+.series-indice { display: grid; grid-template-columns: 1fr; margin-top: clamp(2.5rem, 5vw, 4.5rem); border-top: 1px solid var(--linha); }
+.series-indice li { border-bottom: 1px solid var(--linha); }
+.series-indice a {
+  display: grid; grid-template-columns: 2.6rem minmax(0, 1fr) auto; column-gap: 1rem; align-items: baseline;
+  padding-block: 1rem; text-decoration: none; font-weight: 300; font-size: calc(var(--corpo) * 1.1); line-height: 1.35;
+  transition: color var(--dur-rapida);
+}
+.series-indice a:hover, .series-indice a:focus-visible { color: var(--cor-madeira); }
+.series-indice .seta { justify-self: end; transition: transform var(--dur-media) var(--ease-out); }
+.series-indice a:hover .seta { transform: translateX(5px); }
+@media (min-width: 640px) { .series-indice { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--coluna-gap); } }
+@media (min-width: 1200px) { .series-indice { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* ---- Bloco de série: cabeça (numeral, título, o que constrói, para quem, link) + lista ------- */
+.serie { position: relative; padding-block: clamp(80px, 10vw, 160px); scroll-margin-top: calc(var(--nav-altura) + 8px); }
+.serie__in { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 4vw, 3.5rem) var(--coluna-gap); align-items: start; }
+.serie__num { font-size: .875rem; }
+.serie__titulo { font-size: var(--h2); font-weight: 300; line-height: 1.1; letter-spacing: -.005em; max-width: 14ch; margin-top: 1rem; }
+.serie__constroi { margin-top: 1.4rem; font-size: calc(var(--corpo) * 1.08); line-height: 1.55; max-width: 34ch; }
+.serie__para { margin-top: 1.4rem; color: var(--fg-2); max-width: 34ch; }
+.serie__para .eyebrow { display: block; margin-bottom: .35rem; }
+.serie__link { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; margin-top: 1.8rem; max-width: none; }
+@media (min-width: 900px) {
+  .serie__in { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .serie__cabeca { position: sticky; top: calc(var(--nav-altura) + 32px); }
+}
+
+/* lista de respostas: capa (rosto) · título + assinatura · Ver resposta + [PENDENTE] */
+.respostas { border-top: 1px solid var(--linha); }
+.resposta {
+  display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: .9rem clamp(16px, 2.5vw, 28px); align-items: start;
+  padding-block: clamp(1.3rem, 2.4vw, 1.9rem); border-bottom: 1px solid var(--linha);
+}
+.resposta__capa { grid-row: 1 / span 2; }
+.resposta__titulo { font-size: calc(var(--corpo) * 1.15); font-weight: 300; line-height: 1.4; max-width: 34ch; text-wrap: pretty; }
+.resposta .assinatura { margin-top: .5rem; }
+.resposta__acao { grid-column: 2; display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: baseline; max-width: none; }
+.resposta__pendente { font-size: .8rem; letter-spacing: .04em; }
+@media (min-width: 900px) {
+  .resposta { grid-template-columns: 80px minmax(0, 1fr) auto; align-items: center; column-gap: clamp(20px, 3vw, 40px); }
+  .resposta__capa { grid-row: auto; }
+  .resposta__acao { grid-column: auto; flex-direction: column; align-items: flex-end; gap: .35rem; }
+}
+
+/* ---- Capa pequena: retrato 2:3 real (fallback SVG), ampliado e centrado no rosto -------------
+   O <img> vira 2,4× a largura da moldura 4:5 e o translate leva o ponto do rosto (x, y em % da
+   própria imagem) ao centro da moldura. Um ajuste por médico, porque cada um senta de um lado. */
+.capa { position: relative; display: block; width: 64px; aspect-ratio: 4 / 5; overflow: hidden; background: var(--cor-bordo-profundo); flex: none; }
+.capa img { position: absolute; left: 50%; top: 50%; width: 240%; max-width: none; height: auto; transform: translate(-45%, -27%); }
+.capa--tulio img { transform: translate(-45%, -27%); }
+.capa--breno img { transform: translate(-62%, -27%); }
+.capa--ana img { transform: translate(-56%, -25%); }
+@media (min-width: 900px) { .resposta__capa { width: 80px; } }
+
+/* ---- Série 08: os três vídeos de apresentação, abaixo da lista, na largura toda ---------------
+   Fica fora do grid .serie__in de propósito: a cabeça fixa (sticky) só pode acompanhar a lista. */
+.serie__videos { margin-top: clamp(2.5rem, 5vw, 4.5rem); padding-top: clamp(2rem, 4vw, 3.5rem); border-top: 1px solid var(--linha); }
+.serie__videos .medicos { margin-top: clamp(1.6rem, 3vw, 2.6rem); }
+.serie__videos .medico__nome { font-size: calc(var(--corpo) * 1.15); line-height: 1.35; max-width: 24ch; }
+@media (min-width: 640px) and (max-width: 899.98px) { .serie__videos .medicos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--coluna-gap); } }
+
+/* ---- 03 Por médico: lista de links com capa do rosto ----------------------------------------- */
+.lista-links--capas a { grid-template-columns: 72px minmax(0, 1fr) auto; column-gap: clamp(16px, 2.5vw, 28px); align-items: center; }
+.lista-links--capas .lista-links__capa { grid-row: 1 / span 2; grid-column: 1; width: 72px; }
+.lista-links--capas .lista-links__nome { grid-column: 2; grid-row: 1; align-self: end; }
+.lista-links--capas .lista-links__linha { grid-column: 2; grid-row: 2; align-self: start; }
+.lista-links--capas .lista-links__capa img { transition: transform var(--dur-imagem) var(--ease-out); }
+.lista-links--capas a:hover .lista-links__capa img { transform: translate(-45%, -27%) scale(1.04); }
+.lista-links--capas a:hover .capa--breno img { transform: translate(-62%, -27%) scale(1.04); }
+.lista-links--capas a:hover .capa--ana img { transform: translate(-56%, -25%) scale(1.04); }
+.lista-links--capas .seta { grid-column: 3; grid-row: 1 / span 2; align-self: center; justify-self: end; }
+@media (min-width: 900px) {
+  .lista-links--capas a { grid-template-columns: 96px minmax(0, 5fr) minmax(0, 6fr) auto; align-items: center; }
+  .lista-links--capas .lista-links__capa { grid-row: auto; grid-column: auto; width: 96px; }
+  .lista-links--capas .lista-links__nome, .lista-links--capas .lista-links__linha { grid-column: auto; grid-row: auto; align-self: center; }
+  .lista-links--capas .seta { grid-column: auto; grid-row: auto; }
+}
+
+/* ---- Movimento reduzido: nada desliza nas capas ---------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .lista-links--capas .lista-links__capa img { transition: none; }
+}

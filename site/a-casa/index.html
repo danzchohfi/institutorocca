@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>A casa — Instituto Rocca, Moema</title>
-  <meta name="description" content="A casa do Instituto Rocca, em Moema: recepção, espera, consultórios, bioimpedância e lounge. Madeira, mármore e luz quente, com o mesmo médico do primeiro dia em diante.">
+  <meta name="description" content="A casa do Instituto Rocca, em Moema: recepção, espera, consultórios e bioimpedância. A consulta começa pela escuta e o exame é lido com você, na tela.">
   <meta property="og:title" content="A casa — Instituto Rocca">
-  <meta property="og:description" content="A casa do Instituto Rocca, em Moema: recepção, espera, consultórios, bioimpedância e lounge. Madeira, mármore e luz quente, com o mesmo médico do primeiro dia em diante.">
+  <meta property="og:description" content="A casa do Instituto Rocca, em Moema: recepção, espera, consultórios e bioimpedância. A consulta começa pela escuta e o exame é lido com você, na tela.">
   <meta property="og:site_name" content="Instituto Rocca">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:image" content="../../assets/img/entrada-clinica.jpg">
@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../../brand/tokens.css">
   <link rel="stylesheet" href="../../shared/base.css">
   <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../css/a-casa.css">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#550000">
   <script src="../app.js" defer></script>
@@ -103,26 +104,253 @@
   </div>
 </nav>
 <main id="conteudo">
-  <!-- ESQUELETO DA FASE BASE: só o hero, para os links do site apontarem para uma página que existe.
-       O construtor desta página substitui este arquivo inteiro (scratchpad/site/internas.md §7). -->
-  <section class="hero hero--interno sup-bordo" id="inicio" data-hero>
+
+  <!-- HERO: a recepção em tela cheia, cores naturais, gradiente bordô só na base.
+       O botão do filme nasce hidden e aparece quando o UID do filme institucional chegar (data-stream-precisa). -->
+  <section class="hero hero--tela casa-hero" id="inicio" data-hero>
+    <div class="hero__fundo paralaxe" data-parallax-area data-reveal="escala">
+      <div class="paralaxe__in" data-parallax="-6">
+        <picture>
+          <source media="(max-width: 639.98px)" srcset="../../assets/img/entrada-clinica-mobile.jpg">
+          <img src="../../assets/img/entrada-clinica.jpg" width="2731" height="1536" alt="Recepção do Instituto Rocca: dois balcões de mármore marrom, luminárias suspensas, painel ripado bordô, chaise creme e cadeira de palhinha sob luz quente." decoding="async">
+        </picture>
+      </div>
+    </div>
     <div class="container hero__in">
-      <div class="hero__texto">
-        <p class="eyebrow" data-reveal>A casa</p>
-        <h1 class="titulo-2l" data-split-linhas>A casa, <span class="linha-2">em Moema.</span></h1>
-        <p class="hero__sub texto-grande" data-reveal>Uma casa em Moema, e um médico que fica. A recepção, a espera, os consultórios e a sala de bioimpedância, como são.</p>
-        <div class="acoes" data-reveal>
-          <a class="botao botao--primario" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." target="_blank" rel="noopener">Agendar avaliação</a>
-          <a class="botao botao--secundario" href="../" aria-label="Voltar para a página inicial">Página inicial <span class="seta" aria-hidden="true">→</span></a>
+      <p class="eyebrow" data-reveal>A casa · Moema, São Paulo</p>
+      <h1 class="titulo-2l" data-split-linhas>Uma casa em Moema. <span class="linha-2">E um médico que fica.</span></h1>
+      <p class="hero__sub texto-grande" data-reveal>Rua —, 000 · Moema · São Paulo · SP <span class="pendente">[PENDENTE]</span></p>
+      <!-- [PENDENTE] confirmar com o cliente se a linha de abertura aparece enquanto a casa não abre (pendência 15). -->
+      <p class="hero__nota" data-reveal>Abertura em outubro de 2026 <span class="pendente">[PENDENTE — confirmar se aparece]</span></p>
+      <div class="acoes" data-reveal>
+        <button class="botao botao--primario" type="button" data-abre-lightbox="#filme" data-stream-de="#filme .stream" data-stream-precisa="#filme .stream" hidden>Assistir ao filme</button>
+        <a class="botao botao--secundario" href="../contato/#onde-fica">Como chegar <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 · A CASA: mosaico de seis peças numa tela (shared/mosaico.js: entrada em cascata e paralaxe leve, sem pin) -->
+  <section class="secao sup-osso casa-mosaico" id="casa" data-tema="claro">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-8">
+          <p class="eyebrow" data-reveal>01 — A casa</p>
+          <h2 class="titulo-2l" data-split-linhas>Madeira, luz quente, <span class="linha-2">e uma tela com uma linha só.</span></h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p class="texto-grande">O ambiente é clássico. O que acontece dentro dele é atual.</p>
         </div>
       </div>
-      <div class="hero__foto paralaxe" data-parallax-area data-reveal="escala">
-        <div class="paralaxe__in" data-parallax="-6">
-          <img src="../../assets/img/entrada-clinica.jpg" alt="Recepção do Instituto Rocca: dois balcões de mármore marrom, luminárias suspensas, painel ripado bordô, chaise creme e cadeira de palhinha sob luz quente." width="2731" height="1536" decoding="async">
+      <div class="mosaico" data-mosaico>
+        <figure class="mosaico__item mosaico__item--a">
+          <div class="mosaico__moldura">
+            <img src="../../assets/img/entrada-clinica.jpg" alt="Recepção do Instituto Rocca: dois balcões de mármore marrom, luminárias suspensas, painel ripado bordô, chaise creme e cadeira de palhinha sob luz quente." width="2731" height="1536" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">01</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">A chegada</span><span class="mosaico__sub">Você chegou.</span></span>
+          </figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--b">
+          <div class="mosaico__moldura">
+            <img src="../../assets/img/espera-02.jpg" alt="Sala de espera: sofá curvo creme, pufes de tecido, cadeiras de palhinha, painel de madeira clara e uma copa de mármore ao fundo." width="1600" height="1012" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">02</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">A espera</span><span class="mosaico__sub">A espera que não parece espera.</span></span>
+          </figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--c">
+          <div class="mosaico__moldura">
+            <img src="../../assets/img/corredor-portas.jpg" alt="Corredor com painel de madeira clara, portas embutidas, arandelas de luz quente e dois pufes bege." width="1600" height="899" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">03</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">O corredor</span><span class="mosaico__sub">Até a sala do seu médico.</span></span>
+          </figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--d">
+          <div class="mosaico__moldura">
+            <img src="../../assets/img/consultorio-01.jpg" alt="Consultório: mesa de mármore marrom com notebook, cadeiras escuras, poltrona verde-oliva e janela ampla com a cidade ao fundo." width="1600" height="1244" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">04</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">A sala</span><span class="mosaico__sub">Onde o exame é lido com você, na tela.</span></span>
+          </figcaption>
+        </figure>
+        <!-- [PENDENTE] bioimpedancia.jpg é croqui: troca pela foto da diária na clínica assim que existir (pendência 17). -->
+        <figure class="mosaico__item mosaico__item--e">
+          <div class="mosaico__moldura">
+            <img src="../../assets/img/bioimpedancia.jpg" alt="Sala de bioimpedância: bancada de madeira clara com cuba e notebook, cadeira branca e prateleira iluminada." width="1499" height="1499" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">05</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">A bioimpedância</span><span class="mosaico__sub">Composição corporal medida, não estimada.</span></span>
+          </figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--f">
+          <div class="mosaico__moldura">
+            <img src="../../assets/img/lounge-copa.jpg" alt="Lounge com copa: paredes de madeira clara, copa em mármore marrom iluminada, pufes e cadeiras de palhinha." width="1600" height="892" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">06</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">O lounge</span><span class="mosaico__sub">Sem sinalização, sem nada hospitalar.</span></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · O PERCURSO: da porta à sala do médico, em cinco passos com a foto de cada espaço -->
+  <section class="secao sup-bordo casa-percurso" id="percurso">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal>02 — O percurso</p>
+          <h2 class="titulo-2l" data-split-linhas>Da porta <span class="linha-2">à sala do seu médico.</span></h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p class="texto-grande">Para você chegar sabendo o que vai acontecer.</p>
+        </div>
+      </div>
+      <ol class="percurso">
+        <li class="percurso__passo" data-reveal>
+          <div class="percurso__corpo">
+            <h3 class="percurso__titulo">A chegada</h3>
+            <p class="percurso__texto">A avaliação foi marcada na conversa do WhatsApp. Quem te recebe já sabe por que você veio.</p>
+          </div>
+          <figure class="percurso__foto">
+            <img src="../../assets/img/chegada-porta.jpg" alt="Porta de entrada vista do corredor: ao fundo, a recepção iluminada, com balcões de mármore e o wordmark Instituto Rocca na parede." width="1600" height="1600" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="percurso__passo" data-reveal>
+          <div class="percurso__corpo">
+            <h3 class="percurso__titulo">A espera</h3>
+            <p class="percurso__texto">Um lugar onde dá para respirar: luz quente, cadeira de palhinha, ninguém com pressa.</p>
+          </div>
+          <figure class="percurso__foto">
+            <img src="../../assets/img/espera-01.jpg" alt="Sala de espera vista da recepção: sofá curvo creme, cadeiras de palhinha, painel ripado bordô e teto circular iluminado." width="1600" height="899" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="percurso__passo" data-reveal>
+          <div class="percurso__corpo">
+            <h3 class="percurso__titulo">A consulta</h3>
+            <p class="percurso__texto">Começa pela escuta: sua história, sua rotina, o que parou de funcionar. A consulta não tem hora para acabar.</p>
+          </div>
+          <figure class="percurso__foto">
+            <img src="../../assets/img/consultorio-02.jpg" alt="Consultório com painel de madeira escura, mesa de mármore, cadeira de trabalho e poltrona verde-oliva." width="1600" height="1320" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <!-- [PENDENTE] confirmar se a bioimpedância acontece já na primeira consulta (pendência 10 do COPY.md);
+             se não, a frase sai do passo e fica só no mosaico. -->
+        <li class="percurso__passo" data-reveal>
+          <div class="percurso__corpo">
+            <h3 class="percurso__titulo">O exame</h3>
+            <p class="percurso__texto">Lido junto, na tela. Você vê o que o médico vê, sem jargão, e sabe por que cada coisa foi pedida. A composição corporal é medida na bioimpedância, não estimada.</p>
+          </div>
+          <figure class="percurso__foto">
+            <img src="../../assets/img/bioimpedancia.jpg" alt="Sala de bioimpedância: bancada de madeira clara com cuba e notebook, cadeira branca e prateleira iluminada." width="1499" height="1499" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="percurso__passo" data-reveal>
+          <div class="percurso__corpo">
+            <h3 class="percurso__titulo">A saída</h3>
+            <p class="percurso__texto">O tratamento é construído item a item, e você sai com o WhatsApp do seu médico — o mesmo que vai acompanhar você daqui em diante.</p>
+          </div>
+          <figure class="percurso__foto">
+            <img src="../../assets/img/corredor-02.jpg" alt="Corredor de portas de madeira clara com luz indireta no teto." width="1600" height="899" loading="lazy" decoding="async">
+          </figure>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 03 · A CASA, POR DENTRO: três vídeos 16:9 (Cloudflare Stream, UIDs pendentes: fica o poster).
+       O link do filme institucional nasce hidden e aparece com o UID (data-stream-precisa). -->
+  <section class="secao sup-osso casa-por-dentro" id="por-dentro" data-tema="claro">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-8">
+          <p class="eyebrow" data-reveal>03 — A casa, por dentro</p>
+          <h2 class="titulo-2l" data-split-linhas>Cada médico apresenta a casa <span class="linha-2">pelo ponto de vista dele.</span></h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p class="texto-grande">Três vídeos, gravados na clínica: a sala onde cada um atende, o exame sendo feito, e o que cada um escolheu ter aqui.</p>
+        </div>
+      </div>
+      <div class="tiles casa-videos" data-reveal-grupo>
+        <article class="tile">
+          <div class="tile__media stream" data-stream="" data-stream-modo="player" data-stream-proporcao="16/9" data-stream-titulo="A casa, por dentro — com o Dr. Túlio Bovo">
+            <img class="stream__poster" src="../../assets/img/consultorio-01.jpg" alt="" width="1600" height="1244" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden aria-label="Reproduzir: A casa, por dentro — com o Dr. Túlio Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <div class="tile__corpo">
+            <span class="tile__rotulo">Dr. Túlio Bovo</span>
+            <span class="tile__sub">A casa, por dentro <span class="pendente">[PENDENTE]</span></span>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile__media stream" data-stream="" data-stream-modo="player" data-stream-proporcao="16/9" data-stream-titulo="A casa, por dentro — com o Dr. Breno Gondim">
+            <img class="stream__poster" src="../../assets/img/consultorio-03.jpg" alt="" width="1600" height="1256" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden aria-label="Reproduzir: A casa, por dentro — com o Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <div class="tile__corpo">
+            <span class="tile__rotulo">Dr. Breno Gondim</span>
+            <span class="tile__sub">A casa, por dentro <span class="pendente">[PENDENTE]</span></span>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile__media stream" data-stream="" data-stream-modo="player" data-stream-proporcao="16/9" data-stream-titulo="A casa, por dentro — com a Dra. Ana Paula Bovo">
+            <img class="stream__poster" src="../../assets/img/consultorio-dermatologia-02.jpg" alt="" width="1600" height="918" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden aria-label="Reproduzir: A casa, por dentro — com a Dra. Ana Paula Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <div class="tile__corpo">
+            <span class="tile__rotulo">Dra. Ana Paula Bovo</span>
+            <span class="tile__sub">A casa, por dentro <span class="pendente">[PENDENTE]</span></span>
+          </div>
+        </article>
+      </div>
+      <div class="ligacoes">
+        <button class="botao botao--secundario" type="button" data-abre-lightbox="#filme" data-stream-de="#filme .stream" data-stream-precisa="#filme .stream" hidden>Assistir ao filme institucional <span class="seta" aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · ONDE FICA: endereço, horários e como chegar (tudo pendente); mapa só quando o endereço existir -->
+  <section class="secao sup-bordo casa-onde" id="onde-fica">
+    <div class="container grid-12">
+      <div class="col-5 casa-onde__texto">
+        <p class="eyebrow" data-reveal>04 — Onde fica</p>
+        <h2 data-split-linhas>Moema, São Paulo.</h2>
+        <dl class="casa-onde__dados" data-reveal>
+          <div>
+            <dt class="eyebrow">Endereço</dt>
+            <dd><address class="endereco">Rua —, 000 · Moema · São Paulo · SP <span class="pendente">[PENDENTE]</span></address></dd>
+          </div>
+          <div>
+            <dt class="eyebrow">Horários</dt>
+            <dd>Segunda a sexta, 00h às 00h <span class="pendente">[PENDENTE]</span></dd>
+          </div>
+          <div>
+            <dt class="eyebrow">Como chegar</dt>
+            <dd><span class="pendente">[PENDENTE — estacionamento, referências e transporte]</span></dd>
+          </div>
+        </dl>
+        <div class="acoes" data-reveal>
+          <a class="botao botao--secundario" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="botao botao--secundario" href="../contato/">Contato <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="col-6 col-inicio-7 casa-onde__mapa" data-reveal="escala">
+        <!-- Sem iframe de terceiros até o endereço existir: bloco em osso com o símbolo da marca ao centro. -->
+        <div class="mapa">
+          <img src="../../assets/img/simbolo-bordo.svg" alt="" aria-hidden="true" width="666" height="666" loading="lazy">
+          <p class="mapa__texto">Mapa [PENDENTE — entra com o endereço]</p>
         </div>
       </div>
     </div>
   </section>
+
 </main>
 <!-- FECHO (seção #contato). Sem formulário: a chamada é sempre o WhatsApp.
      H2, sub e nota vêm do cabeçalho do template (fecho_h2, fecho_sub, fecho_nota). -->

@@ -1,0 +1,67 @@
+/* ============================================================================
+   INSTITUTO ROCCA — /dermatologia/ · regras só desta página
+   ----------------------------------------------------------------------------
+   Tudo que é comum (hero interno, cabeçalho de seção, prosa, "O que tratamos",
+   perguntas, card de médico, fecho) vem de shared/base.css e site/site.css.
+   Aqui só o que esta página acrescenta. Mobile-first; breakpoints 640 / 900 /
+   1200 / 1440; variáveis de brand/tokens.css; sem border-radius.
+   URLs em CSS resolvem a partir deste arquivo: ../../assets/…
+   ============================================================================ */
+
+/* ---- Hero: quando a foto da sala vira 4:5 (desktop), o corte guarda a maca ------- */
+.pagina--dermatologia .hero--interno .hero__foto img { object-position: 50% 62%; }
+
+/* ---- 01 · Como a gente conduz: retrato + prosa com a fala, depois os três pilares --
+   .derma-conduz__corpo (grid-12)
+     .derma-retrato (2:3, col-4)  ·  .derma-conduz__texto (prosa, col-6 a partir da 6)
+   .derma-conduz__pilares (.pilares--colunas do base.css, só o título) */
+.derma-retrato { aspect-ratio: 2 / 3; overflow: hidden; background: var(--cor-bordo-profundo); max-width: 420px; align-self: start; }
+.derma-retrato img { width: 100%; height: 100%; object-fit: cover; }
+.derma-conduz__texto { display: flex; flex-direction: column; }
+.derma-conduz__texto .fala { margin-top: 2.2rem; }
+.derma-conduz__pilares { margin-top: clamp(3rem, 6vw, 5.5rem); }
+.derma-conduz__pilares .pilares__titulo { max-width: 16ch; }
+@media (min-width: 900px) {
+  .derma-retrato { max-width: none; }
+  .derma-conduz__texto { padding-top: .4rem; }
+  /* a coluna de texto estica até a base do retrato: parágrafos no topo, a fala ancorada embaixo */
+  .derma-conduz__texto .fala { margin-top: auto; padding-top: 2.2rem; }
+}
+
+/* ---- 02 · O que tratamos ------------------------------------------------------------ */
+/* mais ar entre o texto da sub-seção e a lista de perguntas */
+.derma-tratamos .tratamento__perguntas { margin-top: 2.2rem; }
+/* nota visível de pendência (tricologia ainda sem perguntas) */
+.derma-nota { margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--linha); font-size: .875rem; line-height: 1.6; max-width: 44ch; }
+/* link + [PENDENTE] numa célula só, para a grade de três colunas do .pergunta-item não quebrar */
+.pergunta-item__acao { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; justify-self: start; }
+@media (min-width: 900px) { .pergunta-item__acao { justify-self: end; } }
+/* entre 900 e 1199 a coluna de texto é estreita demais para as três colunas do site.css
+   (o título ficava com uma palavra por linha): título na primeira linha, assinatura e link na segunda */
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .derma-tratamos .pergunta-item { grid-template-columns: minmax(0, 1fr) auto; row-gap: .5rem; }
+  .derma-tratamos .pergunta-item__titulo { grid-column: 1 / -1; }
+}
+/* a partir de 1200 as três colunas cabem; o [PENDENTE] desce para baixo do link e o título respira */
+@media (min-width: 1200px) {
+  .derma-tratamos .pergunta-item__acao { flex-direction: column; align-items: flex-end; gap: .3rem; }
+}
+/* o link inline para o emagrecimento (Nutrologia) */
+.tratamento__texto p a { text-decoration-thickness: 1px; text-underline-offset: .18em; transition: color var(--dur-rapida); }
+.tratamento__texto p a:hover, .tratamento__texto p a:focus-visible { color: var(--cor-madeira); }
+
+/* ---- 03 · Quem conduz: card único maior + a sala -------------------------------------
+   .derma-quem__grid (grid-12)
+     .medico.derma-quem__medica (col-4)  ·  figure.derma-quem__sala (col-7 a partir da 6)
+       .derma-quem__moldura.paralaxe (3:2) > .paralaxe__in > img  +  figcaption.legenda */
+.derma-quem__grid { align-items: end; }
+.derma-quem__medica { max-width: 420px; }
+.derma-quem__moldura { aspect-ratio: 3 / 2; background: var(--cor-bordo-profundo); }
+.derma-quem__sala .legenda { max-width: 48ch; }
+@media (min-width: 900px) {
+  .derma-quem__medica { max-width: none; }
+}
+
+/* ---- 04 · Perguntas mais comuns ------------------------------------------------------- */
+.derma-comum__acao { margin-top: 1.4rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; }
+.derma-comuns__ligacoes { margin-top: clamp(3rem, 6vw, 5rem); }
