@@ -7,11 +7,12 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: URL pública do arquivo
+        description: URL pública do arquivo (ou várias linhas "url destino", uma por linha)
         required: true
       destino:
-        description: Caminho de destino no repositório (ex. assets/img/medicos-hero.jpg)
-        required: true
+        description: Caminho de destino no repositório (ex. assets/img/medicos-hero.jpg); ignorado se url tiver várias linhas
+        required: false
+        default: ""
       mensagem:
         description: Mensagem do commit
         required: false
@@ -26,15 +27,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Baixar
+        env:
+          LISTA: ${{ inputs.url }}
+          DESTINO: ${{ inputs.destino }}
         run: |
-          mkdir -p "$(dirname '${{ inputs.destino }}')"
-          curl -fL --retry 3 -o '${{ inputs.destino }}' '${{ inputs.url }}'
-          ls -la '${{ inputs.destino }}'
-          file '${{ inputs.destino }}'
+          set -e
+          if [ "$(printf '%s\n' "$LISTA" | grep -c .)" -gt 1 ] || [ -z "$DESTINO" ]; then
+            printf '%s\n' "$LISTA" | while read -r url dest; do
+              [ -z "$url" ] && continue
+              mkdir -p "$(dirname "$dest")"; curl -fL --retry 3 -o "$dest" "$url"; ls -la "$dest"; file "$dest"
+            done
+          else
+            mkdir -p "$(dirname "$DESTINO")"; curl -fL --retry 3 -o "$DESTINO" "$LISTA"; ls -la "$DESTINO"; file "$DESTINO"
+          fi
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '${{ inputs.destino }}'
+          git add -A
           git commit -m '${{ inputs.mensagem }}' || echo "nada a commitar"
           git push
