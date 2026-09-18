@@ -15,7 +15,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
 {{skip}}
 {{nav}}
 {{menu}}
-<main id="conteudo">
+<main id="conteudo" tabindex="-1">
 
   <!-- HERO: a recepção em tela cheia, cores naturais, gradiente bordô só na base.
        O botão do filme nasce hidden e aparece quando o UID do filme institucional chegar (data-stream-precisa). -->
@@ -36,7 +36,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
       <p class="hero__nota" data-reveal>Abertura em outubro de 2026 <span class="pendente">[PENDENTE — confirmar se aparece]</span></p>
       <div class="acoes" data-reveal>
         <button class="botao botao--primario" type="button" data-abre-lightbox="#filme" data-stream-de="#filme .stream" data-stream-precisa="#filme .stream" hidden>Assistir ao filme</button>
-        <a class="botao botao--secundario" href="{{site}}contato/#onde-fica">Como chegar <span class="seta" aria-hidden="true">→</span></a>
+        <a class="botao botao--secundario" href="#onde-fica">Como chegar <span class="seta" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -46,11 +46,11 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
     <div class="container">
       <div class="secao__cabeca grid-12">
         <div class="col-8">
-          <p class="eyebrow" data-reveal>01 — A casa</p>
-          <h2 class="titulo-2l" data-split-linhas>Madeira, luz quente, <span class="linha-2">e uma tela com uma linha só.</span></h2>
+          <p class="eyebrow" data-reveal><span class="numeral">01</span> — A casa</p>
+          <h2 class="titulo-2l" data-split-linhas>Uma casa clássica. <span class="linha-2">Uma medicina atual.</span></h2>
         </div>
         <div class="col-4 col-inicio-9 secao__sub" data-reveal>
-          <p class="texto-grande">O ambiente é clássico. O que acontece dentro dele é atual.</p>
+          <p class="texto-grande">Seis espaços, da chegada ao lounge — e, no meio deles, a sala onde o exame é lido com você, na tela.</p>
         </div>
       </div>
       <div class="mosaico" data-mosaico>
@@ -118,11 +118,11 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
     <div class="container">
       <div class="secao__cabeca grid-12">
         <div class="col-7">
-          <p class="eyebrow" data-reveal>02 — O percurso</p>
+          <p class="eyebrow" data-reveal><span class="numeral">02</span> — O percurso</p>
           <h2 class="titulo-2l" data-split-linhas>Da porta <span class="linha-2">à sala do seu médico.</span></h2>
         </div>
         <div class="col-4 col-inicio-9 secao__sub" data-reveal>
-          <p class="texto-grande">Para você chegar sabendo o que vai acontecer.</p>
+          <p class="texto-grande">Cinco espaços, na ordem em que você passa por eles.</p>
         </div>
       </div>
       <ol class="percurso">
@@ -138,7 +138,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
         <li class="percurso__passo" data-reveal>
           <div class="percurso__corpo">
             <h3 class="percurso__titulo">A espera</h3>
-            <p class="percurso__texto">Um lugar onde dá para respirar: luz quente, cadeira de palhinha, ninguém com pressa.</p>
+            <p class="percurso__texto">Um lugar onde dá para respirar: cadeira de palhinha, ninguém com pressa.</p>
           </div>
           <figure class="percurso__foto">
             <img src="{{raiz}}assets/img/espera-01.jpg" alt="Sala de espera vista da recepção: sofá curvo creme, cadeiras de palhinha, painel ripado bordô e teto circular iluminado." width="1600" height="899" loading="lazy" decoding="async">
@@ -147,7 +147,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
         <li class="percurso__passo" data-reveal>
           <div class="percurso__corpo">
             <h3 class="percurso__titulo">A consulta</h3>
-            <p class="percurso__texto">Começa pela escuta: sua história, sua rotina, o que parou de funcionar. A consulta não tem hora para acabar.</p>
+            <p class="percurso__texto">Na sala do seu médico, com a porta fechada. A consulta não tem hora para acabar.</p>
           </div>
           <figure class="percurso__foto">
             <img src="{{raiz}}assets/img/consultorio-02.jpg" alt="Consultório com painel de madeira escura, mesa de mármore, cadeira de trabalho e poltrona verde-oliva." width="1600" height="1320" loading="lazy" decoding="async">
@@ -158,7 +158,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
         <li class="percurso__passo" data-reveal>
           <div class="percurso__corpo">
             <h3 class="percurso__titulo">O exame</h3>
-            <p class="percurso__texto">Lido junto, na tela. Você vê o que o médico vê, sem jargão, e sabe por que cada coisa foi pedida. A composição corporal é medida na bioimpedância, não estimada.</p>
+            <p class="percurso__texto">Lido com você, na tela da sala. A composição corporal é medida na bioimpedância, não estimada.</p>
           </div>
           <figure class="percurso__foto">
             <img src="{{raiz}}assets/img/bioimpedancia.jpg" alt="Sala de bioimpedância: bancada de madeira clara com cuba e notebook, cadeira branca e prateleira iluminada." width="1499" height="1499" loading="lazy" decoding="async">
@@ -167,7 +167,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
         <li class="percurso__passo" data-reveal>
           <div class="percurso__corpo">
             <h3 class="percurso__titulo">A saída</h3>
-            <p class="percurso__texto">O tratamento é construído item a item, e você sai com o WhatsApp do seu médico — o mesmo que vai acompanhar você daqui em diante.</p>
+            <p class="percurso__texto">Você sai com o WhatsApp do seu médico — o mesmo que vai acompanhar você daqui em diante.</p>
           </div>
           <figure class="percurso__foto">
             <img src="{{raiz}}assets/img/corredor-02.jpg" alt="Corredor de portas de madeira clara com luz indireta no teto." width="1600" height="899" loading="lazy" decoding="async">
@@ -183,11 +183,11 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
     <div class="container">
       <div class="secao__cabeca grid-12">
         <div class="col-8">
-          <p class="eyebrow" data-reveal>03 — A casa, por dentro</p>
+          <p class="eyebrow" data-reveal><span class="numeral">03</span> — A casa, por dentro</p>
           <h2 class="titulo-2l" data-split-linhas>Cada médico apresenta a casa <span class="linha-2">pelo ponto de vista dele.</span></h2>
         </div>
         <div class="col-4 col-inicio-9 secao__sub" data-reveal>
-          <p class="texto-grande">Três vídeos, gravados na clínica: a sala onde cada um atende, o exame sendo feito, e o que cada um escolheu ter aqui.</p>
+          <p class="texto-grande">Três vídeos: a sala onde cada um atende, o exame sendo feito, e o que cada um escolheu ter aqui.</p>
         </div>
       </div>
       <div class="tiles casa-videos" data-reveal-grupo>
@@ -199,6 +199,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
           <div class="tile__corpo">
             <span class="tile__rotulo">Dr. Túlio Bovo</span>
             <span class="tile__sub">A casa, por dentro <span class="pendente">[PENDENTE]</span></span>
+            <a class="botao botao--secundario" href="{{site}}dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
           </div>
         </article>
         <article class="tile">
@@ -209,6 +210,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
           <div class="tile__corpo">
             <span class="tile__rotulo">Dr. Breno Gondim</span>
             <span class="tile__sub">A casa, por dentro <span class="pendente">[PENDENTE]</span></span>
+            <a class="botao botao--secundario" href="{{site}}dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
           </div>
         </article>
         <article class="tile">
@@ -219,6 +221,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
           <div class="tile__corpo">
             <span class="tile__rotulo">Dra. Ana Paula Bovo</span>
             <span class="tile__sub">A casa, por dentro <span class="pendente">[PENDENTE]</span></span>
+            <a class="botao botao--secundario" href="{{site}}dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Conheça a médica <span class="seta" aria-hidden="true">→</span></a>
           </div>
         </article>
       </div>
@@ -232,7 +235,7 @@ fecho_h2: Avaliação com o médico / que vai acompanhar você.
   <section class="secao sup-bordo casa-onde" id="onde-fica">
     <div class="container grid-12">
       <div class="col-5 casa-onde__texto">
-        <p class="eyebrow" data-reveal>04 — Onde fica</p>
+        <p class="eyebrow" data-reveal><span class="numeral">04</span> — Onde fica</p>
         <h2 data-split-linhas>Moema, São Paulo.</h2>
         <dl class="casa-onde__dados" data-reveal>
           <div>

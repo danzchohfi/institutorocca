@@ -3,47 +3,21 @@
    ----------------------------------------------------------------------------
    Lê brand/tokens.css, shared/base.css e site/site.css (hero interno com
    retrato, .tres, .figura-apoio, .lista-links, .perguntas-lista, .stream e o
-   fecho já vêm de lá). Aqui entra só o que é desta página: o rótulo de
-   especialidade e registro no hero, o par "Assistir: Quem eu sou", a seção
-   01 (vídeo vertical + texto), os ajustes de 02 (Como eu conduzo) e a linha
-   dos outros médicos depois do fecho. As páginas do Dr. Breno e da Dra. Ana
-   Paula têm a mesma estrutura: cada uma leva o próprio CSS.
+   fecho já vêm de lá; o rótulo do hero, o par "Assistir: Quem eu sou", a
+   lista .quem__lista, a variante .lista-links--duas e a linha .outros também,
+   porque as três páginas dos médicos os repetem). Aqui entra só o que é
+   desta página: a largura da citação, a composição da seção 01 (vídeo
+   vertical + texto), os ajustes de 02 (Como eu conduzo) e o respiro de 03.
    Mobile-first; breakpoints 640 / 900 / 1200 / 1440; sem border-radius.
    URLs em CSS resolvem a partir deste arquivo: ../../assets/…
    ============================================================================ */
 
-/* ---- Hero: especialidade + registro (duas linhas) e a citação --------------------- */
-.pagina--dr-tulio-bovo .hero__rotulo-linha { display: block; }
-.pagina--dr-tulio-bovo .hero__rotulo .pendente {
-  /* o aviso de pendência não vai em caixa alta nem com o tracking do rótulo: lê melhor */
-  text-transform: none; letter-spacing: .04em; color: var(--fg-2);
-}
+/* ---- Hero: a citação é mais longa que o padrão de 34ch ---------------------------- */
 .pagina--dr-tulio-bovo .hero__citacao { max-width: 40ch; }
-.pagina--dr-tulio-bovo .hero__citacao p { max-width: none; }
-/* "Assistir: Quem eu sou": o botão do lightbox nasce hidden e só aparece com UID
-   (data-stream-precisa); enquanto isso o link para a seção faz o papel. Quando o
-   botão aparece, o link some — sem JS além do que o stream.js já faz. */
-.hero__assistir:not([hidden]) + .hero__assistir-ancora { display: none; }
 
 /* ---- 01 · Quem eu sou: texto à direita, vídeo vertical à esquerda ------------------- */
 .quem__in { align-items: start; }
 .quem__abre { margin-top: 1.6rem; max-width: 40ch; }
-.quem__lista { counter-reset: item; margin-top: 2rem; border-top: 1px solid var(--linha); max-width: 46ch; }
-.quem__lista > li {
-  counter-increment: item;
-  display: grid; grid-template-columns: 2.6rem 1fr; gap: .8rem;
-  padding-block: .9rem;
-  border-bottom: 1px solid var(--linha);
-  line-height: 1.55;
-}
-.quem__lista > li::before {
-  content: counter(item, decimal-leading-zero);
-  font-size: .8rem; font-weight: 400; letter-spacing: .2em;
-  color: var(--cor-madeira);
-  padding-top: .3em;
-  font-variant-numeric: tabular-nums;
-}
-.quem__formacao { margin-top: 1.6rem; font-size: .95rem; line-height: 1.6; max-width: 44ch; }
 /* no celular e no tablet o vídeo vem depois do texto, nunca mais largo que 420 px */
 .quem__video { max-width: 420px; }
 .quem__video .stream { background: var(--cor-bordo-profundo); }
@@ -62,16 +36,3 @@
 
 /* ---- 03 · O que eu trato: a lista respira um pouco mais que o padrão ----------------- */
 .trato .lista-links a { padding-block: 1.5rem; }
-/* abaixo de 900 px a seta fica à direita do nome, não sozinha numa terceira linha */
-@media (max-width: 899.98px) {
-  .trato .lista-links a { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
-  .trato .lista-links .seta { grid-column: 2; grid-row: 1; }
-  .trato .lista-links__linha { grid-column: 1; }
-}
-
-/* ---- Depois do fecho: os outros dois médicos, colados ao fecho (mesma superfície) ------
-   position: relative — o fecho (.secao) é posicionado e pintaria por cima da linha e do
-   eyebrow, que sobem para dentro do respiro dele com a margem negativa. */
-.outros { position: relative; margin-top: calc(-1 * var(--secao) * .45); padding-bottom: calc(var(--secao) * .6); }
-.outros__in { border-top: 1px solid var(--linha); padding-top: clamp(1.6rem, 3vw, 2.4rem); }
-.outros .ligacoes { margin-top: 1.1rem; }

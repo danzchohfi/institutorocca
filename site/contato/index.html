@@ -17,10 +17,10 @@
   <link rel="stylesheet" href="../css/contato.css">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#550000">
-  <script src="../app.js" defer></script>
+  <script src="../interno.js" defer></script>
 </head>
 <body class="sup-bordo pagina pagina--contato">
-<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#conteudo" data-sem-lenis>Ir para o conteúdo</a>
 <!-- NAV (padrão CLP: MENU | marca | WhatsApp + botão). O ui.js adiciona .nav--solida ao rolar
      e troca para o tema claro sob seções data-tema="claro". Classes e ids não mudam. -->
 <header class="nav" id="topo">
@@ -85,7 +85,7 @@
         <p class="menu__titulo eyebrow">A casa e o conteúdo</p>
         <ul class="menu__lista">
           <li><a href="../a-casa/">A casa</a></li>
-          <li><a href="../conteudo/">Perguntas que a gente responde</a></li>
+          <li><a href="../conteudo/">Conteúdo</a></li>
         </ul>
       </div>
       <div class="menu__coluna">
@@ -103,7 +103,7 @@
     </div>
   </div>
 </nav>
-<main id="conteudo">
+<main id="conteudo" tabindex="-1">
   <!-- TOPO — nesta página o fecho é a primeira dobra: o partial do fecho não se repete no fim.
        Hero interno sem foto (site.css) com o bloco do WhatsApp do fecho (base.css §14) ao lado do H1.
        Sem formulário em lugar nenhum: toda chamada vai para o WhatsApp. -->
@@ -112,7 +112,7 @@
       <div class="hero__texto">
         <p class="eyebrow" data-reveal>Contato</p>
         <h1 class="titulo-2l" data-split-linhas>Avaliação com o médico <span class="linha-2">que vai acompanhar você.</span></h1>
-        <p class="hero__sub texto-grande" data-reveal>A conversa começa no WhatsApp. Você conta o que parou de funcionar; quem responde marca a avaliação e explica o que vai acontecer — para você chegar sabendo.</p>
+        <p class="hero__sub texto-grande" data-reveal>A conversa começa no WhatsApp. Você conta o que parou de funcionar, e quem responde marca a avaliação com você.</p>
         <div class="acoes" data-reveal>
           <a class="botao botao--primario" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." target="_blank" rel="noopener">Falar no WhatsApp</a>
           <a class="botao botao--secundario" href="#onde-fica">Onde fica <span class="seta" aria-hidden="true">→</span></a>
@@ -144,11 +144,11 @@
         </li>
         <li>
           <h3 class="tres__titulo">A avaliação é marcada na conversa.</h3>
-          <p class="tres__texto">Quem responde explica o que vai acontecer na consulta e o que levar.</p>
+          <p class="tres__texto">Quem responde combina o dia, o horário e o que levar.</p>
         </li>
         <li>
           <h3 class="tres__titulo">Quem te atende no primeiro dia é quem te acompanha.</h3>
-          <p class="tres__texto">Você sai da consulta com o telefone do seu médico.</p>
+          <p class="tres__texto">Você sai da consulta com o WhatsApp do seu médico.</p>
         </li>
       </ol>
     </div>
@@ -170,7 +170,8 @@
         </div>
         <div class="comum">
           <h3 class="comum__pergunta">E se eu não puder ir?</h3>
-          <p class="comum__resposta">Sem cobrança e sem culpa. Avise na mesma conversa, e a gente vê outro horário.</p>
+          <!-- [PENDENTE] confirmar com o cliente a política de falta/remarcação antes de dizer "sem cobrança". -->
+          <p class="comum__resposta">Avise na mesma conversa, sem culpa, e a gente vê outro horário.</p>
         </div>
       </div>
     </div>
@@ -183,34 +184,37 @@
       <div class="contato-medicos__cabeca">
         <p class="eyebrow" data-reveal><span class="numeral">03</span> — Os médicos</p>
         <h2 class="titulo-2l" data-split-linhas>Aqui você não passa por um médico. <span class="linha-2">Você tem um médico.</span></h2>
-        <p class="contato-medicos__linha texto-grande" data-reveal>Diga na mensagem com quem você quer ser atendido.</p>
+        <p class="contato-medicos__linha texto-grande" data-reveal>Diga na mensagem com quem você quer marcar.</p>
         <div class="acoes" data-reveal>
           <a class="botao botao--secundario" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." target="_blank" rel="noopener">Falar no WhatsApp <span class="seta" aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="medicos contato-medicos__cards" data-reveal-grupo>
         <article class="medico">
-          <div class="medico__midia">
-            <img src="../../assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme, no estúdio Jacarandá." width="1600" height="2400" loading="lazy" decoding="async">
+          <div class="medico__midia stream" data-stream="" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Túlio Bovo">
+            <img class="stream__poster" src="../../assets/img/producao/dr-tulio-bovo.jpg" srcset="../../assets/img/producao/dr-tulio-bovo-640.jpg 640w, ../../assets/img/producao/dr-tulio-bovo.jpg 1600w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dr. Túlio Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           </div>
           <h3 class="medico__nome">Dr. Túlio Bovo</h3>
-          <p class="medico__linha">Metabolismo, hormônio, emagrecimento e lipedema.</p>
+          <p class="medico__linha">Emagrecimento e metabolismo, lipedema, avaliação hormonal e menopausa.</p>
           <a class="botao botao--secundario medico__link" href="../dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
         </article>
         <article class="medico">
-          <div class="medico__midia">
-            <img src="../../assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme, no estúdio Jacarandá." width="1600" height="2400" loading="lazy" decoding="async">
+          <div class="medico__midia stream" data-stream="" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Breno Gondim">
+            <img class="stream__poster" src="../../assets/img/producao/dr-breno-gondim.jpg" srcset="../../assets/img/producao/dr-breno-gondim-640.jpg 640w, ../../assets/img/producao/dr-breno-gondim.jpg 1600w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           </div>
           <h3 class="medico__nome">Dr. Breno Gondim</h3>
           <p class="medico__linha">O mesmo território. Começa pelo sono.</p>
           <a class="botao botao--secundario medico__link" href="../dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
         </article>
         <article class="medico">
-          <div class="medico__midia">
-            <img src="../../assets/img/producao/dra-ana-paula-bovo.jpg" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-ana-paula.svg'" alt="Dra. Ana Paula Bovo sentada na poltrona creme, no estúdio Jacarandá." width="1365" height="2048" loading="lazy" decoding="async">
+          <div class="medico__midia stream" data-stream="" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dra. Ana Paula Bovo">
+            <img class="stream__poster" src="../../assets/img/producao/dra-ana-paula-bovo-02.jpg" srcset="../../assets/img/producao/dra-ana-paula-bovo-02-640.jpg 640w, ../../assets/img/producao/dra-ana-paula-bovo-02.jpg 853w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-ana-paula.svg'" alt="Dra. Ana Paula Bovo sentada em uma poltrona creme, de terno branco com friso preto, sorrindo, diante de uma estante com samambaia e de uma luminária acesa" width="853" height="1280" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dra. Ana Paula Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           </div>
           <h3 class="medico__nome">Dra. Ana Paula Bovo</h3>
-          <p class="medico__linha">Dermatologia, pelo critério do que ela não indica.</p>
+          <p class="medico__linha">Tricologia, estética facial e pele.</p>
           <a class="botao botao--secundario medico__link" href="../dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Conheça a médica <span class="seta" aria-hidden="true">→</span></a>
         </article>
       </div>
@@ -289,8 +293,8 @@
       <div class="footer__col">
         <p class="footer__titulo eyebrow">A casa</p>
         <address>
-          Rua —, Moema, São Paulo <span class="footer__pendente">[PENDENTE]</span><br>
-          Segunda a sexta, — às — <span class="footer__pendente">[PENDENTE]</span><br>
+          Rua —, 000 · Moema · São Paulo · SP <span class="footer__pendente">[PENDENTE]</span><br>
+          Segunda a sexta, 00h às 00h <span class="footer__pendente">[PENDENTE]</span><br>
           <a href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." target="_blank" rel="noopener">WhatsApp +55 11 99999-9999</a> <span class="footer__pendente">[PENDENTE]</span><br>
           <a href="#">Instagram @institutorocca</a> <span class="footer__pendente">[PENDENTE]</span><br>
           contato@ <span class="footer__pendente">[PENDENTE]</span><br>
@@ -345,7 +349,7 @@
 <!-- LIGHTBOX (dialog nativo): um só para o site inteiro. Abre com qualquer [data-abre-lightbox="#filme"]
      (ui.js); o stream.js monta o iframe do vídeo do abridor no .stream de modo "alvo" e o remove ao fechar.
      O UID em data-stream aqui é o do filme institucional completo, com som. -->
-<dialog class="lightbox" id="filme" aria-label="Filme institucional — Instituto Rocca">
+<dialog class="lightbox" id="filme" aria-labelledby="filme-legenda">
   <button class="lightbox__fechar" type="button" data-fecha-lightbox aria-label="Fechar o filme">Fechar</button>
   <div class="lightbox__media">
     <div class="stream" data-stream="" data-stream-modo="alvo" data-stream-titulo="Filme institucional — Instituto Rocca">
@@ -353,7 +357,7 @@
       <span class="stream__rotulo">Filme institucional — gravação na clínica <span class="texto-2">[PENDENTE]</span></span>
     </div>
   </div>
-  <p class="lightbox__legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
+  <p class="lightbox__legenda" id="filme-legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
 </dialog>
 </body>
 </html>

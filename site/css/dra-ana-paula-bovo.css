@@ -1,19 +1,18 @@
 /* ============================================================================
    INSTITUTO ROCCA — /dra-ana-paula-bovo/ · regras só desta página
    ----------------------------------------------------------------------------
-   O que é comum (hero interno com retrato, componente .stream, .tres,
+   O que é comum (hero interno com retrato e o par "Assistir: Quem eu sou",
+   componente .stream com a base escurecida, .quem__lista, .tres,
    .lista-links, .perguntas-lista, cabeçalho de seção, fecho) vem de
    site/site.css e shared/base.css. Aqui entra só a composição desta página:
    o nome inteiro no H1, o vídeo vertical ao lado do texto (01), o texto com os
    três blocos empilhados ao lado do retrato (02), o vídeo 16:9 com a sala ao
-   lado (05) e a linha de links para os outros médicos.
+   lado (05) e o rodapé da 05 com a linha de links para os outros médicos.
    Mobile-first; breakpoints 640 / 900. Sem border-radius.
    ============================================================================ */
 
 /* ---- Hero: o nome inteiro cabe em uma linha a partir de 900 px ---------------------- */
 .pagina--dra-ana-paula-bovo .hero--interno .hero__texto h1 { max-width: 20ch; }
-.pagina--dra-ana-paula-bovo .hero__citacao p { max-width: none; }
-.pagina--dra-ana-paula-bovo .hero__rotulo .texto-2 { letter-spacing: .12em; }
 
 /* ---- Títulos de seção: linhas mais longas que o padrão de 16ch do site.css ------------ */
 .pagina--dra-ana-paula-bovo .secao__cabeca h2 { max-width: 26ch; }
@@ -24,19 +23,6 @@
 .quem__in { align-items: start; row-gap: clamp(2.5rem, 5vw, 4rem); }
 .quem__video { width: min(100%, 360px); }
 .quem__texto h2 { max-width: 20ch; }
-.quem__lista {
-  margin-top: clamp(1.8rem, 3vw, 2.4rem);
-  max-width: 52ch;
-  border-top: 1px solid var(--linha);
-}
-.quem__lista > li {
-  display: grid; grid-template-columns: 1.4rem 1fr; gap: .8rem;
-  padding-block: 1rem;
-  border-bottom: 1px solid var(--linha);
-  line-height: 1.55;
-}
-.quem__lista > li::before { content: "—"; color: var(--cor-madeira); font-weight: 400; }
-.quem__formacao { margin-top: 1.6rem; font-size: .95rem; line-height: 1.6; max-width: 48ch; }
 @media (min-width: 900px) {
   .quem__video { width: 100%; }
   .quem__texto { padding-top: clamp(0px, 2vw, 32px); }
@@ -88,14 +74,6 @@
   gap: clamp(2rem, 4vw, 3rem) var(--coluna-gap);
   align-items: start;
 }
-/* o render da sala é claro: uma base escurecida só onde o rótulo fica, para ele ler (some ao tocar) */
-.casa .stream::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 38%; z-index: 2;
-  background: linear-gradient(to top, rgba(42, 26, 22, .58), transparent);
-  pointer-events: none;
-  transition: opacity .6s var(--ease-out);
-}
-.casa .stream--tocando::after { opacity: 0; }
 .casa__foto { margin: 0; }
 .casa__moldura { overflow: hidden; background: var(--cor-bordo-profundo); }
 .casa__moldura img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }

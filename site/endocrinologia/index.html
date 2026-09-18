@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Endocrinologia em Moema — Instituto Rocca</title>
-  <meta name="description" content="Endocrinologia no Instituto Rocca, em Moema: avaliação hormonal para mulheres e homens, menopausa. Avaliar antes de tratar, com o mesmo médico em diante.">
+  <meta name="description" content="Endocrinologia no Instituto Rocca, em Moema: avaliação hormonal para mulheres e homens, menopausa. Avaliar antes de tratar, com quem vai acompanhar você.">
   <meta property="og:title" content="Endocrinologia — Instituto Rocca">
-  <meta property="og:description" content="Endocrinologia no Instituto Rocca, em Moema: avaliação hormonal para mulheres e homens, menopausa. Avaliar antes de tratar, com o mesmo médico em diante.">
+  <meta property="og:description" content="Endocrinologia no Instituto Rocca, em Moema: avaliação hormonal para mulheres e homens, menopausa. Avaliar antes de tratar, com quem vai acompanhar você.">
   <meta property="og:site_name" content="Instituto Rocca">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:image" content="../../assets/img/consultorio-03.jpg">
@@ -17,10 +17,10 @@
   <link rel="stylesheet" href="../css/endocrinologia.css">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#550000">
-  <script src="../app.js" defer></script>
+  <script src="../interno.js" defer></script>
 </head>
 <body class="sup-bordo pagina pagina--endocrinologia">
-<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#conteudo" data-sem-lenis>Ir para o conteúdo</a>
 <!-- NAV (padrão CLP: MENU | marca | WhatsApp + botão). O ui.js adiciona .nav--solida ao rolar
      e troca para o tema claro sob seções data-tema="claro". Classes e ids não mudam. -->
 <header class="nav" id="topo">
@@ -85,7 +85,7 @@
         <p class="menu__titulo eyebrow">A casa e o conteúdo</p>
         <ul class="menu__lista">
           <li><a href="../a-casa/">A casa</a></li>
-          <li><a href="../conteudo/">Perguntas que a gente responde</a></li>
+          <li><a href="../conteudo/">Conteúdo</a></li>
         </ul>
       </div>
       <div class="menu__coluna">
@@ -103,7 +103,7 @@
     </div>
   </div>
 </nav>
-<main id="conteudo">
+<main id="conteudo" tabindex="-1">
   <!-- ================= HERO · Endocrinologia (bordô; foto do consultório à direita) ================= -->
   <section class="hero hero--interno sup-bordo" id="inicio" data-hero>
     <div class="container hero__in">
@@ -168,6 +168,7 @@
           </div>
           <div class="tratamento__texto">
             <div data-reveal-grupo>
+              <!-- [PENDENTE] validar a faixa etária com os médicos -->
               <p>A partir dos 35, 40 anos a produção cai — nos dois. Sono que não descansa, humor que mudou, disposição que sumiu, gordura que apareceu onde nunca teve.</p>
               <p>Toda mulher é orientada a avaliar hormônio depois de certa idade. O homem também precisa — e quase nenhum homem ouve isso de alguém.</p>
               <blockquote class="fala">Antes de qualquer conduta, eu quero saber como você dorme e como você acorda.</blockquote>
@@ -306,20 +307,20 @@
       <div class="medicos medicos--2" data-reveal-grupo>
         <article class="medico">
           <div class="medico__midia stream" data-stream="" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Túlio Bovo">
-            <img class="stream__poster" src="../../assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha." width="1600" height="2400" loading="lazy" decoding="async">
+            <img class="stream__poster" src="../../assets/img/producao/dr-tulio-bovo.jpg" srcset="../../assets/img/producao/dr-tulio-bovo-640.jpg 640w, ../../assets/img/producao/dr-tulio-bovo.jpg 1600w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
             <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dr. Túlio Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           </div>
           <h3 class="medico__nome">Dr. Túlio Bovo</h3>
-          <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
+          <span class="medico__crm">CRM-SP 000000 · RQE 00000 <span class="pendente">[PENDENTE]</span></span>
           <a class="botao botao--secundario medico__link" href="../dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
         </article>
         <article class="medico">
           <div class="medico__midia stream" data-stream="" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Breno Gondim">
-            <img class="stream__poster" src="../../assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha." width="1600" height="2400" loading="lazy" decoding="async">
+            <img class="stream__poster" src="../../assets/img/producao/dr-breno-gondim.jpg" srcset="../../assets/img/producao/dr-breno-gondim-640.jpg 640w, ../../assets/img/producao/dr-breno-gondim.jpg 1600w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
             <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           </div>
           <h3 class="medico__nome">Dr. Breno Gondim</h3>
-          <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
+          <span class="medico__crm">CRM-SP 000000 · RQE 00000 <span class="pendente">[PENDENTE]</span></span>
           <a class="botao botao--secundario medico__link" href="../dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
         </article>
       </div>
@@ -331,8 +332,8 @@
     <div class="container">
       <div class="secao__cabeca secao__cabeca--larga grid-12">
         <div class="col-8">
-          <p class="eyebrow" data-reveal>Perguntas mais comuns</p>
-          <h2 data-split-linhas>O que a gente mais ouve antes da primeira consulta.</h2>
+          <p class="eyebrow" data-reveal><span class="numeral">04</span> — Perguntas mais comuns</p>
+          <h2 data-split-linhas>O que a gente mais ouve antes de você marcar.</h2>
         </div>
       </div>
       <ol class="comuns" data-reveal-grupo>
@@ -381,6 +382,8 @@
       <p class="eyebrow">WhatsApp</p>
       <a class="fecho__numero" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20em%20Endocrinologia%20no%20Instituto%20Rocca." target="_blank" rel="noopener">+55 11 99999-9999</a>
       <p class="fecho__pendente texto-2">[PENDENTE]</p>
+      <!-- [PENDENTE] confirmar com o cliente o prazo "em até um dia útil" da nota padrão (fecho_nota em
+           scripts/site.mjs e em nutrologia.html); se não confirmar, termina em "… a avaliação é marcada na conversa." -->
       <p class="fecho__whats-nota">Quem responde é o Instituto. Você conta o que parou de funcionar e a avaliação é marcada na conversa, em até um dia útil.</p>
     </div>
   </div>
@@ -398,8 +401,8 @@
       <div class="footer__col">
         <p class="footer__titulo eyebrow">A casa</p>
         <address>
-          Rua —, Moema, São Paulo <span class="footer__pendente">[PENDENTE]</span><br>
-          Segunda a sexta, — às — <span class="footer__pendente">[PENDENTE]</span><br>
+          Rua —, 000 · Moema · São Paulo · SP <span class="footer__pendente">[PENDENTE]</span><br>
+          Segunda a sexta, 00h às 00h <span class="footer__pendente">[PENDENTE]</span><br>
           <a href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20em%20Endocrinologia%20no%20Instituto%20Rocca." target="_blank" rel="noopener">WhatsApp +55 11 99999-9999</a> <span class="footer__pendente">[PENDENTE]</span><br>
           <a href="#">Instagram @institutorocca</a> <span class="footer__pendente">[PENDENTE]</span><br>
           contato@ <span class="footer__pendente">[PENDENTE]</span><br>
@@ -454,7 +457,7 @@
 <!-- LIGHTBOX (dialog nativo): um só para o site inteiro. Abre com qualquer [data-abre-lightbox="#filme"]
      (ui.js); o stream.js monta o iframe do vídeo do abridor no .stream de modo "alvo" e o remove ao fechar.
      O UID em data-stream aqui é o do filme institucional completo, com som. -->
-<dialog class="lightbox" id="filme" aria-label="Filme institucional — Instituto Rocca">
+<dialog class="lightbox" id="filme" aria-labelledby="filme-legenda">
   <button class="lightbox__fechar" type="button" data-fecha-lightbox aria-label="Fechar o filme">Fechar</button>
   <div class="lightbox__media">
     <div class="stream" data-stream="" data-stream-modo="alvo" data-stream-titulo="Filme institucional — Instituto Rocca">
@@ -462,7 +465,7 @@
       <span class="stream__rotulo">Filme institucional — gravação na clínica <span class="texto-2">[PENDENTE]</span></span>
     </div>
   </div>
-  <p class="lightbox__legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
+  <p class="lightbox__legenda" id="filme-legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
 </dialog>
 </body>
 </html>

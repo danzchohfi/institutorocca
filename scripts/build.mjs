@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /* ============================================================================
-   build.mjs — empacota src/<conceito>/main.js → concepts/<conceito>/app.js
-   e src/site/main.js → site/app.js (o bundle único do site final)
+   build.mjs — empacota src/<conceito>/main.js → concepts/<conceito>/app.js,
+   src/site/main.js → site/app.js (home, com three.js) e
+   src/site/interno.js → site/interno.js (páginas internas, sem three.js)
    Uso: node scripts/build.mjs [--watch]
    IIFE, minificado, es2019, sem sourcemap; .glsl/.vert/.frag entram como texto.
    ============================================================================ */
@@ -21,6 +22,7 @@ const pares = [
 { src: 'src/c07-letras/main.js', out: 'concepts/07-letras/app.js' },
 { src: 'src/c08-retrato/main.js', out: 'concepts/08-retrato/app.js' },
   { src: 'src/site/main.js',         out: 'site/app.js' },
+  { src: 'src/site/interno.js',      out: 'site/interno.js' },
 ].filter(({ src }) => existsSync(resolve(raiz, src)));
 
 if (!pares.length) {

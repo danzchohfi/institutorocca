@@ -20,7 +20,7 @@
   <script src="./app.js" defer></script>
 </head>
 <body class="sup-bordo pagina pagina--home">
-<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#conteudo" data-sem-lenis>Ir para o conteúdo</a>
 <!-- NAV (padrão CLP: MENU | marca | WhatsApp + botão). O ui.js adiciona .nav--solida ao rolar
      e troca para o tema claro sob seções data-tema="claro". Classes e ids não mudam. -->
 <header class="nav" id="topo">
@@ -85,7 +85,7 @@
         <p class="menu__titulo eyebrow">A casa e o conteúdo</p>
         <ul class="menu__lista">
           <li><a href="./a-casa/">A casa</a></li>
-          <li><a href="./conteudo/">Perguntas que a gente responde</a></li>
+          <li><a href="./conteudo/">Conteúdo</a></li>
         </ul>
       </div>
       <div class="menu__coluna">
@@ -103,7 +103,7 @@
     </div>
   </div>
 </nav>
-<main id="conteudo">
+<main id="conteudo" tabindex="-1">
 
   <!-- ================= ABERTURA FUNDIDA · Letras → a clínica → a janela =================
        .abertura é a pista (2,5 telas; site.css). O hero fica preso (sticky) por 1,5 tela
@@ -461,6 +461,8 @@
       <p class="eyebrow">WhatsApp</p>
       <a class="fecho__numero" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." target="_blank" rel="noopener">+55 11 99999-9999</a>
       <p class="fecho__pendente texto-2">[PENDENTE]</p>
+      <!-- [PENDENTE] confirmar com o cliente o prazo "em até um dia útil" da nota padrão (fecho_nota em
+           scripts/site.mjs e em nutrologia.html); se não confirmar, termina em "… a avaliação é marcada na conversa." -->
       <p class="fecho__whats-nota">Quem responde é o Instituto. Você conta o que parou de funcionar e a avaliação é marcada na conversa, em até um dia útil.</p>
     </div>
   </div>
@@ -478,8 +480,8 @@
       <div class="footer__col">
         <p class="footer__titulo eyebrow">A casa</p>
         <address>
-          Rua —, Moema, São Paulo <span class="footer__pendente">[PENDENTE]</span><br>
-          Segunda a sexta, — às — <span class="footer__pendente">[PENDENTE]</span><br>
+          Rua —, 000 · Moema · São Paulo · SP <span class="footer__pendente">[PENDENTE]</span><br>
+          Segunda a sexta, 00h às 00h <span class="footer__pendente">[PENDENTE]</span><br>
           <a href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." target="_blank" rel="noopener">WhatsApp +55 11 99999-9999</a> <span class="footer__pendente">[PENDENTE]</span><br>
           <a href="#">Instagram @institutorocca</a> <span class="footer__pendente">[PENDENTE]</span><br>
           contato@ <span class="footer__pendente">[PENDENTE]</span><br>
@@ -534,7 +536,7 @@
 <!-- LIGHTBOX (dialog nativo): um só para o site inteiro. Abre com qualquer [data-abre-lightbox="#filme"]
      (ui.js); o stream.js monta o iframe do vídeo do abridor no .stream de modo "alvo" e o remove ao fechar.
      O UID em data-stream aqui é o do filme institucional completo, com som. -->
-<dialog class="lightbox" id="filme" aria-label="Filme institucional — Instituto Rocca">
+<dialog class="lightbox" id="filme" aria-labelledby="filme-legenda">
   <button class="lightbox__fechar" type="button" data-fecha-lightbox aria-label="Fechar o filme">Fechar</button>
   <div class="lightbox__media">
     <div class="stream" data-stream="" data-stream-modo="alvo" data-stream-titulo="Filme institucional — Instituto Rocca">
@@ -542,7 +544,7 @@
       <span class="stream__rotulo">Filme institucional — gravação na clínica <span class="texto-2">[PENDENTE]</span></span>
     </div>
   </div>
-  <p class="lightbox__legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
+  <p class="lightbox__legenda" id="filme-legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
 </dialog>
 <!-- PRODUÇÃO — pontos de troca desta home (home.md §7):
        abertura       assets/img/entrada-clinica.jpg (+ -mobile.jpg) → foto real da recepção (3:2 e 4:5), mesmos nomes;

@@ -16,7 +16,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
 {{skip}}
 {{nav}}
 {{menu}}
-<main id="conteudo">
+<main id="conteudo" tabindex="-1">
   <!-- Mapa das especialidades (rodada 7): Nutrologia é o primeiro nível; "Emagrecimento e metabolismo" e
        "Lipedema" são o segundo ("O que tratamos"). Proposta da agência, a confirmar com o cliente. -->
 
@@ -41,7 +41,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
   </section>
 
   <!-- ================= 01 · COMO A GENTE CONDUZ (osso) ================= -->
-  <section class="secao sup-osso conduz" id="como-conduzimos" data-tema="claro">
+  <section class="secao sup-osso conduz" id="como-a-gente-conduz" data-tema="claro">
     <div class="container">
       <div class="secao__cabeca grid-12">
         <div class="col-7">
@@ -55,9 +55,9 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
       </div>
       <!-- [PENDENTE] confirmar se a bioimpedância acontece já na primeira consulta (pendência 14 das internas; 10 do COPY.md). -->
       <ol class="pilares pilares--colunas" data-reveal-grupo>
-        <li><p class="pilares__titulo">Composição corporal medida, não estimada</p></li>
-        <li><p class="pilares__titulo">O exame lido junto com você, na tela</p></li>
-        <li><p class="pilares__titulo">O metabolismo dentro do tratamento</p></li>
+        <li><h3 class="pilares__titulo">Composição corporal medida, não estimada</h3></li>
+        <li><h3 class="pilares__titulo">O exame lido junto com você, na tela</h3></li>
+        <li><h3 class="pilares__titulo">O metabolismo dentro do tratamento</h3></li>
       </ol>
     </div>
     <!-- Figura de apoio, sangrada. O arquivo de hoje é o croqui da sala; a foto da diária entra com o mesmo nome (pendência 17). -->
@@ -100,10 +100,10 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
             <span class="assinatura">— Dr. Túlio Bovo</span>
             <!-- As páginas de resposta ainda não existem: cada link fica em "#" com [PENDENTE] (pendência 11). -->
             <div class="tratamento__perguntas">
-              <p class="eyebrow">Perguntas sobre o assunto</p>
-              <ul class="perguntas-lista">
+              <p class="eyebrow" data-reveal>Perguntas que a gente responde</p>
+              <ol class="perguntas-lista">
                 <li class="pergunta-item">
-                  <p class="pergunta-item__titulo">Tratamento de emagrecimento é para o resto da vida?</p>
+                  <h4 class="pergunta-item__titulo">Tratamento de emagrecimento é para o resto da vida?</h4>
                   <span class="assinatura">— Dr. Túlio Bovo</span>
                   <span class="pergunta-item__link">
                     <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Tratamento de emagrecimento é para o resto da vida?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
@@ -111,7 +111,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
                   </span>
                 </li>
                 <li class="pergunta-item">
-                  <p class="pergunta-item__titulo">Ao parar o tratamento de emagrecimento, o paciente engorda de novo?</p>
+                  <h4 class="pergunta-item__titulo">Ao parar o tratamento de emagrecimento, o paciente engorda de novo?</h4>
                   <span class="assinatura">— Dr. Túlio Bovo</span>
                   <span class="pergunta-item__link">
                     <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Ao parar o tratamento de emagrecimento, o paciente engorda de novo?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
@@ -119,7 +119,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
                   </span>
                 </li>
                 <li class="pergunta-item">
-                  <p class="pergunta-item__titulo">Perder peso é a mesma coisa que perder gordura?</p>
+                  <h4 class="pergunta-item__titulo">Perder peso é a mesma coisa que perder gordura?</h4>
                   <span class="assinatura">— Dr. Túlio Bovo</span>
                   <span class="pergunta-item__link">
                     <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Perder peso é a mesma coisa que perder gordura?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
@@ -127,7 +127,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
                   </span>
                 </li>
                 <li class="pergunta-item">
-                  <p class="pergunta-item__titulo">Por que a barriga não sai mesmo com o peso caindo?</p>
+                  <h4 class="pergunta-item__titulo">Por que a barriga não sai mesmo com o peso caindo?</h4>
                   <span class="assinatura">— Dr. Breno Gondim</span>
                   <span class="pergunta-item__link">
                     <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que a barriga não sai mesmo com o peso caindo?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
@@ -135,7 +135,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
                   </span>
                 </li>
                 <li class="pergunta-item">
-                  <p class="pergunta-item__titulo">Remédio para emagrecer resolve sozinho?</p>
+                  <h4 class="pergunta-item__titulo">Remédio para emagrecer resolve sozinho?</h4>
                   <span class="assinatura">— Dr. Breno Gondim</span>
                   <span class="pergunta-item__link">
                     <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Remédio para emagrecer resolve sozinho?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
@@ -143,14 +143,14 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
                   </span>
                 </li>
                 <li class="pergunta-item">
-                  <p class="pergunta-item__titulo">Efeito sanfona: por que o peso perdido sempre volta?</p>
+                  <h4 class="pergunta-item__titulo">Efeito sanfona: por que o peso perdido sempre volta?</h4>
                   <span class="assinatura">— Dr. Túlio Bovo</span>
                   <span class="pergunta-item__link">
                     <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Efeito sanfona: por que o peso perdido sempre volta?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
                     <span class="pergunta-item__pendente">[PENDENTE]</span>
                   </span>
                 </li>
-              </ul>
+              </ol>
             </div>
           </div>
         </article>
@@ -170,10 +170,10 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
             <p class="fala tratamento__fala">Muita paciente chega depois de anos ouvindo que era só emagrecer. Dar o nome certo muda a conversa inteira.</p>
             <span class="assinatura">— Dr. Túlio Bovo</span>
             <div class="tratamento__perguntas">
-              <p class="eyebrow">Perguntas sobre o assunto</p>
-              <ul class="perguntas-lista">
+              <p class="eyebrow" data-reveal>Perguntas que a gente responde</p>
+              <ol class="perguntas-lista">
                 <li class="pergunta-item">
-                  <p class="pergunta-item__titulo">É celulite ou é lipedema?</p>
+                  <h4 class="pergunta-item__titulo">É celulite ou é lipedema?</h4>
                   <span class="assinatura">— Dr. Túlio Bovo</span>
                   <span class="pergunta-item__link">
                     <a class="botao botao--secundario" href="#" aria-label="Ver resposta: É celulite ou é lipedema?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
@@ -181,7 +181,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
                   </span>
                 </li>
                 <li class="pergunta-item">
-                  <p class="pergunta-item__titulo">A gordura do sobrepeso é igual à do lipedema?</p>
+                  <h4 class="pergunta-item__titulo">A gordura do sobrepeso é igual à do lipedema?</h4>
                   <span class="assinatura">— Dr. Breno Gondim</span>
                   <span class="pergunta-item__link">
                     <a class="botao botao--secundario" href="#" aria-label="Ver resposta: A gordura do sobrepeso é igual à do lipedema?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
@@ -189,14 +189,14 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
                   </span>
                 </li>
                 <li class="pergunta-item">
-                  <p class="pergunta-item__titulo">Por que a medida da cintura importa mais que a balança?</p>
+                  <h4 class="pergunta-item__titulo">Por que a medida da cintura importa mais que a balança?</h4>
                   <span class="assinatura">— Dr. Breno Gondim</span>
                   <span class="pergunta-item__link">
                     <a class="botao botao--secundario" href="#" aria-label="Ver resposta: Por que a medida da cintura importa mais que a balança?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
                     <span class="pergunta-item__pendente">[PENDENTE]</span>
                   </span>
                 </li>
-              </ul>
+              </ol>
             </div>
           </div>
         </article>
@@ -223,19 +223,21 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
       <!-- [PENDENTE] confirmar quem responde por Nutrologia no registro (RQE). Se for um só, a seção passa a mostrar um card e o H2 vira "Quem conduz." -->
       <div class="medicos medicos--2" data-reveal-grupo>
         <article class="medico">
-          <div class="medico__midia">
-            <img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+          <div class="medico__midia stream" data-stream="{{stream_tulio}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Túlio Bovo">
+            <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" srcset="{{raiz}}assets/img/producao/dr-tulio-bovo-640.jpg 640w, {{raiz}}assets/img/producao/dr-tulio-bovo.jpg 1600w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dr. Túlio Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           </div>
           <h3 class="medico__nome">Dr. Túlio Bovo</h3>
-          <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
+          <span class="medico__crm">CRM-SP 000000 · RQE 00000 <span class="pendente">[PENDENTE]</span></span>
           <a class="botao botao--secundario medico__link" href="{{site}}dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
         </article>
         <article class="medico">
-          <div class="medico__midia">
-            <img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+          <div class="medico__midia stream" data-stream="{{stream_breno}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Breno Gondim">
+            <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" srcset="{{raiz}}assets/img/producao/dr-breno-gondim-640.jpg 640w, {{raiz}}assets/img/producao/dr-breno-gondim.jpg 1600w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           </div>
           <h3 class="medico__nome">Dr. Breno Gondim</h3>
-          <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
+          <span class="medico__crm">CRM-SP 000000 · RQE 00000 <span class="pendente">[PENDENTE]</span></span>
           <a class="botao botao--secundario medico__link" href="{{site}}dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
         </article>
       </div>
@@ -243,12 +245,12 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
   </section>
 
   <!-- ================= 04 · PERGUNTAS MAIS COMUNS (bordô) ================= -->
-  <section class="secao sup-bordo perguntas-comuns" id="perguntas">
+  <section class="secao sup-bordo perguntas-comuns" id="perguntas-mais-comuns">
     <div class="container">
       <div class="secao__cabeca grid-12">
         <div class="col-8">
-          <p class="eyebrow" data-reveal>Perguntas mais comuns</p>
-          <h2 data-split-linhas>O que a gente mais ouve antes da primeira consulta.</h2>
+          <p class="eyebrow" data-reveal><span class="numeral">04</span> — Perguntas mais comuns</p>
+          <h2 data-split-linhas>O que a gente mais ouve antes de você marcar.</h2>
         </div>
       </div>
       <!-- [PENDENTE] respostas 2 e 3 escritas pela agência: validar com os médicos (pendência 5). -->

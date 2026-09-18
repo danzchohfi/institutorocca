@@ -7,8 +7,8 @@ css: dr-breno-gondim
 corpo: sup-bordo pagina pagina--dr-breno-gondim
 whats_msg: Olá. Quero agendar uma avaliação com o Dr. Breno Gondim no Instituto Rocca.
 fecho_h2: Avaliação com o / Dr. Breno Gondim.
-fecho_sub: Quem te atender no primeiro dia é quem vai te acompanhar. Você sai da consulta com o telefone dele.
-fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Breno Gondim — quem te atender no primeiro dia é quem vai te acompanhar.
+fecho_sub: Quem te atender no primeiro dia é quem vai te acompanhar. Você sai da consulta com o WhatsApp dele.
+fecho_nota: Quem responde é o Instituto. Diga que quer marcar com o Dr. Breno Gondim — quem te atender no primeiro dia é quem vai te acompanhar.
 -->
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -17,7 +17,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Br
 {{skip}}
 {{nav}}
 {{menu}}
-<main id="conteudo">
+<main id="conteudo" tabindex="-1">
   <!-- PÁGINA DO DR. BRENO GONDIM (scratchpad/site/internas.md §5; estrutura comum aos médicos em §4).
        Hero (bordô) · 01 Quem eu sou (osso) · 02 Como eu conduzo (bordô) · 03 O que eu trato (osso)
        · 04 Perguntas que eu respondo (bordô) · 05 A casa, por dentro (osso) · fecho · rodapé.
@@ -40,11 +40,11 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Br
         </blockquote>
         <div class="acoes" data-reveal>
           <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Agendar avaliação</a>
-          <!-- Com UID no Stream, o stream.js tira o hidden deste link: ele abre o lightbox com o vídeo 9:16
-               do bloco 01 (herda UID, título e proporção). Sem UID, ele fica escondido e o link seguinte,
-               que leva ao bloco 01, faz as vezes dele (o site nunca mostra "filme em produção"). -->
-          <a class="botao botao--secundario hero__assistir" href="#quem-eu-sou" data-abre-lightbox="#filme" data-stream-de="#video-quem-eu-sou" data-stream-precisa="#video-quem-eu-sou" hidden aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim">Assistir: Quem eu sou <span class="seta" aria-hidden="true">→</span></a>
-          <a class="botao botao--secundario hero__quem" href="#quem-eu-sou">Quem eu sou <span class="seta" aria-hidden="true">→</span></a>
+          <!-- "Assistir: Quem eu sou" abre o vídeo 9:16 no lightbox (herda o UID do componente da seção 01).
+               Enquanto o UID não chegar, o botão fica hidden (data-stream-precisa) e o link ao lado leva à
+               seção, onde o poster aparece com o rótulo — o site nunca abre um lightbox sem vídeo. -->
+          <button class="botao botao--secundario hero__assistir" type="button" hidden data-abre-lightbox="#filme" data-stream-de="#video-quem-eu-sou" data-stream-precisa="#video-quem-eu-sou" aria-label="Assistir: Quem eu sou — Dr. Breno Gondim">Assistir: Quem eu sou <span class="seta" aria-hidden="true">→</span></button>
+          <a class="botao botao--secundario hero__assistir-ancora" href="#quem-eu-sou">Assistir: Quem eu sou <span class="seta seta--baixo" aria-hidden="true">↓</span></a>
         </div>
       </div>
       <div class="hero__foto paralaxe" data-parallax-area data-reveal="escala">
@@ -60,7 +60,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Br
     <div class="container grid-12 quem__grid">
       <div class="col-4 quem__video" data-reveal="escala">
         <!-- Vídeo "Quem eu sou" (9:16). Sem UID mostra o poster (o retrato) com o rótulo; com UID toca no lugar. -->
-        <div class="stream" id="video-quem-eu-sou" data-stream="{{stream_breno}}" data-stream-modo="player" data-stream-titulo="Quem eu sou — Dr. Breno Gondim" data-stream-proporcao="9/16">
+        <div class="stream stream--escurecido" id="video-quem-eu-sou" data-stream="{{stream_breno}}" data-stream-modo="player" data-stream-titulo="Quem eu sou — Dr. Breno Gondim" data-stream-proporcao="9/16">
           <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async">
           <button class="stream__play" type="button" hidden aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           <span class="stream__rotulo">Quem eu sou — gravado no estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></span>
@@ -70,7 +70,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Br
         <p class="eyebrow" data-reveal><span class="numeral">01</span> — Quem eu sou</p>
         <h2 data-split-linhas>Sem currículo lido em voz alta.</h2>
         <p class="texto-grande" data-reveal>O que constrói confiança é o critério, não o diploma. Em um minuto e meio, gravado no estúdio Jacarandá, eu conto:</p>
-        <ol class="quem__lista" data-reveal-grupo>
+        <ol class="quem__lista" data-reveal-grupo aria-label="O que o vídeo responde">
           <li>O que eu trato — dito como o paciente descreve, não como a especialidade se chama.</li>
           <li>Por que eu escolhi isso.</li>
           <li>O que eu faço diferente: investigo antes de propor.</li>
@@ -132,33 +132,33 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Br
         <h2 class="titulo-2l" data-split-linhas>O que parou de funcionar, <span class="linha-2">dito como você descreve.</span></h2>
       </div>
       <!-- [PENDENTE] confirmar a lista com o Dr. Breno, dentro do mapa de especialidades (internas.md §0.1, proposta a confirmar). -->
-      <ul class="lista-links col-6 col-inicio-7 trato__lista" data-reveal-grupo>
+      <ul class="lista-links lista-links--duas col-6 col-inicio-7" data-reveal-grupo>
         <li>
           <a href="{{site}}nutrologia/#emagrecimento">
             <span class="lista-links__nome">Emagrecimento e metabolismo</span>
             <span class="lista-links__linha">O medo de engordar tudo de novo. O metabolismo entra no tratamento.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
         <li>
           <a href="{{site}}nutrologia/#lipedema">
             <span class="lista-links__nome">Lipedema</span>
-            <span class="lista-links__linha">Não é 'só gordura'.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__linha">Não é ‘só gordura’.</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
         <li>
           <a href="{{site}}endocrinologia/#avaliacao-hormonal">
             <span class="lista-links__nome">Avaliação hormonal</span>
             <span class="lista-links__linha">Será que é hormonal? Isso se mede, e se investiga.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
         <li>
           <a href="{{site}}endocrinologia/#menopausa">
             <span class="lista-links__nome">Menopausa</span>
             <span class="lista-links__linha">Sem eufemismo.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
       </ul>
@@ -217,7 +217,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Br
   </section>
 
   <!-- ===== 05 · A CASA, POR DENTRO (osso) ===== -->
-  <section class="secao sup-osso casa" id="a-casa" data-tema="claro">
+  <section class="secao sup-osso casa" id="a-casa-por-dentro" data-tema="claro">
     <div class="container">
       <div class="secao__cabeca grid-12">
         <div class="col-7">
@@ -226,7 +226,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Br
         </div>
       </div>
       <!-- Vídeo 16:9 "A casa, por dentro — com o Dr. Breno Gondim". Sem UID fica o poster com o rótulo. -->
-      <div class="stream casa__video" id="video-casa" data-stream="{{stream_casa_breno}}" data-stream-modo="player" data-stream-titulo="A casa, por dentro — com o Dr. Breno Gondim" data-reveal="escala">
+      <div class="stream stream--escurecido casa__video" id="video-casa" data-stream="{{stream_casa_breno}}" data-stream-modo="player" data-stream-titulo="A casa, por dentro — com o Dr. Breno Gondim" data-reveal="escala">
         <img class="stream__poster" src="{{raiz}}assets/img/consultorio-03.jpg" alt="" width="1600" height="1256" loading="lazy" decoding="async">
         <button class="stream__play" type="button" hidden aria-label="Reproduzir: A casa, por dentro — com o Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
         <span class="stream__rotulo">A casa, por dentro — com o Dr. Breno Gondim <span class="texto-2">[PENDENTE]</span></span>
@@ -236,7 +236,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Br
       </div>
       <!-- Linha de links do fecho (internas.md §5): os outros dois médicos da casa. Fica aqui porque o partial do fecho é fixo. -->
       <div class="outros" data-reveal>
-        <p class="eyebrow">Os outros médicos da casa</p>
+        <p class="eyebrow">Os outros médicos</p>
         <div class="ligacoes">
           <a class="botao botao--secundario" href="{{site}}dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Dr. Túlio Bovo <span class="seta" aria-hidden="true">→</span></a>
           <a class="botao botao--secundario" href="{{site}}dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Dra. Ana Paula Bovo <span class="seta" aria-hidden="true">→</span></a>

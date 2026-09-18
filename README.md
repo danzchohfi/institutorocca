@@ -30,7 +30,7 @@ O cliente escolheu a **abertura em partículas** (versão Letras) seguida das **
 ```bash
 npm install
 node scripts/site.mjs   # gera site/index.html e site/<slug>/index.html
-npm run build           # empacota src/site/main.js → site/app.js (e os conceitos)
+npm run build           # empacota src/site/main.js → site/app.js (home, com three.js) e src/site/interno.js → site/interno.js (internas)
 node scripts/lexico.mjs # varre os termos que a marca não usa (concepts/, site/, src/site/)
 ```
 
@@ -93,8 +93,8 @@ shared/letras.js        o sistema de partículas do wordmark (three.js), usado p
 shared/mosaico.js       mosaico de fotos da clínica
 shared/stream.js        componente Cloudflare Stream (poster até o UID chegar)
 shared/partials.html    marcação canônica de nav, menu, WhatsApp e footer (conceitos)
-src/site/               site final: main.js, hero.js, config.mjs, partials/ e paginas/ (templates)
-site/                   site final gerado: index.html, <slug>/index.html, css/<slug>.css, site.css, app.js
+src/site/               site final: comum.js, main.js (home), interno.js, hero.js, config.mjs, partials/ e paginas/
+site/                   site final gerado: index.html, <slug>/index.html, css/<slug>.css, site.css, app.js (home) e interno.js (internas)
 src/<conceito>/         código-fonte JS de cada conceito (empacotado por esbuild)
 concepts/<conceito>/    index.html + concept.css + app.js (bundle) de cada conceito
 concepts/00-kit/        kit do sistema (style guide vivo)

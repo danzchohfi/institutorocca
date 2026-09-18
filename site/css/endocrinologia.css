@@ -9,10 +9,6 @@
 
 /* ---- Hero: a pergunta do H1 cabe numa linha só quando a coluna permite ----- */
 .pagina--endocrinologia .hero--interno .hero__texto h1 { max-width: 20ch; }
-/* seta para baixo do link "O que tratamos": desce no hover em vez de ir para o lado */
-.seta--baixo { display: inline-block; }
-.botao--secundario:hover .seta--baixo,
-.botao--secundario:focus-visible .seta--baixo { transform: translateY(4px); }
 
 /* ---- 01 · Como a gente conduz: cabeçalho ao topo, prosa ao lado, pilares abaixo ---- */
 .conduz .secao__cabeca { align-items: start; }

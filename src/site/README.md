@@ -12,7 +12,9 @@ comentários de código inclusive. Nunca um nome de modelo de IA em arquivo do r
 ```
 src/site/
   config.mjs            dados pendentes em um só lugar (WhatsApp, conta e UIDs do Stream, ano)
-  main.js               entrada do bundle único → site/app.js   (NÃO editar, salvo o registro de um comportamento novo)
+  comum.js              iniciarSite(extras): o que todas as páginas rodam   (NÃO editar, salvo o registro de um comportamento novo)
+  main.js               entrada da home → site/app.js (comum.js + hero.js, com three.js)   (NÃO editar)
+  interno.js            entrada das internas → site/interno.js (só comum.js, sem three.js)   (NÃO editar)
   hero.js               a abertura fundida da home: iniciarHeroFusao()   (o construtor da home implementa)
   paginas/<slug>.html   UM template por página (documento HTML completo + cabeçalho de metadados)
   partials/*.html       head · skip · nav · menu · fecho · footer · whats · lightbox   (NÃO editar)
@@ -21,7 +23,8 @@ site/                   SAÍDA gerada e versionada (o GitHub Pages publica o rep
   <slug>/index.html     ← paginas/<slug>.html  ({{raiz}} = ../../  {{site}} = ../)
   site.css              regras comuns do site (fase Base)   — NÃO editar (nem shared/base.css)
   css/<slug>.css        regras só daquela página — cada construtor escreve a sua, nunca a dos outros
-  app.js                bundle gerado por `npm run build`
+  app.js                bundle da home, gerado por `npm run build` (~620 KB: traz o three.js das partículas)
+  interno.js            bundle das nove internas, gerado por `npm run build` (~140 KB, sem three.js)
 ```
 
 As dez páginas e seus slugs: `index` (home) · `nutrologia` · `endocrinologia` · `dermatologia` ·
@@ -98,7 +101,11 @@ sozinhos. `/contato/` simplesmente **não escreve** `{{fecho}}` (o topo da pági
 Caminhos dentro de **CSS** resolvem a partir do arquivo CSS, não da página: em `site/css/<slug>.css`
 uma imagem é `../../assets/img/x.jpg`.
 
-## 4. Comportamentos por atributo de dados (bundle único, `site/app.js`)
+## 4. Comportamentos por atributo de dados (`site/app.js` na home, `site/interno.js` nas internas)
+
+O `head` partial escreve `<script src="{{site}}{{bundle}}" defer>`: o gerador põe `app.js` na home e
+`interno.js` nas demais. Os dois saem de `comum.js` (`iniciarSite`); a home acrescenta `hero.js`, que
+traz o three.js — por isso as internas não o baixam. A tabela vale para os dois bundles.
 
 | Atributo | Módulo | O que faz |
 |---|---|---|
@@ -116,8 +123,10 @@ uma imagem é `../../assets/img/x.jpg`.
 | `data-contador` | ui.js | Existe, mas o BRIEF veta contadores — **não usar** |
 
 Precisa de um comportamento novo? Crie `src/site/<nome>.js` exportando `iniciarX()` (que procura o seu
-atributo e não faz nada se ele não existir) e registre em `main.js` com **uma** linha de import e **uma**
-linha de chamada dentro de `abrir()`. Nada mais muda no `main.js`.
+atributo e não faz nada se ele não existir) e registre em `comum.js` com **uma** linha de import e **uma**
+linha de chamada dentro de `abrir()` — assim entra nos dois bundles. Nada mais muda em `comum.js`,
+`main.js` ou `interno.js`. Só se o comportamento puxar uma biblioteca pesada e servir a uma única
+página é que ele vai na entrada dela (como `hero.js` na `main.js`, pelo `extras` de `iniciarSite`).
 
 Sem JS (`html:not(.js)`) e com `prefers-reduced-motion` a página tem de ficar legível: as regras do
 `base.css` §20–21 já mostram tudo o que `data-reveal`/`data-split-linhas` esconderiam; não crie estados
@@ -211,7 +220,7 @@ sem `border-radius`; nada de CDN nem `<link>` externo.
 
 ```
 node scripts/site.mjs            # gera as dez páginas (ou: node scripts/site.mjs nutrologia)
-npm run build                    # site/app.js (e os bundles dos conceitos)
+npm run build                    # site/app.js + site/interno.js (e os bundles dos conceitos)
 node scripts/lexico.mjs          # léxico: tem de terminar em "Léxico ok"
 npm run site                     # os três acima, em ordem
 node scripts/shot.mjs site/<slug>/index.html <prefixo>    # capturas 1440 / 768 / 390 + diagnóstico

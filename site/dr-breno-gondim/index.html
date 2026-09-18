@@ -17,10 +17,10 @@
   <link rel="stylesheet" href="../css/dr-breno-gondim.css">
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#550000">
-  <script src="../app.js" defer></script>
+  <script src="../interno.js" defer></script>
 </head>
 <body class="sup-bordo pagina pagina--dr-breno-gondim">
-<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#conteudo" data-sem-lenis>Ir para o conteúdo</a>
 <!-- NAV (padrão CLP: MENU | marca | WhatsApp + botão). O ui.js adiciona .nav--solida ao rolar
      e troca para o tema claro sob seções data-tema="claro". Classes e ids não mudam. -->
 <header class="nav" id="topo">
@@ -85,7 +85,7 @@
         <p class="menu__titulo eyebrow">A casa e o conteúdo</p>
         <ul class="menu__lista">
           <li><a href="../a-casa/">A casa</a></li>
-          <li><a href="../conteudo/">Perguntas que a gente responde</a></li>
+          <li><a href="../conteudo/">Conteúdo</a></li>
         </ul>
       </div>
       <div class="menu__coluna">
@@ -103,7 +103,7 @@
     </div>
   </div>
 </nav>
-<main id="conteudo">
+<main id="conteudo" tabindex="-1">
   <!-- PÁGINA DO DR. BRENO GONDIM (scratchpad/site/internas.md §5; estrutura comum aos médicos em §4).
        Hero (bordô) · 01 Quem eu sou (osso) · 02 Como eu conduzo (bordô) · 03 O que eu trato (osso)
        · 04 Perguntas que eu respondo (bordô) · 05 A casa, por dentro (osso) · fecho · rodapé.
@@ -126,11 +126,11 @@
         </blockquote>
         <div class="acoes" data-reveal>
           <a class="botao botao--primario" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20o%20Dr.%20Breno%20Gondim%20no%20Instituto%20Rocca." target="_blank" rel="noopener">Agendar avaliação</a>
-          <!-- Com UID no Stream, o stream.js tira o hidden deste link: ele abre o lightbox com o vídeo 9:16
-               do bloco 01 (herda UID, título e proporção). Sem UID, ele fica escondido e o link seguinte,
-               que leva ao bloco 01, faz as vezes dele (o site nunca mostra "filme em produção"). -->
-          <a class="botao botao--secundario hero__assistir" href="#quem-eu-sou" data-abre-lightbox="#filme" data-stream-de="#video-quem-eu-sou" data-stream-precisa="#video-quem-eu-sou" hidden aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim">Assistir: Quem eu sou <span class="seta" aria-hidden="true">→</span></a>
-          <a class="botao botao--secundario hero__quem" href="#quem-eu-sou">Quem eu sou <span class="seta" aria-hidden="true">→</span></a>
+          <!-- "Assistir: Quem eu sou" abre o vídeo 9:16 no lightbox (herda o UID do componente da seção 01).
+               Enquanto o UID não chegar, o botão fica hidden (data-stream-precisa) e o link ao lado leva à
+               seção, onde o poster aparece com o rótulo — o site nunca abre um lightbox sem vídeo. -->
+          <button class="botao botao--secundario hero__assistir" type="button" hidden data-abre-lightbox="#filme" data-stream-de="#video-quem-eu-sou" data-stream-precisa="#video-quem-eu-sou" aria-label="Assistir: Quem eu sou — Dr. Breno Gondim">Assistir: Quem eu sou <span class="seta" aria-hidden="true">→</span></button>
+          <a class="botao botao--secundario hero__assistir-ancora" href="#quem-eu-sou">Assistir: Quem eu sou <span class="seta seta--baixo" aria-hidden="true">↓</span></a>
         </div>
       </div>
       <div class="hero__foto paralaxe" data-parallax-area data-reveal="escala">
@@ -146,7 +146,7 @@
     <div class="container grid-12 quem__grid">
       <div class="col-4 quem__video" data-reveal="escala">
         <!-- Vídeo "Quem eu sou" (9:16). Sem UID mostra o poster (o retrato) com o rótulo; com UID toca no lugar. -->
-        <div class="stream" id="video-quem-eu-sou" data-stream="" data-stream-modo="player" data-stream-titulo="Quem eu sou — Dr. Breno Gondim" data-stream-proporcao="9/16">
+        <div class="stream stream--escurecido" id="video-quem-eu-sou" data-stream="" data-stream-modo="player" data-stream-titulo="Quem eu sou — Dr. Breno Gondim" data-stream-proporcao="9/16">
           <img class="stream__poster" src="../../assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='../../assets/placeholders/retrato-breno.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async">
           <button class="stream__play" type="button" hidden aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           <span class="stream__rotulo">Quem eu sou — gravado no estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></span>
@@ -156,7 +156,7 @@
         <p class="eyebrow" data-reveal><span class="numeral">01</span> — Quem eu sou</p>
         <h2 data-split-linhas>Sem currículo lido em voz alta.</h2>
         <p class="texto-grande" data-reveal>O que constrói confiança é o critério, não o diploma. Em um minuto e meio, gravado no estúdio Jacarandá, eu conto:</p>
-        <ol class="quem__lista" data-reveal-grupo>
+        <ol class="quem__lista" data-reveal-grupo aria-label="O que o vídeo responde">
           <li>O que eu trato — dito como o paciente descreve, não como a especialidade se chama.</li>
           <li>Por que eu escolhi isso.</li>
           <li>O que eu faço diferente: investigo antes de propor.</li>
@@ -218,33 +218,33 @@
         <h2 class="titulo-2l" data-split-linhas>O que parou de funcionar, <span class="linha-2">dito como você descreve.</span></h2>
       </div>
       <!-- [PENDENTE] confirmar a lista com o Dr. Breno, dentro do mapa de especialidades (internas.md §0.1, proposta a confirmar). -->
-      <ul class="lista-links col-6 col-inicio-7 trato__lista" data-reveal-grupo>
+      <ul class="lista-links lista-links--duas col-6 col-inicio-7" data-reveal-grupo>
         <li>
           <a href="../nutrologia/#emagrecimento">
             <span class="lista-links__nome">Emagrecimento e metabolismo</span>
             <span class="lista-links__linha">O medo de engordar tudo de novo. O metabolismo entra no tratamento.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
         <li>
           <a href="../nutrologia/#lipedema">
             <span class="lista-links__nome">Lipedema</span>
-            <span class="lista-links__linha">Não é 'só gordura'.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__linha">Não é ‘só gordura’.</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
         <li>
           <a href="../endocrinologia/#avaliacao-hormonal">
             <span class="lista-links__nome">Avaliação hormonal</span>
             <span class="lista-links__linha">Será que é hormonal? Isso se mede, e se investiga.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
         <li>
           <a href="../endocrinologia/#menopausa">
             <span class="lista-links__nome">Menopausa</span>
             <span class="lista-links__linha">Sem eufemismo.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
       </ul>
@@ -303,7 +303,7 @@
   </section>
 
   <!-- ===== 05 · A CASA, POR DENTRO (osso) ===== -->
-  <section class="secao sup-osso casa" id="a-casa" data-tema="claro">
+  <section class="secao sup-osso casa" id="a-casa-por-dentro" data-tema="claro">
     <div class="container">
       <div class="secao__cabeca grid-12">
         <div class="col-7">
@@ -312,7 +312,7 @@
         </div>
       </div>
       <!-- Vídeo 16:9 "A casa, por dentro — com o Dr. Breno Gondim". Sem UID fica o poster com o rótulo. -->
-      <div class="stream casa__video" id="video-casa" data-stream="" data-stream-modo="player" data-stream-titulo="A casa, por dentro — com o Dr. Breno Gondim" data-reveal="escala">
+      <div class="stream stream--escurecido casa__video" id="video-casa" data-stream="" data-stream-modo="player" data-stream-titulo="A casa, por dentro — com o Dr. Breno Gondim" data-reveal="escala">
         <img class="stream__poster" src="../../assets/img/consultorio-03.jpg" alt="" width="1600" height="1256" loading="lazy" decoding="async">
         <button class="stream__play" type="button" hidden aria-label="Reproduzir: A casa, por dentro — com o Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
         <span class="stream__rotulo">A casa, por dentro — com o Dr. Breno Gondim <span class="texto-2">[PENDENTE]</span></span>
@@ -322,7 +322,7 @@
       </div>
       <!-- Linha de links do fecho (internas.md §5): os outros dois médicos da casa. Fica aqui porque o partial do fecho é fixo. -->
       <div class="outros" data-reveal>
-        <p class="eyebrow">Os outros médicos da casa</p>
+        <p class="eyebrow">Os outros médicos</p>
         <div class="ligacoes">
           <a class="botao botao--secundario" href="../dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Dr. Túlio Bovo <span class="seta" aria-hidden="true">→</span></a>
           <a class="botao botao--secundario" href="../dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Dra. Ana Paula Bovo <span class="seta" aria-hidden="true">→</span></a>
@@ -337,7 +337,7 @@
   <div class="container grid-12">
     <div class="col-6 fecho__chamada">
       <h2 class="titulo-2l" data-split-linhas>Avaliação com o <span class="linha-2">Dr. Breno Gondim.</span></h2>
-      <p class="texto-grande" data-reveal>Quem te atender no primeiro dia é quem vai te acompanhar. Você sai da consulta com o telefone dele.</p>
+      <p class="texto-grande" data-reveal>Quem te atender no primeiro dia é quem vai te acompanhar. Você sai da consulta com o WhatsApp dele.</p>
       <div class="acoes" data-reveal>
         <a class="botao botao--primario" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20o%20Dr.%20Breno%20Gondim%20no%20Instituto%20Rocca." target="_blank" rel="noopener">Falar no WhatsApp</a>
       </div>
@@ -346,7 +346,9 @@
       <p class="eyebrow">WhatsApp</p>
       <a class="fecho__numero" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20o%20Dr.%20Breno%20Gondim%20no%20Instituto%20Rocca." target="_blank" rel="noopener">+55 11 99999-9999</a>
       <p class="fecho__pendente texto-2">[PENDENTE]</p>
-      <p class="fecho__whats-nota">Quem responde é o Instituto. Diga que quer ser atendido pelo Dr. Breno Gondim — quem te atender no primeiro dia é quem vai te acompanhar.</p>
+      <!-- [PENDENTE] confirmar com o cliente o prazo "em até um dia útil" da nota padrão (fecho_nota em
+           scripts/site.mjs e em nutrologia.html); se não confirmar, termina em "… a avaliação é marcada na conversa." -->
+      <p class="fecho__whats-nota">Quem responde é o Instituto. Diga que quer marcar com o Dr. Breno Gondim — quem te atender no primeiro dia é quem vai te acompanhar.</p>
     </div>
   </div>
 </section>
@@ -363,8 +365,8 @@
       <div class="footer__col">
         <p class="footer__titulo eyebrow">A casa</p>
         <address>
-          Rua —, Moema, São Paulo <span class="footer__pendente">[PENDENTE]</span><br>
-          Segunda a sexta, — às — <span class="footer__pendente">[PENDENTE]</span><br>
+          Rua —, 000 · Moema · São Paulo · SP <span class="footer__pendente">[PENDENTE]</span><br>
+          Segunda a sexta, 00h às 00h <span class="footer__pendente">[PENDENTE]</span><br>
           <a href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20com%20o%20Dr.%20Breno%20Gondim%20no%20Instituto%20Rocca." target="_blank" rel="noopener">WhatsApp +55 11 99999-9999</a> <span class="footer__pendente">[PENDENTE]</span><br>
           <a href="#">Instagram @institutorocca</a> <span class="footer__pendente">[PENDENTE]</span><br>
           contato@ <span class="footer__pendente">[PENDENTE]</span><br>
@@ -419,7 +421,7 @@
 <!-- LIGHTBOX (dialog nativo): um só para o site inteiro. Abre com qualquer [data-abre-lightbox="#filme"]
      (ui.js); o stream.js monta o iframe do vídeo do abridor no .stream de modo "alvo" e o remove ao fechar.
      O UID em data-stream aqui é o do filme institucional completo, com som. -->
-<dialog class="lightbox" id="filme" aria-label="Filme institucional — Instituto Rocca">
+<dialog class="lightbox" id="filme" aria-labelledby="filme-legenda">
   <button class="lightbox__fechar" type="button" data-fecha-lightbox aria-label="Fechar o filme">Fechar</button>
   <div class="lightbox__media">
     <div class="stream" data-stream="" data-stream-modo="alvo" data-stream-titulo="Filme institucional — Instituto Rocca">
@@ -427,7 +429,7 @@
       <span class="stream__rotulo">Filme institucional — gravação na clínica <span class="texto-2">[PENDENTE]</span></span>
     </div>
   </div>
-  <p class="lightbox__legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
+  <p class="lightbox__legenda" id="filme-legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
 </dialog>
 </body>
 </html>

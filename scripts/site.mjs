@@ -104,8 +104,8 @@ function urlsDoHtml(html) {
 }
 
 /* Saídas que esta rodada grava: contam como existentes antes de serem gravadas
-   (a home linka as internas e vice-versa; o app.js vem do build logo depois). */
-const planejados = new Set([join(raiz, 'site', 'app.js')]);
+   (a home linka as internas e vice-versa; app.js e interno.js vêm do build logo depois). */
+const planejados = new Set([join(raiz, 'site', 'app.js'), join(raiz, 'site', 'interno.js')]);
 
 function verificar(html, saidaRel, arquivo, problemas) {
   const sobras = html.match(/\{\{[^}]*\}\}/g);
@@ -148,6 +148,7 @@ function gerar(arquivoTemplate, problemas, avisos) {
     slug,
     raiz: `${posix.relative(pastaRel, '.')}/`,                                          // ../ ou ../../
     site: `${posix.relative(pastaRel, 'site') || '.'}/`,                                // ./ ou ../
+    bundle: slug === 'index' ? 'app.js' : 'interno.js',                                 // a home leva o three.js; as internas não
     ano: cfg.ANO,
     whats_numero: cfg.WHATS_NUMERO,
     whats_numero_visivel: cfg.WHATS_NUMERO_VISIVEL,

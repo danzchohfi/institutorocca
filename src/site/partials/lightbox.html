@@ -1,7 +1,7 @@
 <!-- LIGHTBOX (dialog nativo): um só para o site inteiro. Abre com qualquer [data-abre-lightbox="#filme"]
      (ui.js); o stream.js monta o iframe do vídeo do abridor no .stream de modo "alvo" e o remove ao fechar.
      O UID em data-stream aqui é o do filme institucional completo, com som. -->
-<dialog class="lightbox" id="filme" aria-label="Filme institucional — Instituto Rocca">
+<dialog class="lightbox" id="filme" aria-labelledby="filme-legenda">
   <button class="lightbox__fechar" type="button" data-fecha-lightbox aria-label="Fechar o filme">Fechar</button>
   <div class="lightbox__media">
     <div class="stream" data-stream="{{stream_institucional}}" data-stream-modo="alvo" data-stream-titulo="Filme institucional — Instituto Rocca">
@@ -9,5 +9,5 @@
       <span class="stream__rotulo">Filme institucional — gravação na clínica <span class="texto-2">[PENDENTE]</span></span>
     </div>
   </div>
-  <p class="lightbox__legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
+  <p class="lightbox__legenda" id="filme-legenda" data-stream-legenda>Filme institucional — Instituto Rocca</p>
 </dialog>

@@ -3,17 +3,12 @@
    ----------------------------------------------------------------------------
    O comum (hero interno, cabeçalho de seção, pilares, "O que tratamos",
    listas de perguntas, cards de médico, fecho) vem de site/site.css e de
-   shared/base.css. Aqui entra só o que é desta página: a seta para baixo do
-   hero, a figura sangrada da bioimpedância, os ajustes de ritmo das seções
-   02 e 04 e a linha desenhada das sub-seções.
+   shared/base.css (a seta para baixo do hero também). Aqui entra só o que é
+   desta página: a figura sangrada da bioimpedância, os ajustes de ritmo das
+   seções 02 e 04 e a linha desenhada das sub-seções.
    Mobile-first; breakpoints 640 / 900 / 1200 / 1440; sem border-radius.
    URLs em CSS resolvem a partir deste arquivo: ../../assets/…
    ============================================================================ */
-
-/* ---- Hero: o link secundário aponta para a seção "O que tratamos", logo abaixo ----- */
-.seta--baixo { display: inline-block; }
-.botao--secundario:hover .seta--baixo,
-.botao--secundario:focus-visible .seta--baixo { transform: translateY(4px); }
 
 /* ---- 01 · Como a gente conduz: figura de apoio sangrada (bioimpedância) ----------------
    <figure class="conduz__figura"> <div class="conduz__moldura paralaxe"> … </div> <figcaption class="conduz__legenda"> */

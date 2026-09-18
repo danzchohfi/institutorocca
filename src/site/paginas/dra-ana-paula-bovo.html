@@ -7,8 +7,8 @@ css: dra-ana-paula-bovo
 corpo: sup-bordo pagina pagina--dra-ana-paula-bovo
 whats_msg: Olá. Quero agendar uma avaliação com a Dra. Ana Paula Bovo no Instituto Rocca.
 fecho_h2: Avaliação com a / Dra. Ana Paula Bovo.
-fecho_sub: Quem te atender no primeiro dia é quem vai te acompanhar. Você sai da consulta com o telefone dela.
-fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. Ana Paula Bovo — quem te atender no primeiro dia é quem vai te acompanhar.
+fecho_sub: Quem te atender no primeiro dia é quem vai te acompanhar. Você sai da consulta com o WhatsApp dela.
+fecho_nota: Quem responde é o Instituto. Diga que quer marcar com a Dra. Ana Paula Bovo — quem te atender no primeiro dia é quem vai te acompanhar.
 -->
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -17,24 +17,26 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
 {{skip}}
 {{nav}}
 {{menu}}
-<main id="conteudo">
+<main id="conteudo" tabindex="-1">
   <!-- ================= HERO — bordô; retrato real da produção (terno branco) à direita, acima no celular =================
        As três fotos reais da Dra. Ana Paula (-02, -03, -04) entram uma em cada bloco; o stand-in (colete camel)
-       fica só como referência no LEIA-ME. O link "Assistir" leva ao vídeo da seção 01, que toca no lugar quando
-       o UID do Stream chegar (hoje mostra o poster com o rótulo). -->
+       fica só como referência no LEIA-ME. "Assistir: Quem eu sou" abre o vídeo 9:16 no lightbox quando o UID
+       chegar (data-stream-precisa); até lá o botão fica hidden e o link ao lado leva à seção 01, onde o poster
+       aparece com o rótulo. -->
   <section class="hero hero--interno hero--retrato sup-bordo" id="inicio" data-hero>
     <div class="container hero__in">
       <div class="hero__texto">
         <p class="eyebrow" data-reveal>A sua médica</p>
         <h1 data-split-linhas>Dra. Ana Paula Bovo</h1>
-        <p class="hero__rotulo" data-reveal>Dermatologia · CRM-SP 000000 · RQE 00000 <span class="texto-2">[PENDENTE]</span></p>
+        <p class="hero__rotulo" data-reveal>Dermatologia · CRM-SP 000000 · RQE 00000 <span class="hero__pendente">[PENDENTE]</span></p>
         <blockquote class="hero__citacao texto-grande" data-reveal>
           <p>Boa parte da minha consulta é explicar o que eu não indico — e por quê.</p>
           <span class="assinatura">— Dra. Ana Paula Bovo</span>
         </blockquote>
         <div class="acoes" data-reveal>
           <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Agendar avaliação</a>
-          <a class="botao botao--secundario" href="#quem-eu-sou" aria-label="Assistir: Quem eu sou — Dra. Ana Paula Bovo">Assistir: Quem eu sou <span class="seta" aria-hidden="true">↓</span></a>
+          <button class="botao botao--secundario hero__assistir" type="button" hidden data-abre-lightbox="#filme" data-stream-de="#video-quem-eu-sou" data-stream-precisa="#video-quem-eu-sou" aria-label="Assistir: Quem eu sou — Dra. Ana Paula Bovo">Assistir: Quem eu sou <span class="seta" aria-hidden="true">→</span></button>
+          <a class="botao botao--secundario hero__assistir-ancora" href="#quem-eu-sou">Assistir: Quem eu sou <span class="seta seta--baixo" aria-hidden="true">↓</span></a>
         </div>
       </div>
       <div class="hero__foto paralaxe" data-parallax-area data-reveal="escala">
@@ -52,7 +54,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
   <section class="secao sup-osso quem" id="quem-eu-sou" data-tema="claro">
     <div class="container grid-12 quem__in">
       <div class="col-4 quem__video" data-reveal="escala">
-        <div class="stream" id="video-quem-eu-sou" data-stream="{{stream_ana}}" data-stream-modo="player"
+        <div class="stream stream--escurecido" id="video-quem-eu-sou" data-stream="{{stream_ana}}" data-stream-modo="player"
              data-stream-titulo="Quem eu sou — Dra. Ana Paula Bovo" data-stream-proporcao="9/16">
           <img class="stream__poster" src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-03.jpg"
                onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula.svg'"
@@ -67,12 +69,12 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
         <p class="eyebrow" data-reveal><span class="numeral">01</span> — Quem eu sou</p>
         <h2 data-split-linhas>Sem currículo lido em voz alta.</h2>
         <p class="texto-grande" data-reveal>O que constrói confiança é o critério, não o diploma. Em um minuto e meio, gravado no estúdio Jacarandá, eu conto:</p>
-        <ul class="quem__lista" data-reveal-grupo>
+        <ol class="quem__lista" data-reveal-grupo aria-label="O que o vídeo responde">
           <li>O que eu trato — dito como o paciente descreve, não como a especialidade se chama.</li>
           <li>Por que eu escolhi isso.</li>
           <li>O que eu faço diferente: investigo antes de propor.</li>
           <li>E onde eu atendo agora: no Instituto Rocca, em Moema.</li>
-        </ul>
+        </ol>
         <!-- Formação e titulação: uma linha, como a médica quiser que apareça (pendência 4 do internas.md §11). -->
         <p class="quem__formacao texto-2" data-reveal>[PENDENTE — formação e titulação, em uma linha, como a Dra. Ana Paula quiser que apareça]</p>
       </div>
@@ -97,7 +99,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
       </figure>
       <div class="conduzo__tres">
         <!-- Falas em primeira pessoa escritas pela agência: validar com a Dra. Ana Paula antes de ir ao ar (internas.md §10). -->
-        <ul class="tres" data-reveal-grupo>
+        <ol class="tres" data-reveal-grupo>
           <li>
             <h3 class="tres__titulo">Avalio antes de indicar.</h3>
             <p class="tres__texto">O mesmo procedimento fica melhor em uma pessoa do que em outra. A consulta começa avaliando, não escolhendo.</p>
@@ -110,7 +112,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
             <h3 class="tres__titulo">Olho a pele e o corpo.</h3>
             <p class="tres__texto">A pele responde ao que o corpo está fazendo por dentro. Por isso a dermatologia aqui conversa com a nutrologia e com a endocrinologia.</p>
           </li>
-        </ul>
+        </ol>
         <span class="assinatura" data-reveal>— Dra. Ana Paula Bovo</span>
       </div>
     </div>
@@ -127,26 +129,26 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
           <h2 class="titulo-2l" data-split-linhas>O que eu trato, <span class="linha-2">e o critério de cada coisa.</span></h2>
         </div>
       </div>
-      <ul class="lista-links" data-reveal-grupo>
+      <ul class="lista-links lista-links--duas" data-reveal-grupo>
         <li>
           <a href="{{site}}dermatologia/#tricologia">
             <span class="lista-links__nome">Tricologia</span>
             <span class="lista-links__linha">Cabelo que cai tem causa. E causa se investiga.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
         <li>
           <a href="{{site}}dermatologia/#estetica-facial">
             <span class="lista-links__nome">Estética facial</span>
             <span class="lista-links__linha">Fazer, e continuar parecendo você.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
         <li>
           <a href="{{site}}dermatologia/#pele">
             <span class="lista-links__nome">Pele</span>
             <span class="lista-links__linha">Pele é rotina, não procedimento.</span>
-            <span class="seta" aria-hidden="true">→</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
           </a>
         </li>
       </ul>
@@ -168,7 +170,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
           <p>Uma pergunta, uma resposta. Gravadas no estúdio Jacarandá e transcritas aqui.</p>
         </div>
       </div>
-      <ul class="perguntas-lista" data-reveal-grupo>
+      <ol class="perguntas-lista" data-reveal-grupo>
         <li class="pergunta-item">
           <h3 class="pergunta-item__titulo">Quando o botox não é indicado?</h3>
           <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Quando o botox não é indicado?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
@@ -199,7 +201,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
           <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Mudanças na pele depois dos 40: é hormônio?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
           <span class="pergunta-item__pendente">[PENDENTE]</span>
         </li>
-      </ul>
+      </ol>
       <div class="secao__rodape" data-reveal>
         <a class="botao botao--secundario" href="{{site}}conteudo/">Ver todas as respostas <span class="seta" aria-hidden="true">→</span></a>
       </div>
@@ -218,7 +220,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
       </div>
       <div class="casa__in">
         <div class="casa__video" data-reveal="escala">
-          <div class="stream" data-stream="{{stream_casa_ana}}" data-stream-modo="player"
+          <div class="stream stream--escurecido" data-stream="{{stream_casa_ana}}" data-stream-modo="player"
                data-stream-titulo="A casa, por dentro — com a Dra. Ana Paula Bovo">
             <img class="stream__poster" src="{{raiz}}assets/img/consultorio-dermatologia-02.jpg"
                  alt="" width="1600" height="918" loading="lazy" decoding="async">
@@ -244,8 +246,8 @@ fecho_nota: Quem responde é o Instituto. Diga que quer ser atendida pela Dra. A
         <div class="casa__outros" data-reveal>
           <p class="eyebrow">Os outros médicos</p>
           <div class="ligacoes">
-            <a class="botao botao--secundario" href="{{site}}dr-tulio-bovo/">Dr. Túlio Bovo <span class="seta" aria-hidden="true">→</span></a>
-            <a class="botao botao--secundario" href="{{site}}dr-breno-gondim/">Dr. Breno Gondim <span class="seta" aria-hidden="true">→</span></a>
+            <a class="botao botao--secundario" href="{{site}}dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Dr. Túlio Bovo <span class="seta" aria-hidden="true">→</span></a>
+            <a class="botao botao--secundario" href="{{site}}dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Dr. Breno Gondim <span class="seta" aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
