@@ -1,8 +1,8 @@
 # Fotos da produção (estúdio Jacarandá)
 
 Nomes de arquivo que o site espera. Fotos reais já no lugar: o trio (horizontal e as duas verticais) e a
-Dra. Ana Paula de terno branco (três variações). Ainda **stand-ins** (gerados no Higgsfield, mesmo
-enquadramento): `dr-tulio-bovo.jpg`, `dr-breno-gondim.jpg`, `dra-ana-paula-bovo.jpg` (colete camel).
+Dra. Ana Paula de terno branco (três variações). Retratos reais do Dr. Túlio e do Dr. Breno já no lugar (reduzidos para 1600×2400).
+Ainda **stand-in** (gerado no Higgsfield, mesmo enquadramento): `dra-ana-paula-bovo.jpg` (colete camel).
 Ao subir as fotos reais com estes nomes, o site troca sozinho.
 
 | Arquivo | O que é | Proporção |
