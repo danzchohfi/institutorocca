@@ -1,0 +1,114 @@
+/* ============================================================================
+   INSTITUTO ROCCA — /contato/ · regras só desta página
+   ----------------------------------------------------------------------------
+   Lê brand/tokens.css, shared/base.css e site/site.css (hero interno, .tres,
+   .comuns, cards de médico, .mapa, .endereco e o bloco do WhatsApp do fecho).
+   Aqui entra só o que a página de contato acrescenta: o topo que faz as vezes
+   de fecho (número do WhatsApp ao lado do H1), os cards pequenos dos médicos,
+   a ficha de endereço e a coluna de mídia de "Onde fica".
+   Mobile-first; breakpoints 640 / 900 / 1200. URLs resolvem a partir deste
+   arquivo: ../../assets/…
+   ============================================================================ */
+
+/* ---- Topo: hero sem foto com o bloco do WhatsApp na coluna da direita ---------- */
+/* o site.css empurra o número 2rem para baixo quando ele fica solto sob o H1;
+   aqui ele vive dentro do bloco .fecho__whats, que já espaça por gap */
+.contato-topo .fecho__whats .fecho__numero {
+  margin-top: 0;
+  font-size: clamp(1.8rem, 1rem + 2vw, 3.2rem);
+}
+.contato-topo .fecho__whats-nota { max-width: 32ch; }
+.contato-topo .hero__sub { max-width: 44ch; }
+@media (min-width: 900px) {
+  /* 7 + 5 colunas: o número precisa de mais largura que os 4/12 do hero sem foto */
+  .hero--interno.contato-topo .hero__in { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  /* a base da nota alinha com a base dos botões */
+  .contato-topo__whats { padding-bottom: .2rem; }
+}
+
+/* ---- 01 · Depois da mensagem — o cabeçalho já dá o respiro que .tres repetiria ---- */
+.contato-depois .tres { margin-top: 0; }
+.contato-depois .tres__titulo { max-width: 20ch; }
+
+/* ---- 02 · Antes de mandar mensagem ------------------------------------------------- */
+.contato-antes .comuns { margin-top: 0; }
+.contato-antes .comum__pergunta { max-width: 18ch; }
+
+/* ---- 03 · Os médicos — cabeçalho + três cards pequenos ------------------------------ */
+.contato-medicos__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 6vw, 5rem) var(--coluna-gap);
+  align-items: start;
+}
+.contato-medicos__cabeca h2 { max-width: 16ch; }
+.contato-medicos__linha { margin-top: 1.6rem; max-width: 28ch; }
+.contato-medicos__cabeca .acoes { margin-top: 1.8rem; }
+/* no celular, o card vira uma linha: retrato à esquerda, texto centrado ao lado.
+   As duas faixas 1fr absorvem a altura que sobra do retrato; o texto fica no meio. */
+@media (max-width: 639.98px) {
+  .contato-medicos .medicos { gap: 1.4rem; }
+  .contato-medicos .medico {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+    grid-template-rows: 1fr auto auto auto 1fr;
+    column-gap: 1.25rem;
+    row-gap: .3rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--linha);
+  }
+  .contato-medicos .medico:last-child { padding-bottom: 0; border-bottom: 0; }
+  .contato-medicos .medico__midia { grid-column: 1; grid-row: 1 / -1; }
+  .contato-medicos .medico__nome { grid-column: 2; grid-row: 2; }
+  .contato-medicos .medico__linha { grid-column: 2; grid-row: 3; margin-top: 0; }
+  .contato-medicos .medico__link { grid-column: 2; grid-row: 4; justify-self: start; margin-top: calc(.3rem - 12px); }   /* desconta a área de toque (site.css) */
+}
+@media (min-width: 1200px) {
+  .contato-medicos__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .contato-medicos__cabeca { grid-column: 1 / span 4; }
+  .contato-medicos__cards { grid-column: 5 / -1; }   /* 8 colunas: "Dra. Ana Paula Bovo" cabe numa linha a 1440 */
+}
+
+/* ---- 04 · Onde fica — ficha à esquerda, mapa e foto à direita ------------------------ */
+.contato-onde__grid { align-items: start; }
+.contato-onde__info h2 { max-width: 14ch; }
+.contato-ficha {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--linha);
+  line-height: 1.6;
+}
+.contato-ficha__item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .2rem 1.5rem;
+  padding-block: .95rem;
+  border-bottom: 1px solid var(--linha);
+}
+.contato-ficha dt {
+  font-size: var(--eyebrow);
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--rotulo);
+  line-height: 1.6;
+}
+.contato-ficha dd { max-width: 40ch; }
+.contato-ficha a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--linha);
+  transition: border-color var(--dur-rapida), color var(--dur-rapida);
+}
+.contato-ficha a:hover, .contato-ficha a:focus-visible { border-bottom-color: currentColor; color: var(--cor-madeira); }
+.contato-onde__info .acoes { margin-top: 2rem; }
+@media (min-width: 640px) {
+  .contato-ficha__item { grid-template-columns: 8.5rem minmax(0, 1fr); align-items: baseline; }
+  .contato-ficha dt { padding-top: .1em; }
+}
+/* coluna da direita: mapa placeholder e, abaixo, a foto da porta (3:2 com paralaxe leve) */
+.contato-onde__midia { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); align-content: start; }
+.contato-onde__foto { margin: 0; }
+.contato-onde__moldura { aspect-ratio: 3 / 2; background: var(--cor-bordo-profundo); }
+.contato-onde__foto .legenda { margin-top: 12px; }
+@media (min-width: 900px) {
+  .contato-onde__midia { padding-top: .35rem; }
+}

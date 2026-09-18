@@ -1,0 +1,379 @@
+<!-- pagina
+titulo: Instituto Rocca — Qualidade de Vida e Bem-Estar em Moema
+descricao: Instituto de Qualidade de Vida e Bem-Estar em Moema. Trata a causa do que parou de funcionar em você, com o mesmo médico do primeiro dia em diante.
+og_titulo: Seu médico. Sua melhor versão.
+og_imagem: assets/img/producao/medicos-trio-horizontal.jpg
+css: index
+corpo: sup-bordo pagina pagina--home
+whats_msg: Olá. Quero agendar uma avaliação no Instituto Rocca.
+fecho_h2: Avaliação com o médico / que vai acompanhar você.
+fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e a avaliação é marcada na conversa, em até um dia útil.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+{{head}}
+<body class="{{corpo}}">
+{{skip}}
+{{nav}}
+{{menu}}
+<main id="conteudo" tabindex="-1">
+
+  <!-- ================= ABERTURA FUNDIDA · Letras → a clínica → a janela =================
+       .abertura é a pista (2,25 telas; site.css). O hero fica preso (sticky) por 1,25 tela
+       enquanto src/site/hero.js dirige o timeline pelo scroll:
+         estado A — o wordmark em partículas (shared/letras.js) + especialidades, descritor e chamada;
+         estado B — as letras se dissolvem, a recepção aparece em cores naturais e o H1 entra por linhas;
+         fim      — a mídia encolhe até .hero__alvo (a janela) e segue com o bloco 01 — O problema.
+       Sem WebGL, com movimento reduzido ou sem JS: .abertura--estatica empilha os dois estados. -->
+  <div class="abertura" data-hero-fusao data-hero>
+    <section class="hero hero--fusao sup-bordo" id="inicio" aria-label="Abertura">
+
+      <!-- camada 0: a clínica (foto hoje; o filme do Stream entra em data-stream, sem mexer no resto) -->
+      <div class="hero__midia" aria-hidden="true">
+        <div class="hero__quadro">
+          <div class="stream stream--fundo" data-stream="{{stream_fundo}}" data-stream-modo="fundo" data-stream-titulo="Filme institucional do Instituto Rocca, sem som">
+            <picture>
+              <source media="(max-width: 899.98px)" srcset="{{raiz}}assets/img/entrada-clinica-mobile.jpg">
+              <img class="stream__poster hero__poster" src="{{raiz}}assets/img/entrada-clinica.jpg" width="2731" height="1536" alt="" decoding="async">
+            </picture>
+          </div>
+          <!-- só a base: legibilidade do creme sobre a foto, nunca véu inteiro -->
+          <div class="hero__escurecedor"></div>
+        </div>
+      </div>
+
+      <!-- camada 1: o wordmark em partículas (os paths do logo, amostrados pelo letras.js) -->
+      <svg id="wordmark-fonte" hidden xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1685.91 410.01" width="1686" height="410" role="img" aria-label="Instituto Rocca"><title>Instituto Rocca</title><g fill="#F2E8D9" fill-rule="evenodd"><path d="M1685.91 398.14 L1659.86 398.14 L1577.91 202.71 L1495.94 398.14 L1469.89 398.14 L1566.53 176.86 L1589.28 176.86 L1685.91 398.14 Z"/><path d="M449.26 385.14 C397.21 385.14 355.01 342.01 355.01 288.80 C355.01 235.59 397.21 192.45 449.26 192.45 C501.31 192.45 543.51 235.59 543.51 288.80 C543.51 342.01 501.31 385.14 449.26 385.14 Z M449.26 171.94 C384.20 171.94 331.46 223.82 331.46 287.83 C331.46 351.84 384.20 403.73 449.26 403.73 C514.32 403.73 567.07 351.84 567.07 287.83 C567.07 223.82 514.32 171.94 449.26 171.94 Z"/><path d="M79.33 279.80 C104.11 279.26 120.13 259.86 119.50 237.90 C118.90 216.96 103.60 198.18 80.43 197.98 L22.87 197.47 L22.85 281.03 L79.33 279.80 Z M152.91 398.30 L124.69 398.30 L63.42 300.80 L22.88 300.78 L22.92 398.24 L0.00 398.04 L0.05 177.32 L83.41 178.08 C104.11 178.27 121.78 188.62 133.68 204.55 C146.71 226.74 146.68 254.28 131.39 275.37 C121.45 289.06 105.31 295.36 89.07 298.46 L152.91 398.30 Z"/><path d="M804.90 372.19 C842.21 393.90 889.68 389.63 919.64 352.47 L938.36 365.57 C919.15 391.24 891.27 402.87 860.57 405.12 C793.48 410.01 739.30 360.06 737.75 292.86 C736.93 257.56 750.18 224.21 775.07 201.53 C820.19 160.40 895.59 160.64 936.67 211.72 L919.12 224.67 C892.26 191.57 847.29 182.99 809.38 203.59 C776.06 221.70 759.01 257.29 760.86 295.08 C762.48 327.94 778.77 356.98 804.90 372.19 Z"/><path d="M1179.38 372.19 C1216.69 393.90 1264.16 389.63 1294.12 352.47 L1312.84 365.57 C1293.63 391.24 1265.75 402.87 1235.05 405.12 C1167.96 410.01 1113.78 360.06 1112.23 292.86 C1111.41 257.56 1124.66 224.21 1149.55 201.53 C1194.67 160.40 1270.07 160.64 1311.15 211.72 L1293.60 224.67 C1266.74 191.57 1221.77 182.99 1183.86 203.59 C1150.54 221.70 1133.49 257.29 1135.34 295.08 C1136.95 327.94 1153.25 356.98 1179.38 372.19 Z"/><path d="M315.62 2.92 L321.46 2.92 L321.46 54.79 L315.62 54.79 Z"/><path d="M823.75 2.92 L829.59 2.92 L829.59 54.79 L823.75 54.79 Z"/><path d="M730.55 2.91 L730.55 8.76 L713.11 8.76 L713.11 54.79 L707.28 54.79 L707.28 8.76 L689.84 8.76 L689.84 2.91 L730.55 2.91 Z"/><path d="M963.50 2.91 L963.50 8.76 L946.06 8.76 L946.06 54.79 L940.23 54.79 L940.23 8.76 L922.79 8.76 L922.79 2.91 L963.50 2.91 Z"/><path d="M1227.34 2.91 L1227.34 8.76 L1209.90 8.76 L1209.90 54.79 L1204.07 54.79 L1204.07 8.76 L1186.63 8.76 L1186.63 2.91 L1227.34 2.91 Z"/><path d="M466.44 2.91 L466.44 54.79 L460.60 54.79 L428.43 11.93 L428.43 54.79 L422.59 54.79 L422.59 2.91 L429.56 2.91 L460.60 45.62 L460.60 2.91 L466.44 2.91 Z"/><path d="M1342.31 51.96 C1329.95 51.96 1319.93 41.72 1319.93 29.08 C1319.93 16.45 1329.95 6.21 1342.31 6.21 C1354.67 6.21 1364.69 16.45 1364.69 29.08 C1364.69 41.72 1354.67 51.96 1342.31 51.96 Z M1342.31 1.33 C1326.86 1.33 1314.34 13.66 1314.34 28.85 C1314.34 44.05 1326.86 56.37 1342.31 56.37 C1357.76 56.37 1370.28 44.05 1370.28 28.85 C1370.28 13.66 1357.76 1.33 1342.31 1.33 Z"/><path d="M589.10 55.15 C580.00 58.45 568.42 56.75 562.47 48.88 L567.97 44.35 C572.30 51.16 581.32 52.77 587.98 48.75 C590.90 46.98 592.15 43.74 591.86 40.59 C591.59 37.64 589.18 34.64 585.88 33.54 L574.03 29.57 C567.77 27.48 564.00 22.39 564.07 16.22 C564.14 10.00 567.78 4.91 574.01 2.84 C582.56 0.00 591.90 1.50 598.18 7.96 L593.17 12.14 C588.48 6.79 580.85 6.13 574.54 9.16 C571.82 10.46 570.22 13.69 570.51 16.61 C570.75 19.12 573.49 22.25 576.46 23.26 L587.92 27.11 C591.49 28.31 595.22 30.33 597.15 33.70 C601.79 41.74 598.00 51.93 589.10 55.15 Z"/><path d="M1089.17 2.58 L1095.93 2.52 L1095.74 38.07 C1095.68 49.64 1086.00 56.41 1075.16 56.32 C1064.19 56.23 1054.79 49.50 1054.72 37.81 L1054.50 2.56 L1061.19 2.54 L1061.40 36.93 C1061.45 44.66 1067.15 50.04 1074.50 50.41 C1082.39 50.80 1088.99 45.26 1089.03 37.05 L1089.17 2.58 Z"/></g></svg>
+      <canvas class="letras__canvas" aria-hidden="true"></canvas>
+      <img class="letras__fallback" src="{{raiz}}assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410" hidden>
+
+      <!-- camada 2: o conteúdo do estado A — as especialidades em primeiro plano, o descritor menor
+           (uma só menção a Moema) e a chamada -->
+      <div class="hero__conteudo container">
+        <ul class="hero__especialidades" data-reveal aria-label="Especialidades">
+          <li><a href="#especialidades">Nutrologia</a></li>
+          <li><a href="#especialidades">Endocrinologia</a></li>
+          <li><a href="#especialidades">Dermatologia</a></li>
+        </ul>
+        <p class="eyebrow hero__descritor" data-reveal>Instituto de Qualidade de Vida e Bem-Estar&nbsp;· Moema, São Paulo</p>
+        <div class="acoes hero__acoes" data-reveal>
+          <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Agendar avaliação</a>
+        </div>
+      </div>
+
+      <!-- camada 3: o conteúdo do estado B (o único H1 da página) -->
+      <div class="hero__frase container">
+        <h1 class="titulo-2l titulo-2l--centro" data-split-linhas>Seu médico. <span class="linha-2">Sua melhor versão.</span></h1>
+        <button class="botao botao--secundario hero__filme" type="button" data-abre-lightbox="#filme" data-stream-de="#filme .stream" data-stream-precisa="#filme .stream" hidden>Assistir ao filme <span class="seta" aria-hidden="true">→</span></button>
+      </div>
+
+      <!-- onde a janela termina (medido pelo hero.js; fica sobre o topo do bloco 01) -->
+      <div class="hero__alvo" aria-hidden="true"></div>
+    </section>
+  </div>
+
+  <!-- ================= 01 · O PROBLEMA (a janela da clínica no topo) ================= -->
+  <section class="secao sup-bordo problema" id="problema">
+    <div class="container grid-12">
+      <div class="col-7">
+        <p class="eyebrow" data-reveal><span class="numeral">01</span> — O problema</p>
+        <h2 class="titulo-2l" data-split-linhas>Alguma coisa parou de funcionar. <span class="linha-2">E ninguém foi olhar.</span></h2>
+      </div>
+      <div class="col-4 col-inicio-9 problema__texto" data-reveal-grupo>
+        <p>Dormir oito horas e acordar cansado. A disposição que sumiu. A barriga que não sai, mesmo fazendo o que sempre funcionou para você.</p>
+        <p class="destaque">Na maior parte das vezes não é a idade. É metabólico, é hormonal, e é investigável.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 02 · O MÉTODO (declaração com respiro) ================= -->
+  <section class="secao respiro sup-osso metodo" data-tema="claro" id="metodo">
+    <div class="container">
+      <p class="eyebrow" data-reveal><span class="numeral">02</span> — O método</p>
+      <h2 data-split-linhas>Investigar antes de prescrever.</h2>
+      <p class="texto-grande" data-reveal>A consulta começa pela escuta, passa pelo exame e só então chega à conduta. Nessa ordem, sempre.</p>
+      <!-- única ocorrência sancionada pela Direção de Marca (data-lexico-ok) -->
+      <p data-lexico-ok data-reveal>Você sai entendendo o próprio resultado, sem jargão, e sabendo por que cada coisa foi pedida — com o médico que vai te acompanhar o tratamento inteiro.</p>
+    </div>
+  </section>
+
+  <!-- ================= ESPECIALIDADES + O QUE TRATAMOS + destaque Emagrecimento =================
+       Mapa das especialidades: proposta da agência a confirmar com o cliente (rodada 7). -->
+  <section class="secao sup-osso especialidades-secao" data-tema="claro" id="especialidades">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal>Especialidades</p>
+          <h2 class="titulo-2l" data-split-linhas>Três especialidades. <span class="linha-2">O mesmo jeito de conduzir.</span></h2>
+        </div>
+        <div class="col-5 col-inicio-8 secao__sub" data-reveal>
+          <p class="texto-grande">Nutrologia, Endocrinologia e Dermatologia sob o mesmo teto — e o mesmo jeito de investigar em qualquer uma.</p>
+        </div>
+      </div>
+
+      <ol class="especialidades" data-reveal-grupo>
+        <li class="especialidade">
+          <span class="especialidade__linha" data-linha aria-hidden="true"></span>
+          <span class="numeral especialidade__num">01</span>
+          <h3 class="especialidade__titulo">Nutrologia</h3>
+          <p class="especialidade__apoio">Quando o corpo parou de responder ao que sempre funcionou.</p>
+          <p class="eyebrow especialidade__rotulo">O que tratamos</p>
+          <ul class="especialidade__lista">
+            <li>Emagrecimento e metabolismo</li>
+            <li>Lipedema</li>
+          </ul>
+          <a class="botao botao--secundario especialidade__link" href="{{site}}nutrologia/" aria-label="Saiba mais sobre Nutrologia">Saiba mais <span class="seta" aria-hidden="true">→</span></a>
+        </li>
+        <li class="especialidade">
+          <span class="especialidade__linha" data-linha aria-hidden="true"></span>
+          <span class="numeral especialidade__num">02</span>
+          <h3 class="especialidade__titulo">Endocrinologia</h3>
+          <p class="especialidade__apoio">Será que é hormonal? Se investiga por exame — na mulher e no homem.</p>
+          <p class="eyebrow especialidade__rotulo">O que tratamos</p>
+          <ul class="especialidade__lista">
+            <li>Avaliação hormonal</li>
+            <li>Menopausa</li>
+          </ul>
+          <a class="botao botao--secundario especialidade__link" href="{{site}}endocrinologia/" aria-label="Saiba mais sobre Endocrinologia">Saiba mais <span class="seta" aria-hidden="true">→</span></a>
+        </li>
+        <li class="especialidade">
+          <span class="especialidade__linha" data-linha aria-hidden="true"></span>
+          <span class="numeral especialidade__num">03</span>
+          <h3 class="especialidade__titulo">Dermatologia</h3>
+          <p class="especialidade__apoio">Pele boa começa antes do procedimento.</p>
+          <p class="eyebrow especialidade__rotulo">O que tratamos</p>
+          <ul class="especialidade__lista">
+            <li>Pele</li>
+            <li>Estética facial</li>
+            <li>Tricologia (cabelo e couro cabeludo)</li>
+          </ul>
+          <a class="botao botao--secundario especialidade__link" href="{{site}}dermatologia/" aria-label="Saiba mais sobre Dermatologia">Saiba mais <span class="seta" aria-hidden="true">→</span></a>
+        </li>
+      </ol>
+
+      <!-- destaque discreto do emagrecimento: uma chamada dentro do território da Nutrologia, sem numeral -->
+      <div class="destaque-faixa" data-reveal>
+        <div>
+          <p class="eyebrow">Nutrologia · Emagrecimento e metabolismo</p>
+          <p class="destaque-faixa__frase">Emagrecer sem reganhar depois.</p>
+        </div>
+        <div>
+          <p class="destaque-faixa__apoio">O metabolismo entra no tratamento. É isso que responde ao medo do efeito sanfona — e é o que quase ninguém faz.</p>
+          <a class="botao botao--secundario destaque-faixa__link" href="{{site}}nutrologia/#emagrecimento" aria-label="Saiba mais sobre Emagrecimento e metabolismo">Saiba mais <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 03 · O MECANISMO (split-screen: foto | tela) ================= -->
+  <section class="secao sup-bordo mecanismo" id="mecanismo">
+    <div class="container">
+      <div class="grid-12 mecanismo__cabeca">
+        <div class="col-8">
+          <p class="eyebrow" data-reveal><span class="numeral">03</span> — O mecanismo</p>
+          <h2 class="titulo-2l" data-split-linhas>Você já esteve melhor. <span class="linha-2">O que mudou não foi você.</span></h2>
+        </div>
+      </div>
+    </div>
+    <figure class="split">
+      <div class="split__foto paralaxe" data-parallax-area data-reveal="escala">
+        <div class="paralaxe__in" data-parallax="-6">
+          <img src="{{raiz}}assets/img/consultorio-05.jpg" width="1600" height="1218" loading="lazy" decoding="async" alt="Consultório com janela para a cidade, mesa de mármore, painel de madeira escura e poltrona verde-oliva.">
+        </div>
+      </div>
+      <div class="split__tela" data-reveal>
+        <img src="{{raiz}}assets/placeholders/tela-exame.svg" width="1600" height="1000" loading="lazy" decoding="async" alt="Tela do exame — foto do consultório com a tela acesa">
+        <figcaption class="split__legenda eyebrow">Evolução — composição corporal</figcaption>
+      </div>
+    </figure>
+    <div class="container">
+      <div class="grid-12 mecanismo__texto">
+        <div class="col-5 col-inicio-7" data-reveal-grupo>
+          <p class="texto-grande">Foi o seu metabolismo. Quando ele desregula, energia, sono, disposição e peso vão junto.</p>
+          <p>Metabolismo se investiga e se trata. E o que volta é o que sumiu: <span class="destaque">não uma pessoa nova, a sua melhor versão.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= A CASA (mosaico; a peça grande aceita o vídeo "A casa, por dentro") ================= -->
+  <section class="secao sup-osso casa" data-tema="claro" id="casa">
+    <div class="container">
+      <div class="secao__cabeca grid-12 casa__cabeca">
+        <div class="col-8">
+          <p class="eyebrow" data-reveal>A casa</p>
+          <h2 class="titulo-2l" data-split-linhas>A casa, <span class="linha-2">em Moema.</span></h2>
+        </div>
+      </div>
+      <div class="mosaico" data-mosaico>
+        <figure class="mosaico__item mosaico__item--a">
+          <div class="mosaico__moldura stream" data-stream="{{stream_casa_tulio}}" data-stream-modo="lightbox" data-stream-titulo="A casa, por dentro — Instituto Rocca">
+            <img class="stream__poster" src="{{raiz}}assets/img/entrada-clinica.jpg" width="2731" height="1536" loading="lazy" decoding="async" alt="Recepção do Instituto Rocca: dois balcões de mármore marrom, luminárias suspensas, painel ripado bordô, chaise creme e cadeira de palhinha sob luz quente.">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Assistir: a casa, por dentro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <figcaption class="mosaico__legenda"><span class="numeral">01</span>A chegada</figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--b">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/espera-02.jpg" width="1600" height="1012" loading="lazy" decoding="async" alt="Sala de espera: sofá curvo creme, pufes de tecido, cadeiras de palhinha, painel de madeira clara e uma copa de mármore ao fundo.">
+          </div>
+          <figcaption class="mosaico__legenda"><span class="numeral">02</span>A espera</figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--c">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/corredor-portas.jpg" width="1600" height="899" loading="lazy" decoding="async" alt="Corredor com painel de madeira clara, portas embutidas, arandelas de luz quente e dois pufes bege.">
+          </div>
+          <figcaption class="mosaico__legenda"><span class="numeral">03</span>O corredor</figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--d">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/consultorio-01.jpg" width="1600" height="1244" loading="lazy" decoding="async" alt="Consultório: mesa de mármore marrom com notebook, cadeiras escuras, poltrona verde-oliva e janela ampla com a cidade ao fundo.">
+          </div>
+          <figcaption class="mosaico__legenda"><span class="numeral">04</span>O consultório</figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--e">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/bioimpedancia.jpg" width="1499" height="1499" loading="lazy" decoding="async" alt="Sala de bioimpedância: bancada de madeira clara com cuba e notebook, cadeira branca e prateleira iluminada.">
+          </div>
+          <figcaption class="mosaico__legenda"><span class="numeral">05</span>Bioimpedância</figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--f">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/lounge-copa.jpg" width="1600" height="892" loading="lazy" decoding="async" alt="Lounge com copa: paredes de madeira clara, copa em mármore marrom iluminada, pufes e cadeiras de palhinha.">
+          </div>
+          <figcaption class="mosaico__legenda"><span class="numeral">06</span>O lounge</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OS MÉDICOS (abre com a foto principal dos três) ================= -->
+  <section class="secao sup-bordo medicos-secao" id="medicos">
+    <div class="container">
+      <div class="secao__cabeca grid-12 medicos__cabeca">
+        <div class="col-6">
+          <p class="eyebrow" data-reveal>Os médicos</p>
+          <h2 class="titulo-2l" data-split-linhas>Três médicos, <span class="linha-2">uma casa.</span></h2>
+        </div>
+        <div class="col-5 col-inicio-8 secao__sub" data-reveal>
+          <p class="texto-grande">Aqui você não passa por um médico. Você tem um médico — o mesmo, do primeiro dia em diante.</p>
+        </div>
+      </div>
+
+      <figure class="trio paralaxe" data-parallax-area data-reveal="escala">
+        <div class="paralaxe__in" data-parallax="-5">
+          <picture>
+            <source media="(max-width: 639.98px)" srcset="{{raiz}}assets/img/producao/medicos-trio-vertical.jpg">
+            <img src="{{raiz}}assets/img/producao/medicos-trio-horizontal.jpg" width="1280" height="853" loading="lazy" decoding="async" alt="Dr. Túlio Bovo em pé à esquerda, de terno bordô e gravata clara; Dra. Ana Paula Bovo sentada ao centro, na poltrona creme; Dr. Breno Gondim em pé à direita, de terno cinza — no estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha.">
+          </picture>
+        </div>
+        <figcaption class="trio__legenda eyebrow"><span class="trio__nomes">Dr. Túlio Bovo · Dra. Ana Paula Bovo · Dr. Breno Gondim — </span>Estúdio Jacarandá</figcaption>
+      </figure>
+
+      <!-- Sem rótulo de especialidade sob o nome até o cliente confirmar quem é o quê e o RQE de cada um
+           (título de especialidade sem RQE é problema no conselho). O <p class="medico__especialidade"> fica pronto, comentado. -->
+      <div class="medicos" data-reveal-grupo>
+        <article class="medico">
+          <div class="medico__midia stream" id="video-tulio" data-stream="{{stream_tulio}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Túlio Bovo">
+            <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme, no estúdio Jacarandá." width="1600" height="2400" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir a apresentação do Dr. Túlio Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+            <span class="stream__rotulo" hidden data-stream-precisa="#video-tulio">Quem eu sou — gravado no estúdio Jacarandá</span>
+          </div>
+          <h3 class="medico__nome">Dr. Túlio Bovo</h3>
+          <!-- <p class="medico__especialidade">Nutrologia</p> -->
+          <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
+          <a class="botao botao--secundario medico__link" href="{{site}}dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+        </article>
+        <article class="medico">
+          <div class="medico__midia stream" id="video-breno" data-stream="{{stream_breno}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Breno Gondim">
+            <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme, no estúdio Jacarandá." width="1600" height="2400" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir a apresentação do Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+            <span class="stream__rotulo" hidden data-stream-precisa="#video-breno">Quem eu sou — gravado no estúdio Jacarandá</span>
+          </div>
+          <h3 class="medico__nome">Dr. Breno Gondim</h3>
+          <!-- <p class="medico__especialidade">Endocrinologia</p> -->
+          <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
+          <a class="botao botao--secundario medico__link" href="{{site}}dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+        </article>
+        <article class="medico">
+          <div class="medico__midia stream" id="video-ana" data-stream="{{stream_ana}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dra. Ana Paula Bovo">
+            <!-- dra-ana-paula-bovo.jpg ainda é stand-in (mesmo enquadramento); a foto real entra com o mesmo nome -->
+            <img class="stream__poster" src="{{raiz}}assets/img/producao/dra-ana-paula-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula.svg'" alt="Dra. Ana Paula Bovo sentada na poltrona creme, no estúdio Jacarandá." width="1365" height="2048" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir a apresentação da Dra. Ana Paula Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+            <span class="stream__rotulo" hidden data-stream-precisa="#video-ana">Quem eu sou — gravado no estúdio Jacarandá</span>
+          </div>
+          <h3 class="medico__nome">Dra. Ana Paula Bovo</h3>
+          <!-- <p class="medico__especialidade">Dermatologia</p> -->
+          <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
+          <a class="botao botao--secundario medico__link" href="{{site}}dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Conheça a médica <span class="seta" aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PERGUNTAS DA SEMANA (conteúdo) ================= -->
+  <section class="secao sup-osso perguntas-secao" data-tema="claro" id="perguntas">
+    <div class="container">
+      <div class="secao__cabeca grid-12 perguntas__cabeca">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal>Conteúdo</p>
+          <h2 data-split-linhas>Perguntas que a gente responde toda semana.</h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p>Com nome e rosto. Gravadas no estúdio Jacarandá, transcritas no site.</p>
+        </div>
+      </div>
+      <!-- As páginas das respostas ainda não existem: os links levam a /conteudo/. -->
+      <ol class="perguntas" data-reveal-grupo>
+        <li class="pergunta">
+          <span class="pergunta__linha" data-linha aria-hidden="true"></span>
+          <div class="pergunta__capa"><img src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno-45.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></div>
+          <div class="pergunta__corpo">
+            <h3 class="pergunta__titulo">Dormir bem e acordar cansado: o que pode estar por trás?</h3>
+            <span class="assinatura">— Dr. Breno Gondim</span>
+          </div>
+          <a class="botao botao--secundario pergunta__link" href="{{site}}conteudo/" aria-label="Ver resposta: Dormir bem e acordar cansado: o que pode estar por trás?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+        </li>
+        <li class="pergunta">
+          <span class="pergunta__linha" data-linha aria-hidden="true"></span>
+          <div class="pergunta__capa"><img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio-45.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async"></div>
+          <div class="pergunta__corpo">
+            <h3 class="pergunta__titulo">Exame de sangue normal, mas o corpo não está bem: o que pode estar acontecendo?</h3>
+            <span class="assinatura">— Dr. Túlio Bovo</span>
+          </div>
+          <a class="botao botao--secundario pergunta__link" href="{{site}}conteudo/" aria-label="Ver resposta: Exame de sangue normal, mas o corpo não está bem: o que pode estar acontecendo?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+        </li>
+        <li class="pergunta">
+          <span class="pergunta__linha" data-linha aria-hidden="true"></span>
+          <div class="pergunta__capa"><img src="{{raiz}}assets/img/producao/dra-ana-paula-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula-45.svg'" alt="" width="1365" height="2048" loading="lazy" decoding="async"></div>
+          <div class="pergunta__corpo">
+            <h3 class="pergunta__titulo">Quando o botox não é indicado?</h3>
+            <span class="assinatura">— Dra. Ana Paula Bovo</span>
+          </div>
+          <a class="botao botao--secundario pergunta__link" href="{{site}}conteudo/" aria-label="Ver resposta: Quando o botox não é indicado?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+        </li>
+      </ol>
+      <div class="secao__rodape perguntas__rodape" data-reveal>
+        <a class="botao botao--secundario" href="{{site}}conteudo/">Ver mais respostas <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+{{fecho}}
+{{footer}}
+{{whats}}
+{{lightbox}}
+<!-- PRODUÇÃO — pontos de troca desta home (home.md §7):
+       abertura       assets/img/entrada-clinica.jpg (+ -mobile.jpg) → foto real da recepção (3:2 e 4:5), mesmos nomes;
+                      data-stream do .stream--fundo → UID do filme institucional em loop mudo (config.mjs, chave fundo)
+       lightbox       data-stream do #filme → UID do filme completo com som (chave institucional)
+       os médicos     producao/medicos-trio-horizontal.jpg e -vertical.jpg → fotos reais, mesmos nomes;
+                      producao/dra-ana-paula-bovo.jpg é stand-in (mesmo enquadramento) até a foto real subir;
+                      data-stream dos cards → UIDs dos três "Quem eu sou" (chaves tulio, breno, ana)
+       a casa         seis renders de assets/img/ → fotos da diária na clínica, mesmos nomes;
+                      data-stream da peça 01 → UID de "A casa, por dentro" (chave casa_tulio)
+       o mecanismo    consultorio-05.jpg → consultório com a tela acesa; placeholders/tela-exame.svg → captura da tela
+       perguntas      retratos da produção cortados 4:5 → capas 4:5 das séries (trocar o src) -->
+</body>
+</html>
