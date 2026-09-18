@@ -7,10 +7,10 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: URL pública do arquivo (ou várias linhas "url destino", uma por linha)
+        description: URL pública do arquivo, várias linhas "url destino", ou link público do Google Drive (arquivo ou pasta)
         required: true
       destino:
-        description: Caminho de destino no repositório (ex. assets/img/medicos-hero.jpg); ignorado se url tiver várias linhas
+        description: Caminho de destino (arquivo; ou pasta, para links do Google Drive — padrão assets/img/producao)
         required: false
         default: ""
       mensagem:
@@ -32,6 +32,18 @@ jobs:
           DESTINO: ${{ inputs.destino }}
         run: |
           set -e
+          # Google Drive (arquivo ou pasta pública): baixa com gdown para a pasta de destino
+          if printf '%s' "$LISTA" | grep -q 'drive.google.com'; then
+            pip install -q gdown
+            PASTA="${DESTINO:-assets/img/producao}"; mkdir -p "$PASTA"
+            if printf '%s' "$LISTA" | grep -q '/folders/'; then
+              gdown --folder --remaining-ok -O "$PASTA" "$LISTA"
+            else
+              (cd "$PASTA" && gdown --fuzzy "$LISTA")
+            fi
+            find "$PASTA" -type f -newer .github/workflows/importar-imagem.yml -exec ls -la {} \;
+            exit 0
+          fi
           if [ "$(printf '%s\n' "$LISTA" | grep -c .)" -gt 1 ] || [ -z "$DESTINO" ]; then
             printf '%s\n' "$LISTA" | while read -r url dest; do
               [ -z "$url" ] && continue
