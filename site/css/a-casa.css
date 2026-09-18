@@ -8,13 +8,17 @@
    border-radius. URLs em CSS resolveriam a partir daqui: ../../assets/…
    ============================================================================ */
 
-/* ---- Títulos de seção desta página: linhas mais longas que o padrão de 16ch ---- */
-.pagina--a-casa .secao__cabeca h2 { max-width: 28ch; }
-
-/* ---- Hero: a recepção em tela cheia; gradiente bordô só na base, para o texto ---- */
+/* ---- Hero: a recepção em tela cheia, em cores naturais; o degradê da base (tinta quente, não bordô — o cliente pediu a imagem sem vermelho) só para o texto ---- */
 .casa-hero h1 { max-width: 22ch; }
 .casa-hero .hero__fundo::after {
-  background: linear-gradient(to top, rgba(59, 0, 0, .86) 0%, rgba(59, 0, 0, .64) 30%, rgba(59, 0, 0, .34) 54%, rgba(59, 0, 0, .08) 76%, rgba(59, 0, 0, 0) 92%);
+  background: linear-gradient(to top, rgba(42, 26, 22, .84) 0%, rgba(42, 26, 22, .58) 30%, rgba(42, 26, 22, .24) 54%, rgba(42, 26, 22, .05) 76%, rgba(42, 26, 22, 0) 92%);
+}
+/* véu leve no topo: a nav transparente fica sobre o teto e a luminária, a parte mais clara do render
+   (o botão creme "Agendar avaliação" sumia dentro da luminária: 1,08:1 → 3,1:1) */
+.casa-hero .hero__fundo::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; z-index: 1; pointer-events: none;
+  height: clamp(140px, 24vh, 240px);
+  background: linear-gradient(to bottom, rgba(42, 26, 22, .5) 0%, rgba(42, 26, 22, .26) 55%, rgba(42, 26, 22, 0) 100%);
 }
 /* sobre a parede clara da foto o areia some: o rótulo vai em creme, com a sombra leve do sistema */
 .casa-hero .eyebrow { color: var(--cor-creme); opacity: .88; text-shadow: 0 1px 12px rgba(42, 26, 22, .5); }
@@ -79,7 +83,7 @@
 .casa-videos .tile__media { aspect-ratio: 16 / 9; }
 .casa-videos .tile__sub .pendente { color: var(--fg-2); }
 /* sob o vídeo de cada médico, o link "Conheça o médico →" */
-.casa-videos .tile__corpo > .botao { margin-top: 1.1rem; }
+.casa-videos .tile__corpo > .botao { margin-top: calc(1.1rem - 12px); }   /* os 12 px descontam a área de toque do .botao--secundario (site.css) */
 @media (min-width: 900px) { .casa-videos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 /* ---- 04 · Onde fica: dados à esquerda, mapa (placeholder em osso) à direita ---- */

@@ -102,6 +102,10 @@ function iniciarNav() {
   const atualiza = () => nav.classList.toggle('nav--solida', (window.scrollY || 0) > 40);
   ScrollTrigger.create({ start: 0, end: 'max', onUpdate: atualiza });
   atualiza();
+  // Reload com o scroll restaurado pelo navegador: o onUpdate só dispara ao rolar.
+  // O primeiro scroll e o refresh do ScrollTrigger cobrem esse caso.
+  window.addEventListener('scroll', atualiza, { passive: true, once: true });
+  ScrollTrigger.addEventListener('refresh', atualiza);
 
   // Contador de seções claras "ativas" sob a nav (evita piscar entre vizinhas).
   let claras = 0;

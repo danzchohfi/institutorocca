@@ -4,10 +4,10 @@
    Lê brand/tokens.css, shared/base.css e site/site.css (hero interno com
    retrato, .tres, .figura-apoio, .lista-links, .perguntas-lista, .stream e o
    fecho já vêm de lá; o rótulo do hero, o par "Assistir: Quem eu sou", a
-   lista .quem__lista, a variante .lista-links--duas e a linha .outros também,
-   porque as três páginas dos médicos os repetem). Aqui entra só o que é
-   desta página: a largura da citação, a composição da seção 01 (vídeo
-   vertical + texto), os ajustes de 02 (Como eu conduzo) e o respiro de 03.
+   lista .quem__lista, o vídeo .quem__video e a linha .outros também, porque
+   as três páginas dos médicos os repetem). Aqui entra só o que é desta
+   página: a largura da citação, a posição do vídeo e do texto na seção 01,
+   os ajustes de 02 (Como eu conduzo) e o respiro de 03.
    Mobile-first; breakpoints 640 / 900 / 1200 / 1440; sem border-radius.
    URLs em CSS resolvem a partir deste arquivo: ../../assets/…
    ============================================================================ */
@@ -18,12 +18,10 @@
 /* ---- 01 · Quem eu sou: texto à direita, vídeo vertical à esquerda ------------------- */
 .quem__in { align-items: start; }
 .quem__abre { margin-top: 1.6rem; max-width: 40ch; }
-/* no celular e no tablet o vídeo vem depois do texto, nunca mais largo que 420 px */
-.quem__video { max-width: 420px; }
 .quem__video .stream { background: var(--cor-bordo-profundo); }
 @media (min-width: 900px) {
   .quem__in { align-items: center; }
-  .quem__video { grid-column: 1 / span 4; grid-row: 1; max-width: none; }
+  .quem__video { grid-column: 1 / span 4; grid-row: 1; }
   .quem__texto { grid-column: 6 / span 7; grid-row: 1; }
 }
 

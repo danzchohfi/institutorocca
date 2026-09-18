@@ -20,6 +20,9 @@
 .conduz__legenda .legenda { margin-top: 14px; }
 @media (min-width: 640px) { .conduz__moldura { aspect-ratio: 3 / 2; } }
 @media (min-width: 900px) { .conduz__moldura { aspect-ratio: 21 / 9; } }
+/* o croqui é 1499 px: a partir de 1440 a moldura fica no container, para a imagem não passar do tamanho natural
+   (some quando a foto da diária entrar reexportada em ≥ 2000 px, pendência 17) */
+@media (min-width: 1440px) { .conduz__figura .conduz__moldura { max-width: var(--container); margin-inline: auto; } }
 
 /* ---- 02 · O que tratamos --------------------------------------------------------------- */
 /* o cabeçalho da seção já dá o respiro; a lista começa logo abaixo */
@@ -29,11 +32,6 @@
 .tratamento__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
 .tratamento__texto .tratamento__fala { margin-top: 2.2rem; max-width: 34ch; }
 .tratamento__texto .tratamento__perguntas { margin-top: 2.6rem; }
-/* "Ver resposta →" e o rótulo [PENDENTE] lado a lado, na mesma célula da grade */
-.pergunta-item__link { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: .8rem; }
 
-/* ---- 04 · Perguntas mais comuns ----------------------------------------------------------- */
-.perguntas-comuns .secao__cabeca h2 { max-width: 22ch; }
+/* ---- 04 · Perguntas mais comuns (o cabeçalho de seção e a linha de ligações vêm do site.css) ---- */
 .perguntas-comuns .comuns { margin-top: 0; }
-/* ligações para as outras páginas: a linha discreta antes do fecho */
-.perguntas-comuns .ligacoes { margin-top: clamp(3rem, 6vw, 5rem); }

@@ -29,5 +29,10 @@ export const STREAM_IDS = {
   casa_ana: '',        // A casa, por dentro — com a Dra. Ana Paula Bovo (16:9)
 };
 
+/* Domínio público do site, sem barra no fim: og:image, og:url e canonical precisam de URL absoluta
+   (WhatsApp, Instagram e LinkedIn não resolvem caminho relativo). Hoje é a homologação no GitHub
+   Pages; trocar pelo domínio definitivo do cliente. [PENDENTE] */
+export const DOMINIO = 'https://danzchohfi.github.io/institutorocca';
+
 export const ANO = '2026';
 export const PENDENTE = '[PENDENTE]';                        // o rótulo visível; nunca some sozinho

@@ -4,7 +4,7 @@
    ----------------------------------------------------------------------------
    Lê src/site/paginas/<slug>.html (documento HTML completo com um cabeçalho de
    metadados em comentário), injeta os partials de src/site/partials/, substitui
-   {{raiz}} / {{site}} / {{wa}} e os valores do cabeçalho e grava:
+   {{raiz}} / {{site}} / {{wa}} / {{dominio}} / {{url_pagina}} e os valores do cabeçalho e grava:
      src/site/paginas/index.html  → site/index.html            ({{raiz}} = ../,    {{site}} = ./)
      src/site/paginas/<slug>.html → site/<slug>/index.html     ({{raiz}} = ../../, {{site}} = ../)
    Falha (sai com 1) se sobrar {{…}}, se houver mais de um <h1> (ou nenhum), se
@@ -149,6 +149,8 @@ function gerar(arquivoTemplate, problemas, avisos) {
     raiz: `${posix.relative(pastaRel, '.')}/`,                                          // ../ ou ../../
     site: `${posix.relative(pastaRel, 'site') || '.'}/`,                                // ./ ou ../
     bundle: slug === 'index' ? 'app.js' : 'interno.js',                                 // a home leva o three.js; as internas não
+    dominio: String(cfg.DOMINIO || '').replace(/\/+$/, ''),                             // URL absoluta (og:image, og:url, canonical)
+    url_pagina: `${String(cfg.DOMINIO || '').replace(/\/+$/, '')}/${pastaRel}/`,        // https://…/site/ ou https://…/site/<slug>/
     ano: cfg.ANO,
     whats_numero: cfg.WHATS_NUMERO,
     whats_numero_visivel: cfg.WHATS_NUMERO_VISIVEL,
@@ -158,6 +160,11 @@ function gerar(arquivoTemplate, problemas, avisos) {
   const { meta, corpo } = lerCabecalho(readFileSync(arquivoTemplate, 'utf8'), arquivo);
   Object.assign(valores, meta);
   valores.og_titulo = meta.og_titulo || meta.titulo;
+  // og_imagem é um caminho a partir da raiz do repositório (assets/img/…) e vira {{dominio}}/{{og_imagem}}
+  if (!EXTERNO.test(meta.og_imagem)) {
+    if (/^(?:\.\.?\/|\/)/.test(meta.og_imagem)) problemas.push(`${arquivo}: og_imagem deve ser um caminho a partir da raiz do repositório, sem ../ nem / no início → "${meta.og_imagem}"`);
+    else if (!existsSync(join(raiz, meta.og_imagem))) problemas.push(`${arquivo}: og_imagem "${meta.og_imagem}" não existe`);
+  }
   valores.wa = `https://wa.me/${cfg.WHATS_NUMERO}?text=${encodeURIComponent(meta.whats_msg || cfg.WHATS_MSG_PADRAO)}`;
   valores.whats_msg = meta.whats_msg || cfg.WHATS_MSG_PADRAO;
   valores.robots_meta = meta.robots ? `<meta name="robots" content="${escaparAtributo(meta.robots)}">` : '';

@@ -9,7 +9,9 @@
   <meta property="og:description" content="Instituto de Qualidade de Vida e Bem-Estar em Moema. Trata a causa do que parou de funcionar em você, com o mesmo médico do primeiro dia em diante.">
   <meta property="og:site_name" content="Instituto Rocca">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:image" content="../assets/img/producao/medicos-trio-horizontal.jpg">
+  <meta property="og:url" content="https://danzchohfi.github.io/institutorocca/site/">
+  <meta property="og:image" content="https://danzchohfi.github.io/institutorocca/assets/img/producao/medicos-trio-horizontal.jpg">
+  <link rel="canonical" href="https://danzchohfi.github.io/institutorocca/site/">
   <!-- Semplicita Pro auto-hospedada via @font-face em brand/tokens.css (sem Google Fonts, sem CDN) -->
   <link rel="stylesheet" href="../brand/tokens.css">
   <link rel="stylesheet" href="../shared/base.css">
@@ -106,9 +108,9 @@
 <main id="conteudo" tabindex="-1">
 
   <!-- ================= ABERTURA FUNDIDA · Letras → a clínica → a janela =================
-       .abertura é a pista (2,5 telas; site.css). O hero fica preso (sticky) por 1,5 tela
+       .abertura é a pista (2,25 telas; site.css). O hero fica preso (sticky) por 1,25 tela
        enquanto src/site/hero.js dirige o timeline pelo scroll:
-         estado A — o wordmark em partículas (shared/letras.js) + eyebrow, especialidades e chamada;
+         estado A — o wordmark em partículas (shared/letras.js) + especialidades, descritor e chamada;
          estado B — as letras se dissolvem, a recepção aparece em cores naturais e o H1 entra por linhas;
          fim      — a mídia encolhe até .hero__alvo (a janela) e segue com o bloco 01 — O problema.
        Sem WebGL, com movimento reduzido ou sem JS: .abertura--estatica empilha os dois estados. -->
@@ -134,17 +136,17 @@
       <canvas class="letras__canvas" aria-hidden="true"></canvas>
       <img class="letras__fallback" src="../assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410" hidden>
 
-      <!-- camada 2: o conteúdo do estado A -->
+      <!-- camada 2: o conteúdo do estado A — as especialidades em primeiro plano, o descritor menor
+           (uma só menção a Moema) e a chamada -->
       <div class="hero__conteudo container">
-        <p class="eyebrow" data-reveal>Instituto de Qualidade de Vida e Bem-Estar · Moema</p>
         <ul class="hero__especialidades" data-reveal aria-label="Especialidades">
           <li><a href="#especialidades">Nutrologia</a></li>
           <li><a href="#especialidades">Endocrinologia</a></li>
           <li><a href="#especialidades">Dermatologia</a></li>
         </ul>
+        <p class="eyebrow hero__descritor" data-reveal>Instituto de Qualidade de Vida e Bem-Estar&nbsp;· Moema, São Paulo</p>
         <div class="acoes hero__acoes" data-reveal>
           <a class="botao botao--primario" href="https://wa.me/5511999999999?text=Ol%C3%A1.%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20no%20Instituto%20Rocca." target="_blank" rel="noopener">Agendar avaliação</a>
-          <p class="hero__nota">Atendimento em Moema, São Paulo</p>
         </div>
       </div>
 
@@ -194,7 +196,7 @@
           <h2 class="titulo-2l" data-split-linhas>Três especialidades. <span class="linha-2">O mesmo jeito de conduzir.</span></h2>
         </div>
         <div class="col-5 col-inicio-8 secao__sub" data-reveal>
-          <p class="texto-grande">Nutrologia, Endocrinologia e Dermatologia sob o mesmo teto — e, em qualquer uma, o mesmo médico do primeiro dia em diante.</p>
+          <p class="texto-grande">Nutrologia, Endocrinologia e Dermatologia sob o mesmo teto — e o mesmo jeito de investigar em qualquer uma.</p>
         </div>
       </div>
 

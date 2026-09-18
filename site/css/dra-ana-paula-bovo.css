@@ -14,17 +14,13 @@
 /* ---- Hero: o nome inteiro cabe em uma linha a partir de 900 px ---------------------- */
 .pagina--dra-ana-paula-bovo .hero--interno .hero__texto h1 { max-width: 20ch; }
 
-/* ---- Títulos de seção: linhas mais longas que o padrão de 16ch do site.css ------------ */
-.pagina--dra-ana-paula-bovo .secao__cabeca h2 { max-width: 26ch; }
 /* fecho: "Dra. Ana Paula Bovo." inteiro na segunda linha (o padrão de 14ch quebrava o nome) */
 .pagina--dra-ana-paula-bovo .fecho__chamada h2 { max-width: 24ch; }
 
 /* ---- 01 · Quem eu sou: vídeo 9:16 (col-4) + texto (col-7) ------------------------------ */
 .quem__in { align-items: start; row-gap: clamp(2.5rem, 5vw, 4rem); }
-.quem__video { width: min(100%, 360px); }
 .quem__texto h2 { max-width: 20ch; }
 @media (min-width: 900px) {
-  .quem__video { width: 100%; }
   .quem__texto { padding-top: clamp(0px, 2vw, 32px); }
 }
 

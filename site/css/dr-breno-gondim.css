@@ -4,11 +4,10 @@
    O comum vem de brand/tokens.css, shared/base.css e site/site.css (hero
    interno com retrato, .tres, .lista-links, .perguntas-lista, .figura-apoio,
    componente .stream com a base escurecida, o rótulo do hero, o par
-   "Assistir: Quem eu sou", a lista .quem__lista, a variante
-   .lista-links--duas e a linha .outros — tudo isso é comum às três páginas
-   dos médicos). Aqui: a composição do bloco 01 (vídeo vertical ao lado do
-   texto), a citação de abertura do 02, a moldura com paralaxe da foto de
-   apoio e a grade do 03.
+   "Assistir: Quem eu sou", a lista .quem__lista, o vídeo .quem__video e a
+   linha .outros — tudo isso é comum às três páginas dos médicos). Aqui: o
+   alinhamento do bloco 01, a citação de abertura do 02, a moldura com
+   paralaxe da foto de apoio e a grade do 03.
    Mobile-first; breakpoints 640 / 900 / 1200 / 1440; sem border-radius.
    URLs em CSS resolvem a partir deste arquivo: ../../assets/…
    ============================================================================ */
@@ -16,12 +15,8 @@
 /* ---- Hero -------------------------------------------------------------------- */
 .hero--interno .hero__citacao .assinatura { margin-top: 1rem; }
 
-/* ---- 01 · Quem eu sou: vídeo vertical à esquerda, texto à direita ------------------ */
+/* ---- 01 · Quem eu sou: vídeo vertical à esquerda, texto à direita (largura e ordem do vídeo: site.css) ---- */
 .quem__grid { align-items: center; }
-.quem__video { width: 100%; max-width: 360px; }
-/* até 900 px a grade é uma coluna: o texto vem antes do vídeo (o retrato acabou de aparecer no hero) */
-@media (max-width: 899.98px) { .quem__video { order: 2; } }
-@media (min-width: 900px) { .quem__video { max-width: none; } }
 
 /* ---- 02 · Como eu conduzo ------------------------------------------------------------ */
 /* a citação à direita é mais alta que o título: alinha pelo topo, não pela base */

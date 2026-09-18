@@ -3,7 +3,7 @@
    ----------------------------------------------------------------------------
    Marcação (src/site/paginas/index.html; CSS base em site/site.css, ajustes em
    site/css/index.css):
-     .abertura[data-hero-fusao][data-hero]      a pista (2,5 telas: o hero fica preso por 1,5)
+     .abertura[data-hero-fusao][data-hero]      a pista (2,25 telas: o hero fica preso por 1,25)
        .hero--fusao                             sticky, 1 tela
          .hero__midia > .hero__quadro           camada 0: .stream--fundo (poster/iframe) + .hero__escurecedor
          #wordmark-fonte · canvas.letras__canvas · img.letras__fallback   camada 1: as partículas
@@ -20,7 +20,7 @@
 
    Linha do tempo (p):
      0 → .30   as letras se dissolvem (letras.estado.progresso) e a luz radial some;
-     0 → .20   o conteúdo A sobe e some (fica invisível para não roubar cliques);
+     0 → .10   o conteúdo A sobe e some antes de a clínica passar da metade (fica invisível para não roubar cliques);
      .04 → .28 a clínica aparece em cores naturais (escala 1.06 → 1 até .40);
      .10 → .30 o escurecedor da base entra;
      .28 → .52 o H1 entra por linhas (a segunda .06 depois);
@@ -36,7 +36,8 @@
    o filme 16:9, quando houver, cobre o quadro por --cobre-w/--cobre-h (CSS).
 
    Degradado: sem WebGL ou com movimento reduzido iniciarLetras() devolve null
-   → .abertura--estatica empilha os dois estados (site.css) e nada disto roda.
+   → .abertura--estatica empilha os dois estados (site.css), revelarHero(hero)
+   acende o estado A e o H1, e nada disto roda.
    Contrato: iniciarHeroFusao() procura [data-hero-fusao] e devolve
    { letras, timeline } ou null. Não toca em nada fora da abertura.
    ============================================================================ */
@@ -47,7 +48,7 @@ import { iniciarLetras } from '../../shared/letras.js';
 const T = {
   letras: [0, 0.30],
   luz: [0, 0.25],
-  conteudo: [0, 0.20],
+  conteudo: [0, 0.10],
   midia: [0.04, 0.24],
   escala: [0, 0.40],
   escurecedorEntra: [0.10, 0.20],
@@ -81,14 +82,15 @@ export function iniciarHeroFusao() {
   const fallback = hero && hero.querySelector('.letras__fallback');
   const fonte = document.getElementById('wordmark-fonte');
 
-  const estatico = () => { pista.classList.add('abertura--estatica'); return null; };
+  // estático: os dois blocos empilhados; o revelarHero da etapa 2 não roda, então o estado A e o H1 acendem aqui
+  const estatico = () => { pista.classList.add('abertura--estatica'); revelarHero(hero); return null; };
   if (!hero || !midia || !quadro || !stream || !alvo || !conteudo || !frase || !h1 || !canvas || !fonte) return estatico();
 
   // 1. As partículas. null = sem WebGL ou movimento reduzido: dois blocos empilhados e fim.
   const letras = iniciarLetras({
     hero, canvas, fallback, fonte,
     fracao: { desktop: 0.74, mobile: 0.86 },
-    centro: { desktop: [0, 0.10], mobile: [0, 0.22] },   // um pouco acima do meio; no celular, no terço de cima
+    centro: { desktop: [0, 0.10], mobile: [0, 0.12] },   // um pouco acima do meio; no celular em ~38 % da tela (index.css: o logo estático acompanha)
     amostra: { desktop: [1900, 150000], mobile: [900, 45000] },
   });
   if (!letras) return estatico();

@@ -15,22 +15,7 @@
 .conduz .prosa .texto-grande { max-width: 30ch; }
 .conduz .pilares { margin-top: clamp(1rem, 2vw, 2rem); }
 
-/* ---- Cabeçalhos com H2 longo (02 e 04): mais largura que o padrão de 16ch ----- */
-.secao__cabeca--larga h2 { max-width: 26ch; }
-
-/* ---- 02 · O que tratamos: fala, link inline e lista de perguntas ----------- */
+/* ---- 02 · O que tratamos: fala e lista de perguntas ------------------------- */
 .tratamento__texto .fala { margin-top: clamp(2rem, 3vw, 2.8rem); }
 .tratamento__texto .tratamento__perguntas { margin-top: clamp(2.4rem, 4vw, 3.6rem); }
-.tratamento__texto p a {
-  text-decoration-thickness: 1px;
-  text-underline-offset: .18em;
-  transition: color var(--dur-rapida);
-}
-.tratamento__texto p a:hover, .tratamento__texto p a:focus-visible { color: var(--cor-madeira); }
-/* "Ver resposta" e o rótulo [PENDENTE] ocupam a mesma célula da grade, empilhados,
-   para não tirar largura do título da pergunta (a página de resposta ainda não existe) */
-.pergunta-item__acao { display: grid; gap: .45rem; justify-items: start; }
-@media (min-width: 900px) { .pergunta-item__acao { justify-self: end; justify-items: end; text-align: right; } }
-
-/* ---- 04 · Perguntas mais comuns: linha de ligações para as outras páginas ---- */
-.comuns-secao .ligacoes { margin-top: clamp(3rem, 6vw, 5.5rem); }
+/* o link inline na prosa, o par "Ver resposta → [PENDENTE]" e a linha de ligações da 04 vêm do site.css */

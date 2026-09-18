@@ -61,12 +61,12 @@
   .contato-medicos .medico__midia { grid-column: 1; grid-row: 1 / -1; }
   .contato-medicos .medico__nome { grid-column: 2; grid-row: 2; }
   .contato-medicos .medico__linha { grid-column: 2; grid-row: 3; margin-top: 0; }
-  .contato-medicos .medico__link { grid-column: 2; grid-row: 4; justify-self: start; margin-top: .3rem; }
+  .contato-medicos .medico__link { grid-column: 2; grid-row: 4; justify-self: start; margin-top: calc(.3rem - 12px); }   /* desconta a área de toque (site.css) */
 }
 @media (min-width: 1200px) {
   .contato-medicos__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
   .contato-medicos__cabeca { grid-column: 1 / span 4; }
-  .contato-medicos__cards { grid-column: 6 / -1; }
+  .contato-medicos__cards { grid-column: 5 / -1; }   /* 8 colunas: "Dra. Ana Paula Bovo" cabe numa linha a 1440 */
 }
 
 /* ---- 04 · Onde fica — ficha à esquerda, mapa e foto à direita ------------------------ */

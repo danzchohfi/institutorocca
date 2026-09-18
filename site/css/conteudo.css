@@ -56,7 +56,8 @@
   .serie__cabeca { position: sticky; top: calc(var(--nav-altura) + 32px); }
 }
 
-/* lista de respostas: capa (rosto) · título + assinatura · Ver resposta + [PENDENTE] */
+/* lista de respostas: capa (rosto) · título + assinatura · Ver resposta + [PENDENTE]
+   (a ação é o .pergunta-item__acao do site.css; aqui só a posição dela na grade da linha) */
 .respostas { border-top: 1px solid var(--linha); }
 .resposta {
   display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: .9rem clamp(16px, 2.5vw, 28px); align-items: start;
@@ -65,12 +66,11 @@
 .resposta__capa { grid-row: 1 / span 2; }
 .resposta__titulo { font-size: calc(var(--corpo) * 1.15); font-weight: 300; line-height: 1.4; max-width: 34ch; text-wrap: pretty; }
 .resposta .assinatura { margin-top: .5rem; }
-.resposta__acao { grid-column: 2; display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: baseline; max-width: none; }
-.resposta__pendente { font-size: .8rem; letter-spacing: .04em; }
+.resposta__acao { grid-column: 2; max-width: none; }
 @media (min-width: 900px) {
   .resposta { grid-template-columns: 80px minmax(0, 1fr) auto; align-items: center; column-gap: clamp(20px, 3vw, 40px); }
   .resposta__capa { grid-row: auto; }
-  .resposta__acao { grid-column: auto; flex-direction: column; align-items: flex-end; gap: .35rem; }
+  .resposta__acao { grid-column: auto; }
 }
 
 /* ---- Capa pequena: retrato 2:3 real (fallback SVG), ampliado e centrado no rosto -------------
@@ -99,7 +99,7 @@
 .lista-links--capas a:hover .lista-links__capa img { transform: translate(-45%, -27%) scale(1.04); }
 .lista-links--capas a:hover .capa--breno img { transform: translate(-62%, -27%) scale(1.04); }
 .lista-links--capas a:hover .capa--ana img { transform: translate(-56%, -25%) scale(1.04); }
-.lista-links--capas .seta { grid-column: 3; grid-row: 1 / span 2; align-self: center; justify-self: end; }
+.lista-links--capas > li > a > .seta { grid-column: 3; grid-row: 1 / span 2; align-self: center; justify-self: end; }   /* vence a regra geral do site.css (coluna 2) */
 @media (min-width: 900px) {
   .lista-links--capas a { grid-template-columns: 96px minmax(0, 5fr) minmax(0, 6fr) auto; align-items: center; }
   .lista-links--capas .lista-links__capa { grid-row: auto; grid-column: auto; width: 96px; }

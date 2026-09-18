@@ -23,7 +23,7 @@
   --janela-w: min(100% - 2 * var(--gutter), var(--container) - 2 * var(--gutter));
   --janela-ratio: 21 / 9;
   --janela-h: calc(var(--janela-w) * 9 / 21);
-  --abertura-pista: 2.5;   /* telas: o hero fica preso por (pista − 1) telas de rolagem */
+  --abertura-pista: 2.25;  /* telas (spec §3.3): o hero fica preso por (pista − 1) telas de rolagem; hero.js lê a altura resultante */
 }
 @media (max-width: 899.98px) { :root { --janela-ratio: 16 / 9; --janela-h: calc(var(--janela-w) * 9 / 16); } }
 @media (max-width: 639.98px) { :root { --janela-w: 100%; --janela-ratio: 3 / 2; --janela-h: calc(100% * 2 / 3); } }
@@ -40,8 +40,9 @@ html.js [data-linha] { transform: scaleX(0); transform-origin: left center; }
 .footer { padding-bottom: 96px; }
 
 /* ---- Menu: sub-lista "O que tratamos" sob cada especialidade ------------------ */
-.menu__sub { display: flex; flex-direction: column; gap: .15em; margin: .3em 0 .9em; }
-.menu__lista--grande .menu__sub a { font-size: .95rem; line-height: 1.45; letter-spacing: 0; color: var(--cor-creme-60); }
+.menu__sub { display: flex; flex-direction: column; gap: 0; margin: .3em 0 .9em; }
+/* padding em vez de gap: o alvo de toque de cada sub-link passa de 22 para ~34 px sem mudar o ritmo visual */
+.menu__lista--grande .menu__sub a { padding-block: .4em; font-size: .95rem; line-height: 1.45; letter-spacing: 0; color: var(--cor-creme-60); }
 .menu__lista--grande .menu__sub a:hover, .menu__lista--grande .menu__sub a:focus-visible { color: var(--cor-madeira); }
 .menu__lista a[aria-current="page"] { color: var(--cor-madeira); }
 @media (min-width: 900px) { .menu__lista--grande .menu__sub a { font-size: 1rem; } }
@@ -107,7 +108,7 @@ html.js [data-linha] { transform: scaleX(0); transform-origin: left center; }
 html:not(.js) .stream__play { display: none; }
 
 /* ---- Abertura fundida da home (base) — src/site/hero.js ----------------------------
-   .abertura[data-hero-fusao][data-hero]  a pista (2,5 telas); o hero fica preso por 1,5 tela
+   .abertura[data-hero-fusao][data-hero]  a pista (2,25 telas); o hero fica preso por 1,25 tela
      .hero--fusao                         sticky, 1 tela
        .hero__midia > .hero__quadro > .stream--fundo (poster/iframe) + .hero__escurecedor
        #wordmark-fonte (svg hidden) · canvas.letras__canvas · img.letras__fallback
@@ -151,8 +152,9 @@ html:not(.js) .stream__play { display: none; }
 /* estados iniciais só com JS: a clínica e a frase esperam o scroll */
 html.js .abertura:not(.abertura--estatica) .hero__midia { opacity: 0; }
 html.js .abertura:not(.abertura--estatica) .hero__frase { opacity: 0; }
-/* a seção seguinte começa por baixo da última tela da pista e reserva a janela */
-.abertura + .secao { margin-top: calc(-1 * var(--hero-h)); padding-top: calc(var(--janela-top) + var(--janela-h) + clamp(64px, 9vw, 136px)); }
+/* a seção seguinte começa por baixo da última tela da pista e reserva a janela; a folga curta deixa o
+   eyebrow de 01 dentro da dobra (e do limiar de reveal) quando a janela termina, até 1366×768 */
+.abertura + .secao { margin-top: calc(-1 * var(--hero-h)); padding-top: calc(var(--janela-top) + var(--janela-h) + clamp(40px, 5vw, 72px)); }
 .abertura + .secao.sup-bordo { background: transparent; }
 /* estático (sem WebGL, movimento reduzido, sem JS, ou hero.js ainda vazio): dois blocos empilhados */
 html:not(.js) .abertura, .abertura--estatica, html.movimento-reduzido .abertura { height: auto; }
@@ -171,7 +173,10 @@ html:not(.js) .hero--fusao .hero__conteudo, .abertura--estatica .hero__conteudo,
 }
 html:not(.js) .hero--fusao .letras__canvas, .abertura--estatica .letras__canvas { display: none; }
 html:not(.js) .hero--fusao .letras__fallback, .abertura--estatica .letras__fallback { display: block; top: calc(var(--hero-h) * .42); }
-.abertura--estatica [data-reveal], .abertura--estatica [data-split-linhas], .abertura--estatica .linha__in { opacity: 1; transform: none; }
+/* com html.js: vence o html.js [data-reveal] (0,2,1) e o html.js [data-split-linhas] .linha__in (0,3,1) do base.css */
+html.js .abertura--estatica [data-reveal],
+html.js .abertura--estatica [data-split-linhas],
+html.js .abertura--estatica [data-split-linhas] .linha__in { opacity: 1; transform: none; }
 html:not(.js) .abertura + .secao, .abertura--estatica + .secao, html.movimento-reduzido .abertura + .secao { margin-top: 0; padding-top: var(--secao); }
 html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bordo, html.movimento-reduzido .abertura + .secao.sup-bordo { background: var(--bg); }
 
@@ -228,7 +233,9 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 
 /* ---- Cabeçalho de seção repetido: eyebrow + H2 à esquerda, sub à direita --------------- */
 .secao__cabeca.grid-12 { align-items: end; row-gap: var(--espaco-4); }
-.secao__cabeca h2 { max-width: 16ch; }
+/* um valor só para todas as páginas (achado 5 da revisão de layout); no celular a coluna já limita */
+.secao__cabeca h2 { max-width: 22ch; }
+@media (max-width: 639.98px) { .secao__cabeca h2 { max-width: none; } }
 .secao__sub p { max-width: 34ch; }
 .secao__sub .texto-grande { max-width: 30ch; }
 .secao__rodape { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
@@ -258,7 +265,8 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
    <li><a href="…"><span class="lista-links__nome">…</span><span class="lista-links__linha">…</span>
        <span class="lista-links__acao">Saiba mais <span class="seta">→</span></span></a></li>
    .lista-links__acao é o rótulo do link para um serviço ("Saiba mais →"); sem ele, só a .seta.
-   .lista-links--duas: abaixo de 900 px a ação fica à direita do nome, não sozinha numa terceira linha. */
+   Abaixo de 900 px a ação (ou a seta) fica à direita do nome, centrada nas duas linhas — nunca sozinha
+   numa terceira linha; a partir de 900, três colunas (nome · linha · ação). */
 .lista-links { border-top: 1px solid var(--linha); }
 .lista-links > li { border-bottom: 1px solid var(--linha); }
 .lista-links a { display: grid; grid-template-columns: 1fr; gap: .3rem 2rem; padding-block: 1.2rem; text-decoration: none; transition: color var(--dur-rapida); }
@@ -270,16 +278,18 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 .lista-links a:hover .lista-links__acao .seta, .lista-links a:focus-visible .lista-links__acao .seta { transform: translateX(5px); }
 @media (min-width: 900px) { .lista-links a { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) auto; align-items: baseline; } .lista-links .seta, .lista-links__acao { justify-self: end; } }
 @media (max-width: 899.98px) {
-  .lista-links--duas a { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
-  .lista-links--duas .lista-links__linha { grid-column: 1; }
-  .lista-links--duas .lista-links__acao, .lista-links--duas > li > a > .seta { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  .lista-links a { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .lista-links__linha { grid-column: 1; }
+  .lista-links__acao, .lista-links > li > a > .seta { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
 }
+/* no celular a ação alinhada à direita passava por baixo do WhatsApp flutuante (56 px a 16 px da borda): folga à direita */
+@media (max-width: 639.98px) { .lista-links a { padding-right: 56px; } }
 .ligacoes { display: flex; flex-wrap: wrap; gap: 1rem 2.4rem; margin-top: clamp(2rem, 4vw, 3.5rem); }
 
 /* ---- Páginas dos médicos: o que as três repetem ------------------------------------------
    01 · Quem eu sou: <ol class="quem__lista" aria-label="O que o vídeo responde"> (numerais 01–04) e a
-   linha de formação; 05 · A casa, por dentro: <div class="outros"> com o eyebrow "Os outros médicos"
-   e as .ligacoes para os outros dois, dentro da seção, antes do fecho. */
+   linha de formação e o vídeo vertical .quem__video; 05 · A casa, por dentro: <div class="outros"> com o
+   eyebrow "Os outros médicos" e as .ligacoes para os outros dois, dentro da seção, antes do fecho. */
 .quem__lista { counter-reset: item; margin-top: 2rem; border-top: 1px solid var(--linha); max-width: 46ch; }
 .quem__lista > li {
   counter-increment: item;
@@ -296,6 +306,11 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
   font-variant-numeric: tabular-nums;
 }
 .quem__formacao { margin-top: 1.6rem; font-size: .95rem; line-height: 1.6; max-width: 46ch; }
+/* o vídeo 9:16 de "Quem eu sou": 360 px no celular e no tablet, a coluna inteira a partir de 900;
+   abaixo de 900 vem depois do texto (o retrato acabou de aparecer no hero) — igual nas três páginas */
+.quem__video { width: min(100%, 360px); }
+@media (max-width: 899.98px) { .quem__video { order: 2; } }
+@media (min-width: 900px) { .quem__video { width: 100%; max-width: none; } }
 .outros { margin-top: clamp(3rem, 6vw, 5.5rem); padding-top: clamp(1.6rem, 3vw, 2.4rem); border-top: 1px solid var(--linha); }
 .outros .ligacoes { margin-top: 1.2rem; }
 
@@ -331,17 +346,36 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 .tratamento__apoio { font-weight: 400; margin-top: 1rem; max-width: 40ch; }
 .tratamento__texto p { max-width: 50ch; }
 .tratamento__texto p + p { margin-top: 1.2em; }
+/* link inline na prosa das sub-seções (a pele → dermatologia; emagrecer → nutrologia): sublinhado fino */
+.tratamento__texto p a { text-decoration-thickness: 1px; text-underline-offset: .18em; transition: color var(--dur-rapida); }
+.tratamento__texto p a:hover, .tratamento__texto p a:focus-visible { color: var(--cor-madeira); }
 .tratamento__perguntas { margin-top: 1.2rem; }
 .tratamento__perguntas .eyebrow { margin-bottom: .8rem; }
 @media (min-width: 900px) { .tratamento { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } .tratamento__cabeca { position: sticky; top: calc(var(--nav-altura) + 32px); align-self: start; } }
-/* perguntas de uma frente / da semana: título + assinatura + Ver resposta */
+/* perguntas de uma frente / da semana — uma marcação só, nas especialidades e nos médicos:
+   <li class="pergunta-item">
+     <h3|h4 class="pergunta-item__titulo">…</h3>  [<span class="assinatura">— Dr. …</span>]
+     <span class="pergunta-item__acao"><a class="botao botao--secundario pergunta-item__link" href="…" aria-label="…">Ver resposta <span class="seta">→</span></a>
+       <span class="pergunta-item__pendente">[PENDENTE]</span></span>
+   Abaixo de 900 o link e o rótulo ficam lado a lado, à esquerda; a partir de 900 empilhados, à direita
+   (o rótulo some quando as páginas de resposta existirem e a regra continua valendo). */
 .perguntas-lista { border-bottom: 1px solid var(--linha); }
 .pergunta-item { position: relative; display: grid; grid-template-columns: 1fr; gap: .6rem; padding-block: clamp(1.2rem, 2.4vw, 1.8rem); border-top: 1px solid var(--linha); }
 .pergunta-item__titulo { font-size: calc(var(--corpo) * 1.15); font-weight: 300; line-height: 1.4; max-width: 34ch; }
 .pergunta-item .assinatura { margin-top: 0; }
-.pergunta-item__link { justify-self: start; }
+.pergunta-item__acao { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; justify-self: start; }
 .pergunta-item__pendente { font-size: .8rem; color: var(--fg-2); }
-@media (min-width: 900px) { .pergunta-item { grid-template-columns: minmax(0, 1fr) auto auto; column-gap: clamp(20px, 3vw, 40px); align-items: baseline; } .pergunta-item__link { justify-self: end; } }
+@media (min-width: 900px) {
+  .pergunta-item { grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(20px, 3vw, 40px); align-items: baseline; }
+  .tratamento .pergunta-item { grid-template-columns: minmax(0, 1fr) auto auto; }   /* nas especialidades há a assinatura */
+  .pergunta-item__acao { justify-self: end; flex-direction: column; align-items: flex-end; gap: .3rem; }
+}
+/* entre 900 e 1199 a coluna do .tratamento é estreita demais para três colunas (o título partia no meio
+   da palavra): título na primeira linha, assinatura e ação na segunda */
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .tratamento .pergunta-item { grid-template-columns: minmax(0, 1fr) auto; row-gap: .5rem; }
+  .tratamento .pergunta-item__titulo { grid-column: 1 / -1; }
+}
 
 /* ---- Perguntas mais comuns (3 perguntas com resposta curta e assinatura) --------------- */
 .comuns { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: clamp(2.5rem, 5vw, 4.5rem); border-top: 1px solid var(--linha); }
@@ -350,6 +384,8 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 .comum__resposta { color: var(--fg-2); max-width: 50ch; }
 .comum .assinatura { margin-top: .8rem; }
 @media (min-width: 900px) { .comum { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+/* a linha de ligações para as outras páginas, logo depois da lista, antes do fecho: um valor só nas três especialidades */
+.comuns + .ligacoes { margin-top: clamp(3rem, 6vw, 5.5rem); }
 
 /* ---- Cards de médico com retrato 2:3 (Quem conduz / Os médicos / Prefere um médico?) ------
    <article class="medico">
@@ -411,6 +447,17 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 .sup-osso .mosaico__legenda .numeral { color: var(--cor-areia); }
 .sup-osso .lista-links a:hover, .sup-osso .lista-links a:focus-visible,
 .sup-osso .especialidade__lista a:hover, .sup-osso .especialidade__lista a:focus-visible { color: var(--cor-bordo); }
+
+/* ---- Alvos de toque (área de toque maior sem mudar o desenho) ------------------------------
+   Padding compensado por margem negativa: texto, linha e ritmo ficam onde estavam; a caixa cresce para
+   cima. Quem der margin-top a um .botao--secundario precisa descontar os 12 px — e a regra precisa vir
+   depois desta (mesma especificidade), como as três abaixo e as de contato.css e a-casa.css. */
+.botao--secundario { padding-top: 12px; margin-top: -12px; }                /* 20 → 32 px */
+.medico__link { margin-top: calc(.4rem - 12px); }                           /* base.css §11 dá .4rem */
+.especialidade__link, .destaque-faixa__link { margin-top: calc(.6rem - 12px); }   /* os blocos acima dão .6rem */
+.nav__whats { padding: 11px; margin: -11px; }                               /* 22 → 44 px; o ícone não sai do lugar */
+.nav__menu { padding-block: 16px; }                                         /* 32 → 44 px; a nav tem altura fixa */
+.lightbox__fechar { padding: 13px 0 12px 16px; top: -57px; }                /* 19 → 44 px; o texto fica onde estava */
 
 /* ---- Movimento reduzido ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {

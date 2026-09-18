@@ -26,21 +26,23 @@ html:not(.js) .hero--fusao .letras__fallback[hidden] { display: block !important
    com o align-items: end do estado normal a camada da clínica ficava com largura zero */
 html:not(.js) .hero--fusao, .abertura--estatica .hero--fusao, html.movimento-reduzido .hero--fusao { align-items: stretch; }
 
+/* Hierarquia do estado A: as especialidades são a linha mais forte (creme, maiores); o descritor,
+   com a única menção a Moema, vai menor e em areia logo abaixo; depois a chamada. */
 .hero__especialidades {
   display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 0;
-  margin: .2rem 0 0; padding: 0; list-style: none;
-  font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--cor-areia);
+  margin: 0; padding: 0; list-style: none;
+  font-size: clamp(15px, 1.15vw, 18px); letter-spacing: .2em; text-transform: uppercase; color: var(--cor-creme);
 }
 .hero__especialidades li { display: flex; align-items: center; }
 /* o ponto separador fica preso ao item anterior: a linha nova nunca começa com um ponto solto */
 .hero__especialidades li:not(:last-child)::after {
   content: ""; width: 3px; height: 3px; border-radius: 50%; /* ponto tipográfico, não um canto */
-  background: currentColor; margin: 0 1.1rem; opacity: .7;
+  background: currentColor; margin: 0 1.3rem; opacity: .7;
 }
 .hero__especialidades a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-rapida), color var(--dur-rapida); }
-.hero__especialidades a:hover, .hero__especialidades a:focus-visible { color: var(--cor-creme); border-bottom-color: currentColor; }
-.hero__acoes { justify-content: center; gap: 1rem 2rem; margin-top: .6rem; }
-.hero__nota { margin: 0; color: var(--fg-2); font-size: .95rem; }
+.hero__especialidades a:hover, .hero__especialidades a:focus-visible { border-bottom-color: currentColor; }
+.hero__descritor { font-size: 11px; color: var(--cor-areia); margin: 0; }
+.hero__acoes { justify-content: center; gap: 1rem 2rem; margin-top: 1rem; }
 
 /* ---- Abertura fundida — estado B (a clínica com a frase) -------------------
    A frase mora no terço de baixo da tela: no meio ela cairia sobre o wordmark
@@ -60,17 +62,20 @@ html:not(.js) .hero--fusao, .abertura--estatica .hero--fusao, html.movimento-red
   /* celular e tablet retrato: o wordmark sobe (letras.js, centro.mobile) e o bloco de
      texto fica na metade de baixo, sem passar por cima das letras */
   .hero--fusao::before { background: radial-gradient(70% 40% at 50% 30%, rgba(110, 18, 18, .55), transparent 70%); }
-  .hero--fusao .letras__fallback { top: 30%; width: min(84vw, 520px); }
+  .hero--fusao .letras__fallback { top: 38%; width: min(84vw, 520px); }
+  /* estado estático (sem WebGL / movimento reduzido): o hero tem dois blocos empilhados, então o
+     38 % é da primeira tela (--hero-h), não do hero inteiro — senão o logo cola no descritor */
+  .abertura--estatica .letras__fallback, html.movimento-reduzido .hero--fusao .letras__fallback { top: calc(var(--hero-h) * .38); }
   .hero--fusao .hero__conteudo { padding-bottom: clamp(40px, 7vh, 72px); gap: 1rem; }
-  .hero__especialidades { font-size: 10px; letter-spacing: .18em; gap: .55rem 0; }
+  .hero__especialidades { font-size: 14px; letter-spacing: .18em; gap: .55rem 0; }
   .hero__especialidades li:not(:last-child)::after { margin: 0 .7rem; }
   .hero--fusao .hero__frase { padding-bottom: clamp(72px, 14vh, 128px); }
   /* na janela 3:2 do celular a foto vertical corta o meio da recepção: o wordmark continua no quadro */
   .hero__poster { object-position: 50% 48%; }
 }
 @media (max-width: 639.98px) {
-  /* celular: as especialidades em coluna, sem os pontos */
-  .hero--fusao .hero__conteudo .eyebrow { max-width: 30ch; }
+  /* celular: as especialidades em coluna, sem os pontos; o descritor em duas linhas equilibradas */
+  .hero--fusao .hero__descritor { max-width: 40ch; }
   .hero__especialidades { flex-direction: column; align-items: center; gap: .45rem; }
   .hero__especialidades li { white-space: nowrap; }
   .hero__especialidades li:not(:last-child)::after { display: none; }

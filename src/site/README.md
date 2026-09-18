@@ -72,7 +72,7 @@ uma linha `chave: valor` por dado (o gerador o remove da saída; `&` em texto va
 | `titulo` | sim | — | `<title>` (e `og:title` se `og_titulo` faltar) |
 | `descricao` | sim | — | `meta description` e `og:description` |
 | `og_titulo` | não | `titulo` | `og:title` |
-| `og_imagem` | não | `assets/img/producao/medicos-trio-horizontal.jpg` | `og:image` (caminho a partir da raiz do repositório; o gerador prefixa `{{raiz}}`) |
+| `og_imagem` | não | `assets/img/producao/medicos-trio-horizontal.jpg` | `og:image` (caminho a partir da raiz do repositório, sem `../`; o gerador prefixa `{{dominio}}/` — URL absoluta, exigida pelo WhatsApp/Instagram/LinkedIn — e falha se o arquivo não existir) |
 | `css` | não | o slug | `<link>` para `site/css/<css>.css`; se o arquivo não existir, o gerador **avisa** e omite o link |
 | `corpo` | não | `sup-bordo` | `class` do `<body>` (o template escreve `<body class="{{corpo}}">`) |
 | `tema_cor` | não | `#550000` | `meta theme-color` |
@@ -89,6 +89,7 @@ uma linha `chave: valor` por dado (o gerador o remove da saída; `&` em texto va
 | `{{raiz}}` | `../` na home, `../../` nas internas | tudo que está na raiz do repositório: `{{raiz}}assets/img/x.jpg`, `{{raiz}}assets/placeholders/x.svg` |
 | `{{site}}` | `./` na home, `../` nas internas | links entre páginas: `{{site}}nutrologia/`, `{{site}}dermatologia/#pele`, `{{site}}` (home) |
 | `{{wa}}` | `https://wa.me/<número>?text=<whats_msg codificada>` | todo link para o WhatsApp da página (o nav, o menu, o fecho e o flutuante já usam) |
+| `{{dominio}}` · `{{url_pagina}}` | `DOMINIO` do `config.mjs` (sem barra no fim) · `<dominio>/site/` na home, `<dominio>/site/<slug>/` nas internas | URLs absolutas do `head`: `og:image`, `og:url` e `canonical`. Enquanto o domínio definitivo não vier, `DOMINIO` aponta para a homologação [PENDENTE] |
 | `{{whats_numero_visivel}}` | `+55 11 99999-9999` | o número por extenso (o rótulo `[PENDENTE]` fica no HTML, ao lado) |
 | `{{ano}}` · `{{slug}}` · `{{titulo}}` · `{{descricao}}` | — | raramente necessários fora dos partials |
 | `{{stream_<chave>}}` | UID do vídeo em `STREAM_IDS` (`config.mjs`), vazio hoje | `data-stream="{{stream_tulio}}"`; chaves: `institucional`, `fundo`, `tulio`, `breno`, `ana`, `casa_tulio`, `casa_breno`, `casa_ana` |

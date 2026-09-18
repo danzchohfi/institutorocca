@@ -19,9 +19,9 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
 <main id="conteudo" tabindex="-1">
 
   <!-- ================= ABERTURA FUNDIDA · Letras → a clínica → a janela =================
-       .abertura é a pista (2,5 telas; site.css). O hero fica preso (sticky) por 1,5 tela
+       .abertura é a pista (2,25 telas; site.css). O hero fica preso (sticky) por 1,25 tela
        enquanto src/site/hero.js dirige o timeline pelo scroll:
-         estado A — o wordmark em partículas (shared/letras.js) + eyebrow, especialidades e chamada;
+         estado A — o wordmark em partículas (shared/letras.js) + especialidades, descritor e chamada;
          estado B — as letras se dissolvem, a recepção aparece em cores naturais e o H1 entra por linhas;
          fim      — a mídia encolhe até .hero__alvo (a janela) e segue com o bloco 01 — O problema.
        Sem WebGL, com movimento reduzido ou sem JS: .abertura--estatica empilha os dois estados. -->
@@ -47,17 +47,17 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
       <canvas class="letras__canvas" aria-hidden="true"></canvas>
       <img class="letras__fallback" src="{{raiz}}assets/img/logo.svg" alt="Instituto Rocca" width="1686" height="410" hidden>
 
-      <!-- camada 2: o conteúdo do estado A -->
+      <!-- camada 2: o conteúdo do estado A — as especialidades em primeiro plano, o descritor menor
+           (uma só menção a Moema) e a chamada -->
       <div class="hero__conteudo container">
-        <p class="eyebrow" data-reveal>Instituto de Qualidade de Vida e Bem-Estar · Moema</p>
         <ul class="hero__especialidades" data-reveal aria-label="Especialidades">
           <li><a href="#especialidades">Nutrologia</a></li>
           <li><a href="#especialidades">Endocrinologia</a></li>
           <li><a href="#especialidades">Dermatologia</a></li>
         </ul>
+        <p class="eyebrow hero__descritor" data-reveal>Instituto de Qualidade de Vida e Bem-Estar&nbsp;· Moema, São Paulo</p>
         <div class="acoes hero__acoes" data-reveal>
           <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Agendar avaliação</a>
-          <p class="hero__nota">Atendimento em Moema, São Paulo</p>
         </div>
       </div>
 
@@ -107,7 +107,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
           <h2 class="titulo-2l" data-split-linhas>Três especialidades. <span class="linha-2">O mesmo jeito de conduzir.</span></h2>
         </div>
         <div class="col-5 col-inicio-8 secao__sub" data-reveal>
-          <p class="texto-grande">Nutrologia, Endocrinologia e Dermatologia sob o mesmo teto — e, em qualquer uma, o mesmo médico do primeiro dia em diante.</p>
+          <p class="texto-grande">Nutrologia, Endocrinologia e Dermatologia sob o mesmo teto — e o mesmo jeito de investigar em qualquer uma.</p>
         </div>
       </div>
 
