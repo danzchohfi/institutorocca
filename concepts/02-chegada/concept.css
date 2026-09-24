@@ -325,9 +325,10 @@ html.js [data-linha] { transform: scaleX(0); transform-origin: left center; }
 .pergunta__link { justify-self: start; }
 .perguntas__rodape { margin-top: clamp(2rem, 4vw, 3.5rem); }
 @media (min-width: 900px) {
-  .pergunta { grid-template-columns: 96px minmax(0, 1fr) auto; column-gap: clamp(24px, 3vw, 48px); align-items: center; }
+  .pergunta { grid-template-columns: 96px minmax(0, 1fr); column-gap: clamp(24px, 3vw, 48px); align-items: start; }
+  .pergunta__resposta { grid-column: 2; margin-top: 0; }
   .pergunta__capa { width: 96px; }
-  .pergunta__link { justify-self: end; }
+  .pergunta__capa { margin-top: .2rem; }
 }
 
 /* ---- Perguntas mais comuns ----------------------------------------------------- */

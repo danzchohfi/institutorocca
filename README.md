@@ -17,6 +17,13 @@ restante da página continua no HTML, dentro de `<template data-oculto="aprovaca
 nem carrega o que está lá dentro), fechado por uma faixa `.previa-fim`. O aviso `FIM DA PRÉVIA` em cada
 `index.html` diz como restaurar a página inteira.
 
+**Revisão de conteúdo (set/2026):** "a casa" virou "o instituto" em todo o site; nenhum travessão em texto visível
+(rótulos usam "·", frases usam ponto ou vírgula); legendas de estúdio saíram; endereço real e link do mapa no
+rodapé; CRM e especialidades nos cards (Dr. Breno pendente); os vídeos do Instagram (@institutorocca) entram nos
+cards dos médicos pelo embed oficial (`embed.js`); as respostas das perguntas abrem no lugar (`<details>`) e
+aguardam o texto do roteiro do teleprompter; rodapé com copyright centralizado e assinatura da Vitamina em branco
+(`assets/img/vitamina-branco.svg`); WhatsApp flutuante em verde.
+
 As pastas mantêm a numeração interna original (01, 02, 03, 07, 08) para os links já compartilhados não
 quebrarem; a numeração que o cliente vê é a do hub. Os conceitos 04 (Conversa), 05 (Símbolo) e 06 (Slides)
 saíram do repositório na rodada de aprovação; estão no histórico do git.
