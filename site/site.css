@@ -490,3 +490,8 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 }
 /* na foto em tela cheia a legenda vai embaixo da foto, não sobre os rostos */
 .trio--tela .trio__legenda { position: static; display: block; margin: 14px 0 0; padding-inline: var(--gutter); color: var(--fg-2); opacity: 1; text-shadow: none; max-width: none; }
+/* retrato com play: o vídeo do Instagram entra no lugar do retrato só ao clicar */
+.medico__midia--video .stream__play { display: grid; }
+.medico__midia--video .stream__rotulo { bottom: 16px; }
+.medico__midia--video::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 32%; background: linear-gradient(to top, rgba(42, 26, 22, .55), transparent); pointer-events: none; }
+.medico__midia--aberta::after { display: none; }
