@@ -1,8 +1,8 @@
 /* ============================================================================
-   INSTITUTO ROCCA — site final · /a-casa/ (só o que é desta página)
+   INSTITUTO ROCCA — site final · /o-instituto/ (só o que é desta página)
    ----------------------------------------------------------------------------
    Lê brand/tokens.css, shared/base.css e site/site.css. Aqui entra apenas o
-   que a página "A casa" acrescenta: o hero sobre a foto da recepção, os
+   que a página "O instituto" acrescenta: o hero sobre a foto da recepção, os
    rótulos duplos do mosaico, a lista do percurso, os tiles de vídeo e o bloco
    "Onde fica". Mobile-first; breakpoints 640 / 900 / 1200 / 1440; sem
    border-radius. URLs em CSS resolveriam a partir daqui: ../../assets/…

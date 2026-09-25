@@ -179,7 +179,7 @@ com UID monta o iframe do Stream. O site nunca mostra "filme em produção".
 | `assets/img/producao/medicos-trio-vertical.jpg` | 853×1280 (2:3) | — |
 | `assets/img/producao/dr-tulio-bovo.jpg` | 1600×2400 | `assets/placeholders/retrato-tulio.svg` |
 | `assets/img/producao/dr-breno-gondim.jpg` | 1600×2400 | `assets/placeholders/retrato-breno.svg` |
-| `assets/img/producao/dra-ana-paula-bovo.jpg` | 1365×2048 | `assets/placeholders/retrato-ana-paula.svg` |
+| `assets/img/producao/dra-ana-paula-bovo-02.jpg` | 853×1280 | `assets/placeholders/retrato-ana-paula.svg` |
 | `assets/img/producao/dra-ana-paula-bovo-02.jpg` | 853×1280 | `assets/placeholders/retrato-ana-paula-45.svg` |
 | `assets/img/entrada-clinica.jpg` · `-mobile.jpg` | 2731×1536 · 1228×1536 | — |
 
