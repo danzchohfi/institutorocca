@@ -1,8 +1,8 @@
-# Fotos da produção (estúdio Jacarandá)
+# Fotos da produção
 
 Nomes de arquivo que o site espera. Fotos reais já no lugar: o trio (horizontal e as duas verticais) e a
 Dra. Ana Paula de terno branco (três variações). Retratos reais do Dr. Túlio e do Dr. Breno já no lugar (reduzidos para 1600×2400).
-Ainda **stand-in** (gerado no Higgsfield, mesmo enquadramento): `dra-ana-paula-bovo.jpg` (colete camel).
+O stand-in da Dra. Ana Paula (colete camel, gerado por IA) saiu do repositório: o site usa só as fotos reais dela (-02, -03, -04).
 Ao subir as fotos reais com estes nomes, o site troca sozinho.
 
 | Arquivo | O que é | Proporção |
@@ -12,7 +12,6 @@ Ao subir as fotos reais com estes nomes, o site troca sozinho.
 | `medicos-trio-vertical-02.jpg` | Os três, vertical, expressão séria | 2:3 |
 | `dr-tulio-bovo.jpg` | Dr. Túlio Bovo sentado na poltrona (terno bordô, gravata clara, barba) | 2:3 |
 | `dr-breno-gondim.jpg` | Dr. Breno Gondim sentado na poltrona (terno cinza, gravata escura) | 2:3 |
-| `dra-ana-paula-bovo.jpg` | Dra. Ana Paula Bovo sentada na poltrona (colete camel) | 2:3 |
 | `dra-ana-paula-bovo-02.jpg` | Dra. Ana Paula Bovo, terno branco, sorrindo (cenário com estante) | 2:3 |
 | `dra-ana-paula-bovo-03.jpg` | Idem, expressão séria | 2:3 |
 | `dra-ana-paula-bovo-04.jpg` | Idem, sorriso leve, mãos no colo | 2:3 |

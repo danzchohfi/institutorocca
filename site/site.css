@@ -464,3 +464,29 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
   .hero__midia, .hero__quadro { will-change: auto; }
   .stream > picture, .stream > .stream__poster { transition: none; }
 }
+
+/* ---- Revisão de conteúdo (set/2026) ------------------------------------------------------ */
+/* a foto principal dos três em largura total e altura de quase uma tela (home) */
+.trio--tela { aspect-ratio: auto; height: auto; margin-top: clamp(3rem, 6vw, 5.5rem); background: transparent; }
+.trio--tela .trio__moldura { position: relative; height: clamp(520px, 92vh, 920px); background: var(--cor-bordo-profundo); }
+.trio--tela .paralaxe__in img { object-position: 50% 30%; }
+@media (max-width: 639.98px) { .trio--tela .trio__moldura { height: auto; aspect-ratio: 3 / 4; } }
+/* vídeos já publicados no Instagram (embed oficial) no lugar do poster 2:3 */
+.medico__midia--insta { aspect-ratio: auto; overflow: visible; background: transparent; }
+.medico__midia--insta .instagram-media { display: block; width: 100% !important; min-width: 0 !important; max-width: 100% !important; margin: 0 !important; padding: 0; border: 0; background: var(--cor-bordo-profundo); min-height: 440px; }
+.medico__midia--insta .instagram-media > a { display: grid; place-items: center; min-height: 440px; padding: 24px; text-align: center; text-decoration: none; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--cor-creme-60); }
+.medico__midia--insta iframe { width: 100% !important; min-width: 0 !important; max-width: 100% !important; }
+.quem__video .medico__midia--insta { width: 100%; }
+/* o mapa real (iframe do Google) no bloco .mapa */
+.mapa--real { padding: 0; display: block; }
+.mapa__iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; filter: saturate(.7); }
+/* respostas que abrem na própria página (<details class="pergunta__resposta">, base.css) */
+.pergunta-item .pergunta__resposta, .resposta .pergunta__resposta { grid-column: 1 / -1; margin-top: .4rem; }
+.pergunta__texto .assinatura { display: block; margin-top: 1.2rem; }
+.sup-osso .pergunta__texto { color: var(--cor-tinta); }
+@media (min-width: 900px) {
+  .pergunta-item .pergunta__resposta { grid-column: 1 / -1; }
+  .resposta .pergunta__resposta { grid-column: 2 / -1; }
+}
+/* na foto em tela cheia a legenda vai embaixo da foto, não sobre os rostos */
+.trio--tela .trio__legenda { position: static; display: block; margin: 14px 0 0; padding-inline: var(--gutter); color: var(--fg-2); opacity: 1; text-shadow: none; max-width: none; }

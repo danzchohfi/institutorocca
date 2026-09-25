@@ -167,3 +167,14 @@ html:not(.js) .hero--fusao, .abertura--estatica .hero--fusao, html.movimento-red
 @media (prefers-reduced-motion: reduce) {
   .hero__quadro .stream--fundo { will-change: auto; }
 }
+
+/* ---- Perguntas: a resposta abre embaixo do título, na coluna do texto ---- */
+.pergunta { align-items: start; }
+.pergunta .pergunta__resposta { grid-column: 1 / -1; margin-top: 0; }
+@media (min-width: 900px) {
+  .pergunta { grid-template-columns: 96px minmax(0, 1fr); }
+  .pergunta .pergunta__resposta { grid-column: 2; }
+  .pergunta__titulo { max-width: 34ch; }
+}
+/* o mosaico do instituto e Os médicos: a foto sangra a página, a seção não corta */
+.medicos-secao { overflow: hidden; }

@@ -11,10 +11,10 @@ O cliente escolheu a **abertura em partículas** (versão Letras) seguida das **
 
 | Página | Caminho | O que é |
 |--------|---------|---------|
-| Home | `site/` | Wordmark em partículas → a clínica em fotos → o que tratamos → as três especialidades → os médicos → a casa → fecho |
+| Home | `site/` | Wordmark em partículas → a clínica em fotos → o que tratamos → as três especialidades → o instituto → os médicos → perguntas → fecho |
 | Nutrologia · Endocrinologia · Dermatologia | `site/nutrologia/`, `site/endocrinologia/`, `site/dermatologia/` | Uma página por especialidade (o que tratamos, como é a consulta, o médico responsável) |
 | Dr. Túlio Bovo · Dr. Breno Gondim · Dra. Ana Paula Bovo | `site/dr-tulio-bovo/`, `site/dr-breno-gondim/`, `site/dra-ana-paula-bovo/` | Uma página por médico (vídeo de apresentação, formação, o que atende) |
-| A casa | `site/a-casa/` | A clínica em fotos, o endereço e como chegar |
+| O instituto | `site/o-instituto/` | O instituto em fotos, o endereço e o mapa |
 | Conteúdo | `site/conteudo/` | Perguntas da semana e artigos (estrutura pronta, textos [PENDENTE]) |
 | Contato | `site/contato/` | WhatsApp, endereço, horários, mapa |
 
@@ -26,6 +26,7 @@ O cliente escolheu a **abertura em partículas** (versão Letras) seguida das **
 - Fotos de produção em `assets/img/producao/` (leia o `LEIA-ME.md` de lá: nomes definitivos, quem é quem).
 - Dados ainda não confirmados aparecem como `[PENDENTE]` e estão centralizados em `src/site/config.mjs`.
 - `docs/site.md` descreve a home seção a seção e as decisões desta rodada; `docs/screenshots/site-*` tem as capturas.
+- `docs/revisao-design.md`: o que mudou na revisão de conteúdo de setembro e as sugestões de design para a próxima rodada.
 
 ```bash
 npm install
@@ -36,7 +37,7 @@ node scripts/lexico.mjs # varre os termos que a marca não usa (concepts/, site/
 
 ## Arquivo: as versões da home (rodadas 1 a 6)
 
-O hub (`index.html`) agora abre só a versão final. As versões anteriores continuam no repositório, em `concepts/`,
+O `index.html` da raiz redireciona direto para o site final (`site/`). As versões anteriores continuam no repositório, em `concepts/`,
 para consulta:
 
 | Versão | Nome | Hero | Pasta |
@@ -54,7 +55,7 @@ Leia **`CONCEITOS.md`** para o racional de cada conceito e **`BRIEF.md`** para o
 
 ## Previews hospedadas
 
-**Site (GitHub Pages, o próprio repositório):** https://danzchohfi.github.io/institutorocca/ — o hub abre a versão final;
+**Site (GitHub Pages, o próprio repositório):** https://pages.vitaminapublicitaria.com.br/institutorocca/ (a raiz redireciona para `site/`);
 as versões abaixo continuam publicadas para consulta. O scroll é o da página real, sem iframe. Precisa ser ativado uma vez pelo dono do repositório
 (Settings → Pages → Build and deployment → Source: **GitHub Actions**); a partir daí `.github/workflows/pages.yml`
 publica a cada push nesta branch (ou na `main`).
