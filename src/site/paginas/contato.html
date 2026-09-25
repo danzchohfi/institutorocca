@@ -1,0 +1,198 @@
+<!-- pagina
+titulo: Contato — Instituto Rocca, Moema
+descricao: Fale com o Instituto Rocca, em Moema, pelo WhatsApp. Endereço, horários e como chegar. Quem te atender no primeiro dia é quem vai te acompanhar.
+og_titulo: Contato — Instituto Rocca
+og_imagem: assets/img/entrada-clinica.jpg
+css: contato
+corpo: sup-bordo pagina pagina--contato
+whats_msg: Olá. Quero agendar uma avaliação no Instituto Rocca.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+{{head}}
+<body class="{{corpo}}">
+{{skip}}
+{{nav}}
+{{menu}}
+<main id="conteudo" tabindex="-1">
+  <!-- TOPO — nesta página o fecho é a primeira dobra: o partial do fecho não se repete no fim.
+       Hero interno sem foto (site.css) com o bloco do WhatsApp do fecho (base.css §14) ao lado do H1.
+       Sem formulário em lugar nenhum: toda chamada vai para o WhatsApp. -->
+  <section class="hero hero--interno hero--sem-foto sup-bordo contato-topo" id="contato" data-hero>
+    <div class="container hero__in">
+      <div class="hero__texto">
+        <p class="eyebrow" data-reveal>Contato</p>
+        <h1 class="titulo-2l" data-split-linhas>Avaliação com o médico <span class="linha-2">que vai acompanhar você.</span></h1>
+        <p class="hero__sub texto-grande" data-reveal>A conversa começa no WhatsApp. Você conta o que parou de funcionar, e quem responde marca a avaliação com você.</p>
+        <div class="acoes" data-reveal>
+          <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="botao botao--secundario" href="#onde-fica">Onde fica <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="fecho__whats contato-topo__whats" data-reveal>
+        <p class="eyebrow">WhatsApp</p>
+        <a class="fecho__numero" href="{{wa}}" target="_blank" rel="noopener">{{whats_numero_visivel}}</a>
+        <p class="fecho__pendente texto-2">[PENDENTE]</p>
+        <p class="fecho__whats-nota">Quem responde é o Instituto, de segunda a sexta, 00h às 00h [PENDENTE]. Sem formulário: é uma conversa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 — O que acontece depois da mensagem (osso). Três linhas, sem numerais grandes:
+       não é a seção "primeira consulta" que saiu da home. Componente .tres do site.css. -->
+  <section class="secao sup-osso contato-depois" id="depois-da-mensagem" data-tema="claro">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal><span class="numeral">01</span> — Depois da mensagem</p>
+          <h2 data-split-linhas>Três coisas, nessa ordem.</h2>
+        </div>
+      </div>
+      <ol class="tres" data-reveal-grupo>
+        <li>
+          <h3 class="tres__titulo">Você conta o que parou de funcionar.</h3>
+          <p class="tres__texto">Não precisa ser técnico. Se preferir um dos três médicos, diga na mensagem.</p>
+        </li>
+        <li>
+          <h3 class="tres__titulo">A avaliação é marcada na conversa.</h3>
+          <p class="tres__texto">Quem responde combina o dia, o horário e o que levar.</p>
+        </li>
+        <li>
+          <h3 class="tres__titulo">Quem te atende no primeiro dia é quem te acompanha.</h3>
+          <p class="tres__texto">Você sai da consulta com o WhatsApp do seu médico.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 02 — Duas perguntas que chegam antes de qualquer outra (bordô). Componente .comuns do site.css. -->
+  <section class="secao sup-bordo contato-antes" id="antes-de-mandar-mensagem">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-8">
+          <p class="eyebrow" data-reveal><span class="numeral">02</span> — Antes de mandar mensagem</p>
+          <h2 class="titulo-2l" data-split-linhas>Duas perguntas que chegam <span class="linha-2">antes de qualquer outra.</span></h2>
+        </div>
+      </div>
+      <div class="comuns" data-reveal-grupo>
+        <div class="comum">
+          <h3 class="comum__pergunta">Quanto custa?</h3>
+          <p class="comum__resposta">O tratamento é construído na consulta, item a item, depois que o médico entende o seu caso — por isso não existe tabela. O que dá para adiantar é o que acontece na avaliação.</p>
+        </div>
+        <div class="comum">
+          <h3 class="comum__pergunta">E se eu não puder ir?</h3>
+          <!-- [PENDENTE] confirmar com o cliente a política de falta/remarcação antes de dizer "sem cobrança". -->
+          <p class="comum__resposta">Avise na mesma conversa, sem culpa, e a gente vê outro horário.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — Prefere um médico? (osso). Três cards pequenos: retrato 2:3 com fallback, nome, uma linha e o link.
+       A partir de 1200 px o cabeçalho fica à esquerda e os cards à direita; no celular, retrato ao lado do texto. -->
+  <section class="secao sup-osso contato-medicos" id="os-medicos" data-tema="claro">
+    <div class="container contato-medicos__grid">
+      <div class="contato-medicos__cabeca">
+        <p class="eyebrow" data-reveal><span class="numeral">03</span> — Os médicos</p>
+        <h2 class="titulo-2l" data-split-linhas>Aqui você não passa por um médico. <span class="linha-2">Você tem um médico.</span></h2>
+        <p class="contato-medicos__linha texto-grande" data-reveal>Diga na mensagem com quem você quer marcar.</p>
+        <div class="acoes" data-reveal>
+          <a class="botao botao--secundario" href="{{wa}}" target="_blank" rel="noopener">Falar no WhatsApp <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="medicos contato-medicos__cards" data-reveal-grupo>
+        <article class="medico">
+          <div class="medico__midia stream" data-stream="{{stream_tulio}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Túlio Bovo">
+            <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" srcset="{{raiz}}assets/img/producao/dr-tulio-bovo-640.jpg 640w, {{raiz}}assets/img/producao/dr-tulio-bovo.jpg 1600w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dr. Túlio Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <h3 class="medico__nome">Dr. Túlio Bovo</h3>
+          <p class="medico__linha">Emagrecimento e metabolismo, lipedema, avaliação hormonal e menopausa.</p>
+          <a class="botao botao--secundario medico__link" href="{{site}}dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+        </article>
+        <article class="medico">
+          <div class="medico__midia stream" data-stream="{{stream_breno}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dr. Breno Gondim">
+            <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-breno-gondim.jpg" srcset="{{raiz}}assets/img/producao/dr-breno-gondim-640.jpg 640w, {{raiz}}assets/img/producao/dr-breno-gondim.jpg 1600w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-breno.svg'" alt="Dr. Breno Gondim sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <h3 class="medico__nome">Dr. Breno Gondim</h3>
+          <p class="medico__linha">O mesmo território. Começa pelo sono.</p>
+          <a class="botao botao--secundario medico__link" href="{{site}}dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+        </article>
+        <article class="medico">
+          <div class="medico__midia stream" data-stream="{{stream_ana}}" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="Quem eu sou — Dra. Ana Paula Bovo">
+            <img class="stream__poster" src="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg" srcset="{{raiz}}assets/img/producao/dra-ana-paula-bovo-02-640.jpg 640w, {{raiz}}assets/img/producao/dra-ana-paula-bovo-02.jpg 853w" sizes="(min-width: 900px) 460px, 100vw" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-ana-paula.svg'" alt="Dra. Ana Paula Bovo sentada em uma poltrona creme, de terno branco com friso preto, sorrindo, diante de uma estante com samambaia e de uma luminária acesa" width="853" height="1280" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Reproduzir: Quem eu sou — Dra. Ana Paula Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <h3 class="medico__nome">Dra. Ana Paula Bovo</h3>
+          <p class="medico__linha">Tricologia, estética facial e pele.</p>
+          <a class="botao botao--secundario medico__link" href="{{site}}dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Conheça a médica <span class="seta" aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — Onde fica (bordô). Ficha com os dados da casa (tudo [PENDENTE] até o cliente enviar),
+       mapa placeholder (.mapa do site.css: bloco osso com o símbolo, sem iframe externo) e a foto da porta.
+       O rodapé linka para cá em "Como chegar". -->
+  <section class="secao sup-bordo contato-onde" id="onde-fica">
+    <div class="container grid-12 contato-onde__grid">
+      <div class="col-5 contato-onde__info">
+        <p class="eyebrow" data-reveal><span class="numeral">04</span> — Onde fica</p>
+        <h2 data-split-linhas>Moema, São Paulo.</h2>
+        <dl class="endereco contato-ficha" data-reveal-grupo>
+          <div class="contato-ficha__item">
+            <dt>Endereço</dt>
+            <dd>Rua —, 000 · Moema · São Paulo · SP <span class="pendente">[PENDENTE]</span></dd>
+          </div>
+          <div class="contato-ficha__item">
+            <dt>Horários</dt>
+            <dd>Segunda a sexta, 00h às 00h <span class="pendente">[PENDENTE]</span></dd>
+          </div>
+          <div class="contato-ficha__item">
+            <dt>WhatsApp</dt>
+            <dd><a href="{{wa}}" target="_blank" rel="noopener">{{whats_numero_visivel}}</a> <span class="pendente">[PENDENTE]</span></dd>
+          </div>
+          <div class="contato-ficha__item">
+            <dt>Telefone</dt>
+            <dd>(11) 0000-0000 <span class="pendente">[PENDENTE]</span></dd>
+          </div>
+          <div class="contato-ficha__item">
+            <dt>E-mail</dt>
+            <dd>contato@ <span class="pendente">[PENDENTE]</span></dd>
+          </div>
+          <div class="contato-ficha__item">
+            <dt>Instagram</dt>
+            <dd><a href="#">@institutorocca</a> <span class="pendente">[PENDENTE @]</span></dd>
+          </div>
+          <div class="contato-ficha__item">
+            <dt>Como chegar</dt>
+            <dd><span class="pendente">[PENDENTE — estacionamento, referências e transporte]</span></dd>
+          </div>
+        </dl>
+        <div class="acoes" data-reveal>
+          <a class="botao botao--secundario" href="{{site}}a-casa/">Conhecer a casa <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="col-6 col-inicio-7 contato-onde__midia">
+        <div class="mapa" data-reveal>
+          <img src="{{raiz}}assets/img/simbolo-bordo.svg" alt="" width="666" height="666" loading="lazy" decoding="async">
+          <p class="mapa__texto">Mapa [PENDENTE — entra com o endereço]</p>
+        </div>
+        <figure class="contato-onde__foto">
+          <div class="contato-onde__moldura paralaxe" data-parallax-area data-reveal="escala">
+            <div class="paralaxe__in" data-parallax="-6">
+              <img src="{{raiz}}assets/img/chegada-porta.jpg" alt="Porta de entrada vista do corredor: ao fundo, a recepção iluminada, com balcões de mármore e o wordmark Instituto Rocca na parede." width="1600" height="1600" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <figcaption class="legenda">A porta, vista de quem chega.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</main>
+{{footer}}
+{{whats}}
+{{lightbox}}
+</body>
+</html>

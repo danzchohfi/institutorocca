@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /* ============================================================================
-   lexico.mjs — varre concepts/**\/index.html (e COPY.md) atrás dos termos
+   lexico.mjs — varre concepts/**\/index.html, site/**\/index.html,
+   src/site/**\/*.html (templates e partials) e COPY.md atrás dos termos
    proibidos do BRIEF §2.1 e de "!" em texto visível.
    Uso: node scripts/lexico.mjs [arquivos…]
    Exceções: no HTML, qualquer elemento com o atributo data-lexico-ok (o
@@ -52,6 +53,8 @@ function listar(dir, filtro, acc = []) {
 let arquivos = process.argv.slice(2).map((a) => resolve(a));
 if (!arquivos.length) {
   arquivos = listar(join(raiz, 'concepts'), (p) => /[\\/]index\.html$/.test(p));
+  listar(join(raiz, 'site'), (p) => /[\\/]index\.html$/.test(p), arquivos);
+  listar(join(raiz, 'src', 'site'), (p) => /\.html$/.test(p), arquivos);
   const copy = join(raiz, 'COPY.md');
   if (existsSync(copy)) arquivos.push(copy);
 }

@@ -1,0 +1,254 @@
+<!-- pagina
+titulo: Dr. Túlio Bovo — Instituto Rocca, Moema
+descricao: Dr. Túlio Bovo, do Instituto Rocca, em Moema: metabolismo, avaliação hormonal, emagrecimento e lipedema. Investiga antes de prescrever e acompanha você.
+og_titulo: Dr. Túlio Bovo — Instituto Rocca
+og_imagem: assets/img/producao/dr-tulio-bovo.jpg
+css: dr-tulio-bovo
+corpo: sup-bordo pagina pagina--dr-tulio-bovo
+whats_msg: Olá. Quero agendar uma avaliação com o Dr. Túlio Bovo no Instituto Rocca.
+fecho_h2: Avaliação com o / Dr. Túlio Bovo.
+fecho_sub: Quem te atender no primeiro dia é quem vai te acompanhar. Você sai da consulta com o WhatsApp dele.
+fecho_nota: Quem responde é o Instituto. Diga que quer marcar com o Dr. Túlio Bovo — quem te atender no primeiro dia é quem vai te acompanhar.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+{{head}}
+<body class="{{corpo}}">
+{{skip}}
+{{nav}}
+{{menu}}
+<main id="conteudo" tabindex="-1">
+  <!-- ================= HERO · retrato 2:3 à direita, texto à esquerda (celular: retrato acima) ================= -->
+  <section class="hero hero--interno hero--retrato sup-bordo" id="inicio" data-hero>
+    <div class="container hero__in">
+      <div class="hero__texto">
+        <p class="eyebrow" data-reveal>O seu médico</p>
+        <h1 data-split-linhas>Dr. Túlio Bovo</h1>
+        <!-- Especialidade de registro (RQE) e CRM: dados que o cliente ainda não enviou. -->
+        <p class="hero__rotulo" data-reveal>
+          <span class="hero__rotulo-linha">Nutrologia · Endocrinologia <span class="hero__pendente">[PENDENTE — confirmar a especialidade de registro]</span></span>
+          <span class="hero__rotulo-linha">CRM-SP 000000 · RQE 00000 <span class="hero__pendente">[PENDENTE]</span></span>
+        </p>
+        <blockquote class="hero__citacao texto-grande" data-reveal>
+          <p>Exame normal e corpo que não está bem: eu vejo isso toda semana. É aí que a investigação começa.</p>
+          <span class="assinatura">— Dr. Túlio Bovo</span>
+        </blockquote>
+        <div class="acoes" data-reveal>
+          <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Agendar avaliação</a>
+          <!-- "Assistir: Quem eu sou" abre o vídeo 9:16 no lightbox (herda o UID do componente da seção 01).
+               Enquanto o UID não chegar, o botão fica hidden (data-stream-precisa) e o link ao lado leva à
+               seção, onde o poster aparece com o rótulo — o site nunca abre um lightbox sem vídeo. -->
+          <button class="botao botao--secundario hero__assistir" type="button" hidden data-abre-lightbox="#filme" data-stream-de="#video-quem-eu-sou" data-stream-precisa="#video-quem-eu-sou" aria-label="Assistir: Quem eu sou — Dr. Túlio Bovo">Assistir: Quem eu sou <span class="seta" aria-hidden="true">→</span></button>
+          <a class="botao botao--secundario hero__assistir-ancora" href="#quem-eu-sou">Assistir: Quem eu sou <span class="seta seta--baixo" aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="hero__foto paralaxe" data-parallax-area data-reveal="escala">
+        <div class="paralaxe__in" data-parallax="-6">
+          <img src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="Dr. Túlio Bovo sentado na poltrona creme do estúdio Jacarandá, diante do painel de madeira ripada com luz vermelha" width="1600" height="2400" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 01 · QUEM EU SOU (osso; vídeo vertical à esquerda, texto à direita) ================= -->
+  <section class="secao sup-osso quem" id="quem-eu-sou" data-tema="claro">
+    <div class="container grid-12 quem__in">
+      <div class="quem__texto">
+        <p class="eyebrow" data-reveal><span class="numeral">01</span> — Quem eu sou</p>
+        <h2 data-split-linhas>Sem currículo lido em voz alta.</h2>
+        <p class="texto-grande quem__abre" data-reveal>O que constrói confiança é o critério, não o diploma. Em um minuto e meio, gravado no estúdio Jacarandá, eu conto:</p>
+        <ol class="quem__lista" data-reveal-grupo aria-label="O que o vídeo responde">
+          <li>O que eu trato — dito como o paciente descreve, não como a especialidade se chama.</li>
+          <li>Por que eu escolhi isso.</li>
+          <li>O que eu faço diferente: investigo antes de propor.</li>
+          <li>E onde eu atendo agora: no Instituto Rocca, em Moema.</li>
+        </ol>
+        <!-- Uma linha de formação/titulação, como o Dr. Túlio quiser que apareça (sem lista de cursos). -->
+        <p class="quem__formacao texto-2" data-reveal>[PENDENTE — formação e titulação, em uma linha, como o Dr. Túlio quiser que apareça]</p>
+      </div>
+      <div class="quem__video" data-reveal="escala">
+        <div class="stream stream--escurecido" id="video-quem-eu-sou" data-stream="{{stream_tulio}}" data-stream-modo="player" data-stream-titulo="Quem eu sou — Dr. Túlio Bovo" data-stream-proporcao="9/16">
+          <img class="stream__poster" src="{{raiz}}assets/img/producao/dr-tulio-bovo.jpg" onerror="this.onerror=null;this.src='{{raiz}}assets/placeholders/retrato-tulio.svg'" alt="" width="1600" height="2400" loading="lazy" decoding="async">
+          <button class="stream__play" type="button" hidden aria-label="Reproduzir: Quem eu sou — Dr. Túlio Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          <span class="stream__rotulo">Quem eu sou — gravado no estúdio Jacarandá <span class="texto-2">[PENDENTE]</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 02 · COMO EU CONDUZO (bordô) ================= -->
+  <section class="secao sup-bordo conduzo" id="como-eu-conduzo">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal><span class="numeral">02</span> — Como eu conduzo</p>
+          <h2 class="titulo-2l" data-split-linhas>A consulta começa pela escuta. <span class="linha-2">Nessa ordem, sempre.</span></h2>
+        </div>
+      </div>
+      <!-- Fala em primeira pessoa escrita pela agência: a validar com o Dr. Túlio antes de ir ao ar. -->
+      <ol class="tres" data-reveal-grupo>
+        <li>
+          <h3 class="tres__titulo">Escuto antes de pedir.</h3>
+          <p class="tres__texto">Sua história, sua rotina, o que parou de funcionar. Só depois vem o exame.</p>
+        </li>
+        <li>
+          <h3 class="tres__titulo">Leio o exame com você, na tela.</h3>
+          <p class="tres__texto">Sem jargão, e sabendo por que cada coisa foi pedida.</p>
+        </li>
+        <li>
+          <h3 class="tres__titulo">Quem prescreve é quem acompanha.</h3>
+          <p class="tres__texto">Você sai com o meu WhatsApp. O tratamento tem alta; o acompanhamento continua.</p>
+        </li>
+      </ol>
+      <p class="assinatura conduzo__assinatura" data-reveal>— Dr. Túlio Bovo</p>
+      <figure class="figura-apoio conduzo__figura">
+        <div class="paralaxe" data-parallax-area data-reveal="escala">
+          <div class="paralaxe__in" data-parallax="-6">
+            <img src="{{raiz}}assets/img/consultorio-01.jpg" alt="Consultório: mesa de mármore marrom com notebook, cadeiras escuras, poltrona verde-oliva e janela ampla com a cidade ao fundo." width="1600" height="1244" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <figcaption class="legenda" data-reveal>A sala onde o exame é lido com você, na tela.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= 03 · O QUE EU TRATO (osso) ================= -->
+  <section class="secao sup-osso trato" id="o-que-eu-trato" data-tema="claro">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal><span class="numeral">03</span> — O que eu trato</p>
+          <h2 class="titulo-2l" data-split-linhas>O que parou de funcionar, <span class="linha-2">dito como você descreve.</span></h2>
+        </div>
+      </div>
+      <!-- [PENDENTE] confirmar a lista com o Dr. Túlio, dentro do mapa de especialidades (internas.md §0.1). -->
+      <ul class="lista-links" data-reveal-grupo>
+        <li>
+          <a href="{{site}}nutrologia/#emagrecimento">
+            <span class="lista-links__nome">Emagrecimento e metabolismo</span>
+            <span class="lista-links__linha">O medo de engordar tudo de novo. O metabolismo entra no tratamento.</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
+          </a>
+        </li>
+        <li>
+          <a href="{{site}}nutrologia/#lipedema">
+            <span class="lista-links__nome">Lipedema</span>
+            <span class="lista-links__linha">Não é ‘só gordura’.</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
+          </a>
+        </li>
+        <li>
+          <a href="{{site}}endocrinologia/#avaliacao-hormonal">
+            <span class="lista-links__nome">Avaliação hormonal</span>
+            <span class="lista-links__linha">Será que é hormonal? Isso se mede, e se investiga.</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
+          </a>
+        </li>
+        <li>
+          <a href="{{site}}endocrinologia/#menopausa">
+            <span class="lista-links__nome">Menopausa</span>
+            <span class="lista-links__linha">Sem eufemismo.</span>
+            <span class="lista-links__acao">Saiba mais <span class="seta" aria-hidden="true">→</span></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= 04 · PERGUNTAS QUE EU RESPONDO (bordô) ================= -->
+  <section class="secao sup-bordo perguntas" id="perguntas">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal><span class="numeral">04</span> — Conteúdo</p>
+          <h2 data-split-linhas>Perguntas que eu respondo toda semana.</h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p>Uma pergunta, uma resposta. Gravadas no estúdio Jacarandá e transcritas aqui.</p>
+        </div>
+      </div>
+      <!-- As páginas de resposta ainda não existem: os links ficam em "#" com [PENDENTE] ao lado. -->
+      <ol class="perguntas-lista" data-reveal-grupo>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">Tratamento de emagrecimento é para o resto da vida?</h3>
+          <span class="pergunta-item__acao">
+            <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Tratamento de emagrecimento é para o resto da vida?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="pergunta-item__pendente">[PENDENTE]</span>
+          </span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">Perder peso é a mesma coisa que perder gordura?</h3>
+          <span class="pergunta-item__acao">
+            <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Perder peso é a mesma coisa que perder gordura?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="pergunta-item__pendente">[PENDENTE]</span>
+          </span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">Efeito sanfona: por que o peso perdido sempre volta?</h3>
+          <span class="pergunta-item__acao">
+            <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Efeito sanfona: por que o peso perdido sempre volta?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="pergunta-item__pendente">[PENDENTE]</span>
+          </span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">Exame de sangue normal, mas o corpo não está bem: o que pode estar acontecendo?</h3>
+          <span class="pergunta-item__acao">
+            <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: Exame de sangue normal, mas o corpo não está bem: o que pode estar acontecendo?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="pergunta-item__pendente">[PENDENTE]</span>
+          </span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">É celulite ou é lipedema?</h3>
+          <span class="pergunta-item__acao">
+            <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: É celulite ou é lipedema?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="pergunta-item__pendente">[PENDENTE]</span>
+          </span>
+        </li>
+        <li class="pergunta-item">
+          <h3 class="pergunta-item__titulo">O que é bioimpedância e o que ela mede?</h3>
+          <span class="pergunta-item__acao">
+            <a class="botao botao--secundario pergunta-item__link" href="#" aria-label="Ver resposta: O que é bioimpedância e o que ela mede?">Ver resposta <span class="seta" aria-hidden="true">→</span></a>
+            <span class="pergunta-item__pendente">[PENDENTE]</span>
+          </span>
+        </li>
+      </ol>
+      <div class="secao__rodape" data-reveal>
+        <a class="botao botao--secundario" href="{{site}}conteudo/">Ver todas as respostas <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 05 · A CASA, POR DENTRO (osso) ================= -->
+  <section class="secao sup-osso casa" id="a-casa-por-dentro" data-tema="claro">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal><span class="numeral">05</span> — A casa, por dentro</p>
+          <h2 data-split-linhas>A casa, pelo meu ponto de vista.</h2>
+        </div>
+      </div>
+      <div class="stream stream--escurecido casa__video" data-stream="{{stream_casa_tulio}}" data-stream-modo="player" data-stream-titulo="A casa, por dentro — com o Dr. Túlio Bovo" data-reveal="escala">
+        <img class="stream__poster" src="{{raiz}}assets/img/consultorio-01.jpg" alt="" width="1600" height="1244" loading="lazy" decoding="async">
+        <button class="stream__play" type="button" hidden aria-label="Reproduzir: A casa, por dentro — com o Dr. Túlio Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+        <span class="stream__rotulo">A casa, por dentro — com o Dr. Túlio Bovo <span class="texto-2">[PENDENTE]</span></span>
+      </div>
+      <div class="ligacoes" data-reveal>
+        <a class="botao botao--secundario" href="{{site}}a-casa/">Conhecer a casa <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+      <!-- Linha de links do fecho: os outros dois médicos. Fica aqui, dentro da seção 05, porque o partial do fecho é fixo. -->
+      <div class="outros" data-reveal>
+        <p class="eyebrow">Os outros médicos</p>
+        <div class="ligacoes">
+          <a class="botao botao--secundario" href="{{site}}dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Dr. Breno Gondim <span class="seta" aria-hidden="true">→</span></a>
+          <a class="botao botao--secundario" href="{{site}}dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Dra. Ana Paula Bovo <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{{fecho}}
+{{footer}}
+{{whats}}
+{{lightbox}}
+</body>
+</html>

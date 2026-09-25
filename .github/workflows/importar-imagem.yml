@@ -7,11 +7,12 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: URL pública do arquivo
+        description: URL pública do arquivo, várias linhas "url destino", ou link público do Google Drive (arquivo ou pasta)
         required: true
       destino:
-        description: Caminho de destino no repositório (ex. assets/img/medicos-hero.jpg)
-        required: true
+        description: Caminho de destino (arquivo; ou pasta, para links do Google Drive — padrão assets/img/producao)
+        required: false
+        default: ""
       mensagem:
         description: Mensagem do commit
         required: false
@@ -26,15 +27,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Baixar
+        env:
+          LISTA: ${{ inputs.url }}
+          DESTINO: ${{ inputs.destino }}
         run: |
-          mkdir -p "$(dirname '${{ inputs.destino }}')"
-          curl -fL --retry 3 -o '${{ inputs.destino }}' '${{ inputs.url }}'
-          ls -la '${{ inputs.destino }}'
-          file '${{ inputs.destino }}'
+          set -e
+          # Google Drive (arquivo ou pasta pública): baixa com gdown para a pasta de destino
+          if printf '%s' "$LISTA" | grep -q 'drive.google.com'; then
+            pip install -q gdown
+            PASTA="${DESTINO:-assets/img/producao}"; mkdir -p "$PASTA"
+            if printf '%s' "$LISTA" | grep -q '/folders/'; then
+              gdown --folder --remaining-ok -O "$PASTA" "$LISTA"
+            else
+              (cd "$PASTA" && gdown --fuzzy "$LISTA")
+            fi
+            find "$PASTA" -type f -newer .github/workflows/importar-imagem.yml -exec ls -la {} \;
+            exit 0
+          fi
+          if [ "$(printf '%s\n' "$LISTA" | grep -c .)" -gt 1 ] || [ -z "$DESTINO" ]; then
+            printf '%s\n' "$LISTA" | while read -r url dest; do
+              [ -z "$url" ] && continue
+              mkdir -p "$(dirname "$dest")"; curl -fL --retry 3 -o "$dest" "$url"; ls -la "$dest"; file "$dest"
+            done
+          else
+            mkdir -p "$(dirname "$DESTINO")"; curl -fL --retry 3 -o "$DESTINO" "$LISTA"; ls -la "$DESTINO"; file "$DESTINO"
+          fi
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '${{ inputs.destino }}'
+          git add -A
           git commit -m '${{ inputs.mensagem }}' || echo "nada a commitar"
           git push
