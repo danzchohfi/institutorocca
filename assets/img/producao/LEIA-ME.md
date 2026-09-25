@@ -7,7 +7,7 @@ Ao subir as fotos reais com estes nomes, o site troca sozinho.
 
 | Arquivo | O que é | Proporção |
 |---|---|---|
-| `medicos-trio-horizontal.jpg` | Os três, foto principal da home (Dr. Túlio em pé à esquerda, de terno bordô e gravata clara; Dra. Ana Paula sentada ao centro; Dr. Breno em pé à direita, de terno cinza e gravata escura) | 3:2, ≥ 2400 px de largura |
+| `medicos-trio-horizontal.jpg` | Os três, foto principal da home (Dr. Túlio em pé à esquerda, de terno bordô e gravata clara; Dra. Ana Paula sentada ao centro; Dr. Breno em pé à direita, de terno cinza e gravata escura). Hoje em 2000 px; `-1280.jpg` é a variante para telas menores (srcset) | 3:2, ≥ 2400 px de largura |
 | `medicos-trio-vertical.jpg` | Os três, versão vertical (mobile), sorrindo | 2:3, ≥ 1600 px de largura |
 | `medicos-trio-vertical-02.jpg` | Os três, vertical, expressão séria | 2:3 |
 | `dr-tulio-bovo.jpg` | Dr. Túlio Bovo sentado na poltrona (terno bordô, gravata clara, barba) | 2:3 |
