@@ -1,0 +1,48 @@
+/* ============================================================================
+   INSTITUTO ROCCA — site final · /conteudo/<pergunta>/ (uma página por resposta)
+   ----------------------------------------------------------------------------
+   Lê brand/tokens.css, shared/base.css e site/site.css (hero interno com retrato,
+   .prosa, .perguntas-lista, .capa vem de conteudo.css → repetida aqui porque a
+   página não carrega conteudo.css). Mobile-first; breakpoints 640 / 900 / 1200.
+   ============================================================================ */
+
+/* ---- Hero: a pergunta é o H1 (tamanho de H2, cabe em três linhas), trilha acima ---- */
+.hero--resposta .hero__trilha a { text-decoration: none; transition: color var(--dur-rapida); }
+.hero--resposta .hero__trilha a:hover, .hero--resposta .hero__trilha a:focus-visible { color: var(--cor-creme); }
+.hero--resposta .hero__texto h1 { font-size: var(--h2); line-height: 1.12; max-width: 24ch; text-wrap: balance; }
+.hero--resposta .hero__rotulo { margin-top: 1.2rem; }
+.hero--resposta .hero__sub { max-width: 46ch; }
+@media (min-width: 900px) { .hero--resposta .hero__texto h1 { max-width: 26ch; } }
+
+/* ---- A resposta: prosa larga à esquerda, coluna de contexto à direita ---- */
+.resposta__in { align-items: start; row-gap: clamp(2.5rem, 5vw, 4rem); }
+.resposta__texto p { max-width: 58ch; }
+.resposta__texto .eyebrow { margin-bottom: 1.6rem; }
+.resposta__texto .texto-grande { max-width: 44ch; }
+.resposta__texto .assinatura { display: block; margin-top: 2rem; }
+.resposta__video { margin: 0 0 2rem; width: min(100%, 360px); }
+.resposta__lado { display: grid; gap: 1.2rem; align-content: start; }
+.resposta__lado .eyebrow + .eyebrow { margin-top: 1rem; }
+.resposta__medico { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 1rem; align-items: center; text-decoration: none; transition: color var(--dur-rapida); }
+.resposta__medico:hover, .resposta__medico:focus-visible { color: var(--cor-bordo); }
+.resposta__medico-nome { font-size: calc(var(--corpo) * 1.15); line-height: 1.3; }
+.resposta__medico-frente { display: block; margin-top: .25rem; font-size: .875rem; color: var(--fg-2); }
+.resposta__links { display: grid; gap: 1.2rem; justify-items: start; margin-top: .2rem; }
+.resposta__links .botao--secundario { margin-top: 0; }
+@media (min-width: 900px) {
+  .resposta__lado { position: sticky; top: calc(var(--nav-altura) + 32px); }
+}
+
+/* capa pequena do rosto (mesma regra de conteudo.css) */
+.capa { position: relative; display: block; width: 64px; aspect-ratio: 4 / 5; overflow: hidden; background: var(--cor-bordo-profundo); flex: none; }
+.capa img { position: absolute; left: 50%; top: 50%; width: 240%; max-width: none; height: auto; transform: translate(-45%, -27%); }
+.capa--tulio img { transform: translate(-45%, -27%); }
+.capa--breno img { transform: translate(-62%, -27%); }
+.capa--ana img { transform: translate(-56%, -25%); }
+
+/* ---- Mais perguntas: lista com assinatura (grade de três colunas a partir de 900) ---- */
+.resposta-mais .perguntas-lista { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
+.resposta-mais .pergunta-item .assinatura { margin-top: 0; }
+@media (min-width: 900px) {
+  .resposta-mais .pergunta-item { grid-template-columns: minmax(0, 1fr) auto auto; }
+}

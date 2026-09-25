@@ -15,7 +15,8 @@ O cliente escolheu a **abertura em partículas** (versão Letras) seguida das **
 | Nutrologia · Endocrinologia · Dermatologia | `site/nutrologia/`, `site/endocrinologia/`, `site/dermatologia/` | Uma página por especialidade (o que tratamos, como é a consulta, o médico responsável) |
 | Dr. Túlio Bovo · Dr. Breno Gondim · Dra. Ana Paula Bovo | `site/dr-tulio-bovo/`, `site/dr-breno-gondim/`, `site/dra-ana-paula-bovo/` | Uma página por médico (vídeo de apresentação, formação, o que atende) |
 | O instituto | `site/o-instituto/` | O instituto em fotos, o endereço e o mapa |
-| Conteúdo | `site/conteudo/` | Perguntas da semana e artigos (estrutura pronta, textos [PENDENTE]) |
+| Conteúdo | `site/conteudo/` | O índice das perguntas, por assunto e por médico |
+| Uma página por pergunta | `site/conteudo/<pergunta>/` | 29 páginas geradas de `src/site/perguntas.mjs` por `node scripts/perguntas.mjs` (título, descrição, canonical e dados estruturados próprios; `site/sitemap.xml` e `robots.txt` saem do `site.mjs`) |
 | Contato | `site/contato/` | WhatsApp, endereço, horários, mapa |
 
 **Preview em refinamento (antes de liberar ao cliente):** https://danzchohfi.github.io/institutorocca/site/
@@ -30,7 +31,8 @@ O cliente escolheu a **abertura em partículas** (versão Letras) seguida das **
 
 ```bash
 npm install
-node scripts/site.mjs   # gera site/index.html e site/<slug>/index.html
+node scripts/perguntas.mjs   # gera src/site/paginas/conteudo/<pergunta>.html a partir de src/site/perguntas.mjs
+node scripts/site.mjs        # gera site/index.html, site/<slug>/index.html, site/conteudo/<pergunta>/index.html, sitemap e robots
 npm run build           # empacota src/site/main.js → site/app.js (home, com three.js) e src/site/interno.js → site/interno.js (internas)
 node scripts/lexico.mjs # varre os termos que a marca não usa (concepts/, site/, src/site/)
 ```

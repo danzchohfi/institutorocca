@@ -140,8 +140,7 @@ function verificar(html, saidaRel, arquivo, problemas) {
 /* ---- uma página ------------------------------------------------------------------- */
 function gerar(arquivoTemplate, problemas, avisos) {
   const arquivo = posix.relative(raiz, arquivoTemplate.split('\\').join('/'));
-  let slug = basename(arquivoTemplate, '.html');
-  if (slug === 'home') slug = 'index';                          // aceito como apelido da home
+  const slug = slugDe(arquivoTemplate);                        // index | <slug> | conteudo/<slug>
   const saidaRel = slug === 'index' ? 'site/index.html' : `site/${slug}/index.html`;
   const pastaRel = posix.dirname(saidaRel);
   const valores = {
@@ -209,22 +208,29 @@ if (!existsSync(dirPaginas)) {
   process.exit(1);
 }
 const pedidos = process.argv.slice(2).map((s) => (s === 'home' ? 'index' : s.replace(/\.html$/, '')));
-let templates = readdirSync(dirPaginas).filter((n) => /\.html$/i.test(n)).sort().map((n) => join(dirPaginas, n));
+function listarTemplates(dir) {
+  const lista = [];
+  for (const n of readdirSync(dir).sort()) {
+    const abs = join(dir, n);
+    if (statSync(abs).isDirectory()) lista.push(...listarTemplates(abs));
+    else if (/\.html$/i.test(n)) lista.push(abs);
+  }
+  return lista;
+}
+const slugDe = (arquivoTemplate) => posix.relative(dirPaginas.split('\\').join('/'), arquivoTemplate.split('\\').join('/')).replace(/\.html$/i, '').replace(/^home$/, 'index');
+let templates = listarTemplates(dirPaginas);
 if (templates.some((t) => basename(t) === 'home.html') && templates.some((t) => basename(t) === 'index.html')) {
   console.error('src/site/paginas/: home.html e index.html geram a mesma saída — mantenha só index.html.');
   process.exit(1);
 }
-if (pedidos.length) templates = templates.filter((t) => pedidos.includes(basename(t, '.html').replace(/^home$/, 'index')));
+if (pedidos.length) templates = templates.filter((t) => pedidos.includes(slugDe(t)));
 if (!templates.length) {
   console.error(`Nenhum template encontrado${pedidos.length ? ` para: ${pedidos.join(', ')}` : ''}.`);
   process.exit(1);
 }
 
-for (const n of readdirSync(dirPaginas)) {
-  if (!/\.html$/i.test(n)) continue;
-  const s = basename(n, '.html') === 'home' ? 'index' : basename(n, '.html');
-  planejados.add(join(raiz, s === 'index' ? 'site/index.html' : `site/${s}/index.html`));
-}
+const todosSlugs = listarTemplates(dirPaginas).map(slugDe);
+for (const s of todosSlugs) planejados.add(join(raiz, s === 'index' ? 'site/index.html' : `site/${s}/index.html`));
 
 const problemas = [];
 const avisos = [];
@@ -243,5 +249,16 @@ if (problemas.length) {
   console.error(`\nsite.mjs: ${problemas.length} problema(s):`);
   for (const p of problemas) console.error(`  ${p}`);
   process.exit(1);
+}
+/* ---- sitemap.xml e robots.txt (todas as páginas, no domínio do config) ------------------------------ */
+{
+  const dominio = String(cfg.DOMINIO || '').replace(/\/+$/, '');
+  const urls = todosSlugs.map((s) => `${dominio}/site/${s === 'index' ? '' : `${s}/`}`);
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`;
+  const sitemapAbs = join(dirSite, 'sitemap.xml');
+  if (!existsSync(sitemapAbs) || readFileSync(sitemapAbs, 'utf8') !== xml) writeFileSync(sitemapAbs, xml);
+  const robots = `User-agent: *\nAllow: /\nSitemap: ${dominio}/site/sitemap.xml\n`;
+  const robotsAbs = join(raiz, 'robots.txt');
+  if (!existsSync(robotsAbs) || readFileSync(robotsAbs, 'utf8') !== robots) writeFileSync(robotsAbs, robots);
 }
 console.log(`site.mjs ok — ${templates.length} página(s), ${gravadas} gravada(s).`);
