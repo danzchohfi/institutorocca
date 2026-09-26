@@ -131,7 +131,7 @@ html:not(.js) .hero--fusao, .abertura--estatica .hero--fusao, html.movimento-red
 .mosaico__moldura.stream .stream__play { z-index: 2; }
 
 /* ---- Os médicos: cabeça, foto principal dos três e cards --------------------- */
-.medicos__cabeca h2 { max-width: 12ch; }
+.medicos__cabeca h2 { max-width: 16ch; }
 .medicos-secao .trio { margin-top: 0; }
 .medicos-secao .medicos { margin-top: clamp(3rem, 6vw, 5.5rem); }
 .medicos-secao .medico__midia { max-width: 460px; }
