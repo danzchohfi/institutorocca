@@ -39,7 +39,7 @@ const PADROES = {
   tema_cor: '#550000',
   fecho_h2: 'Avaliação com o médico / que vai acompanhar você.',
   fecho_sub: '',
-  fecho_nota: 'Quem responde é o Instituto. Você conta o que parou de funcionar e a avaliação é marcada na conversa, em até um dia útil.',
+  fecho_nota: 'Quem responde é o Instituto. Você conta o que parou de funcionar e a avaliação é marcada na conversa.',
   robots: '',
 };
 const MODOS_STREAM = new Set(['fundo', 'player', 'lightbox', 'alvo']);

@@ -44,7 +44,7 @@ css: nutrologia
 corpo: sup-bordo pagina pagina--nutrologia
 whats_msg: Olá. Quero agendar uma avaliação em Nutrologia no Instituto Rocca.
 fecho_h2: Avaliação com o médico / que vai acompanhar você.
-fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e a avaliação é marcada na conversa, em até um dia útil.
+fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e a avaliação é marcada na conversa.
 -->
 <!DOCTYPE html>
 <html lang="pt-BR">
