@@ -1,0 +1,497 @@
+/* ============================================================================
+   INSTITUTO ROCCA — site final · regras comuns às dez páginas (fase Base)
+   ----------------------------------------------------------------------------
+   Lê brand/tokens.css e shared/base.css (o sistema: reset, tipografia, nav,
+   menu, botões, cards, footer, lightbox…). Aqui entra só o que o site final
+   acrescenta e todas as páginas usam: abertura fundida (base), hero interno,
+   sub-listas do menu e do rodapé, componente de vídeo (stream), cards de
+   médico com retrato 2:3, foto principal do trio, seções repetidas das
+   internas, os blocos comuns às três páginas dos médicos e o fecho.
+   O que é de uma página só vai em site/css/<slug>.css.
+   Mobile-first; breakpoints 640 / 900 / 1200 / 1440; sem border-radius
+   (exceções sancionadas: círculo do WhatsApp e do play).
+   URLs em CSS resolvem a partir deste arquivo: ../assets/…
+   ============================================================================ */
+
+:root {
+  /* mais respiro que o padrão (BRIEF §6.2: "muito respiro, seções longas") */
+  --secao: clamp(104px, 13vw, 224px);
+  /* altura de uma tela de hero (abertura da home e heros em tela cheia) */
+  --hero-h: max(100svh, 620px);
+  /* a janela em que a mídia da abertura termina; o bloco seguinte reserva o mesmo espaço */
+  --janela-top: calc(var(--nav-altura) + 24px);
+  --janela-w: min(100% - 2 * var(--gutter), var(--container) - 2 * var(--gutter));
+  --janela-ratio: 21 / 9;
+  --janela-h: calc(var(--janela-w) * 9 / 21);
+  --abertura-pista: 2.25;  /* telas (spec §3.3): o hero fica preso por (pista − 1) telas de rolagem; hero.js lê a altura resultante */
+}
+@media (max-width: 899.98px) { :root { --janela-ratio: 16 / 9; --janela-h: calc(var(--janela-w) * 9 / 16); } }
+@media (max-width: 639.98px) { :root { --janela-w: 100%; --janela-ratio: 3 / 2; --janela-h: calc(100% * 2 / 3); } }
+
+/* ---- Utilidades compartilhadas (copiadas do 07 / 03) ----------------------- */
+.paralaxe { position: relative; overflow: hidden; }
+.paralaxe__in { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; }
+.paralaxe__in img, .paralaxe__in picture, .paralaxe__in video { width: 100%; height: 100%; object-fit: cover; }
+.paralaxe__in picture img { height: 100%; }
+/* linhas finas que se desenham ([data-linha], src/c02-chegada/linhas.js) */
+html.js [data-linha] { transform: scaleX(0); transform-origin: left center; }
+@media (prefers-reduced-motion: reduce) { html.js [data-linha] { transform: none; } }
+/* folga para o WhatsApp flutuante não cobrir a linha legal do rodapé */
+.footer { padding-bottom: 96px; }
+
+/* ---- Menu: sub-lista "O que tratamos" sob cada especialidade ------------------ */
+.menu__sub { display: flex; flex-direction: column; gap: 0; margin: .3em 0 .9em; }
+/* padding em vez de gap: o alvo de toque de cada sub-link passa de 22 para ~34 px sem mudar o ritmo visual */
+.menu__lista--grande .menu__sub a { padding-block: .4em; font-size: .95rem; line-height: 1.45; letter-spacing: 0; color: var(--cor-creme-60); }
+.menu__lista--grande .menu__sub a:hover, .menu__lista--grande .menu__sub a:focus-visible { color: var(--cor-madeira); }
+.menu__lista a[aria-current="page"] { color: var(--cor-madeira); }
+@media (min-width: 900px) { .menu__lista--grande .menu__sub a { font-size: 1rem; } }
+
+/* ---- Rodapé: lista pequena e segundo título na mesma coluna ----------------- */
+.footer__lista--pequena { gap: .25rem; font-size: .875rem; color: var(--fg-2); }
+.footer__titulo + .footer__titulo, .footer__lista + .footer__titulo { margin-top: 1.6rem; }
+.footer a[aria-current="page"] { color: var(--cor-madeira); }
+
+/* ---- Componente de vídeo (Cloudflare Stream) — shared/stream.js -------------------
+   .stream          moldura (posição relativa, proporção, fundo bordô-profundo)
+   .stream__poster  o <img> (ou <picture>) que cobre a moldura
+   .stream__play    botão circular (nasce hidden; o JS mostra com UID)
+   .stream__rotulo  rótulo discreto no canto inferior esquerdo (some ao tocar)
+   .stream iframe   o player, por baixo do poster; .stream--tocando faz o crossfade */
+.stream { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: var(--cor-bordo-profundo); color: var(--cor-creme); }
+.stream[data-stream-proporcao="9/16"], .stream--vertical { aspect-ratio: 9 / 16; }
+.stream[data-stream-proporcao="21/9"] { aspect-ratio: 21 / 9; }
+.stream[data-stream-proporcao="3/2"] { aspect-ratio: 3 / 2; }
+.stream > picture, .stream > .stream__poster, .stream > picture > img, .stream > iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+}
+.stream > picture > img, .stream > .stream__poster { object-fit: cover; }
+.stream > iframe { border: 0; z-index: 1; background: var(--cor-bordo-profundo); }
+.stream > picture, .stream > .stream__poster { z-index: 2; transition: opacity .6s var(--ease-out); }
+.stream--tocando > picture, .stream--tocando > .stream__poster { opacity: 0; pointer-events: none; }
+.stream__play {
+  position: absolute; inset: 0; margin: auto; z-index: 3;
+  width: 64px; height: 64px;
+  border-radius: 50%; /* exceção sancionada */
+  background: rgba(242, 232, 217, .92);
+  color: var(--cor-bordo);
+  display: grid; place-items: center;
+  transition: background-color var(--dur-rapida), transform var(--dur-media) var(--ease-out), opacity var(--dur-rapida);
+}
+.stream__play svg { width: 18px; height: 18px; fill: currentColor; margin-left: 3px; }
+.stream__play:hover, .stream__play:focus-visible { background: var(--cor-creme); transform: scale(1.06); }
+.stream__rotulo {
+  position: absolute; left: 16px; bottom: 14px; right: 16px; z-index: 3;
+  font-size: 11px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; line-height: 1.5;
+  color: var(--cor-creme); opacity: .82;
+  text-shadow: 0 1px 12px rgba(42, 26, 22, .6);
+  pointer-events: none;
+  transition: opacity var(--dur-media) var(--ease-out);
+}
+.stream__rotulo .texto-2 { color: var(--cor-creme-60); }
+.stream--tocando .stream__rotulo, .stream--tocando .stream__play { opacity: 0; visibility: hidden; }
+.stream--fundo .stream__rotulo { left: var(--gutter); bottom: 26px; right: auto; }
+/* .stream--escurecido: poster claro (retrato na poltrona creme, render do consultório) com rótulo por cima —
+   uma base escurecida só onde o rótulo fica, para o creme ler. Some ao tocar, junto com o rótulo. */
+.stream--escurecido::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 36%; z-index: 2;
+  background: linear-gradient(to top, rgba(42, 26, 22, .6), transparent);
+  pointer-events: none;
+  transition: opacity var(--dur-media) var(--ease-out);
+}
+.stream--escurecido.stream--tocando::after { opacity: 0; }
+/* no lightbox o alvo é 16:9 (base.css §18 fixa o iframe); vertical vira 9:16 dentro da altura da tela */
+.lightbox__media .stream { aspect-ratio: 16 / 9; }
+.lightbox__media .stream > iframe { aspect-ratio: auto; height: 100%; }
+.lightbox__media .stream--vertical { aspect-ratio: 9 / 16; width: min(100%, calc(82vh * 9 / 16)); margin-inline: auto; }
+/* sem JS o poster é o que se vê; o play nunca aparece */
+html:not(.js) .stream__play { display: none; }
+
+/* ---- Abertura fundida da home (base) — src/site/hero.js ----------------------------
+   .abertura[data-hero-fusao][data-hero]  a pista (2,25 telas); o hero fica preso por 1,25 tela
+     .hero--fusao                         sticky, 1 tela
+       .hero__midia > .hero__quadro > .stream--fundo (poster/iframe) + .hero__escurecedor
+       #wordmark-fonte (svg hidden) · canvas.letras__canvas · img.letras__fallback
+       .hero__conteudo  (estado A: eyebrow, especialidades, ações)
+       .hero__frase     (estado B: o H1 + botão do filme)
+       .hero__alvo      (retângulo invisível: onde a janela termina)
+   A seção seguinte (.abertura + *) sobe uma tela e reserva a janela no padding-top.
+   Tipografia fina, posições e ajustes de cada estado: site/css/index.css. */
+.abertura { position: relative; height: calc(var(--abertura-pista) * var(--hero-h)); }
+.hero--fusao {
+  position: sticky; top: 0;
+  height: var(--hero-h);
+  overflow: hidden;
+  display: grid; align-items: end;
+  background: var(--cor-bordo); color: var(--cor-creme);
+}
+.hero--fusao::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: radial-gradient(60% 50% at 50% 42%, rgba(110, 18, 18, .55), transparent 70%);
+  pointer-events: none;
+}
+.hero__midia { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: var(--cor-bordo-profundo); transform-origin: 0 0; will-change: transform; }
+.hero__quadro { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 0 0; will-change: transform; }
+.hero__quadro .stream--fundo { position: absolute; inset: 0; aspect-ratio: auto; }
+.hero__escurecedor {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(to top, rgba(59, 0, 0, .42) 0%, rgba(59, 0, 0, 0) 45%);
+}
+.hero--fusao .letras__canvas { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; }
+.hero--fusao .letras__fallback { position: absolute; left: 50%; top: 42%; z-index: 2; transform: translate(-50%, -50%); width: min(72vw, 1100px); height: auto; }
+.hero--fusao .hero__conteudo { position: relative; z-index: 3; text-align: center; display: grid; justify-items: center; gap: 1.1rem; padding-bottom: clamp(56px, 10vh, 120px); }
+.hero--fusao .hero__frase { position: absolute; inset: 0; z-index: 3; display: grid; place-content: center; text-align: center; pointer-events: none; }
+.hero--fusao .hero__frase > * { pointer-events: auto; }
+.hero--fusao .hero__frase h1 { max-width: 13ch; margin-inline: auto; }
+.hero__alvo {
+  position: absolute; left: 50%; top: var(--janela-top); z-index: 0;
+  transform: translateX(-50%);
+  width: var(--janela-w); aspect-ratio: var(--janela-ratio);
+  visibility: hidden; pointer-events: none;
+}
+/* estados iniciais só com JS: a clínica e a frase esperam o scroll */
+html.js .abertura:not(.abertura--estatica) .hero__midia { opacity: 0; }
+html.js .abertura:not(.abertura--estatica) .hero__frase { opacity: 0; }
+/* a seção seguinte começa por baixo da última tela da pista e reserva a janela; a folga curta deixa o
+   eyebrow de 01 dentro da dobra (e do limiar de reveal) quando a janela termina, até 1366×768 */
+.abertura + .secao { margin-top: calc(-1 * var(--hero-h)); padding-top: calc(var(--janela-top) + var(--janela-h) + clamp(40px, 5vw, 72px)); }
+.abertura + .secao.sup-bordo { background: transparent; }
+/* estático (sem WebGL, movimento reduzido, sem JS, ou hero.js ainda vazio): dois blocos empilhados */
+html:not(.js) .abertura, .abertura--estatica, html.movimento-reduzido .abertura { height: auto; }
+html:not(.js) .hero--fusao, .abertura--estatica .hero--fusao, html.movimento-reduzido .hero--fusao {
+  position: relative; height: auto; min-height: var(--hero-h); overflow: visible; display: flex; flex-direction: column;
+}
+html:not(.js) .hero--fusao::before, .abertura--estatica .hero--fusao::before, html.movimento-reduzido .hero--fusao::before { height: var(--hero-h); }
+html:not(.js) .hero__midia, .abertura--estatica .hero__midia, html.movimento-reduzido .hero__midia {
+  position: relative; inset: auto; opacity: 1; order: 2; min-height: var(--hero-h); transform: none;
+}
+html:not(.js) .hero--fusao .hero__frase, .abertura--estatica .hero__frase, html.movimento-reduzido .hero--fusao .hero__frase {
+  position: absolute; inset: auto 0 0 0; height: var(--hero-h); opacity: 1;
+}
+html:not(.js) .hero--fusao .hero__conteudo, .abertura--estatica .hero__conteudo, html.movimento-reduzido .hero--fusao .hero__conteudo {
+  min-height: var(--hero-h); align-content: end;
+}
+html:not(.js) .hero--fusao .letras__canvas, .abertura--estatica .letras__canvas { display: none; }
+html:not(.js) .hero--fusao .letras__fallback, .abertura--estatica .letras__fallback { display: block; top: calc(var(--hero-h) * .42); }
+/* com html.js: vence o html.js [data-reveal] (0,2,1) e o html.js [data-split-linhas] .linha__in (0,3,1) do base.css */
+html.js .abertura--estatica [data-reveal],
+html.js .abertura--estatica [data-split-linhas],
+html.js .abertura--estatica [data-split-linhas] .linha__in { opacity: 1; transform: none; }
+html:not(.js) .abertura + .secao, .abertura--estatica + .secao, html.movimento-reduzido .abertura + .secao { margin-top: 0; padding-top: var(--secao); }
+html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bordo, html.movimento-reduzido .abertura + .secao.sup-bordo { background: var(--bg); }
+
+/* ---- Hero interno padrão (páginas internas) --------------------------------------------
+   <section class="hero hero--interno sup-bordo" data-hero>
+     <div class="container hero__in">
+       <div class="hero__texto"> eyebrow · h1.titulo-2l[data-split-linhas] · p.hero__sub.texto-grande · .acoes </div>
+       <div class="hero__foto paralaxe" data-parallax-area> <div class="paralaxe__in"><img data-parallax="-6"></div> </div>
+     </div>
+   </section>
+   Texto à esquerda e foto à direita a partir de 900 px; no celular a foto vai acima do texto.
+   .hero--interno.hero--retrato: a foto é um retrato 2:3 (páginas dos médicos).
+   .hero--interno.hero--sem-foto: só texto (contato). */
+.hero--interno { position: relative; padding-top: calc(var(--nav-altura) + clamp(24px, 4vw, 48px)); padding-bottom: clamp(56px, 8vw, 120px); }
+.hero--interno .hero__in { display: grid; grid-template-columns: 1fr; gap: clamp(32px, 5vw, 64px) var(--coluna-gap); align-items: end; }
+.hero--interno .hero__foto { order: -1; aspect-ratio: 4 / 3; background: var(--cor-bordo-profundo); }
+.hero--interno.hero--retrato .hero__foto { aspect-ratio: 2 / 3; max-width: 420px; }
+.hero--interno .hero__foto > img, .hero--interno .hero__foto > picture { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero--interno .hero__foto > picture img { height: 100%; object-fit: cover; }
+.hero--interno .hero__texto h1 { max-width: 14ch; }
+.hero--interno .hero__sub { margin-top: 1.6rem; max-width: 40ch; }
+.hero--interno .hero__rotulo { display: block; margin-top: 1rem; font-size: var(--eyebrow); font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--cor-madeira); line-height: 1.6; }
+.hero--interno .hero__citacao { margin-top: 1.6rem; font-style: italic; max-width: 34ch; }
+.hero--interno .hero__citacao .assinatura { font-style: normal; }
+.hero--interno .hero__nota { margin-top: 1.4rem; color: var(--fg-2); font-size: .95rem; max-width: 44ch; }
+/* páginas dos médicos: o rótulo em duas linhas (especialidade · registro), o [PENDENTE] sem caixa alta
+   nem tracking (lê melhor) e a citação sem o limite de largura dos parágrafos */
+.hero--interno .hero__rotulo-linha { display: block; }
+.hero--interno .hero__pendente { text-transform: none; letter-spacing: .04em; color: var(--fg-2); }
+.hero--interno .hero__citacao p { max-width: none; }
+/* "Assistir: Quem eu sou": o botão do lightbox nasce hidden e só aparece com UID (data-stream-precisa);
+   o link para a seção some então */
+.hero__assistir:not([hidden]) + .hero__assistir-ancora { display: none; }
+/* seta para baixo (âncora para a seção logo abaixo): desce no hover em vez de ir para o lado */
+.seta--baixo { display: inline-block; }
+.botao--secundario:hover .seta--baixo, .botao--secundario:focus-visible .seta--baixo { transform: translateY(4px); }
+@media (min-width: 900px) {
+  .hero--interno { min-height: min(var(--hero-h), 860px); display: grid; align-items: end; }
+  .hero--interno .hero__in { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; }
+  .hero--interno .hero__foto { order: 0; aspect-ratio: 4 / 5; }
+  .hero--interno.hero--retrato .hero__foto { aspect-ratio: 2 / 3; max-width: none; justify-self: end; width: min(100%, 460px); }
+  .hero--interno.hero--sem-foto .hero__in { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); }
+  .hero--interno .hero__texto h1 { max-width: 16ch; }
+}
+/* Hero em tela cheia sobre foto (A casa, Conteúdo): cores naturais, gradiente só na base */
+.hero--tela { position: relative; min-height: var(--hero-h); display: grid; align-items: end; overflow: hidden; background: var(--cor-bordo-profundo); color: var(--cor-creme); }
+.hero--tela .hero__fundo { position: absolute; inset: 0; z-index: 0; }
+.hero--tela .hero__fundo img, .hero--tela .hero__fundo picture, .hero--tela .hero__fundo video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero--tela .hero__fundo picture img { height: 100%; }
+.hero--tela .hero__fundo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(59, 0, 0, .62) 0%, rgba(59, 0, 0, .18) 45%, rgba(59, 0, 0, 0) 75%); pointer-events: none; }
+.hero--tela .hero__in { position: relative; z-index: 1; padding-top: calc(var(--nav-altura) + 24px); padding-bottom: clamp(56px, 9vh, 120px); }
+.hero--tela h1 { max-width: 14ch; }
+.hero--tela .hero__sub { margin-top: 1.6rem; max-width: 40ch; }
+
+/* ---- Cabeçalho de seção repetido: eyebrow + H2 à esquerda, sub à direita --------------- */
+.secao__cabeca.grid-12 { align-items: end; row-gap: var(--espaco-4); }
+/* um valor só para todas as páginas (achado 5 da revisão de layout); no celular a coluna já limita */
+.secao__cabeca h2 { max-width: 22ch; }
+@media (max-width: 639.98px) { .secao__cabeca h2 { max-width: none; } }
+.secao__sub p { max-width: 34ch; }
+.secao__sub .texto-grande { max-width: 30ch; }
+.secao__rodape { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
+
+/* ---- Blocos de texto (prosa das internas) --------------------------------------------- */
+.prosa > * + * { margin-top: 1.2em; }
+.prosa p { max-width: 54ch; }
+.prosa .destaque { font-weight: 400; }
+.prosa h3 + p { margin-top: .8rem; }
+.prosa .assinatura { margin-top: 1.4rem; }
+.fala { font-size: calc(var(--corpo) * 1.2); line-height: 1.5; max-width: 34ch; font-style: italic; }
+.fala::before { content: "“"; }
+.fala::after { content: "”"; }
+.fala + .assinatura { margin-top: .9rem; }
+.texto-2col { display: grid; grid-template-columns: 1fr; gap: var(--espaco-4) var(--coluna-gap); }
+@media (min-width: 900px) { .texto-2col { grid-template-columns: 1fr 1fr; } }
+.figura-apoio { margin: clamp(3rem, 6vw, 5.5rem) 0 0; }
+.figura-apoio img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: var(--cor-bordo-profundo); }
+.figura-apoio .legenda { margin-top: 12px; }
+/* três itens curtos com título em 400 e apoio (Como eu conduzo, Depois da mensagem, Como funciona) */
+.tres { display: grid; grid-template-columns: 1fr; gap: 1.8rem; margin-top: clamp(2.5rem, 5vw, 4.5rem); border-top: 1px solid var(--linha); }
+.tres > li { padding-top: 1.4rem; }
+.tres__titulo { font-size: var(--h3); font-weight: 300; line-height: 1.25; max-width: 18ch; }
+.tres__texto { margin-top: .6rem; color: var(--fg-2); max-width: 34ch; }
+@media (min-width: 640px) { .tres { grid-template-columns: repeat(3, 1fr); gap: var(--coluna-gap); border-top: 0; } .tres > li { border-top: 1px solid var(--linha); padding-top: 1.8rem; } }
+/* lista de links com uma linha (O que eu trato; Por médico; ligações no fim das páginas)
+   <li><a href="…"><span class="lista-links__nome">…</span><span class="lista-links__linha">…</span>
+       <span class="lista-links__acao">Saiba mais <span class="seta">→</span></span></a></li>
+   .lista-links__acao é o rótulo do link para um serviço ("Saiba mais →"); sem ele, só a .seta.
+   Abaixo de 900 px a ação (ou a seta) fica à direita do nome, centrada nas duas linhas — nunca sozinha
+   numa terceira linha; a partir de 900, três colunas (nome · linha · ação). */
+.lista-links { border-top: 1px solid var(--linha); }
+.lista-links > li { border-bottom: 1px solid var(--linha); }
+.lista-links a { display: grid; grid-template-columns: 1fr; gap: .3rem 2rem; padding-block: 1.2rem; text-decoration: none; transition: color var(--dur-rapida); }
+.lista-links a:hover, .lista-links a:focus-visible { color: var(--cor-madeira); }
+.lista-links__nome { font-size: var(--h3); font-weight: 300; line-height: 1.25; }
+.lista-links__linha { color: var(--fg-2); font-size: .95rem; line-height: 1.55; max-width: 40ch; }
+.lista-links__acao { display: inline-flex; align-items: center; gap: .45em; font-size: .95rem; font-weight: 400; letter-spacing: .02em; white-space: nowrap; }
+.lista-links__acao .seta { transition: transform var(--dur-media) var(--ease-out); }
+.lista-links a:hover .lista-links__acao .seta, .lista-links a:focus-visible .lista-links__acao .seta { transform: translateX(5px); }
+@media (min-width: 900px) { .lista-links a { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) auto; align-items: baseline; } .lista-links .seta, .lista-links__acao { justify-self: end; } }
+@media (max-width: 899.98px) {
+  .lista-links a { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .lista-links__linha { grid-column: 1; }
+  .lista-links__acao, .lista-links > li > a > .seta { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+}
+/* no celular a ação alinhada à direita passava por baixo do WhatsApp flutuante (56 px a 16 px da borda): folga à direita */
+@media (max-width: 639.98px) { .lista-links a { padding-right: 56px; } }
+.ligacoes { display: flex; flex-wrap: wrap; gap: 1rem 2.4rem; margin-top: clamp(2rem, 4vw, 3.5rem); }
+
+/* ---- Páginas dos médicos: o que as três repetem ------------------------------------------
+   01 · Quem eu sou: <ol class="quem__lista" aria-label="O que o vídeo responde"> (numerais 01–04) e a
+   linha de formação e o vídeo vertical .quem__video; 05 · A casa, por dentro: <div class="outros"> com o
+   eyebrow "Os outros médicos" e as .ligacoes para os outros dois, dentro da seção, antes do fecho. */
+.quem__lista { counter-reset: item; margin-top: 2rem; border-top: 1px solid var(--linha); max-width: 46ch; }
+.quem__lista > li {
+  counter-increment: item;
+  display: grid; grid-template-columns: 2.6rem 1fr; gap: .8rem;
+  padding-block: .9rem;
+  border-bottom: 1px solid var(--linha);
+  line-height: 1.55;
+}
+.quem__lista > li::before {
+  content: counter(item, decimal-leading-zero);
+  font-size: .8rem; font-weight: 400; letter-spacing: .2em;
+  color: var(--cor-madeira);
+  padding-top: .3em;
+  font-variant-numeric: tabular-nums;
+}
+.quem__formacao { margin-top: 1.6rem; font-size: .95rem; line-height: 1.6; max-width: 46ch; }
+/* o vídeo 9:16 de "Quem eu sou": 360 px no celular e no tablet, a coluna inteira a partir de 900;
+   abaixo de 900 vem depois do texto (o retrato acabou de aparecer no hero) — igual nas três páginas */
+.quem__video { width: min(100%, 360px); }
+@media (max-width: 899.98px) { .quem__video { order: 2; } }
+@media (min-width: 900px) { .quem__video { width: 100%; max-width: none; } }
+.outros { margin-top: clamp(3rem, 6vw, 5.5rem); padding-top: clamp(1.6rem, 3vw, 2.4rem); border-top: 1px solid var(--linha); }
+.outros .ligacoes { margin-top: 1.2rem; }
+
+/* ---- Especialidades (home) e "O que tratamos" (internas) -------------------------------- */
+.especialidades { counter-reset: esp; display: grid; grid-template-columns: 1fr; gap: 0; margin-top: clamp(3rem, 6vw, 5.5rem); }
+.especialidade { position: relative; padding-block: clamp(1.8rem, 3.2vw, 2.8rem); display: grid; gap: .9rem; align-content: start; }
+.especialidade__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+.especialidade__num { font-size: .8rem; }
+.especialidade__titulo { font-size: var(--h2); font-weight: 300; line-height: 1.1; }
+.especialidade__apoio { color: var(--fg-2); max-width: 30ch; font-size: 1rem; line-height: 1.6; }
+.especialidade__rotulo { margin-top: .6rem; font-size: 11px; }
+.especialidade__lista { display: grid; gap: .35rem; font-weight: 400; }
+.especialidade__lista a { text-decoration: none; }
+.especialidade__lista a:hover, .especialidade__lista a:focus-visible { color: var(--cor-madeira); }
+.especialidade__link { justify-self: start; margin-top: .6rem; }
+@media (min-width: 900px) {
+  .especialidades { grid-template-columns: repeat(3, 1fr); column-gap: 0; border-top: 1px solid var(--linha); }
+  .especialidade { padding-inline: clamp(24px, 3vw, 48px); border-left: 1px solid var(--linha); }
+  .especialidade:first-child { padding-left: 0; border-left: 0; }
+  .especialidade__linha { display: none; }
+}
+/* faixa de destaque (Emagrecimento): linha fina em cima e embaixo, duas colunas no desktop */
+.destaque-faixa { margin-top: clamp(3rem, 6vw, 5.5rem); padding-block: clamp(1.8rem, 3.2vw, 2.8rem); border-top: 1px solid var(--linha); border-bottom: 1px solid var(--linha); display: grid; grid-template-columns: 1fr; gap: 1.2rem var(--coluna-gap); }
+.destaque-faixa__frase { margin-top: .8rem; font-size: var(--h3); font-weight: 300; line-height: 1.3; max-width: 22ch; }
+.destaque-faixa__apoio { color: var(--fg-2); max-width: 40ch; }
+.destaque-faixa__link { justify-self: start; margin-top: .6rem; }
+@media (min-width: 900px) { .destaque-faixa { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); align-items: start; } }
+/* sub-seções de "O que tratamos" nas páginas das especialidades */
+.tratamos__lista { margin-top: clamp(3rem, 6vw, 5.5rem); }
+.tratamento { position: relative; padding-block: clamp(2.5rem, 5vw, 4.5rem); border-top: 1px solid var(--linha); scroll-margin-top: calc(var(--nav-altura) + 16px); display: grid; grid-template-columns: 1fr; gap: 1.6rem var(--coluna-gap); }
+.tratamento__rotulo { font-size: 11px; }
+.tratamento__titulo { font-size: var(--h2); font-weight: 300; line-height: 1.1; max-width: 16ch; margin-top: .8rem; }
+.tratamento__apoio { font-weight: 400; margin-top: 1rem; max-width: 40ch; }
+.tratamento__texto p { max-width: 50ch; }
+.tratamento__texto p + p { margin-top: 1.2em; }
+/* link inline na prosa das sub-seções (a pele → dermatologia; emagrecer → nutrologia): sublinhado fino */
+.tratamento__texto p a { text-decoration-thickness: 1px; text-underline-offset: .18em; transition: color var(--dur-rapida); }
+.tratamento__texto p a:hover, .tratamento__texto p a:focus-visible { color: var(--cor-madeira); }
+.tratamento__perguntas { margin-top: 1.2rem; }
+.tratamento__perguntas .eyebrow { margin-bottom: .8rem; }
+@media (min-width: 900px) { .tratamento { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } .tratamento__cabeca { position: sticky; top: calc(var(--nav-altura) + 32px); align-self: start; } }
+/* perguntas de uma frente / da semana — uma marcação só, nas especialidades e nos médicos:
+   <li class="pergunta-item">
+     <h3|h4 class="pergunta-item__titulo">…</h3>  [<span class="assinatura">— Dr. …</span>]
+     <span class="pergunta-item__acao"><a class="botao botao--secundario pergunta-item__link" href="…" aria-label="…">Ver resposta <span class="seta">→</span></a>
+       <span class="pergunta-item__pendente">[PENDENTE]</span></span>
+   Abaixo de 900 o link e o rótulo ficam lado a lado, à esquerda; a partir de 900 empilhados, à direita
+   (o rótulo some quando as páginas de resposta existirem e a regra continua valendo). */
+.perguntas-lista { border-bottom: 1px solid var(--linha); }
+.pergunta-item { position: relative; display: grid; grid-template-columns: 1fr; gap: .6rem; padding-block: clamp(1.2rem, 2.4vw, 1.8rem); border-top: 1px solid var(--linha); }
+.pergunta-item__titulo { font-size: calc(var(--corpo) * 1.15); font-weight: 300; line-height: 1.4; max-width: 34ch; }
+.pergunta-item .assinatura { margin-top: 0; }
+.pergunta-item__acao { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; justify-self: start; }
+.pergunta-item__pendente { font-size: .8rem; color: var(--fg-2); }
+@media (min-width: 900px) {
+  .pergunta-item { grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(20px, 3vw, 40px); align-items: baseline; }
+  .tratamento .pergunta-item { grid-template-columns: minmax(0, 1fr) auto auto; }   /* nas especialidades há a assinatura */
+  .pergunta-item__acao { justify-self: end; flex-direction: column; align-items: flex-end; gap: .3rem; }
+}
+/* entre 900 e 1199 a coluna do .tratamento é estreita demais para três colunas (o título partia no meio
+   da palavra): título na primeira linha, assinatura e ação na segunda */
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .tratamento .pergunta-item { grid-template-columns: minmax(0, 1fr) auto; row-gap: .5rem; }
+  .tratamento .pergunta-item__titulo { grid-column: 1 / -1; }
+}
+
+/* ---- Perguntas mais comuns (3 perguntas com resposta curta e assinatura) --------------- */
+.comuns { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: clamp(2.5rem, 5vw, 4.5rem); border-top: 1px solid var(--linha); }
+.comum { padding-block: clamp(1.6rem, 3vw, 2.4rem); border-bottom: 1px solid var(--linha); display: grid; grid-template-columns: 1fr; gap: 1rem var(--coluna-gap); }
+.comum__pergunta { font-size: var(--h3); font-weight: 300; line-height: 1.3; max-width: 22ch; }
+.comum__resposta { color: var(--fg-2); max-width: 50ch; }
+.comum .assinatura { margin-top: .8rem; }
+@media (min-width: 900px) { .comum { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+/* a linha de ligações para as outras páginas, logo depois da lista, antes do fecho: um valor só nas três especialidades */
+.comuns + .ligacoes { margin-top: clamp(3rem, 6vw, 5.5rem); }
+
+/* ---- Cards de médico com retrato 2:3 (Quem conduz / Os médicos / Prefere um médico?) ------
+   <article class="medico">
+     <div class="medico__midia stream" data-stream="" data-stream-modo="lightbox" data-stream-proporcao="9/16" data-stream-titulo="…">
+       <img class="stream__poster" src="…producao/dr-x.jpg" onerror="…retrato-x.svg" alt="…" width="1600" height="2400" loading="lazy">
+       <button class="stream__play" hidden …>…</button>
+       <span class="stream__rotulo" hidden>Quem eu sou — gravado no estúdio Jacarandá</span>
+     </div>
+     <h3 class="medico__nome">…</h3> <span class="medico__crm">CRM-SP 000000 [PENDENTE]</span>
+     <a class="botao botao--secundario medico__link" href="…" aria-label="Conheça o Dr. …">Conheça o médico <span class="seta">→</span></a>
+   </article>
+   (.medicos, .medico, .medico__nome, .medico__crm, .medico__link vêm do base.css §11) */
+.medico__midia { position: relative; aspect-ratio: 2 / 3; overflow: hidden; background: var(--cor-bordo-profundo); }
+.medico__midia > img, .medico__midia > picture { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--dur-imagem) var(--ease-out); }
+.medico:hover .medico__midia > img { transform: scale(1.04); }
+.medico__midia.stream { aspect-ratio: 2 / 3; }
+.medico__midia.stream[data-stream-proporcao="9/16"] { aspect-ratio: 2 / 3; }   /* a moldura é 2:3; o vídeo 9:16 abre no lightbox */
+.medico__midia .stream__rotulo { bottom: 16px; }
+.medico__especialidade { color: var(--fg-2); font-size: .95rem; line-height: 1.5; margin-top: .3rem; max-width: 30ch; }
+.medico__linha { color: var(--fg-2); font-size: .95rem; line-height: 1.5; margin-top: .3rem; max-width: 30ch; }
+.medicos--2 { grid-template-columns: 1fr; }
+@media (min-width: 640px) { .medicos--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; } }
+
+/* ---- Foto principal do trio (<picture>: horizontal no desktop, vertical até 640 px) ------
+   <figure class="trio paralaxe" data-parallax-area data-reveal="escala">
+     <div class="paralaxe__in" data-parallax="-5"><picture>…</picture></div>
+     <figcaption class="trio__legenda eyebrow">…</figcaption>
+   </figure> */
+.trio { margin: clamp(3rem, 6vw, 5.5rem) 0 0; aspect-ratio: 3 / 2; background: var(--cor-bordo-profundo); }
+.trio picture, .trio picture img, .trio > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.trio__legenda { position: absolute; left: clamp(16px, 3vw, 32px); bottom: clamp(14px, 2.5vw, 28px); z-index: 1; color: var(--cor-creme); opacity: .85; text-shadow: 0 1px 12px rgba(42, 26, 22, .6); max-width: calc(100% - 2 * clamp(16px, 3vw, 32px)); }
+.trio--sangra { width: 100vw; margin-inline: calc(50% - 50vw); }
+@media (max-width: 639.98px) { .trio { aspect-ratio: 2 / 3; } .trio--sangra { aspect-ratio: 3 / 4; } }
+
+/* ---- Mapa placeholder (A casa / Contato: "Onde fica") ------------------------------------- */
+.mapa { position: relative; aspect-ratio: 16 / 9; background: var(--cor-osso); color: var(--cor-tinta); display: grid; place-items: center; text-align: center; padding: clamp(24px, 5vw, 64px); }
+.mapa img { width: min(120px, 24vw); height: auto; opacity: .35; }
+.mapa__texto { position: absolute; left: 0; right: 0; bottom: clamp(16px, 3vw, 28px); font-size: var(--eyebrow); letter-spacing: .22em; text-transform: uppercase; color: var(--cor-grafite); }
+.sup-osso .mapa { background: var(--cor-creme); border: 1px solid var(--linha); }
+.endereco { font-style: normal; line-height: 1.8; }
+.endereco .footer__pendente, .endereco .pendente { color: var(--fg-2); }
+.pendente { color: var(--fg-2); }
+
+/* ---- Fecho (partial fecho.html; base.css §14 tem .fecho__whats/.fecho__numero) ----------- */
+.fecho .grid-12 { align-items: start; row-gap: var(--espaco-5); }
+.fecho__chamada h2 { max-width: 14ch; }
+.fecho__chamada .texto-grande { margin-top: 1.6rem; max-width: 34ch; }
+.fecho__chamada .acoes { margin-top: 2.6rem; }
+.fecho__pendente { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin-top: -.4rem; }
+.fecho__whats-nota { max-width: 36ch; }
+/* a página de contato usa o topo como fecho: número grande sob o H1 */
+.contato-topo .fecho__numero { display: inline-block; margin-top: 2rem; }
+
+/* ---- Contraste sobre osso -------------------------------------------------------------------
+   Areia (#B8997D) sobre osso (#EFE7DA) dá 2,17:1 e aparece como texto pequeno: numerais dos eyebrows
+   e das listas, assinaturas, e o hover dos links. Sobre osso entra o oliva-escuro (8,8:1) e, no hover,
+   o bordô (12,3:1). Os numerais do mosaico ficam sobre a foto (base escura), não sobre osso: seguem areia. */
+.sup-osso .numeral, .sup-osso .assinatura, .sup-osso .quem__lista > li::before, .sup-osso .pilares > li::before { color: var(--cor-oliva-escuro); }
+.sup-osso .mosaico__legenda .numeral { color: var(--cor-areia); }
+.sup-osso .lista-links a:hover, .sup-osso .lista-links a:focus-visible,
+.sup-osso .especialidade__lista a:hover, .sup-osso .especialidade__lista a:focus-visible { color: var(--cor-bordo); }
+
+/* ---- Alvos de toque (área de toque maior sem mudar o desenho) ------------------------------
+   Padding compensado por margem negativa: texto, linha e ritmo ficam onde estavam; a caixa cresce para
+   cima. Quem der margin-top a um .botao--secundario precisa descontar os 12 px — e a regra precisa vir
+   depois desta (mesma especificidade), como as três abaixo e as de contato.css e a-casa.css. */
+.botao--secundario { padding-top: 12px; margin-top: -12px; }                /* 20 → 32 px */
+.medico__link { margin-top: calc(.4rem - 12px); }                           /* base.css §11 dá .4rem */
+.especialidade__link, .destaque-faixa__link { margin-top: calc(.6rem - 12px); }   /* os blocos acima dão .6rem */
+.nav__whats { padding: 11px; margin: -11px; }                               /* 22 → 44 px; o ícone não sai do lugar */
+.nav__menu { padding-block: 16px; }                                         /* 32 → 44 px; a nav tem altura fixa */
+.lightbox__fechar { padding: 13px 0 12px 16px; top: -57px; }                /* 19 → 44 px; o texto fica onde estava */
+
+/* ---- Movimento reduzido ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .hero__midia, .hero__quadro { will-change: auto; }
+  .stream > picture, .stream > .stream__poster { transition: none; }
+}
+
+/* ---- Revisão de conteúdo (set/2026) ------------------------------------------------------ */
+/* a foto principal dos três em largura total e altura de quase uma tela (home) */
+.trio--tela { aspect-ratio: auto; height: auto; margin-top: clamp(3rem, 6vw, 5.5rem); background: transparent; }
+.trio--tela .trio__moldura { position: relative; height: clamp(520px, 92vh, 920px); background: var(--cor-bordo-profundo); }
+.trio--tela .paralaxe__in img { object-position: 50% 30%; }
+@media (max-width: 639.98px) { .trio--tela .trio__moldura { height: auto; aspect-ratio: 3 / 4; } }
+/* vídeos já publicados no Instagram (embed oficial) no lugar do poster 2:3 */
+.medico__midia--insta { aspect-ratio: auto; overflow: visible; background: transparent; }
+.medico__midia--insta .instagram-media { display: block; width: 100% !important; min-width: 0 !important; max-width: 100% !important; margin: 0 !important; padding: 0; border: 0; background: var(--cor-bordo-profundo); min-height: 440px; }
+.medico__midia--insta .instagram-media > a { display: grid; place-items: center; min-height: 440px; padding: 24px; text-align: center; text-decoration: none; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--cor-creme-60); }
+.medico__midia--insta iframe { width: 100% !important; min-width: 0 !important; max-width: 100% !important; }
+.quem__video .medico__midia--insta { width: 100%; }
+/* o mapa real (iframe do Google) no bloco .mapa */
+.mapa--real { padding: 0; display: block; }
+.mapa__iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; filter: saturate(.7); }
+/* respostas que abrem na própria página (<details class="pergunta__resposta">, base.css) */
+.pergunta-item .pergunta__resposta, .resposta .pergunta__resposta { grid-column: 1 / -1; margin-top: .4rem; }
+.pergunta__texto .assinatura { display: block; margin-top: 1.2rem; }
+.sup-osso .pergunta__texto { color: var(--cor-tinta); }
+@media (min-width: 900px) {
+  .pergunta-item .pergunta__resposta { grid-column: 1 / -1; }
+  .resposta .pergunta__resposta { grid-column: 2 / -1; }
+}
+/* na foto em tela cheia a legenda vai embaixo da foto, não sobre os rostos */
+.trio--tela .trio__legenda { position: static; display: block; margin: 14px 0 0; padding-inline: var(--gutter); color: var(--fg-2); opacity: 1; text-shadow: none; max-width: none; }
+/* retrato com play: o vídeo do Instagram entra no lugar do retrato só ao clicar */
+.medico__midia--video .stream__play { display: grid; }
+.medico__midia--video .stream__rotulo { bottom: 16px; }
+.medico__midia--video::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 32%; background: linear-gradient(to top, rgba(42, 26, 22, .55), transparent); pointer-events: none; }
+.medico__midia--aberta::after { display: none; }

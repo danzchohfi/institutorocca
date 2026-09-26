@@ -1,0 +1,19 @@
+<!-- FECHO (seção #contato). Sem formulário: a chamada é sempre o WhatsApp.
+     H2, sub e nota vêm do cabeçalho do template (fecho_h2, fecho_sub, fecho_nota). -->
+<section class="secao sup-bordo fecho" id="contato">
+  <div class="container grid-12">
+    <div class="col-6 fecho__chamada">
+      <h2 class="titulo-2l" data-split-linhas>{{fecho_h2_html}}</h2>
+      {{fecho_sub_html}}
+      <div class="acoes" data-reveal>
+        <a class="botao botao--primario" href="{{wa}}" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      </div>
+    </div>
+    <div class="col-5 col-inicio-8 fecho__whats" data-reveal>
+      <p class="eyebrow">WhatsApp</p>
+      <a class="fecho__numero" href="{{wa}}" target="_blank" rel="noopener">{{whats_numero_visivel}}</a>
+      <p class="fecho__pendente texto-2">[PENDENTE]</p>
+      <p class="fecho__whats-nota">{{fecho_nota}}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,172 @@
+/* ============================================================================
+   INSTITUTO ROCCA — site final · home (site/index.html)
+   ----------------------------------------------------------------------------
+   Só o que é da home. O comum está em site/site.css (abertura fundida na base,
+   especialidades, faixa de destaque, cards de médico, trio, fecho) e o sistema
+   em shared/base.css. Aqui: a tipografia e as posições de cada estado da
+   abertura, o filme cobrindo o quadro, 01–03, o mosaico com vídeo na peça
+   grande, Os médicos e Perguntas da semana.
+   Mobile-first; breakpoints 640 / 900 / 1200 / 1440; sem border-radius.
+   URLs em CSS resolvem a partir deste arquivo: ../../assets/…
+   ============================================================================ */
+
+/* ---- Abertura fundida — estado A (letras) ---------------------------------- */
+/* a luz radial atrás das letras some junto com elas (hero.js anima --luz 1 → 0) */
+.hero--fusao::before { opacity: var(--luz, 1); }
+/* o filme 16:9 (quando houver UID) cobre o quadro; hero.js escreve --cobre-w / --cobre-h */
+.hero__quadro .stream--fundo > iframe {
+  inset: auto; left: 50%; top: 50%;
+  width: var(--cobre-w, 100%); height: var(--cobre-h, 100%);
+  transform: translate(-50%, -50%);
+}
+.hero__quadro .stream--fundo { will-change: transform; transform-origin: 50% 50%; }
+/* sem JS o atributo hidden do logo estático precisa perder para a regra do site.css */
+html:not(.js) .hero--fusao .letras__fallback[hidden] { display: block !important; }
+/* estado estático (dois blocos empilhados, coluna flex): os blocos ocupam a largura toda —
+   com o align-items: end do estado normal a camada da clínica ficava com largura zero */
+html:not(.js) .hero--fusao, .abertura--estatica .hero--fusao, html.movimento-reduzido .hero--fusao { align-items: stretch; }
+
+/* Hierarquia do estado A: as especialidades são a linha mais forte (creme, maiores); o descritor,
+   com a única menção a Moema, vai menor e em areia logo abaixo; depois a chamada. */
+.hero__especialidades {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 0;
+  margin: 0; padding: 0; list-style: none;
+  font-size: clamp(15px, 1.15vw, 18px); letter-spacing: .2em; text-transform: uppercase; color: var(--cor-creme);
+}
+.hero__especialidades li { display: flex; align-items: center; }
+/* o ponto separador fica preso ao item anterior: a linha nova nunca começa com um ponto solto */
+.hero__especialidades li:not(:last-child)::after {
+  content: ""; width: 3px; height: 3px; border-radius: 50%; /* ponto tipográfico, não um canto */
+  background: currentColor; margin: 0 1.3rem; opacity: .7;
+}
+.hero__especialidades a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color var(--dur-rapida), color var(--dur-rapida); }
+.hero__especialidades a:hover, .hero__especialidades a:focus-visible { border-bottom-color: currentColor; }
+.hero__descritor { font-size: 11px; color: var(--cor-areia); margin: 0; }
+.hero__acoes { justify-content: center; gap: 1rem 2rem; margin-top: 1rem; }
+
+/* ---- Abertura fundida — estado B (a clínica com a frase) -------------------
+   A frase mora no terço de baixo da tela: no meio ela cairia sobre o wordmark
+   da parede e sobre a parede clara; embaixo o creme lê sobre o mármore dos
+   balcões, com a base escurecida (nunca um véu sobre a foto inteira). */
+.hero--fusao .hero__frase { grid-template-columns: minmax(0, 1fr); justify-content: stretch; align-content: end; padding-bottom: clamp(88px, 15vh, 160px); }
+/* o H1 ocupa a largura do container (centrado pelo text-align): numa coluna encolhida ao
+   conteúdo, o padding-left em % da segunda linha quebrava "Sua melhor versão." em duas */
+.hero--fusao .hero__frase h1 { width: 100%; max-width: none; font-size: var(--h1); line-height: 1.04; text-shadow: 0 2px 28px rgba(42, 26, 22, .4); }
+.hero--fusao .hero__frase .hero__filme { justify-self: center; margin: 2.2rem 0 0; }
+.hero--fusao .hero__frase .hero__filme .seta { transform: none; }
+.hero__escurecedor { background: linear-gradient(to top, rgba(59, 0, 0, .5) 0%, rgba(59, 0, 0, .22) 32%, rgba(59, 0, 0, 0) 62%); }
+/* o poster da recepção: o wordmark da parede fica no meio da tela */
+.hero__poster { object-position: 50% 50%; }
+
+@media (max-width: 899.98px) {
+  /* celular e tablet retrato: o wordmark sobe (letras.js, centro.mobile) e o bloco de
+     texto fica na metade de baixo, sem passar por cima das letras */
+  .hero--fusao::before { background: radial-gradient(70% 40% at 50% 30%, rgba(110, 18, 18, .55), transparent 70%); }
+  .hero--fusao .letras__fallback { top: 38%; width: min(84vw, 520px); }
+  /* estado estático (sem WebGL / movimento reduzido): o hero tem dois blocos empilhados, então o
+     38 % é da primeira tela (--hero-h), não do hero inteiro — senão o logo cola no descritor */
+  .abertura--estatica .letras__fallback, html.movimento-reduzido .hero--fusao .letras__fallback { top: calc(var(--hero-h) * .38); }
+  .hero--fusao .hero__conteudo { padding-bottom: clamp(40px, 7vh, 72px); gap: 1rem; }
+  .hero__especialidades { font-size: 14px; letter-spacing: .18em; gap: .55rem 0; }
+  .hero__especialidades li:not(:last-child)::after { margin: 0 .7rem; }
+  .hero--fusao .hero__frase { padding-bottom: clamp(72px, 14vh, 128px); }
+  /* na janela 3:2 do celular a foto vertical corta o meio da recepção: o wordmark continua no quadro */
+  .hero__poster { object-position: 50% 48%; }
+}
+@media (max-width: 639.98px) {
+  /* celular: as especialidades em coluna, sem os pontos; o descritor em duas linhas equilibradas */
+  .hero--fusao .hero__descritor { max-width: 40ch; }
+  .hero__especialidades { flex-direction: column; align-items: center; gap: .45rem; }
+  .hero__especialidades li { white-space: nowrap; }
+  .hero__especialidades li:not(:last-child)::after { display: none; }
+  .hero--fusao .hero__frase h1 { font-size: clamp(2.3rem, 10.5vw, 2.6rem); }
+}
+
+/* ---- 01 · O problema (a janela da clínica entra no padding-top, site.css) --- */
+.problema .grid-12 { align-items: end; row-gap: var(--espaco-5); }
+.problema h2 { max-width: 16ch; }
+.problema__texto p + p { margin-top: 1.5em; }
+
+/* ---- 02 · O método (declaração com respiro) -------------------------------- */
+.metodo h2 { max-width: 20ch; }
+.metodo .texto-grande { margin-top: 2rem; }
+
+/* ---- Especialidades (osso, colada ao método: sem padding duplo) ------------- */
+.especialidades-secao { padding-top: 0; }
+.especialidades-secao .secao__cabeca h2 { max-width: 18ch; }
+.especialidade__lista { color: var(--fg); }
+
+/* ---- 03 · O mecanismo: split-screen foto | tela ---------------------------- */
+.mecanismo__cabeca { margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+.mecanismo__cabeca h2 { max-width: 18ch; }
+.split { display: grid; grid-template-columns: 1fr; width: 100%; margin: 0; background: var(--cor-bordo-profundo); }
+.split__foto { aspect-ratio: 4 / 5; }
+.split__tela {
+  position: relative; aspect-ratio: 4 / 3;
+  background: var(--cor-osso); color: var(--cor-tinta);
+  display: grid; place-items: center;
+  padding: clamp(24px, 5vw, 72px);
+}
+.split__tela img { width: 100%; height: 100%; object-fit: contain; }
+.split__legenda { position: absolute; left: clamp(24px, 5vw, 72px); bottom: clamp(20px, 3vw, 40px); color: var(--cor-grafite); }
+.mecanismo__texto { margin-top: clamp(3rem, 6vw, 6rem); }
+.mecanismo__texto p + p { margin-top: 1.4em; }
+@media (min-width: 900px) {
+  .split { grid-template-columns: 1fr 1fr; }
+  .split__foto, .split__tela { aspect-ratio: auto; height: clamp(520px, 76vh, 760px); }
+}
+
+/* ---- A casa: mosaico com o vídeo "A casa, por dentro" na peça grande --------
+   A moldura da peça 01 é também o .stream (poster + play). As regras do
+   componente (posição relativa, proporção 16:9, poster acima de tudo) cedem
+   às da moldura do mosaico, para o grid, a legenda e o gradiente ficarem iguais
+   aos das outras peças. */
+.casa__cabeca h2 { max-width: 14ch; }
+.mosaico__moldura.stream { position: absolute; inset: 0; aspect-ratio: auto; z-index: 0; background: transparent; }
+.mosaico__moldura.stream > .stream__poster {
+  transform: scale(1.12);
+  transition: transform var(--dur-imagem) var(--ease-out), opacity .6s var(--ease-out);
+}
+.mosaico__item:hover .mosaico__moldura.stream > .stream__poster { transform: scale(1.18); }
+.mosaico__moldura.stream .stream__play { z-index: 2; }
+
+/* ---- Os médicos: cabeça, foto principal dos três e cards --------------------- */
+.medicos__cabeca h2 { max-width: 16ch; }
+.medicos-secao .trio { margin-top: 0; }
+.medicos-secao .medicos { margin-top: clamp(3rem, 6vw, 5.5rem); }
+.medicos-secao .medico__midia { max-width: 460px; }
+@media (max-width: 639.98px) {
+  .medicos-secao .medicos { max-width: 420px; }
+  /* na foto vertical a legenda fica só com o estúdio: os nomes estão nos cards logo abaixo */
+  .trio__nomes { display: none; }
+}
+
+/* ---- Perguntas da semana (osso): capa 4:5 + título + assinatura + link ------- */
+.perguntas__cabeca h2 { max-width: 16ch; }
+.perguntas { border-bottom: 1px solid var(--linha); }
+.pergunta {
+  position: relative;
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+  padding-block: clamp(1.6rem, 3vw, 2.4rem);
+}
+.pergunta__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+.pergunta__capa { width: 72px; aspect-ratio: 4 / 5; overflow: hidden; background: var(--cor-bordo-profundo); }
+/* retratos 2:3 da produção cortados em 4:5 e aproximados: rosto e ombros, não o corpo inteiro */
+.pergunta__capa img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transform: scale(1.75); transform-origin: 50% 13%; }
+.pergunta__titulo { font-size: var(--h3); max-width: 28ch; }
+/* sobre osso a assinatura vai em bordô (areia não passa no contraste) */
+.pergunta .assinatura { margin-top: .6rem; color: var(--cor-bordo); }
+.pergunta__link { justify-self: start; }
+@media (min-width: 900px) {
+  .pergunta { grid-template-columns: 96px minmax(0, 1fr) auto; column-gap: clamp(24px, 3vw, 48px); align-items: center; }
+  .pergunta__capa { width: 96px; }
+  .pergunta__link { justify-self: end; }
+}
+
+/* ---- Movimento reduzido ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .hero__quadro .stream--fundo { will-change: auto; }
+}
+
+/* o mosaico do instituto e Os médicos: a foto sangra a página, a seção não corta */
+.medicos-secao { overflow: hidden; }

@@ -1,0 +1,60 @@
+<!-- MENU EM TELA CHEIA. O ui.js alterna .menu--aberto, aria-hidden/inert, aria-expanded no botão,
+     trava o scroll e fecha com Esc ou clique em qualquer link. -->
+<nav class="menu" id="menu" aria-label="Menu principal" aria-hidden="true" inert data-lenis-prevent>
+  <div class="menu__in container">
+    <div class="menu__colunas">
+      <div class="menu__coluna menu__coluna--frentes"><!-- classe mantida: é a que o base.css dimensiona -->
+        <p class="menu__titulo eyebrow">Especialidades</p>
+        <!-- Mapa das especialidades: proposta da agência a confirmar com o cliente (rodada 7). -->
+        <ul class="menu__lista menu__lista--grande">
+          <li><a href="{{site}}nutrologia/">Nutrologia</a>
+            <ul class="menu__sub">
+              <li><a href="{{site}}nutrologia/#emagrecimento">Emagrecimento e metabolismo</a></li>
+              <li><a href="{{site}}nutrologia/#lipedema">Lipedema</a></li>
+            </ul>
+          </li>
+          <li><a href="{{site}}endocrinologia/">Endocrinologia</a>
+            <ul class="menu__sub">
+              <li><a href="{{site}}endocrinologia/#avaliacao-hormonal">Avaliação hormonal</a></li>
+              <li><a href="{{site}}endocrinologia/#menopausa">Menopausa</a></li>
+            </ul>
+          </li>
+          <li><a href="{{site}}dermatologia/">Dermatologia</a>
+            <ul class="menu__sub">
+              <li><a href="{{site}}dermatologia/#tricologia">Tricologia</a></li>
+              <li><a href="{{site}}dermatologia/#estetica-facial">Estética facial</a></li>
+              <li><a href="{{site}}dermatologia/#pele">Pele</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="menu__coluna">
+        <p class="menu__titulo eyebrow">Os médicos</p>
+        <ul class="menu__lista">
+          <li><a href="{{site}}dr-tulio-bovo/">Dr. Túlio Bovo</a></li>
+          <li><a href="{{site}}dr-breno-gondim/">Dr. Breno Gondim</a></li>
+          <li><a href="{{site}}dra-ana-paula-bovo/">Dra. Ana Paula Bovo</a></li>
+        </ul>
+      </div>
+      <div class="menu__coluna">
+        <p class="menu__titulo eyebrow">Conteúdo</p>
+        <ul class="menu__lista">
+          <li><a href="{{site}}conteudo/">Perguntas que a gente responde</a></li>
+          <li><a href="{{site}}o-instituto/">O instituto</a></li>
+        </ul>
+      </div>
+      <div class="menu__coluna">
+        <p class="menu__titulo eyebrow">Contato</p>
+        <ul class="menu__lista">
+          <li><a href="{{wa}}" target="_blank" rel="noopener">Agendar avaliação</a></li>
+          <li><a href="{{site}}contato/">Contato</a></li>
+          <li><a href="https://www.instagram.com/institutorocca" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu__rodape">
+      <span>Instituto Rocca · Moema, São Paulo</span>
+      <a href="{{wa}}" target="_blank" rel="noopener">WhatsApp {{whats_numero_visivel}}</a>
+    </div>
+  </div>
+</nav>

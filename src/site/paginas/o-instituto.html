@@ -1,0 +1,261 @@
+<!-- pagina
+titulo: O instituto · Instituto Rocca, Moema
+descricao: O Instituto Rocca, em Moema: recepção, espera, consultórios e sala de aplicação. A consulta começa pela escuta e o exame é lido com você, na tela.
+og_titulo: O instituto · Instituto Rocca
+og_imagem: assets/img/entrada-clinica.jpg
+css: o-instituto
+corpo: sup-bordo pagina pagina--o-instituto
+whats_msg: Olá. Quero agendar uma avaliação no Instituto Rocca.
+fecho_h2: Avaliação com o médico / que vai acompanhar você.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+{{head}}
+<body class="{{corpo}}">
+{{skip}}
+{{nav}}
+{{menu}}
+<main id="conteudo" tabindex="-1">
+
+  <!-- HERO: a recepção em tela cheia, cores naturais, gradiente bordô só na base.
+       O botão do filme nasce hidden e aparece quando o UID do filme institucional chegar (data-stream-precisa). -->
+  <section class="hero hero--tela casa-hero" id="inicio" data-hero>
+    <div class="hero__fundo paralaxe" data-parallax-area data-reveal="escala">
+      <div class="paralaxe__in" data-parallax="-6">
+        <picture>
+          <source media="(max-width: 639.98px)" srcset="{{raiz}}assets/img/entrada-clinica-mobile.jpg">
+          <img src="{{raiz}}assets/img/entrada-clinica.jpg" width="2731" height="1536" alt="Recepção do Instituto Rocca: dois balcões de mármore marrom, luminárias suspensas, painel ripado bordô, chaise creme e cadeira de palhinha sob luz quente." decoding="async">
+        </picture>
+      </div>
+    </div>
+    <div class="container hero__in">
+      <p class="eyebrow" data-reveal>O instituto · Moema, São Paulo</p>
+      <h1 class="titulo-2l" data-split-linhas>Um instituto em Moema. <span class="linha-2">E um médico que fica.</span></h1>
+      <p class="hero__sub texto-grande" data-reveal>Av. Indianópolis, 100, Moema, São Paulo, SP, 04062-000</p>
+      <!-- [PENDENTE] confirmar com o cliente se a linha de abertura aparece enquanto a casa não abre (pendência 15). -->
+      <p class="hero__nota" data-reveal>Abertura em outubro de 2026 <span class="pendente">[PENDENTE: confirmar se aparece]</span></p>
+      <div class="acoes" data-reveal>
+        <button class="botao botao--primario" type="button" data-abre-lightbox="#filme" data-stream-de="#filme .stream" data-stream-precisa="#filme .stream" hidden>Assistir ao filme</button>
+        <a class="botao botao--secundario" href="#onde-fica">Como chegar <span class="seta" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 · O INSTITUTO: mosaico de seis peças numa tela (shared/mosaico.js: entrada em cascata e paralaxe leve, sem pin) -->
+  <section class="secao sup-osso casa-mosaico" id="instituto" data-tema="claro">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-8">
+          <p class="eyebrow" data-reveal><span class="numeral">01</span> · O instituto</p>
+          <h2 class="titulo-2l" data-split-linhas>Seis espaços, <span class="linha-2">da chegada ao lounge.</span></h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p class="texto-grande">E, no meio deles, a sala onde o exame é lido com você, na tela.</p>
+        </div>
+      </div>
+      <div class="mosaico" data-mosaico>
+        <figure class="mosaico__item mosaico__item--a">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/entrada-clinica.jpg" alt="Recepção do Instituto Rocca: dois balcões de mármore marrom, luminárias suspensas, painel ripado bordô, chaise creme e cadeira de palhinha sob luz quente." width="2731" height="1536" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">01</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">A chegada</span><span class="mosaico__sub">Você chegou.</span></span>
+          </figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--b">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/espera-02.jpg" alt="Sala de espera: sofá curvo creme, pufes de tecido, cadeiras de palhinha, painel de madeira clara e uma copa de mármore ao fundo." width="1600" height="1012" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">02</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">A espera</span><span class="mosaico__sub">A espera que não parece espera.</span></span>
+          </figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--c">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/corredor-portas.jpg" alt="Corredor com painel de madeira clara, portas embutidas, arandelas de luz quente e dois pufes bege." width="1600" height="899" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">03</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">O corredor</span><span class="mosaico__sub">Até a sala do seu médico.</span></span>
+          </figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--d">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/consultorio-01.jpg" alt="Consultório: mesa de mármore marrom com notebook, cadeiras escuras, poltrona verde-oliva e janela ampla com a cidade ao fundo." width="1600" height="1244" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">04</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">A sala</span><span class="mosaico__sub">Onde o exame é lido com você, na tela.</span></span>
+          </figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--e">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/soroterapia-01.jpg" alt="Sala de aplicação: poltronas reclináveis creme junto à janela, bancada de mármore marrom e painel de madeira clara." width="1600" height="1737" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">05</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">A sala de aplicação</span><span class="mosaico__sub">Poltronas junto à janela.</span></span>
+          </figcaption>
+        </figure>
+        <figure class="mosaico__item mosaico__item--f">
+          <div class="mosaico__moldura">
+            <img src="{{raiz}}assets/img/lounge-copa.jpg" alt="Lounge com copa: paredes de madeira clara, copa em mármore marrom iluminada, pufes e cadeiras de palhinha." width="1600" height="892" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="mosaico__legenda">
+            <span class="numeral">06</span>
+            <span class="mosaico__texto"><span class="mosaico__rotulo">O lounge</span><span class="mosaico__sub">Um café antes de ir embora.</span></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · O PERCURSO: da porta à sala do médico, em cinco passos com a foto de cada espaço -->
+  <section class="secao sup-bordo casa-percurso" id="percurso">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-7">
+          <p class="eyebrow" data-reveal><span class="numeral">02</span> · O percurso</p>
+          <h2 class="titulo-2l" data-split-linhas>Da porta <span class="linha-2">à sala do seu médico.</span></h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p class="texto-grande">Quatro espaços, na ordem em que você passa por eles.</p>
+        </div>
+      </div>
+      <ol class="percurso">
+        <li class="percurso__passo" data-reveal>
+          <div class="percurso__corpo">
+            <h3 class="percurso__titulo">A chegada</h3>
+            <p class="percurso__texto">A avaliação foi marcada na conversa do WhatsApp. Quem te recebe já sabe por que você veio.</p>
+          </div>
+          <figure class="percurso__foto">
+            <img src="{{raiz}}assets/img/chegada-porta.jpg" alt="Porta de entrada vista do corredor: ao fundo, a recepção iluminada, com balcões de mármore e o wordmark Instituto Rocca na parede." width="1600" height="1600" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="percurso__passo" data-reveal>
+          <div class="percurso__corpo">
+            <h3 class="percurso__titulo">A espera</h3>
+            <p class="percurso__texto">Um lugar onde dá para respirar. Ninguém com pressa.</p>
+          </div>
+          <figure class="percurso__foto">
+            <img src="{{raiz}}assets/img/espera-01.jpg" alt="Sala de espera vista da recepção: sofá curvo creme, cadeiras de palhinha, painel ripado bordô e teto circular iluminado." width="1600" height="899" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="percurso__passo" data-reveal>
+          <div class="percurso__corpo">
+            <h3 class="percurso__titulo">A consulta</h3>
+            <p class="percurso__texto">Na sala do seu médico, com a porta fechada. A consulta não tem hora para acabar.</p>
+          </div>
+          <figure class="percurso__foto">
+            <img src="{{raiz}}assets/img/consultorio-05.jpg" alt="Consultório com painel de madeira escura, mesa de mármore, cadeira de trabalho e poltrona verde-oliva junto à janela." width="1600" height="1218" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="percurso__passo" data-reveal>
+          <div class="percurso__corpo">
+            <h3 class="percurso__titulo">O exame</h3>
+            <p class="percurso__texto">Lido com você, na tela da sala. A composição corporal é medida, não estimada.</p>
+          </div>
+          <figure class="percurso__foto">
+            <img src="{{raiz}}assets/img/consultorio-06.jpg" alt="Consultório com painel de madeira escura, mesa de mármore com notebook, cadeira de trabalho e poltrona verde-oliva." width="1600" height="1244" loading="lazy" decoding="async">
+          </figure>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 03 · O INSTITUTO, POR DENTRO: três vídeos 16:9 (Cloudflare Stream, UIDs pendentes: fica o poster).
+       O link do filme institucional nasce hidden e aparece com o UID (data-stream-precisa). -->
+  <section class="secao sup-osso casa-por-dentro" id="por-dentro" data-tema="claro">
+    <div class="container">
+      <div class="secao__cabeca grid-12">
+        <div class="col-8">
+          <p class="eyebrow" data-reveal><span class="numeral">03</span> · O instituto, por dentro</p>
+          <h2 class="titulo-2l" data-split-linhas>Cada médico apresenta o instituto <span class="linha-2">pelo ponto de vista dele.</span></h2>
+        </div>
+        <div class="col-4 col-inicio-9 secao__sub" data-reveal>
+          <p class="texto-grande">Três vídeos: a sala onde cada um atende, o exame sendo feito, e o que cada um escolheu ter aqui.</p>
+        </div>
+      </div>
+      <div class="tiles casa-videos" data-reveal-grupo>
+        <article class="tile">
+          <div class="tile__media stream" data-stream="{{stream_casa_tulio}}" data-stream-modo="player" data-stream-proporcao="16/9" data-stream-titulo="O instituto, por dentro: com o Dr. Túlio Bovo">
+            <img class="stream__poster" src="{{raiz}}assets/img/consultorio-01.jpg" alt="" width="1600" height="1244" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden aria-label="Reproduzir: O instituto, por dentro: com o Dr. Túlio Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <div class="tile__corpo">
+            <span class="tile__rotulo">Dr. Túlio Bovo</span>
+            <span class="tile__sub">O instituto, por dentro <span class="pendente">[PENDENTE]</span></span>
+            <a class="botao botao--secundario" href="{{site}}dr-tulio-bovo/" aria-label="Conheça o Dr. Túlio Bovo">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile__media stream" data-stream="{{stream_casa_breno}}" data-stream-modo="player" data-stream-proporcao="16/9" data-stream-titulo="O instituto, por dentro: com o Dr. Breno Gondim">
+            <img class="stream__poster" src="{{raiz}}assets/img/consultorio-03.jpg" alt="" width="1600" height="1256" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden aria-label="Reproduzir: O instituto, por dentro: com o Dr. Breno Gondim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <div class="tile__corpo">
+            <span class="tile__rotulo">Dr. Breno Gondim</span>
+            <span class="tile__sub">O instituto, por dentro <span class="pendente">[PENDENTE]</span></span>
+            <a class="botao botao--secundario" href="{{site}}dr-breno-gondim/" aria-label="Conheça o Dr. Breno Gondim">Conheça o médico <span class="seta" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="tile">
+          <div class="tile__media stream" data-stream="{{stream_casa_ana}}" data-stream-modo="player" data-stream-proporcao="16/9" data-stream-titulo="O instituto, por dentro: com a Dra. Ana Paula Bovo">
+            <img class="stream__poster" src="{{raiz}}assets/img/consultorio-dermatologia-02.jpg" alt="" width="1600" height="918" loading="lazy" decoding="async">
+            <button class="stream__play" type="button" hidden aria-label="Reproduzir: O instituto, por dentro: com a Dra. Ana Paula Bovo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
+          </div>
+          <div class="tile__corpo">
+            <span class="tile__rotulo">Dra. Ana Paula Bovo</span>
+            <span class="tile__sub">O instituto, por dentro <span class="pendente">[PENDENTE]</span></span>
+            <a class="botao botao--secundario" href="{{site}}dra-ana-paula-bovo/" aria-label="Conheça a Dra. Ana Paula Bovo">Conheça a médica <span class="seta" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+      <div class="ligacoes">
+        <button class="botao botao--secundario" type="button" data-abre-lightbox="#filme" data-stream-de="#filme .stream" data-stream-precisa="#filme .stream" hidden>Assistir ao filme institucional <span class="seta" aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · ONDE FICA: endereço, horários e como chegar (tudo pendente); mapa só quando o endereço existir -->
+  <section class="secao sup-bordo casa-onde" id="onde-fica">
+    <div class="container grid-12">
+      <div class="col-5 casa-onde__texto">
+        <p class="eyebrow" data-reveal><span class="numeral">04</span> · Onde fica</p>
+        <h2 data-split-linhas>Moema, São Paulo.</h2>
+        <dl class="casa-onde__dados" data-reveal>
+          <div>
+            <dt class="eyebrow">Endereço</dt>
+            <dd><address class="endereco">Av. Indianópolis, 100, Moema<br>São Paulo, SP, 04062-000<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Av.+Indian%C3%B3polis%2C+100+-+Moema%2C+S%C3%A3o+Paulo+-+SP%2C+04062-000" target="_blank" rel="noopener">Ver no mapa</a></address></dd>
+          </div>
+          <div>
+            <dt class="eyebrow">Horários</dt>
+            <dd>Segunda a sexta, 00h às 00h <span class="pendente">[PENDENTE]</span></dd>
+          </div>
+          <div>
+            <dt class="eyebrow">Como chegar</dt>
+            <dd><span class="pendente">[PENDENTE: estacionamento, referências e transporte]</span></dd>
+          </div>
+        </dl>
+        <div class="acoes" data-reveal>
+          <a class="botao botao--secundario" href="{{wa}}" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="botao botao--secundario" href="{{site}}contato/">Contato <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="col-6 col-inicio-7 casa-onde__mapa" data-reveal="escala">
+        <div class="mapa mapa--real">
+          <iframe class="mapa__iframe" src="https://www.google.com/maps?q=Av.+Indian%C3%B3polis%2C+100+-+Moema%2C+S%C3%A3o+Paulo+-+SP%2C+04062-000&amp;z=16&amp;hl=pt-BR&amp;output=embed" width="600" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa: Av. Indianópolis, 100, Moema, São Paulo" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+{{fecho}}
+{{footer}}
+{{whats}}
+{{lightbox}}
+</body>
+</html>
