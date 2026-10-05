@@ -36,7 +36,8 @@
   padding-block: 1rem; text-decoration: none; font-weight: 300; font-size: calc(var(--corpo) * 1.1); line-height: 1.35;
   transition: color var(--dur-rapida);
 }
-.series-indice a:hover, .series-indice a:focus-visible { color: var(--cor-madeira); }
+/* hover em bordô: a madeira sobre o osso apagava o título */
+.series-indice a:hover, .series-indice a:focus-visible { color: var(--cor-bordo); }
 .series-indice .seta { justify-self: end; transition: transform var(--dur-media) var(--ease-out); }
 .series-indice a:hover .seta { transform: translateX(5px); }
 @media (min-width: 640px) { .series-indice { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--coluna-gap); } }
