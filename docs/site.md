@@ -69,7 +69,7 @@ em destaque discreto.
 ## 7. O que falta do cliente
 
 1. Código da conta do Cloudflare Stream e os três UIDs (qual vídeo é de quem).
-2. CRM/RQE dos três médicos, a especialidade de registro do Dr. Túlio e do Dr. Breno, e a linha de formação de cada um.
-3. Endereço, horários, telefone, e-mail, Instagram, mapa; política de falta/remarcação; domínio definitivo (o `og:image` usa o endereço de homologação até lá).
+2. RQE dos três médicos (os três CRMs já estão no site), a especialidade de registro do Dr. Túlio e do Dr. Breno, e a linha de formação de cada um.
+3. Horários, e-mail, mapa (o WhatsApp de agendamento, +55 11 99324-6550, já está no site e vale também como telefone por enquanto); política de falta/remarcação; domínio definitivo (o `og:image` usa o endereço de homologação até lá).
 4. Retrato da Dra. Ana Paula de colete camelo (opcional) e, se possível, o trio em 2400–3000 px.
 5. Validação das falas em primeira pessoa e das respostas de "Perguntas mais comuns"; as perguntas de tricologia.
