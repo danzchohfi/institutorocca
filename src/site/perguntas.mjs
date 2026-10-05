@@ -15,7 +15,7 @@ export const MEDICOS = {
 export const ESPECIALIDADES = { nutrologia: 'Nutrologia', endocrinologia: 'Endocrinologia', dermatologia: 'Dermatologia' };
 export const ASSUNTOS = {
   '01': 'Não é mais uma tentativa', '02': 'A causa tem nome e tem exame', '03': 'Não foi falta de disciplina',
-  '04': 'A régua daqui é outra', '05': 'O homem que não se trata', '06': 'Fazer, e continuar parecendo você', '07': 'Pele é rotina, não procedimento',
+  '04': 'A régua daqui é outra', '05': 'O homem que não se trata', '06': 'Fazer, e continuar parecendo você', '07': 'Cuidado é rotina, não procedimento',
 };
 export const PERGUNTAS = [
   {
@@ -440,9 +440,9 @@ export const PERGUNTAS = [
     slug: "mudancas-na-pele-depois-dos-40-e-hormonio",
     titulo: "Mudanças na pele depois dos 40: é hormônio?",
     medico: "ana",
-    assunto: "Pele é rotina, não procedimento",
+    assunto: "Cuidado é rotina, não procedimento",
     serie: "07",
-    especialidade: "dermatologia", ancora: "pele",
+    especialidade: "dermatologia", ancora: "dermatologia-clinica",
     video: null,
     paragrafos: [
           "A sua pele mudou depois dos 40 e nenhum creme resolveu? A causa pode não estar na sua pele.",
@@ -457,9 +457,9 @@ export const PERGUNTAS = [
     slug: "manchas-no-rosto-qual-a-diferenca-entre-sol-hormonio-e-idade",
     titulo: "Manchas no rosto: qual a diferença entre sol, hormônio e idade?",
     medico: "ana",
-    assunto: "Pele é rotina, não procedimento",
+    assunto: "Cuidado é rotina, não procedimento",
     serie: "07",
-    especialidade: "dermatologia", ancora: "pele",
+    especialidade: "dermatologia", ancora: "dermatologia-clinica",
     video: null,
     paragrafos: [
           "Tem uma mancha no rosto que clareia e volta? Ela pode não ser de sol. E tratar a mancha do jeito errado pode piorar.",
@@ -474,9 +474,9 @@ export const PERGUNTAS = [
     slug: "flacidez-na-pele-depois-do-emagrecimento-o-que-fazer",
     titulo: "Flacidez na pele depois do emagrecimento: o que fazer?",
     medico: "ana",
-    assunto: "Pele é rotina, não procedimento",
+    assunto: "Cuidado é rotina, não procedimento",
     serie: "07",
-    especialidade: "dermatologia", ancora: "pele",
+    especialidade: "dermatologia", ancora: "dermatologia-clinica",
     video: null,
     paragrafos: [
           "Você emagreceu e a pele ficou flácida? Isso tem solução.",
@@ -491,9 +491,9 @@ export const PERGUNTAS = [
     slug: "por-que-a-acne-continua-aparecendo-depois-dos-30",
     titulo: "Por que a acne continua aparecendo depois dos 30?",
     medico: "ana",
-    assunto: "Pele é rotina, não procedimento",
+    assunto: "Cuidado é rotina, não procedimento",
     serie: "07",
-    especialidade: "dermatologia", ancora: "pele",
+    especialidade: "dermatologia", ancora: "dermatologia-clinica",
     video: null,
     paragrafos: [
           "Passou dos 30 e a acne continua aparecendo? Isso não é adolescência atrasada. É sobre outra coisa.",
