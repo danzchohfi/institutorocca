@@ -9,8 +9,8 @@
    apagar o texto — decisão consciente, não automática.
    ============================================================================ */
 
-export const WHATS_NUMERO = '5511999999999';                 // [PENDENTE] só dígitos, com o 55
-export const WHATS_NUMERO_VISIVEL = '+55 11 99999-9999';     // [PENDENTE] como aparece no fecho e no rodapé
+export const WHATS_NUMERO = '5511993246550';                 // só dígitos, com o 55
+export const WHATS_NUMERO_VISIVEL = '+55 11 99324-6550';     // como aparece no fecho e no rodapé
 export const WHATS_MSG_PADRAO = 'Olá. Quero agendar uma avaliação no Instituto Rocca.';
 
 /* Cloudflare Stream: código do subdomínio customer-<código>.cloudflarestream.com. [PENDENTE] */

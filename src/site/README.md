@@ -87,10 +87,10 @@ uma linha `chave: valor` por dado (o gerador o remove da saída; `&` em texto va
 | Placeholder | Vale | Uso |
 |---|---|---|
 | `{{raiz}}` | `../` na home, `../../` nas internas | tudo que está na raiz do repositório: `{{raiz}}assets/img/x.jpg`, `{{raiz}}assets/placeholders/x.svg` |
-| `{{site}}` | `./` na home, `../` nas internas | links entre páginas: `{{site}}nutrologia/`, `{{site}}dermatologia/#pele`, `{{site}}` (home) |
+| `{{site}}` | `./` na home, `../` nas internas | links entre páginas: `{{site}}nutrologia/`, `{{site}}dermatologia/#tricologia`, `{{site}}` (home) |
 | `{{wa}}` | `https://wa.me/<número>?text=<whats_msg codificada>` | todo link para o WhatsApp da página (o nav, o menu, o fecho e o flutuante já usam) |
 | `{{dominio}}` · `{{url_pagina}}` | `DOMINIO` do `config.mjs` (sem barra no fim) · `<dominio>/site/` na home, `<dominio>/site/<slug>/` nas internas | URLs absolutas do `head`: `og:image`, `og:url` e `canonical`. Enquanto o domínio definitivo não vier, `DOMINIO` aponta para a homologação [PENDENTE] |
-| `{{whats_numero_visivel}}` | `+55 11 99999-9999` | o número por extenso (o rótulo `[PENDENTE]` fica no HTML, ao lado) |
+| `{{whats_numero_visivel}}` | `+55 11 99324-6550` | o número por extenso |
 | `{{ano}}` · `{{slug}}` · `{{titulo}}` · `{{descricao}}` | — | raramente necessários fora dos partials |
 | `{{stream_<chave>}}` | UID do vídeo em `STREAM_IDS` (`config.mjs`), vazio hoje | `data-stream="{{stream_tulio}}"`; chaves: `institucional`, `fundo`, `tulio`, `breno`, `ana`, `casa_tulio`, `casa_breno`, `casa_ana` |
 | `{{head}}` `{{skip}}` `{{nav}}` `{{menu}}` `{{fecho}}` `{{footer}}` `{{whats}}` `{{lightbox}}` | o partial inteiro | qualquer `partials/x.html` vira `{{x}}` |
