@@ -206,6 +206,8 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
    nem tracking (lê melhor) e a citação sem o limite de largura dos parágrafos */
 .hero--interno .hero__rotulo-linha { display: block; }
 .hero--interno .hero__pendente { text-transform: none; letter-spacing: .04em; color: var(--fg-2); }
+/* o que o médico atende, entre a macro área e o CRM: texto corrido, sem caixa alta (lista longa) */
+.hero--interno .hero__rotulo-frente { margin: .3rem 0 .4rem; max-width: 40ch; font-size: .95rem; letter-spacing: .02em; line-height: 1.5; text-transform: none; color: var(--fg-2); }
 .hero--interno .hero__citacao p { max-width: none; }
 /* "Assistir: Quem eu sou": o botão do lightbox nasce hidden e só aparece com UID (data-stream-precisa);
    o link para a seção some então */
@@ -404,10 +406,20 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 .medico__midia.stream { aspect-ratio: 2 / 3; }
 .medico__midia.stream[data-stream-proporcao="9/16"] { aspect-ratio: 2 / 3; }   /* a moldura é 2:3; o vídeo 9:16 abre no lightbox */
 .medico__midia .stream__rotulo { bottom: 16px; }
-.medico__especialidade { color: var(--fg-2); font-size: .95rem; line-height: 1.5; margin-top: .3rem; max-width: 30ch; }
+/* a macro área (Nutrologia · Endocrinologia) acima do nome; o que o médico atende vem embaixo */
+.medico__area + .medico__nome { margin-top: -.5rem; }
+.medico__especialidade { color: var(--fg-2); font-size: .95rem; line-height: 1.5; margin-top: .3rem; max-width: 40ch; }
 .medico__linha { color: var(--fg-2); font-size: .95rem; line-height: 1.5; margin-top: .3rem; max-width: 30ch; }
 .medicos--2 { grid-template-columns: 1fr; }
 @media (min-width: 640px) { .medicos--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; } }
+/* cards lado a lado com a macro área: cada linha (área, nome, o que atende, CRM, link) alinha entre
+   os cards (subgrid), mesmo quando o texto do vizinho quebra em mais linhas */
+@media (min-width: 640px) {
+  .medicos:has(> .medico > .medico__area) { row-gap: 1.1rem; }
+  .medicos > .medico:has(> .medico__area) { display: grid; grid-row: span 5; grid-template-rows: subgrid; }
+  .medicos > .medico:has(> .medico__area):has(> .medico__crm) { grid-row: span 6; }
+  .medicos > .medico:has(> .medico__area) > .medico__link { justify-self: start; }
+}
 
 /* ---- Foto principal do trio (<picture>: horizontal no desktop, vertical até 640 px) ------
    <figure class="trio paralaxe" data-parallax-area data-reveal="escala">

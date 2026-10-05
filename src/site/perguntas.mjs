@@ -7,10 +7,11 @@
    e linkar a pergunta nas listas (Conteúdo, página do médico, especialidade).
    video: URL do post no Instagram, quando houver (entra no topo da página).
    ============================================================================ */
+/* area: a macro área (a especialidade do instituto); frente: o que o médico atende dentro dela. */
 export const MEDICOS = {
-  tulio: { nome: 'Dr. Túlio Bovo', slug: 'dr-tulio-bovo', frente: 'Emagrecimento · Lipedema · Sarcopenia', crm: 'CRM-SP 239756', foto: 'dr-tulio-bovo', foto_w: 1600, foto_h: 2400, fallback: 'retrato-tulio.svg', capa: 'tulio', artigo: 'o', trata: 'o médico' },
-  breno: { nome: 'Dr. Breno Gondim', slug: 'dr-breno-gondim', frente: 'Nutrologia · Endocrinologia', crm: 'CRM-SP 222381', foto: 'dr-breno-gondim', foto_w: 1600, foto_h: 2400, fallback: 'retrato-breno.svg', capa: 'breno', artigo: 'o', trata: 'o médico' },
-  ana: { nome: 'Dra. Ana Paula Bovo', slug: 'dra-ana-paula-bovo', frente: 'Dermatologia · Tricologia', crm: 'CRM-SP 259067', foto: 'dra-ana-paula-bovo-02', foto_w: 853, foto_h: 1280, fallback: 'retrato-ana-paula.svg', capa: 'ana', artigo: 'a', trata: 'a médica' },
+  tulio: { nome: 'Dr. Túlio Bovo', slug: 'dr-tulio-bovo', area: 'Nutrologia · Endocrinologia', frente: 'Emagrecimento · Menopausa · Avaliação&nbsp;hormonal · Qualidade&nbsp;de&nbsp;vida · Lipedema', crm: 'CRM-SP 239756', foto: 'dr-tulio-bovo', foto_w: 1600, foto_h: 2400, fallback: 'retrato-tulio.svg', capa: 'tulio', artigo: 'o', trata: 'o médico' },
+  breno: { nome: 'Dr. Breno Gondim', slug: 'dr-breno-gondim', area: 'Nutrologia · Endocrinologia', frente: 'Emagrecimento · Menopausa · Avaliação&nbsp;hormonal · Qualidade&nbsp;de&nbsp;vida · Lipedema', crm: 'CRM-SP 222381', foto: 'dr-breno-gondim', foto_w: 1600, foto_h: 2400, fallback: 'retrato-breno.svg', capa: 'breno', artigo: 'o', trata: 'o médico' },
+  ana: { nome: 'Dra. Ana Paula Bovo', slug: 'dra-ana-paula-bovo', area: 'Dermatologia', frente: 'Tricologia · Estética&nbsp;facial · Dermatologia&nbsp;clínica', crm: 'CRM-SP 259067', foto: 'dra-ana-paula-bovo-02', foto_w: 853, foto_h: 1280, fallback: 'retrato-ana-paula.svg', capa: 'ana', artigo: 'a', trata: 'a médica' },
 };
 export const ESPECIALIDADES = { nutrologia: 'Nutrologia', endocrinologia: 'Endocrinologia', dermatologia: 'Dermatologia' };
 export const ASSUNTOS = {

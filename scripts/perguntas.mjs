@@ -115,7 +115,7 @@ fecho_nota: Quem responde é o Instituto. Diga que quer marcar com ${m.artigo} $
         <nav class="hero__trilha eyebrow" aria-label="Você está em" data-reveal><a href="{{site}}conteudo/">Conteúdo</a> · <a href="{{site}}conteudo/#serie-${p.serie}">${assunto}</a></nav>
         <h1 data-split-linhas>${p.titulo}</h1>
         <p class="hero__rotulo" data-reveal>
-          <span class="hero__rotulo-linha">${m.nome} · ${m.frente}</span>
+          <span class="hero__rotulo-linha">${m.nome} · ${m.area}</span>
           <span class="hero__rotulo-linha">${m.crm}</span>
         </p>
         <p class="hero__sub texto-grande" data-reveal>${primeiro}</p>

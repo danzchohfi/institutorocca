@@ -51,7 +51,7 @@
   .contato-medicos .medico {
     display: grid;
     grid-template-columns: 108px minmax(0, 1fr);
-    grid-template-rows: 1fr auto auto auto 1fr;
+    grid-template-rows: 1fr auto auto auto auto 1fr;
     column-gap: 1.25rem;
     row-gap: .3rem;
     padding-bottom: 1.4rem;
@@ -59,9 +59,10 @@
   }
   .contato-medicos .medico:last-child { padding-bottom: 0; border-bottom: 0; }
   .contato-medicos .medico__midia { grid-column: 1; grid-row: 1 / -1; }
-  .contato-medicos .medico__nome { grid-column: 2; grid-row: 2; }
-  .contato-medicos .medico__linha { grid-column: 2; grid-row: 3; margin-top: 0; }
-  .contato-medicos .medico__link { grid-column: 2; grid-row: 4; justify-self: start; margin-top: calc(.3rem - 12px); }   /* desconta a área de toque (site.css) */
+  .contato-medicos .medico__area { grid-column: 2; grid-row: 2; }
+  .contato-medicos .medico__nome { grid-column: 2; grid-row: 3; margin-top: 0; }
+  .contato-medicos .medico__linha { grid-column: 2; grid-row: 4; margin-top: 0; }
+  .contato-medicos .medico__link { grid-column: 2; grid-row: 5; justify-self: start; margin-top: calc(.3rem - 12px); }   /* desconta a área de toque (site.css) */
 }
 @media (min-width: 1200px) {
   .contato-medicos__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
