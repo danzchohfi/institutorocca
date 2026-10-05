@@ -308,6 +308,8 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
   font-variant-numeric: tabular-nums;
 }
 .quem__formacao { margin-top: 1.6rem; font-size: .95rem; line-height: 1.6; max-width: 46ch; }
+/* a apresentação do médico (três parágrafos; o primeiro em texto grande) */
+.quem__bio { margin-top: 1.6rem; }
 /* o vídeo 9:16 de "Quem eu sou": 360 px no celular e no tablet, a coluna inteira a partir de 900;
    abaixo de 900 vem depois do texto (o retrato acabou de aparecer no hero) — igual nas três páginas */
 .quem__video { width: min(100%, 360px); }
