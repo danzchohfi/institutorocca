@@ -68,7 +68,7 @@ function template(p) {
         mainEntityOfPage: '{{url_pagina}}',
         image: `{{dominio}}/assets/img/producao/${m.foto}.jpg`,
         author: { '@type': 'Person', name: m.nome, url: `{{dominio}}/site/${m.slug}/`, jobTitle: 'Médico(a)', worksFor: { '@type': 'MedicalClinic', name: 'Instituto Rocca' } },
-        publisher: { '@type': 'MedicalClinic', name: 'Instituto Rocca', address: { '@type': 'PostalAddress', streetAddress: 'Av. Indianópolis, 100', addressLocality: 'São Paulo', addressRegion: 'SP', postalCode: '04062-000', addressCountry: 'BR' } },
+        publisher: { '@type': 'MedicalClinic', name: 'Instituto Rocca', address: { '@type': 'PostalAddress', streetAddress: 'Av. Indianópolis, 100', addressLocality: 'São Paulo', addressRegion: 'SP', postalCode: '04062-000', addressCountry: 'BR' }, openingHours: ['Mo-Fr 08:00-19:00', 'Sa 08:00-15:00'] },
         articleSection: assunto,
         about: esp,
       },
