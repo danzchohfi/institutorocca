@@ -163,6 +163,18 @@ html:not(.js) .hero--fusao, .abertura--estatica .hero--fusao, html.movimento-red
   .pergunta__link { justify-self: end; }
 }
 
+/* ---- Avaliações no Google (osso): nota ao lado do título, quatro citações em grade -- */
+.avaliacoes__nota { display: flex; align-items: baseline; gap: .8rem; }
+.avaliacoes__numero { font-size: var(--h2); font-weight: 300; line-height: 1; }
+.avaliacoes__estrelas, .avaliacao__estrelas { color: var(--cor-bordo); letter-spacing: .12em; }
+.avaliacoes__resumo .avaliacoes__nota + p { margin-top: .6rem; }
+.avaliacoes { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 4vw, 3.5rem) var(--coluna-gap); margin-top: clamp(2.5rem, 5vw, 4.5rem); }
+@media (min-width: 900px) { .avaliacoes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.avaliacao { display: flex; flex-direction: column; gap: 1rem; padding-top: 1.4rem; border-top: 1px solid var(--linha); }
+.avaliacao__estrelas { font-size: .85rem; }
+.avaliacao__texto p { max-width: 52ch; font-size: calc(var(--corpo) * 1.1); font-weight: 300; line-height: 1.55; }
+.avaliacao .assinatura { margin-top: auto; color: var(--cor-bordo); }
+
 /* ---- Movimento reduzido ------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   .hero__quadro .stream--fundo { will-change: auto; }
