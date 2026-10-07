@@ -70,6 +70,6 @@ em destaque discreto.
 
 1. Código da conta do Cloudflare Stream e os três UIDs (qual vídeo é de quem).
 2. RQE dos três médicos (os três CRMs já estão no site), a especialidade de registro do Dr. Túlio e do Dr. Breno, e a linha de formação de cada um.
-3. E-mail e "como chegar" (estacionamento, referências e transporte). Já no site: WhatsApp de agendamento +55 11 99324-6550 (também como telefone, por enquanto), horário (segunda a sexta, 8h às 19h; sábado, 8h às 15h) e o endereço confirmado (Av. Indianópolis, 100); política de falta/remarcação; domínio definitivo (o `og:image` usa o endereço de homologação até lá).
+3. E-mail ("como chegar" saiu do site a pedido do cliente). Já no site: WhatsApp de agendamento +55 11 99324-6550 (também como telefone, por enquanto), horário (segunda a sexta, 8h às 19h; sábado, 8h às 15h) e o endereço confirmado (Av. Indianópolis, 100); política de falta/remarcação; domínio definitivo (o `og:image` usa o endereço de homologação até lá).
 4. Retrato da Dra. Ana Paula de colete camelo (opcional) e, se possível, o trio em 2400–3000 px.
 5. Validação das falas em primeira pessoa e das respostas de "Perguntas mais comuns"; as perguntas de tricologia.
