@@ -88,7 +88,13 @@ function iniciarScroll(opcoes) {
     if (!alvo) return;
     e.preventDefault();
     if (menuAberto) fecharMenu();
-    lenis.scrollTo(alvo, { offset: 0, duration: 1.4, easing: (t) => 1 - Math.pow(1 - t, 3) });
+    // O que carrega no caminho (os vídeos do Instagram da home) pode empurrar o alvo para baixo
+    // durante a rolagem: ao chegar, confere a posição e completa o trajeto uma vez.
+    const ir = (duracao, conferir) => lenis.scrollTo(alvo, {
+      offset: 0, duration: duracao, easing: (t) => 1 - Math.pow(1 - t, 3),
+      onComplete: () => { if (conferir && Math.abs(alvo.getBoundingClientRect().top) > 4) ir(0.6, false); },
+    });
+    ir(1.4, true);
   });
 }
 
