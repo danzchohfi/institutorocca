@@ -43,6 +43,15 @@ html:not(.js) .hero--fusao, .abertura--estatica .hero--fusao, html.movimento-red
 .hero__especialidades a:hover, .hero__especialidades a:focus-visible { border-bottom-color: currentColor; }
 .hero__descritor { font-size: 11px; color: var(--cor-areia); margin: 0; }
 .hero__acoes { justify-content: center; gap: 1rem 2rem; margin-top: 1rem; }
+/* selo do Google: estrelas em areia, o texto em creme e o "veja" sublinhado, que desce até #avaliacoes */
+.hero__google {
+  display: inline-flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: .35rem .9rem;
+  margin-top: .4rem; font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--cor-creme); text-decoration: none;
+}
+.hero__google-estrelas { color: var(--cor-areia); letter-spacing: .12em; font-size: 13px; }
+.hero__google-acao { border-bottom: 1px solid rgba(242, 232, 217, .45); padding-bottom: 2px; transition: border-color var(--dur-rapida); }
+.hero__google:hover .hero__google-acao, .hero__google:focus-visible .hero__google-acao { border-bottom-color: currentColor; }
 
 /* ---- Abertura fundida — estado B (a clínica com a frase) -------------------
    A frase mora no terço de baixo da tela: no meio ela cairia sobre o wordmark
