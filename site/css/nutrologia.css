@@ -1,0 +1,37 @@
+/* ============================================================================
+   /nutrologia/ — regras só desta página (site/css/nutrologia.css)
+   ----------------------------------------------------------------------------
+   O comum (hero interno, cabeçalho de seção, pilares, "O que tratamos",
+   listas de perguntas, cards de médico, fecho) vem de site/site.css e de
+   shared/base.css (a seta para baixo do hero também). Aqui entra só o que é
+   desta página: a figura sangrada da bioimpedância, os ajustes de ritmo das
+   seções 02 e 04 e a linha desenhada das sub-seções.
+   Mobile-first; breakpoints 640 / 900 / 1200 / 1440; sem border-radius.
+   URLs em CSS resolvem a partir deste arquivo: ../../assets/…
+   ============================================================================ */
+
+/* ---- 01 · Como a gente conduz: figura de apoio sangrada (bioimpedância) ----------------
+   <figure class="conduz__figura"> <div class="conduz__moldura paralaxe"> … </div> <figcaption class="conduz__legenda"> */
+.conduz__figura { margin: clamp(3.5rem, 7vw, 6.5rem) 0 0; }
+.conduz__moldura { aspect-ratio: 4 / 3; background: var(--cor-bordo-profundo); }
+/* o arquivo de hoje é um croqui 1:1: o corte mostra a bancada e o notebook, não o teto */
+.conduz__moldura img { object-position: 50% 66%; }
+.conduz__legenda { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.conduz__legenda .legenda { margin-top: 14px; }
+@media (min-width: 640px) { .conduz__moldura { aspect-ratio: 3 / 2; } }
+@media (min-width: 900px) { .conduz__moldura { aspect-ratio: 21 / 9; } }
+/* o croqui é 1499 px: a partir de 1440 a moldura fica no container, para a imagem não passar do tamanho natural
+   (some quando a foto da diária entrar reexportada em ≥ 2000 px, pendência 17) */
+@media (min-width: 1440px) { .conduz__figura .conduz__moldura { max-width: var(--container); margin-inline: auto; } }
+
+/* ---- 02 · O que tratamos --------------------------------------------------------------- */
+/* o cabeçalho da seção já dá o respiro; a lista começa logo abaixo */
+.tratamos .tratamos__lista { margin-top: 0; }
+/* a linha de cima de cada sub-seção é desenhada por [data-linha] (src/c02-chegada/linhas.js) */
+.tratamos .tratamento { border-top: 0; }
+.tratamento__linha { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--linha); }
+.tratamento__texto .tratamento__fala { margin-top: 2.2rem; max-width: 34ch; }
+.tratamento__texto .tratamento__perguntas { margin-top: 2.6rem; }
+
+/* ---- 04 · Perguntas mais comuns (o cabeçalho de seção e a linha de ligações vêm do site.css) ---- */
+.perguntas-comuns .comuns { margin-top: 0; }
