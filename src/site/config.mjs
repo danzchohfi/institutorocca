@@ -30,9 +30,9 @@ export const STREAM_IDS = {
 };
 
 /* Domínio público do site, sem barra no fim: og:image, og:url e canonical precisam de URL absoluta
-   (WhatsApp, Instagram e LinkedIn não resolvem caminho relativo). Hoje é a homologação no GitHub
-   Pages; trocar pelo domínio definitivo do cliente. [PENDENTE] */
-export const DOMINIO = 'https://pages.vitaminapublicitaria.com.br/institutorocca';
+   (WhatsApp, Instagram e LinkedIn não resolvem caminho relativo). O site é publicado na raiz deste
+   domínio (scripts/publicar.mjs): a home é <DOMINIO>/ e as internas, <DOMINIO>/<slug>/. */
+export const DOMINIO = 'https://www.institutorocca.com.br';
 
 export const ANO = '2026';
 export const PENDENTE = '[PENDENTE]';                        // o rótulo visível; nunca some sozinho

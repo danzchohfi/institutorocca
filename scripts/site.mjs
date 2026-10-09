@@ -149,7 +149,7 @@ function gerar(arquivoTemplate, problemas, avisos) {
     site: `${posix.relative(pastaRel, 'site') || '.'}/`,                                // ./ ou ../
     bundle: slug === 'index' ? 'app.js' : 'interno.js',                                 // a home leva o three.js; as internas não
     dominio: String(cfg.DOMINIO || '').replace(/\/+$/, ''),                             // URL absoluta (og:image, og:url, canonical)
-    url_pagina: `${String(cfg.DOMINIO || '').replace(/\/+$/, '')}/${pastaRel}/`,        // https://…/site/ ou https://…/site/<slug>/
+    url_pagina: `${String(cfg.DOMINIO || '').replace(/\/+$/, '')}/${slug === 'index' ? '' : `${slug}/`}`, // https://…/ ou https://…/<slug>/ (site na raiz do domínio)
     ano: cfg.ANO,
     whats_numero: cfg.WHATS_NUMERO,
     whats_numero_visivel: cfg.WHATS_NUMERO_VISIVEL,
@@ -253,11 +253,11 @@ if (problemas.length) {
 /* ---- sitemap.xml e robots.txt (todas as páginas, no domínio do config) ------------------------------ */
 {
   const dominio = String(cfg.DOMINIO || '').replace(/\/+$/, '');
-  const urls = todosSlugs.map((s) => `${dominio}/site/${s === 'index' ? '' : `${s}/`}`);
+  const urls = todosSlugs.map((s) => `${dominio}/${s === 'index' ? '' : `${s}/`}`);
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`;
   const sitemapAbs = join(dirSite, 'sitemap.xml');
   if (!existsSync(sitemapAbs) || readFileSync(sitemapAbs, 'utf8') !== xml) writeFileSync(sitemapAbs, xml);
-  const robots = `User-agent: *\nAllow: /\nSitemap: ${dominio}/site/sitemap.xml\n`;
+  const robots = `User-agent: *\nAllow: /\nSitemap: ${dominio}/sitemap.xml\n`;
   const robotsAbs = join(raiz, 'robots.txt');
   if (!existsSync(robotsAbs) || readFileSync(robotsAbs, 'utf8') !== robots) writeFileSync(robotsAbs, robots);
 }

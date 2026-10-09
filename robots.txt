@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://pages.vitaminapublicitaria.com.br/institutorocca/site/sitemap.xml
+Sitemap: https://www.institutorocca.com.br/sitemap.xml
