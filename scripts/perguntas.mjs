@@ -67,7 +67,7 @@ function template(p) {
         inLanguage: 'pt-BR',
         mainEntityOfPage: '{{url_pagina}}',
         image: `{{dominio}}/assets/img/producao/${m.foto}.jpg`,
-        author: { '@type': 'Person', name: m.nome, url: `{{dominio}}/site/${m.slug}/`, jobTitle: 'Médico(a)', worksFor: { '@type': 'MedicalClinic', name: 'Instituto Rocca' } },
+        author: { '@type': 'Person', name: m.nome, url: `{{dominio}}/${m.slug}/`, jobTitle: 'Médico(a)', worksFor: { '@type': 'MedicalClinic', name: 'Instituto Rocca' } },
         publisher: { '@type': 'MedicalClinic', name: 'Instituto Rocca', address: { '@type': 'PostalAddress', streetAddress: 'Av. Indianópolis, 100', addressLocality: 'São Paulo', addressRegion: 'SP', postalCode: '04062-000', addressCountry: 'BR' }, openingHours: ['Mo-Fr 08:00-19:00', 'Sa 08:00-15:00'] },
         articleSection: assunto,
         about: esp,
@@ -79,8 +79,8 @@ function template(p) {
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Instituto Rocca', item: '{{dominio}}/site/' },
-          { '@type': 'ListItem', position: 2, name: 'Conteúdo', item: '{{dominio}}/site/conteudo/' },
+          { '@type': 'ListItem', position: 1, name: 'Instituto Rocca', item: '{{dominio}}/' },
+          { '@type': 'ListItem', position: 2, name: 'Conteúdo', item: '{{dominio}}/conteudo/' },
           { '@type': 'ListItem', position: 3, name: p.titulo, item: '{{url_pagina}}' },
         ],
       },

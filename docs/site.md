@@ -1,6 +1,6 @@
 # O site final — home e páginas internas (rodada 7)
 
-> Preview em refinamento: https://danzchohfi.github.io/institutorocca/site/
+> Site: https://www.institutorocca.com.br (GitHub Pages; `scripts/publicar.mjs` monta só o site, na raiz do domínio, e redireciona os endereços antigos `/site/…`).
 > Gerado por `node scripts/site.mjs` a partir de `src/site/`. Capturas em `docs/screenshots/site-<slug>-{desktop,mobile}.png`.
 
 ## 1. O que o cliente pediu e como foi resolvido
@@ -70,6 +70,6 @@ em destaque discreto.
 
 1. Código da conta do Cloudflare Stream e os três UIDs (qual vídeo é de quem).
 2. RQE dos três médicos (os três CRMs já estão no site), a especialidade de registro do Dr. Túlio e do Dr. Breno, e a linha de formação de cada um.
-3. E-mail ("como chegar" saiu do site a pedido do cliente). Já no site: WhatsApp de agendamento +55 11 99324-6550 (também como telefone, por enquanto), horário (segunda a sexta, 8h às 19h; sábado, 8h às 15h) e o endereço confirmado (Av. Indianópolis, 100); política de falta/remarcação; domínio definitivo (o `og:image` usa o endereço de homologação até lá).
+3. E-mail ("como chegar" saiu do site a pedido do cliente). Já no site: WhatsApp de agendamento +55 11 99324-6550 (também como telefone, por enquanto), horário (segunda a sexta, 8h às 19h; sábado, 8h às 15h) e o endereço confirmado (Av. Indianópolis, 100); política de falta/remarcação. O e-mail fica fora do Contato até o endereço ser confirmado (o domínio já recebe e-mail pelo Google).
 4. Retrato da Dra. Ana Paula de colete camelo (opcional) e, se possível, o trio em 2400–3000 px.
 5. Validação das falas em primeira pessoa e das respostas de "Perguntas mais comuns"; as perguntas de tricologia.

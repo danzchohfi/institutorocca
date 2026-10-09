@@ -1,7 +1,8 @@
-# Publica os protótipos no GitHub Pages a cada push (branch de trabalho ou main).
-# O site é o próprio repositório, sem build: as páginas usam caminhos relativos
-# e os bundles (concepts/*/app.js) já estão versionados. Ficam de fora só o
-# que não é site (fonte dos bundles, scripts, dependências, capturas pesadas).
+# Publica o site do Instituto Rocca no GitHub Pages a cada push (branch de trabalho ou main),
+# na raiz do domínio do cliente (Settings → Pages → Custom domain: www.institutorocca.com.br).
+# Sem build: as páginas e os bundles (site/app.js, site/interno.js) já estão versionados.
+# scripts/publicar.mjs monta _site/ só com o site e o que ele usa; conceitos, documentos e
+# fontes do código ficam de fora.
 name: Publicar no GitHub Pages
 
 on:
@@ -33,11 +34,7 @@ jobs:
           enablement: true
       - name: Montar o site
         run: |
-          mkdir -p _site
-          rsync -a ./ _site/ \
-            --exclude '.git' --exclude '.github' --exclude '_site' \
-            --exclude 'node_modules' --exclude 'dist' --exclude 'src' --exclude 'scripts' \
-            --exclude 'docs/screenshots/*-full.png' --exclude 'docs/screenshots/*-parte*.png'
+          node scripts/publicar.mjs
           du -sh _site
       - uses: actions/upload-pages-artifact@v3
       - id: deploy
