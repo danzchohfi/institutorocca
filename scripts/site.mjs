@@ -137,6 +137,16 @@ function verificar(html, saidaRel, arquivo, problemas) {
   });
 }
 
+/* ---- Google Tag Manager (config.mjs → GTM_ID; vazio = sem GTM) ------------------------ */
+function gtm(id) {
+  if (!id) return { gtm_head: '', gtm_body: '' };
+  if (!/^GTM-[A-Z0-9]+$/.test(id)) throw new Error(`config.mjs: GTM_ID "${id}" não tem o formato GTM-XXXXXXX`);
+  return {
+    gtm_head: `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${id}');</script>`,
+    gtm_body: `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${id}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`,
+  };
+}
+
 /* ---- uma página ------------------------------------------------------------------- */
 function gerar(arquivoTemplate, problemas, avisos) {
   const arquivo = posix.relative(raiz, arquivoTemplate.split('\\').join('/'));
@@ -154,6 +164,7 @@ function gerar(arquivoTemplate, problemas, avisos) {
     whats_numero: cfg.WHATS_NUMERO,
     whats_numero_visivel: cfg.WHATS_NUMERO_VISIVEL,
     pendente: cfg.PENDENTE,
+    ...gtm(String(cfg.GTM_ID || '').trim()),
   };
 
   const { meta, corpo } = lerCabecalho(readFileSync(arquivoTemplate, 'utf8'), arquivo);
@@ -253,7 +264,7 @@ if (problemas.length) {
 /* ---- sitemap.xml e robots.txt (todas as páginas, no domínio do config) ------------------------------ */
 {
   const dominio = String(cfg.DOMINIO || '').replace(/\/+$/, '');
-  const urls = todosSlugs.map((s) => `${dominio}/${s === 'index' ? '' : `${s}/`}`);
+  const urls = todosSlugs.filter((s) => s !== '404').map((s) => `${dominio}/${s === 'index' ? '' : `${s}/`}`);   // a 404 não entra no sitemap
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`;
   const sitemapAbs = join(dirSite, 'sitemap.xml');
   if (!existsSync(sitemapAbs) || readFileSync(sitemapAbs, 'utf8') !== xml) writeFileSync(sitemapAbs, xml);
