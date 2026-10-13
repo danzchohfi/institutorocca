@@ -64,6 +64,7 @@ em destaque discreto.
 - `src/site/comum.js` inicia o site (Lenis, GSAP/ScrollTrigger, nav, reveals, Stream, mosaico); `main.js` (home) soma `hero.js` e o sistema de partículas (`shared/letras.js`, three.js) → `site/app.js` (~620 KB); `interno.js` → `site/interno.js` (~140 KB) para as nove internas.
 - Sem WebGL, com movimento reduzido ou sem JS, a home fica inteira e legível (abertura estática).
 - Skip link funcional (fora do Lenis, `main` focável); `dialog` do filme nomeado pela legenda; contraste do areia sobre osso corrigido; cards de médico sempre com o componente Stream.
+- Publicação: GitHub Pages (`.github/workflows/pages.yml`) ou Cloudflare Workers (`wrangler.jsonc`; build `node scripts/publicar.mjs`, deploy `npx wrangler deploy`). Os dois publicam o mesmo `_site/`.
 - Checagens: `node scripts/site.mjs && npm run build && node scripts/lexico.mjs`; `node scripts/shot.mjs site/<slug>/index.html <prefixo>` para capturas e erros de console.
 
 ## 7. O que falta do cliente

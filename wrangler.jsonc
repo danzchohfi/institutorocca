@@ -1,0 +1,12 @@
+// Publicação no Cloudflare (Workers com arquivos estáticos), alternativa ao GitHub Pages.
+// O Cloudflare roda "node scripts/publicar.mjs" (comando de build no painel), que monta _site/
+// com o site na raiz do domínio, e depois "npx wrangler deploy", que publica _site/.
+// O nome precisa ser igual ao do Worker no painel do Cloudflare.
+{
+  "name": "institutorocca",
+  "compatibility_date": "2026-10-13",
+  "assets": {
+    "directory": "./_site",
+    "html_handling": "auto-trailing-slash"
+  }
+}
