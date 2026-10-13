@@ -4,26 +4,20 @@
 > Os três nascem da mesma Direção de Marca, usam o mesmo sistema visual e o mesmo texto; o que muda é o hero,
 > o ritmo e a forma como a mídia atravessa a página.
 
-## Previews hospedadas
+## Onde ver
 
-**Site (GitHub Pages, o próprio repositório):** https://danzchohfi.github.io/institutorocca/ — o hub abre a versão final;
-as versões abaixo continuam publicadas para consulta. O scroll é o da página real, sem iframe. Precisa ser ativado uma vez pelo dono do repositório
-(Settings → Pages → Build and deployment → Source: **GitHub Actions**); a partir daí `.github/workflows/pages.yml`
-publica a cada push nesta branch (ou na `main`).
+Cada conceito abre localmente em `concepts/<conceito>/index.html` (`npm run dev`). O site final está em
+https://www.institutorocca.com.br.
 
-| # | Conceito | Site | Artifact (provisório, dentro de iframe) |
-|---|----------|------|------------------------------------------|
-| 7 | **Letras** · principal (página completa) | [abrir](https://danzchohfi.github.io/institutorocca/concepts/07-letras/) | [abrir](https://claude.ai/code/artifact/396e8436-193e-4f84-bccf-efcceb4e8412) |
-| 8 | **Retrato** · os três médicos no hero (Higgsfield) | [abrir](https://danzchohfi.github.io/institutorocca/concepts/08-retrato/) | [abrir](https://claude.ai/code/artifact/56510856-8b6c-475f-8ab2-adb00ab9b333) |
-| 1 | **Matéria** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/01-materia/) | [abrir](https://claude.ai/code/artifact/9ce3eecf-c42e-4a56-88f8-39344acbf006) |
-| 2 | **Chegada** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/02-chegada/) | [abrir](https://claude.ai/code/artifact/78e9e269-6337-4588-b6b9-c7b2b8bdcc54) |
-| 3 | **Presença** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/03-presenca/) | [abrir](https://claude.ai/code/artifact/beb00a86-fcd1-4331-abf7-2d3a54b2a446) |
+| # | Conceito | Pasta |
+|---|----------|-------|
+| 7 | **Letras** · principal (página completa) | `concepts/07-letras/` |
+| 8 | **Retrato** · os três médicos no hero | `concepts/08-retrato/` |
+| 1 | **Matéria** | `concepts/01-materia/` |
+| 2 | **Chegada** | `concepts/02-chegada/` |
+| 3 | **Presença** | `concepts/03-presenca/` |
 
-Arquivo (rodada 1, sem os ajustes de scroll): 4 Conversa [abrir](https://claude.ai/code/artifact/09347f2e-9418-45c6-972f-1f2748888485) ·
-5 Símbolo [abrir](https://claude.ai/code/artifact/09a7a2bc-3761-40d6-9e07-b512ad29cdfd) ·
-6 Slides [abrir](https://claude.ai/code/artifact/47d687a7-64e2-4817-97c3-d71b42522333).
-
-Páginas privadas por padrão; compartilhe pelo menu da página. Geradas por `node scripts/build-artifacts.mjs` (cada conceito em um HTML único com fontes e imagens embutidas).
+Os conceitos 4 (Conversa), 5 (Símbolo) e 6 (Slides) saíram do repositório na rodada de aprovação; estão no histórico do git.
 
 ## Rodada 7 — o site final
 
@@ -33,9 +27,8 @@ está, mas que rapidamente dê para ver a clínica também; a imagem não precis
 pedida em dois níveis: primeiro **clínica de Nutrologia, Endocrinologia e Dermatologia**; depois o que tratamos
 (emagrecimento, lipedema, tricologia, estética facial, menopausa…), com o emagrecimento em destaque discreto.
 
-O resultado está em `site/` (home e internas), documentado em **`docs/site.md`**, com preview em
-https://danzchohfi.github.io/institutorocca/site/ enquanto está em refinamento. As versões abaixo seguem como
-arquivo.
+O resultado está em `site/` (home e internas), documentado em **`docs/site.md`**, e no ar em
+https://www.institutorocca.com.br. As versões abaixo seguem como arquivo.
 
 ## 0. O que os seis têm em comum
 

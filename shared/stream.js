@@ -41,7 +41,7 @@ let avisou = false;
 function avisarSemConta() {
   if (avisou) return;
   avisou = true;
-  console.info('stream.js: há data-stream com UID, mas STREAM_CONTA (src/site/config.mjs) está vazio — fica o poster.');
+  console.info('Vídeo indisponível: fica a imagem de capa.');
 }
 
 function deveEconomizar() {

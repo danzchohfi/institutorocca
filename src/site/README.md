@@ -18,7 +18,7 @@ src/site/
   hero.js               a abertura fundida da home: iniciarHeroFusao()   (o construtor da home implementa)
   paginas/<slug>.html   UM template por página (documento HTML completo + cabeçalho de metadados)
   partials/*.html       head · skip · nav · menu · fecho · footer · whats · lightbox   (NÃO editar)
-site/                   SAÍDA gerada e versionada (o GitHub Pages publica o repositório sem build)
+site/                   SAÍDA gerada e versionada (scripts/publicar.mjs monta o que vai ao ar a partir dela)
   index.html            ← paginas/index.html   ({{raiz}} = ../     {{site}} = ./)
   <slug>/index.html     ← paginas/<slug>.html  ({{raiz}} = ../../  {{site}} = ../)
   site.css              regras comuns do site (fase Base)   — NÃO editar (nem shared/base.css)

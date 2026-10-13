@@ -24,7 +24,6 @@
 .casa-hero .eyebrow { color: var(--cor-creme); opacity: .88; text-shadow: 0 1px 12px rgba(42, 26, 22, .5); }
 .casa-hero .hero__sub { margin-top: 1.6rem; max-width: 40ch; }
 .casa-hero .hero__nota { margin-top: .9rem; font-size: 1rem; line-height: 1.6; max-width: 44ch; color: var(--cor-creme-60); }
-.casa-hero .pendente { color: var(--cor-creme-60); }
 @media (max-width: 639.98px) {
   /* "E um médico que fica." cabe numa linha só de 390 px para cima */
   .casa-hero h1 { font-size: clamp(1.9rem, 8.6vw, 2.6rem); }
@@ -81,7 +80,6 @@
 
 /* ---- 03 · A casa, por dentro: três tiles de vídeo 16:9 ---- */
 .casa-videos .tile__media { aspect-ratio: 16 / 9; }
-.casa-videos .tile__sub .pendente { color: var(--fg-2); }
 /* sob o vídeo de cada médico, o link "Conheça o médico →" */
 .casa-videos .tile__corpo > .botao { margin-top: calc(1.1rem - 12px); }   /* os 12 px descontam a área de toque do .botao--secundario (site.css) */
 @media (min-width: 900px) { .casa-videos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

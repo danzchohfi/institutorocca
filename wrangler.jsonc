@@ -1,0 +1,17 @@
+// Site do Instituto Rocca no Cloudflare: um Worker só com arquivos estáticos (sem script, sem custo por requisição).
+// A pasta _site/ sai de `node scripts/publicar.mjs`; `npx wrangler@4.144.0 deploy` publica. Passo a passo: docs/cloudflare.md.
+{
+  "name": "institutorocca-site",
+  "compatibility_date": "2026-09-29",
+  "assets": {
+    "directory": "./_site",
+    // endereço que não existe: a /404.html, com status 404 (nunca a home com 200)
+    "not_found_handling": "404-page",
+    // /contato e /contato/index.html redirecionam para /contato/
+    "html_handling": "auto-trailing-slash"
+  },
+  // Antes da troca do domínio, o site fica em https://institutorocca-site.<subdomínio>.workers.dev para conferir.
+  // Depois que www.institutorocca.com.br estiver no Worker, trocar para false.
+  "workers_dev": true,
+  "preview_urls": false
+}

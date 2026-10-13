@@ -205,7 +205,6 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 /* páginas dos médicos: o rótulo em duas linhas (especialidade · registro), o [PENDENTE] sem caixa alta
    nem tracking (lê melhor) e a citação sem o limite de largura dos parágrafos */
 .hero--interno .hero__rotulo-linha { display: block; }
-.hero--interno .hero__pendente { text-transform: none; letter-spacing: .04em; color: var(--fg-2); }
 /* o que o médico atende, entre a macro área e o CRM: texto corrido, sem caixa alta (lista longa) */
 .hero--interno .hero__rotulo-frente { margin: .3rem 0 .4rem; max-width: 40ch; font-size: .95rem; letter-spacing: .02em; line-height: 1.5; text-transform: none; color: var(--fg-2); }
 .hero--interno .hero__citacao p { max-width: none; }
@@ -368,7 +367,6 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 .pergunta-item__titulo { font-size: calc(var(--corpo) * 1.15); font-weight: 300; line-height: 1.4; max-width: 34ch; }
 .pergunta-item .assinatura { margin-top: 0; }
 .pergunta-item__acao { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1rem; justify-self: start; }
-.pergunta-item__pendente { font-size: .8rem; color: var(--fg-2); }
 @media (min-width: 900px) {
   .pergunta-item { grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(20px, 3vw, 40px); align-items: baseline; }
   .tratamento .pergunta-item { grid-template-columns: minmax(0, 1fr) auto auto; }   /* nas especialidades há a assinatura */
@@ -440,15 +438,12 @@ html:not(.js) .abertura + .secao.sup-bordo, .abertura--estatica + .secao.sup-bor
 .mapa__texto { position: absolute; left: 0; right: 0; bottom: clamp(16px, 3vw, 28px); font-size: var(--eyebrow); letter-spacing: .22em; text-transform: uppercase; color: var(--cor-grafite); }
 .sup-osso .mapa { background: var(--cor-creme); border: 1px solid var(--linha); }
 .endereco { font-style: normal; line-height: 1.8; }
-.endereco .footer__pendente, .endereco .pendente { color: var(--fg-2); }
-.pendente { color: var(--fg-2); }
 
 /* ---- Fecho (partial fecho.html; base.css §14 tem .fecho__whats/.fecho__numero) ----------- */
 .fecho .grid-12 { align-items: start; row-gap: var(--espaco-5); }
 .fecho__chamada h2 { max-width: 14ch; }
 .fecho__chamada .texto-grande { margin-top: 1.6rem; max-width: 34ch; }
 .fecho__chamada .acoes { margin-top: 2.6rem; }
-.fecho__pendente { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin-top: -.4rem; }
 .fecho__whats-nota { max-width: 36ch; }
 /* a página de contato usa o topo como fecho: número grande sob o H1 */
 .contato-topo .fecho__numero { display: inline-block; margin-top: 2rem; }

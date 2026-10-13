@@ -19,7 +19,7 @@ O cliente escolheu a **abertura em partículas** (versão Letras) seguida das **
 | Uma página por pergunta | `site/conteudo/<pergunta>/` | 29 páginas geradas de `src/site/perguntas.mjs` por `node scripts/perguntas.mjs` (título, descrição, canonical e dados estruturados próprios; `site/sitemap.xml` e `robots.txt` saem do `site.mjs`) |
 | Contato | `site/contato/` | WhatsApp, endereço, horários, mapa |
 
-**Preview em refinamento (antes de liberar ao cliente):** https://danzchohfi.github.io/institutorocca/site/
+**No ar:** https://www.institutorocca.com.br (publicação: veja "Publicação" abaixo).
 
 - Nenhum formulário: toda chamada para ação vai para o WhatsApp (link central em `src/site/config.mjs`).
 - Os três vídeos de produção entram pelo Cloudflare Stream (`shared/stream.js`); até o código da conta e os UIDs
@@ -55,22 +55,24 @@ As pastas mantêm a numeração interna original (01, 02, 03, 07, 08). Os concei
 
 Leia **`CONCEITOS.md`** para o racional de cada conceito e **`BRIEF.md`** para o briefing criativo que ancorou tudo.
 
-## Previews hospedadas
+## Publicação
 
-**Site (GitHub Pages, o próprio repositório):** https://pages.vitaminapublicitaria.com.br/institutorocca/ (a raiz redireciona para `site/`);
-as versões abaixo continuam publicadas para consulta. O scroll é o da página real, sem iframe. Precisa ser ativado uma vez pelo dono do repositório
-(Settings → Pages → Build and deployment → Source: **GitHub Actions**); a partir daí `.github/workflows/pages.yml`
-publica a cada push nesta branch (ou na `main`).
+`node scripts/publicar.mjs` monta `_site/` só com o que as páginas usam (sem documentos, sem comentários de HTML e
+CSS, fontes só em woff2) e falha se algo de bastidor sobrar. O Cloudflare publica `_site/` a cada push na `main`
+(`.github/workflows/cloudflare.yml` + `wrangler.jsonc`); a migração do domínio está em **`docs/cloudflare.md`**.
+Até a troca do domínio, `.github/workflows/pages.yml` segue publicando no GitHub Pages (`publicar.mjs --github`).
 
-| # | Conceito | Site | Artifact (provisório, dentro de iframe) |
-|---|----------|------|------------------------------------------|
-| 7 | **Letras** · principal (página completa) | [abrir](https://danzchohfi.github.io/institutorocca/concepts/07-letras/) | [abrir](https://claude.ai/code/artifact/396e8436-193e-4f84-bccf-efcceb4e8412) |
-| 8 | **Retrato** · os três médicos no hero (Higgsfield) | [abrir](https://danzchohfi.github.io/institutorocca/concepts/08-retrato/) | [abrir](https://claude.ai/code/artifact/56510856-8b6c-475f-8ab2-adb00ab9b333) |
-| 1 | **Matéria** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/01-materia/) | [abrir](https://claude.ai/code/artifact/9ce3eecf-c42e-4a56-88f8-39344acbf006) |
-| 2 | **Chegada** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/02-chegada/) | [abrir](https://claude.ai/code/artifact/78e9e269-6337-4588-b6b9-c7b2b8bdcc54) |
-| 3 | **Presença** | [abrir](https://danzchohfi.github.io/institutorocca/concepts/03-presenca/) | [abrir](https://claude.ai/code/artifact/beb00a86-fcd1-4331-abf7-2d3a54b2a446) |
+## Versões da home (arquivo)
 
-Páginas privadas por padrão; compartilhe pelo menu da página. Geradas por `node scripts/build-artifacts.mjs` (cada conceito em um HTML único com fontes e imagens embutidas).
+Os conceitos não são publicados: para ver, rode `npm run dev` e abra `concepts/<conceito>/index.html`.
+
+| # | Conceito | Pasta |
+|---|----------|-------|
+| 7 | **Letras** · principal (página completa) | `concepts/07-letras/` |
+| 8 | **Retrato** · os três médicos no hero | `concepts/08-retrato/` |
+| 1 | **Matéria** | `concepts/01-materia/` |
+| 2 | **Chegada** | `concepts/02-chegada/` |
+| 3 | **Presença** | `concepts/03-presenca/` |
 
 ## Como rodar
 
@@ -108,7 +110,7 @@ scripts/site.mjs        gera as páginas de site/ a partir de src/site/
 scripts/build.mjs       build (esbuild)
 scripts/shot.mjs        screenshots em 3 viewports + erros de console + overflow
 scripts/lexico.mjs      varredura dos termos que a marca não usa
-scripts/build-artifacts.mjs  gera dist/artifacts/<conceito>.html autocontido (para preview hospedado)
+scripts/build-artifacts.mjs  gera dist/artifacts/<conceito>.html autocontido (um HTML único por conceito)
 docs/screenshots/       capturas de cada conceito (desktop, tablet, mobile)
 ```
 

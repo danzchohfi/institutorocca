@@ -1,0 +1,36 @@
+<!-- pagina
+titulo: Página não encontrada · Instituto Rocca
+descricao: O endereço não existe ou mudou. Volte para o início ou fale com o Instituto Rocca pelo WhatsApp.
+css: contato
+corpo: sup-bordo pagina pagina--contato
+robots: noindex
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+{{head}}
+<body class="{{corpo}}">
+{{skip}}
+{{nav}}
+{{menu}}
+<main id="conteudo" tabindex="-1">
+  <!-- Publicada como /404.html (scripts/publicar.mjs troca os caminhos relativos por absolutos):
+       o servidor devolve esta página com status 404 para qualquer endereço que não existe. -->
+  <section class="hero hero--interno hero--sem-foto sup-bordo contato-topo" data-hero>
+    <div class="container hero__in">
+      <div class="hero__texto">
+        <p class="eyebrow" data-reveal>Página não encontrada</p>
+        <h1 class="titulo-2l" data-split-linhas>Este endereço <span class="linha-2">não existe mais.</span></h1>
+        <p class="hero__sub texto-grande" data-reveal>Pode ter mudado de lugar. Comece pelo início ou fale direto com o Instituto pelo WhatsApp.</p>
+        <div class="acoes" data-reveal>
+          <a class="botao botao--primario" href="{{site}}">Ir para o início</a>
+          <a class="botao botao--secundario" href="{{wa}}" target="_blank" rel="noopener">Falar no WhatsApp <span class="seta" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{{footer}}
+{{whats}}
+{{lightbox}}
+</body>
+</html>
