@@ -16,8 +16,9 @@ permissions:
   contents: read
 
 concurrency:
-  group: cloudflare-producao
-  cancel-in-progress: false
+  # PRs não disputam a fila com a publicação: cada PR tem a sua (e cancela a conferência antiga)
+  group: ${{ github.event_name == 'pull_request' && format('cloudflare-pr-{0}', github.event.pull_request.number) || 'cloudflare-producao' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   publicar:
@@ -35,7 +36,8 @@ jobs:
           node scripts/publicar.mjs
           du -sh _site
       - name: Conferir os segredos
-        if: github.event_name != 'pull_request'
+        # só a main publica (um "Run workflow" em outra branch só monta e confere)
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         id: segredos
         env:
           TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

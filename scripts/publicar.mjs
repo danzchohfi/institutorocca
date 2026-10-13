@@ -58,48 +58,62 @@ if (existsSync(join(dir404, 'index.html'))) {
 }
 
 /* ---- 2. limpeza do que um visitante lê no código-fonte ----------------------------------------- */
-// HTML: comentários fora de <script>/<style> e o data-lexico-ok (só o scripts/lexico.mjs lê)
-const limparHtml = (html) => html
-  .split(/(<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/style>)/i)
-  .map((parte, i) => (i % 2 ? parte : parte.replace(/<!--[\s\S]*?-->/g, '')))
-  .join('')
-  .replace(/\s+data-lexico-ok(?:="[^"]*")?(?=[\s/>])/g, '')
-  .replace(/^[ \t]*\n/gm, '');
-
 // CSS: comentários /* … */, sem tocar no que estiver dentro de aspas
 const limparCss = (css) => css
   .replace(/("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|\/\*[\s\S]*?\*\//g, (todo, aspas) => aspas || '')
   .replace(/^[ \t]*\n/gm, '');
 
+// HTML: comentários e linhas vazias fora de <script>/<style>; comentários de CSS dentro de <style>;
+// o atributo data-lexico-ok (só o scripts/lexico.mjs lê), apenas dentro de tags
+const limparHtml = (html) => html
+  .split(/(<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/style>)/i)
+  .map((parte, i) => {
+    if (i % 2) return /^<style/i.test(parte) ? parte.replace(/(<style\b[^>]*>)([\s\S]*?)(<\/style>)$/i, (_, a, css, b) => a + limparCss(css) + b) : parte;
+    return parte
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/(<[a-z][^<>]*?)\s+data-lexico-ok(?:="[^"]*")?(?=[\s/>])/gi, '$1')
+      .replace(/^[ \t]*\n/gm, '');
+  })
+  .join('');
+
 /* ---- 3. assets, fontes e CSS compartilhado: só o que é citado ---------------------------------- */
 const PASTAS_COPIADAS = /^(assets|brand|shared)\//;
 const copiados = new Set();
 
-// caminhos locais citados num HTML (atributos, srcset, onerror, og:image com o domínio, url() em style)
+// caminhos locais citados num HTML (atributos, srcset, onerror, og:image com o domínio, url() em style).
+// Só conta o caminho que começa logo depois de aspas, espaço, "(", "," ou "=": assets/ no meio de uma URL
+// externa (https://cdn…/assets/x.js) não é deste site.
 function citadosNoHtml(html, paginaRel) {
   const base = posix.dirname(`/${paginaRel}`);
   const achados = [];
-  const semDominio = html.split(`${dominio}/`).join('/');
-  semDominio.replace(/(?:\.\.\/|\.\/|\/)*(?:assets|brand|shared)\/[^"'\s)<>,?#]+/g, (caminho) => {
+  const texto = html.replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'").replace(/&amp;/g, '&').split(`${dominio}/`).join('/');
+  texto.replace(/(^|["'\s(,=])((?:\.\.\/|\.\/|\/)*(?:assets|brand|shared)\/[^"'\s)<>,?#]+)/g, (todo, antes, caminho) => {
     achados.push(caminho.startsWith('/') ? caminho : posix.join(base, caminho));
-    return caminho;
+    return todo;
   });
   return achados;
 }
 
-// url() de um CSS, resolvido a partir da pasta do próprio CSS
+// url(), @import "…" e image-set("…") de um CSS, resolvidos a partir da pasta do próprio CSS
 function citadosNoCss(css, cssRel) {
   const base = posix.dirname(`/${cssRel}`);
   const achados = [];
-  css.replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, (_, __, url) => {
-    if (!/^(?:data:|https?:|\/\/|#)/i.test(url)) achados.push(url.startsWith('/') ? url : posix.join(base, url));
-    return _;
+  const anotar = (url) => {
+    const limpo = url.trim().split(/[?#]/)[0];
+    if (limpo && !/^(?:data:|https?:|\/\/|#)/i.test(url.trim())) achados.push(limpo.startsWith('/') ? limpo : posix.join(base, limpo));
+  };
+  css.replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, (todo, aspas, url) => { anotar(url); return todo; });
+  css.replace(/@import\s+(['"])([^'"]+)\1/g, (todo, aspas, url) => { anotar(url); return todo; });
+  css.replace(/image-set\(([^)]*)\)/g, (todo, dentro) => {
+    dentro.replace(/(['"])([^'"]+)\1/g, (t, a, url) => { anotar(url); return t; });
+    return todo;
   });
   return achados;
 }
 
 function copiarCitado(caminhoUrl, quem) {
-  const alvo = posix.normalize(caminhoUrl).replace(/^\/+/, '');   // ../ além da raiz some, como no navegador
+  let alvo = posix.normalize(caminhoUrl).replace(/^\/+/, '');   // ../ além da raiz some, como no navegador
+  try { alvo = decodeURI(alvo); } catch { /* fica como está */ }
   if (!PASTAS_COPIADAS.test(alvo)) return null;
   if (copiados.has(alvo)) return null;
   const origem = join(raiz, alvo);
@@ -200,18 +214,59 @@ if (destino === 'cloudflare') {
 
 /* ---- 5. varredura final: nada de bastidor no que vai ao ar --------------------------------------- */
 const PROIBIDOS = [
-  [/claude|anthropic|openai|chatgpt|higgsfield|midjourney|copilot\b|codex\b/i, 'nome de ferramenta de IA'],
-  [/gerad[oa]s? (?:por|com|no) (?:IA|intelig)|intelig[eê]ncia artificial|stand-?in/i, 'menção a imagem ou texto gerado'],
-  [/scratchpad|internas\.md|home\.md|BRIEF|COPY\.md|CONCEITOS|lexico/, 'referência a documento interno'],
+  [/\bclaude\b|anthropic|openai|chatgpt|\bgpt-?\d|higg?sfield|midjourney|\bgemini\b|nano.?banana|dall-?e\b|stable.?diffusion|firefly|\bsora\b|\bkling\b|runwayml|ideogram|seedream|comfyui|\bcopilot\b|\bcodex\b/i, 'nome de ferramenta de IA'],
+  [/gerad[oa]s? (?:por|com|no|na) (?:IA|intelig)|cri(?:ad|ei)[oa]?s? com (?:a )?IA\b|intelig[eê]ncia artificial|stand-?in/i, 'menção a imagem ou texto gerado'],
+  [/scratchpad|internas\.md|home\.md|BRIEF|COPY\.md|CONCEITOS|lexico|src\/site\/|config\.mjs/, 'referência a documento ou código interno'],
   [/\[PENDENTE\]|\bpend[eê]ncia \d|\brodada \d|[Rr]odada de aprova/, 'pendência ou rodada de aprovação'],
-  [/\bo cliente\b|\bdo cliente\b|\bao cliente\b|\bpela agência\b|\bda agência\b/i, 'conversa entre agência e cliente'],
+  [/\b(?:pedido|decisão|escolha|aprovação|retorno|revisão|texto|dados) do cliente\b|\bo cliente (?:pediu|escolheu|aprovou|não aprovou|enviou|quer|preferiu|vetou)\b|\bconfirmar com o cliente\b|\b(?:pela|da) agência\b(?! [Nn]acional)/, 'conversa entre agência e cliente'],
   [/github\.io|pages\.vitaminapublicitaria/i, 'endereço de prévia'],
   [/<!--/, 'comentário de HTML'],
 ];
+// imagens que nunca vão ao ar, mesmo que alguma página passe a citar
+const NUNCA = ['assets/img/medicos-hero.jpg'];
+// metadados de imagem que denunciam geração por IA (C2PA, IPTC DigitalSourceType, nomes de ferramentas)
+const IA_NA_IMAGEM = /c2pa|jumbf|trainedAlgorithmicMedia|openai|dall-?e|midjourney|higg?sfield|firefly|gemini|stable.?diffusion|comfyui|google ai|imagen \d/i;
+
+// só os segmentos de metadados (JPEG: APPn e COM antes dos dados da imagem; PNG: blocos antes do IDAT),
+// para não confundir bytes comprimidos da foto com texto
+function metadadosDaImagem(buf) {
+  const partes = [];
+  if (buf[0] === 0xff && buf[1] === 0xd8) {
+    let i = 2;
+    while (i + 4 <= buf.length && buf[i] === 0xff) {
+      const marca = buf[i + 1];
+      if (marca === 0xda || marca === 0xd9) break;                    // início dos dados / fim
+      const tam = buf.readUInt16BE(i + 2);
+      if ((marca >= 0xe0 && marca <= 0xef) || marca === 0xfe) partes.push(buf.subarray(i + 4, i + 2 + tam));
+      i += 2 + tam;
+    }
+  } else if (buf.subarray(1, 4).toString('latin1') === 'PNG') {
+    let i = 8;
+    while (i + 8 <= buf.length) {
+      const tam = buf.readUInt32BE(i);
+      const tipo = buf.subarray(i + 4, i + 8).toString('latin1');
+      if (tipo === 'IDAT' || tipo === 'IEND') break;
+      partes.push(buf.subarray(i + 4, i + 8 + tam));
+      i += 12 + tam;
+    }
+  } else {
+    partes.push(buf);
+  }
+  return Buffer.concat(partes).toString('latin1');
+}
+
 const TEXTO = /\.(html|css|js|svg|xml|txt)$|\/_(headers|redirects)$/;
+const IMAGEM = /\.(jpe?g|png|webp|avif|gif)$/i;
 for (const abs of listar(saida)) {
   const r = rel(abs);
   if (/\.(md|ttf|otf)$/i.test(r) || /(^|\/)\.[^/]+$/.test(r)) problemas.push(`${r}: este tipo de arquivo não vai ao ar`);
+  if (NUNCA.includes(r)) problemas.push(`${r}: imagem que não vai ao ar (está em NUNCA)`);
+  for (const [padrao, motivo] of PROIBIDOS.slice(0, 2)) if (padrao.test(r)) problemas.push(`${r}: ${motivo} no nome do arquivo`);
+  if (IMAGEM.test(r)) {
+    const m = metadadosDaImagem(readFileSync(abs)).match(IA_NA_IMAGEM);
+    if (m) problemas.push(`${r}: metadado de imagem gerada por IA ("${m[0]}")`);
+    continue;
+  }
   if (!TEXTO.test(`/${r}`)) continue;
   const texto = ler(abs);
   for (const [padrao, motivo] of PROIBIDOS) {
@@ -221,6 +276,22 @@ for (const abs of listar(saida)) {
       const i = m.index;
       problemas.push(`${r}: ${motivo} → "${texto.slice(Math.max(0, i - 40), i + 60).replace(/\s+/g, ' ')}"`);
     }
+  }
+  if (r.endsWith('.html')) {
+    // comentário dentro de <script> que não seja JSON-LD
+    texto.replace(/<script\b(?![^>]*\bsrc=)(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/gi, (todo, js) => {
+      if (/\/\*|(^|\s)\/\/\s/.test(js)) problemas.push(`${r}: comentário dentro de <script> → "${js.trim().slice(0, 80)}"`);
+      return todo;
+    });
+  }
+  if (r === '404.html') {
+    // a 404 é servida em qualquer profundidade: nenhum caminho relativo
+    texto.replace(/\s(?:href|src|poster|srcset)="([^"]*)"|this\.src='([^']*)'|url\(\s*['"]?([^'")]+)/g, (todo, a, b, c) => {
+      for (const u of (a ?? b ?? c ?? '').split(',').map((x) => x.trim().split(/\s+/)[0]).filter(Boolean)) {
+        if (!/^(?:\/|#|[a-z][a-z0-9+.-]*:)/i.test(u)) problemas.push(`404.html: caminho relativo "${u}" (quebra fora da raiz)`);
+      }
+      return todo;
+    });
   }
 }
 
