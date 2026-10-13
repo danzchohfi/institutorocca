@@ -55,6 +55,13 @@ As pastas mantêm a numeração interna original (01, 02, 03, 07, 08). Os concei
 
 Leia **`CONCEITOS.md`** para o racional de cada conceito e **`BRIEF.md`** para o briefing criativo que ancorou tudo.
 
+## Publicação
+
+`node scripts/publicar.mjs` monta `_site/` só com o que as páginas usam (sem documentos, sem comentários de HTML e
+CSS, fontes só em woff2) e falha se algo de bastidor sobrar. O Cloudflare publica `_site/` a cada push na `main`
+(`.github/workflows/cloudflare.yml` + `wrangler.jsonc`); a migração do domínio está em **`docs/cloudflare.md`**.
+Até a troca do domínio, `.github/workflows/pages.yml` segue publicando no GitHub Pages (`publicar.mjs --github`).
+
 ## Versões da home (arquivo)
 
 Os conceitos não são publicados: para ver, rode `npm run dev` e abra `concepts/<conceito>/index.html`.

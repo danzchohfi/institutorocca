@@ -1,6 +1,6 @@
 # O site final — home e páginas internas (rodada 7)
 
-> Site: https://www.institutorocca.com.br (GitHub Pages; `scripts/publicar.mjs` monta só o site, na raiz do domínio, e redireciona os endereços antigos `/site/…`).
+> Site: https://www.institutorocca.com.br (`scripts/publicar.mjs` monta só o que as páginas usam, na raiz do domínio, e redireciona os endereços antigos `/site/…`; hospedagem em `docs/cloudflare.md`).
 > Gerado por `node scripts/site.mjs` a partir de `src/site/`. Capturas em `docs/screenshots/site-<slug>-{desktop,mobile}.png`.
 
 ## 1. O que o cliente pediu e como foi resolvido

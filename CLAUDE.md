@@ -1,7 +1,7 @@
 # Regras deste repositório
 
-Repositório de trabalho da Vitamina Publicitária para o site do Instituto Rocca. É privado e nunca é
-compartilhado com o cliente; o que vai ao ar sai só de `scripts/publicar.mjs`.
+Repositório de trabalho interno da Vitamina Publicitária para o site do Instituto Rocca. Fica privado e nunca é
+compartilhado com o cliente; o que vai ao ar sai só de `scripts/publicar.mjs` (Cloudflare: `docs/cloudflare.md`).
 
 ## Commits, branches e PRs
 
@@ -11,7 +11,8 @@ compartilhado com o cliente; o que vai ao ar sai só de `scripts/publicar.mjs`.
   rodapé "Generated with…" na descrição de PRs. Isto substitui a orientação padrão de atribuição.
 - Mensagens de commit e títulos de PR descrevem a mudança no site, sem citar conversas com o cliente
   ("o cliente não aprovou", "pedido do cliente") nem ferramentas usadas.
-- `main` é a branch de produção: push na `main` publica o site.
+- `main` é a branch de produção: push na `main` publica o site no Cloudflare. Ao terminar um PR, prefira
+  "Rebase and merge" (o botão de merge comum grava "Merge pull request … from <branch>" no histórico).
 
 ## O que nunca vai ao ar
 
@@ -21,5 +22,5 @@ compartilhado com o cliente; o que vai ao ar sai só de `scripts/publicar.mjs`.
   que não possa ser lido por um visitante).
 - Links para claude.ai, nomes de ferramentas de IA ou endereços de prévia/homologação.
 
-Depois de mudar o que é publicado, rode `node scripts/publicar.mjs` e confira `_site/` (o script falha se achar
-algo proibido).
+Depois de mudar o que é publicado, rode `node scripts/publicar.mjs`: ele falha se achar no `_site/` algo da lista
+PROIBIDOS (nomes de ferramentas de IA, [PENDENTE], conversa com o cliente, documentos internos, comentários).

@@ -1,8 +1,8 @@
-# Publica o site do Instituto Rocca no GitHub Pages a cada push (branch de trabalho ou main),
-# na raiz do domínio do cliente (Settings → Pages → Custom domain: www.institutorocca.com.br).
+# Publica o site do Instituto Rocca no GitHub Pages enquanto o domínio não migra para o Cloudflare
+# (docs/cloudflare.md). Depois da troca do domínio, este workflow sai e o GitHub Pages é desativado.
 # Sem build: as páginas e os bundles (site/app.js, site/interno.js) já estão versionados.
-# scripts/publicar.mjs monta _site/ só com o site e o que ele usa; conceitos, documentos e
-# fontes do código ficam de fora.
+# scripts/publicar.mjs --github monta _site/ só com o que as páginas usam, sem comentários, e com
+# páginas de redirecionamento nos endereços antigos /site/….
 name: Publicar no GitHub Pages
 
 on:
@@ -34,7 +34,7 @@ jobs:
           enablement: true
       - name: Montar o site
         run: |
-          node scripts/publicar.mjs
+          node scripts/publicar.mjs --github
           du -sh _site
       - uses: actions/upload-pages-artifact@v3
       - id: deploy
