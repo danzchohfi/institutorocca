@@ -91,6 +91,7 @@ uma linha `chave: valor` por dado (o gerador o remove da saída; `&` em texto va
 | `{{wa}}` | `https://wa.me/<número>?text=<whats_msg codificada>` | todo link para o WhatsApp da página (o nav, o menu, o fecho e o flutuante já usam) |
 | `{{dominio}}` · `{{url_pagina}}` | `DOMINIO` do `config.mjs` (sem barra no fim) · `<dominio>/` na home, `<dominio>/<slug>/` nas internas | URLs absolutas do `head`: `og:image`, `og:url` e `canonical`. O site é publicado na raiz do domínio do cliente (`www.institutorocca.com.br`) por `scripts/publicar.mjs` |
 | `{{whats_numero_visivel}}` | `+55 11 99324-6550` | o número por extenso |
+| `{{gtm_id}}` | `GTM_ID` do `config.mjs` (`GTM-T2TRGJSB`) | contêiner do Google Tag Manager: script no topo do partial `head`, noscript no início do `skip` (logo depois do `<body>`). Nenhum template precisa escrever nada |
 | `{{ano}}` · `{{slug}}` · `{{titulo}}` · `{{descricao}}` | — | raramente necessários fora dos partials |
 | `{{stream_<chave>}}` | UID do vídeo em `STREAM_IDS` (`config.mjs`), vazio hoje | `data-stream="{{stream_tulio}}"`; chaves: `institucional`, `fundo`, `tulio`, `breno`, `ana`, `casa_tulio`, `casa_breno`, `casa_ana` |
 | `{{head}}` `{{skip}}` `{{nav}}` `{{menu}}` `{{fecho}}` `{{footer}}` `{{whats}}` `{{lightbox}}` | o partial inteiro | qualquer `partials/x.html` vira `{{x}}` |

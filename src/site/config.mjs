@@ -34,5 +34,9 @@ export const STREAM_IDS = {
    domínio (scripts/publicar.mjs): a home é <DOMINIO>/ e as internas, <DOMINIO>/<slug>/. */
 export const DOMINIO = 'https://www.institutorocca.com.br';
 
+/* Google Tag Manager: o contêiner do site. Vira {{gtm_id}} nos partials head (script, no topo do <head>)
+   e skip (noscript, logo depois do <body>). As tags (Analytics, Meta, Google Ads) se configuram no GTM, não aqui. */
+export const GTM_ID = 'GTM-T2TRGJSB';
+
 export const ANO = '2026';
 export const PENDENTE = '[PENDENTE]';                        // o rótulo visível; nunca some sozinho
