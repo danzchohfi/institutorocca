@@ -1,0 +1,41 @@
+# Publica o site do Instituto Rocca no GitHub Pages a cada push (branch de trabalho ou main),
+# na raiz do domínio do cliente (Settings → Pages → Custom domain: www.institutorocca.com.br).
+# Sem build: as páginas e os bundles (site/app.js, site/interno.js) já estão versionados.
+# scripts/publicar.mjs monta _site/ só com o site e o que ele usa; conceitos, documentos e
+# fontes do código ficam de fora.
+name: Publicar no GitHub Pages
+
+on:
+  push:
+    branches:
+      - claude/instituto-rocca-home-concepts-fzadlo
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Montar o site
+        run: |
+          node scripts/publicar.mjs
+          du -sh _site
+      - uses: actions/upload-pages-artifact@v3
+      - id: deploy
+        uses: actions/deploy-pages@v4
