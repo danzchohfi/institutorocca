@@ -150,6 +150,7 @@ function gerar(arquivoTemplate, problemas, avisos) {
     bundle: slug === 'index' ? 'app.js' : 'interno.js',                                 // a home leva o three.js; as internas não
     dominio: String(cfg.DOMINIO || '').replace(/\/+$/, ''),                             // URL absoluta (og:image, og:url, canonical)
     url_pagina: `${String(cfg.DOMINIO || '').replace(/\/+$/, '')}/${slug === 'index' ? '' : `${slug}/`}`, // https://…/ ou https://…/<slug>/ (site na raiz do domínio)
+    gtm_id: cfg.GTM_ID,                                                                 // Google Tag Manager (partials head e skip)
     ano: cfg.ANO,
     whats_numero: cfg.WHATS_NUMERO,
     whats_numero_visivel: cfg.WHATS_NUMERO_VISIVEL,
