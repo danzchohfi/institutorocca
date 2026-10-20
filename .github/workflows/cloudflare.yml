@@ -1,0 +1,51 @@
+# Publica o site do Instituto Rocca no Cloudflare (Worker só com arquivos estáticos) a cada push na
+# branch de produção. Até a troca do domínio, o resultado fica só no endereço de teste *.workers.dev
+# (fora dos buscadores) e o site continua saindo do GitHub Pages (pages.yml). Passo a passo: docs/cloudflare.md.
+#
+# Configuração do repositório (Settings → Secrets and variables → Actions):
+#   - variável CLOUDFLARE_ACCOUNT_ID e segredo CLOUDFLARE_API_TOKEN. Sem a variável, o workflow não roda;
+#   - variável HOSPEDAGEM = cloudflare, depois que www.institutorocca.com.br estiver no Worker: este
+#     workflow passa a avisar o Bing (IndexNow) e o pages.yml para de publicar.
+name: Publicar no Cloudflare
+
+on:
+  push:
+    branches:
+      - claude/instituto-rocca-home-concepts-fzadlo
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    # só a branch de produção publica (um Run workflow em outra branch não faz nada)
+    if: vars.CLOUDFLARE_ACCOUNT_ID != '' && github.ref == 'refs/heads/claude/instituto-rocca-home-concepts-fzadlo'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22   # o wrangler 4 pede Node 22 ou mais novo
+      - name: Montar o site
+        run: |
+          node scripts/publicar.mjs --cloudflare
+          du -sh _site
+      - name: Publicar
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: "false"
+        run: npx --yes wrangler@4.147.0 deploy --message "${GITHUB_SHA::7}"
+      # Depois da troca do domínio (HOSPEDAGEM = cloudflare): avisa o Bing das páginas que mudaram.
+      # Falhar aqui não desfaz a publicação.
+      - name: Avisar os buscadores (IndexNow)
+        if: vars.HOSPEDAGEM == 'cloudflare'
+        continue-on-error: true
+        env:
+          ANTES: ${{ github.event.before }}
+        run: node scripts/indexnow.mjs --desde "$ANTES"
