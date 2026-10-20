@@ -42,6 +42,9 @@ copiar('shared/base.css');
 copiar('robots.txt');
 copiar('.nojekyll');
 
+/* IndexNow: o arquivo que prova ao Bing que a chave é deste domínio (scripts/indexnow.mjs usa a mesma) */
+if (cfg.INDEXNOW_CHAVE) writeFileSync(join(saida, `${cfg.INDEXNOW_CHAVE}.txt`), cfg.INDEXNOW_CHAVE);
+
 /* Redirecionamentos /site/<página>/ → /<página>/ */
 const paginas = [];
 const varrer = (dir) => {

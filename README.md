@@ -16,11 +16,14 @@ O cliente escolheu a **abertura em partículas** (versão Letras) seguida das **
 | Dr. Túlio Bovo · Dr. Breno Gondim · Dra. Ana Paula Bovo | `site/dr-tulio-bovo/`, `site/dr-breno-gondim/`, `site/dra-ana-paula-bovo/` | Uma página por médico (vídeo de apresentação, formação, o que atende) |
 | O instituto | `site/o-instituto/` | O instituto em fotos, o endereço e o mapa |
 | Conteúdo | `site/conteudo/` | O índice das perguntas, por assunto e por médico |
-| Uma página por pergunta | `site/conteudo/<pergunta>/` | 29 páginas geradas de `src/site/perguntas.mjs` por `node scripts/perguntas.mjs` (título, descrição, canonical e dados estruturados próprios; `site/sitemap.xml` e `robots.txt` saem do `site.mjs`) |
+| Uma página por pergunta | `site/conteudo/<pergunta>/` | 29 páginas geradas de `src/site/perguntas.mjs` por `node scripts/perguntas.mjs` (título, descrição, canonical e dados estruturados próprios; `site/sitemap.xml`, `site/llms.txt` e `robots.txt` saem do `site.mjs`) |
 | Contato | `site/contato/` | WhatsApp, endereço, horários, mapa |
 
 **Preview em refinamento (antes de liberar ao cliente):** https://danzchohfi.github.io/institutorocca/site/
 
+- Busca e assistentes (ChatGPT, Gemini, Copilot): a home leva os dados estruturados do Instituto (`MedicalClinic`, com
+  Doctoralia e Instagram em `sameAs`; dados em `INSTITUTO`, `src/site/config.mjs`), o site publica um `llms.txt` e cada
+  publicação avisa o Bing pelo IndexNow (`scripts/indexnow.mjs`, último passo do `pages.yml`).
 - Nenhum formulário: toda chamada para ação vai para o WhatsApp (link central em `src/site/config.mjs`).
 - Os três vídeos de produção entram pelo Cloudflare Stream (`shared/stream.js`); até o código da conta e os UIDs
   chegarem, o componente mostra o poster.

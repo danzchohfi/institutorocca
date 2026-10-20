@@ -39,3 +39,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
       - id: deploy
         uses: actions/deploy-pages@v4
+      # Avisa o Bing (busca do ChatGPT e do Copilot) das URLs publicadas. Falhar aqui não desfaz a publicação.
+      - name: Avisar os buscadores (IndexNow)
+        continue-on-error: true
+        run: node scripts/indexnow.mjs
