@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 /* ------------------------------------------------------------------------------------------
-   indexnow.mjs — avisa o Bing (e os outros buscadores do IndexNow) das URLs do site depois de cada
-   publicação. É o que faz o site aparecer no Bing, e por consequência no ChatGPT e no Copilot, sem
-   esperar o robô passar por conta própria.
+   indexnow.mjs — avisa o Bing (e os outros buscadores do IndexNow) das páginas que mudaram depois de
+   cada publicação, para que ele as rastreie sem esperar o robô passar por conta própria. O Bing é a
+   base da busca do Copilot e de boa parte da busca do ChatGPT.
 
-   Lê as URLs de site/sitemap.xml e envia para api.indexnow.org com a chave de src/site/config.mjs
-   (INDEXNOW_CHAVE), que o publicar.mjs grava em <DOMINIO>/<chave>.txt. Roda no workflow do Pages,
-   logo depois do deploy: o arquivo da chave precisa estar no ar quando o Bing for conferir.
+   Envia para api.indexnow.org com a chave de src/site/config.mjs (INDEXNOW_CHAVE), que o publicar.mjs
+   grava em <DOMINIO>/<chave>.txt. Roda no workflow do Pages, logo depois do deploy: o arquivo da chave
+   precisa estar no ar quando o Bing for conferir. O IndexNow pede para não reenviar o que não mudou,
+   por isso o workflow passa só as páginas alteradas no push; o sitemap inteiro vai na primeira
+   publicação com o IndexNow e quando o workflow é rodado à mão (Run workflow).
 
-   Uso: node scripts/indexnow.mjs
+   Uso: node scripts/indexnow.mjs <caminho>…   (como em site/<caminho>index.html: "", "nutrologia/", …)
+        node scripts/indexnow.mjs --tudo       (todas as URLs de site/sitemap.xml)
    ------------------------------------------------------------------------------------------ */
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -23,7 +26,14 @@ if (!chave) {
   process.exit(0);
 }
 
-const urls = [...readFileSync(join(raiz, 'site', 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+const args = process.argv.slice(2);
+const urls = args.includes('--tudo')
+  ? [...readFileSync(join(raiz, 'site', 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
+  : args.map((caminho) => `${dominio}/${caminho}`);
+if (!urls.length) {
+  console.log('indexnow.mjs: nenhuma página mudou nesta publicação, nada a enviar.');
+  process.exit(0);
+}
 const resposta = await fetch('https://api.indexnow.org/indexnow', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json; charset=utf-8' },

@@ -23,7 +23,7 @@ O cliente escolheu a **abertura em partículas** (versão Letras) seguida das **
 
 - Busca e assistentes (ChatGPT, Gemini, Copilot): a home leva os dados estruturados do Instituto (`MedicalClinic`, com
   Doctoralia e Instagram em `sameAs`; dados em `INSTITUTO`, `src/site/config.mjs`), o site publica um `llms.txt` e cada
-  publicação avisa o Bing pelo IndexNow (`scripts/indexnow.mjs`, último passo do `pages.yml`).
+  publicação avisa o Bing pelo IndexNow das páginas que mudaram (`scripts/indexnow.mjs`, último passo do `pages.yml`).
 - Nenhum formulário: toda chamada para ação vai para o WhatsApp (link central em `src/site/config.mjs`).
 - Os três vídeos de produção entram pelo Cloudflare Stream (`shared/stream.js`); até o código da conta e os UIDs
   chegarem, o componente mostra o poster.

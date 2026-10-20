@@ -306,8 +306,8 @@ if (problemas.length) {
   const robotsAbs = join(raiz, 'robots.txt');
   if (!existsSync(robotsAbs) || readFileSync(robotsAbs, 'utf8') !== robots) writeFileSync(robotsAbs, robots);
 
-  /* llms.txt (llmstxt.org): o resumo que assistentes como ChatGPT, Claude e Perplexity leem para saber
-     quem é o Instituto e quais páginas existem. Títulos e descrições vêm dos cabeçalhos dos templates. */
+  /* llms.txt (llmstxt.org): um resumo em texto de quem é o Instituto e quais páginas existem, para os
+     assistentes de IA que o consultam. Títulos e descrições vêm dos cabeçalhos dos templates. */
   const i = cfg.INSTITUTO;
   const paginas = listarTemplates(dirPaginas).sort((a, b) => (slugDe(b) === 'index') - (slugDe(a) === 'index')).map((t) => {
     const s = slugDe(t);
