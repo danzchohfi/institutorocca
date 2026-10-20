@@ -5,14 +5,18 @@
    base da busca do Copilot e de boa parte da busca do ChatGPT.
 
    Envia para api.indexnow.org com a chave de src/site/config.mjs (INDEXNOW_CHAVE), que o publicar.mjs
-   grava em <DOMINIO>/<chave>.txt. Roda no workflow do Pages, logo depois do deploy: o arquivo da chave
-   precisa estar no ar quando o Bing for conferir. O IndexNow pede para não reenviar o que não mudou,
-   por isso o workflow passa só as páginas alteradas no push; o sitemap inteiro vai na primeira
-   publicação com o IndexNow e quando o workflow é rodado à mão (Run workflow).
+   grava em <DOMINIO>/<chave>.txt. Roda no workflow que publica o domínio (pages.yml hoje, cloudflare.yml
+   depois da troca: docs/cloudflare.md), logo depois do deploy: o arquivo da chave precisa estar no ar
+   quando o Bing for conferir. O IndexNow pede para não reenviar o que não mudou, por isso o workflow
+   passa o commit publicado antes deste (--desde) e só vão as páginas alteradas desde ele. Vai o sitemap
+   inteiro quando não há commit anterior utilizável (Run workflow, branch nova, histórico reescrito) e
+   quando a publicação anterior ainda não tinha o IndexNow (a primeira vez).
 
-   Uso: node scripts/indexnow.mjs <arquivo>…   (relativo a site/: "index.html", "nutrologia/index.html", …)
-        node scripts/indexnow.mjs --tudo       (todas as URLs de site/sitemap.xml)
+   Uso: node scripts/indexnow.mjs --desde <commit>   (o que os workflows usam)
+        node scripts/indexnow.mjs <arquivo>…         (relativo a site/: "index.html", "nutrologia/index.html", …)
+        node scripts/indexnow.mjs --tudo             (todas as URLs de site/sitemap.xml)
    ------------------------------------------------------------------------------------------ */
+import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -26,10 +30,26 @@ if (!chave) {
   process.exit(0);
 }
 
+const git = (...args) => execFileSync('git', args, { cwd: raiz, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+
+/** Páginas (relativas a site/) alteradas desde o commit `antes`; null quando é para mandar o sitemap inteiro. */
+function alteradasDesde(antes) {
+  if (!/^[0-9a-f]{40}$/.test(antes || '') || /^0+$/.test(antes)) return null;   // Run workflow, branch nova ou valor estranho
+  try {
+    git('fetch', '-q', '--depth=1', 'origin', antes);              // o checkout do Actions só traz o commit publicado
+    git('cat-file', '-e', `${antes}:scripts/indexnow.mjs`);        // a publicação anterior ainda não avisava o Bing
+    return git('diff', '--name-only', antes, 'HEAD', '--', 'site/*index.html').split('\n').filter(Boolean).map((f) => f.replace(/^site\//, ''));
+  } catch {
+    return null;                                                   // commit anterior fora do alcance: vai tudo
+  }
+}
+
 const args = process.argv.slice(2);
-const urls = args.includes('--tudo')
+const desde = args.indexOf('--desde');
+const arquivos = desde >= 0 ? alteradasDesde(args[desde + 1]) : args.includes('--tudo') ? null : args;
+const urls = arquivos === null
   ? [...readFileSync(join(raiz, 'site', 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
-  : args.map((arquivo) => `${dominio}/${arquivo.replace(/index\.html$/, '')}`);   // a home é index.html, nunca um argumento vazio
+  : arquivos.map((arquivo) => `${dominio}/${arquivo.replace(/index\.html$/, '')}`);   // a home é index.html, nunca um argumento vazio
 if (!urls.length) {
   console.log('indexnow.mjs: nenhuma página mudou nesta publicação, nada a enviar.');
   process.exit(0);

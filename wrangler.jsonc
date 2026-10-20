@@ -1,0 +1,21 @@
+// Site do Instituto Rocca no Cloudflare: um Worker só com arquivos estáticos (sem script; requisições de
+// arquivos estáticos não são cobradas). A pasta _site/ sai de `node scripts/publicar.mjs --cloudflare` e o
+// .github/workflows/cloudflare.yml publica. Passo a passo da migração: docs/cloudflare.md.
+//
+// O domínio www.institutorocca.com.br entra pelo painel (Worker → Settings → Domains & Routes → Custom domain),
+// nunca aqui: com "routes" neste arquivo, cada publicação substituiria os domínios do Worker. Sem "routes",
+// o wrangler deploy não mexe no domínio ligado pelo painel.
+{
+  "name": "institutorocca",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./_site",
+    // /contato e /contato/index.html vão para /contato/ (307)
+    "html_handling": "auto-trailing-slash",
+    // endereço que não existe: 404
+    "not_found_handling": "none"
+  },
+  // endereço de teste https://institutorocca.<subdomínio>.workers.dev, com noindex (o _headers do publicar.mjs)
+  "workers_dev": true,
+  "preview_urls": false
+}

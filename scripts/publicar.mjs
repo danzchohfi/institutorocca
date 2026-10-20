@@ -1,5 +1,6 @@
 /* ------------------------------------------------------------------------------------------
-   publicar.mjs — monta _site/ para o GitHub Pages, no domínio do cliente (src/site/config.mjs → DOMINIO).
+   publicar.mjs — monta _site/ para o GitHub Pages ou o Cloudflare, no domínio do cliente
+   (src/site/config.mjs → DOMINIO).
 
    O site vai para a raiz do domínio: o conteúdo de site/ fica em _site/, ao lado de assets/,
    brand/ (tokens e fontes) e shared/base.css, que é tudo o que as páginas usam. Conceitos,
@@ -14,7 +15,13 @@
    Os endereços antigos (/site/…) ganham uma página que redireciona para o endereço novo, para
    não quebrar links já compartilhados.
 
-   Uso: node scripts/publicar.mjs   (gera _site/; o workflow .github/workflows/pages.yml publica)
+   Com --cloudflare entram dois arquivos que o Cloudflare lê e não serve (docs/cloudflare.md): _headers,
+   que tira dos buscadores o endereço de teste *.workers.dev (o www continua indexável), e .assetsignore,
+   que deixa de fora o .nojekyll e os .md internos de assets/. No GitHub Pages eles iriam ao ar como
+   arquivos comuns, por isso só nessa montagem.
+
+   Uso: node scripts/publicar.mjs                (gera _site/; o .github/workflows/pages.yml publica)
+        node scripts/publicar.mjs --cloudflare   (o .github/workflows/cloudflare.yml publica)
    ------------------------------------------------------------------------------------------ */
 import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
@@ -44,6 +51,13 @@ copiar('.nojekyll');
 
 /* IndexNow: o arquivo que prova ao Bing que a chave é deste domínio (scripts/indexnow.mjs usa a mesma) */
 if (cfg.INDEXNOW_CHAVE) writeFileSync(join(saida, `${cfg.INDEXNOW_CHAVE}.txt`), cfg.INDEXNOW_CHAVE);
+
+/* Cloudflare: cabeçalho noindex só nos endereços *.workers.dev (o padrão que a documentação do Cloudflare
+   indica; cada :placeholder é um trecho do endereço) e arquivos que não vão ao ar */
+if (process.argv.includes('--cloudflare')) {
+  writeFileSync(join(saida, '_headers'), 'https://:version.:subdomain.workers.dev/*\n  X-Robots-Tag: noindex\n');
+  writeFileSync(join(saida, '.assetsignore'), '.nojekyll\n*.md\n');
+}
 
 /* Redirecionamentos /site/<página>/ → /<página>/ */
 const paginas = [];
