@@ -10,7 +10,7 @@
    por isso o workflow passa só as páginas alteradas no push; o sitemap inteiro vai na primeira
    publicação com o IndexNow e quando o workflow é rodado à mão (Run workflow).
 
-   Uso: node scripts/indexnow.mjs <caminho>…   (como em site/<caminho>index.html: "", "nutrologia/", …)
+   Uso: node scripts/indexnow.mjs <arquivo>…   (relativo a site/: "index.html", "nutrologia/index.html", …)
         node scripts/indexnow.mjs --tudo       (todas as URLs de site/sitemap.xml)
    ------------------------------------------------------------------------------------------ */
 import { readFileSync } from 'node:fs';
@@ -29,7 +29,7 @@ if (!chave) {
 const args = process.argv.slice(2);
 const urls = args.includes('--tudo')
   ? [...readFileSync(join(raiz, 'site', 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
-  : args.map((caminho) => `${dominio}/${caminho}`);
+  : args.map((arquivo) => `${dominio}/${arquivo.replace(/index\.html$/, '')}`);   // a home é index.html, nunca um argumento vazio
 if (!urls.length) {
   console.log('indexnow.mjs: nenhuma página mudou nesta publicação, nada a enviar.');
   process.exit(0);

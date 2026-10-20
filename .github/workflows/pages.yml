@@ -49,7 +49,7 @@ jobs:
         run: |
           if [ -n "$ANTES" ] && [ "$ANTES" != "0000000000000000000000000000000000000000" ] \
              && git fetch -q --depth=1 origin "$ANTES" && git cat-file -e "$ANTES:scripts/indexnow.mjs" 2>/dev/null; then
-            node scripts/indexnow.mjs $(git diff --name-only "$ANTES" HEAD -- 'site/*index.html' | sed -E 's#^site/##; s#index\.html$##')
+            node scripts/indexnow.mjs $(git diff --name-only "$ANTES" HEAD -- 'site/*index.html' | sed 's#^site/##')
           else
             node scripts/indexnow.mjs --tudo
           fi
