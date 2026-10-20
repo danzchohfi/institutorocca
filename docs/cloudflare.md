@@ -8,7 +8,8 @@ Quem publica é o próprio repositório: `.github/workflows/cloudflare.yml` mont
 (`node scripts/publicar.mjs --cloudflare`) e envia a pasta `_site/` com um token. O Cloudflare nunca acessa o
 repositório.
 
-A ordem abaixo não derruba o site nem o e-mail em momento nenhum. O GitHub Pages continua no ar até a etapa 5.
+A ordem abaixo não derruba o e-mail, e o site só corre um risco pequeno no passo 14 (está explicado lá). O GitHub
+Pages continua no ar até a limpeza (passo 19).
 A troca de verdade é a variável `HOSPEDAGEM` do repositório: enquanto ela não for `cloudflare`, o GitHub Pages
 publica e avisa o Bing (IndexNow); depois, o `cloudflare.yml` faz as duas coisas e o `pages.yml` para.
 
@@ -93,14 +94,22 @@ próprio Registro.br, na troca.
 
 ## 4. Site no Cloudflare
 
-14. **www.** Em horário de pouco movimento, com as duas abas abertas antes de começar: no DNS do Cloudflare,
-    apague o CNAME `www` e, logo em seguida, no Worker `institutorocca` → Settings → Domains & Routes → Add →
-    **Custom domain** → `www.institutorocca.com.br`. O Cloudflare cria o registro e o certificado sozinho; são
-    poucos segundos de troca.
+14. **www.** Antes de começar, confira em SSL/TLS → Edge Certificates que o certificado do domínio
+    (`institutorocca.com.br, *.institutorocca.com.br`) está **Active**. Em horário de pouco movimento, com as duas
+    abas abertas: no DNS do Cloudflare, apague o CNAME `www` e, logo em seguida, no Worker `institutorocca` →
+    Settings → Domains & Routes → Add → **Custom domain** → `www.institutorocca.com.br`. O Cloudflare cria o
+    registro e o certificado sozinho.
+    - Entre apagar o CNAME e criar o Custom domain, o `www` fica sem registro. Quem consultar o endereço nesses
+      segundos pode ficar até 30 minutos sem acessar o site (o Cloudflare guarda a resposta "não existe" por
+      30 minutos, fixo no plano Free). Por isso o horário de pouco movimento e as abas prontas: quanto mais
+      rápido, menor a chance.
     - Nunca coloque o domínio no `wrangler.jsonc`: com `routes` no arquivo, cada publicação substituiria os
       domínios do Worker.
     - Conferir: `https://www.institutorocca.com.br/cdn-cgi/trace` mostra um texto do Cloudflare.
-    - Voltar atrás: apague o Custom domain e recrie o CNAME `www` → `danzchohfi.github.io` como **DNS only**.
+    - Voltar atrás: apague o Custom domain e recrie o CNAME `www` → `danzchohfi.github.io` como **DNS only**
+      (o mesmo risco de até 30 minutos vale aqui). Se o passo 17 já tiver sido feito, apague também a variável
+      `HOSPEDAGEM` e faça um push, para o GitHub Pages voltar a publicar; depois do passo 19, recoloque o domínio
+      em Settings → Pages.
 15. **HTTPS sempre.** SSL/TLS → Edge Certificates → ligue **Always Use HTTPS**. Teste:
     `http://www.institutorocca.com.br/` vira `https://`.
 16. **Endereço sem www.** Rules → Overview → Create rule → **Redirect Rule** → Wildcard pattern:
@@ -112,7 +121,8 @@ próprio Registro.br, na troca.
     variable → `HOSPEDAGEM` = `cloudflare`. A partir do próximo push, o `pages.yml` para de publicar e o
     `cloudflare.yml` passa a avisar o Bing das páginas que mudaram.
 18. **Conferir os robôs.** `https://www.institutorocca.com.br/robots.txt` igual ao do repositório (3 linhas,
-    `Allow: /`). No Bing Webmaster Tools, Inspeção de URL na home: o Bing consegue buscar a página. No
+    `Allow: /`). Se no passo 9 Training ficou em "Disallow AI Training", o Cloudflare acrescenta linhas para os
+    robôs de treino (GPTBot, ClaudeBot…); o `Allow: /` para os demais tem que continuar. No Bing Webmaster Tools, Inspeção de URL na home: o Bing consegue buscar a página. No
     Cloudflare, AI Crawl Control → Crawlers: Allow para OAI-SearchBot, ChatGPT-User e Bingbot.
 
 ## 5. Limpeza (48 h depois, com tudo funcionando)

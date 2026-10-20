@@ -34,7 +34,7 @@ const git = (...args) => execFileSync('git', args, { cwd: raiz, encoding: 'utf8'
 
 /** Páginas (relativas a site/) alteradas desde o commit `antes`; null quando é para mandar o sitemap inteiro. */
 function alteradasDesde(antes) {
-  if (!antes || /^0+$/.test(antes)) return null;                  // Run workflow ou branch nova
+  if (!/^[0-9a-f]{40}$/.test(antes || '') || /^0+$/.test(antes)) return null;   // Run workflow, branch nova ou valor estranho
   try {
     git('fetch', '-q', '--depth=1', 'origin', antes);              // o checkout do Actions só traz o commit publicado
     git('cat-file', '-e', `${antes}:scripts/indexnow.mjs`);        // a publicação anterior ainda não avisava o Bing
