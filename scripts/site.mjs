@@ -17,6 +17,7 @@ import { readdirSync, readFileSync, writeFileSync, existsSync, mkdirSync, statSy
 import { resolve, dirname, join, basename, posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as cfg from '../src/site/config.mjs';
+import { MEDICOS } from '../src/site/perguntas.mjs';
 
 const raiz = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dirPaginas = join(raiz, 'src', 'site', 'paginas');
@@ -58,6 +59,46 @@ function lerCabecalho(texto, arquivo) {
   }
   for (const k of OBRIGATORIAS) if (!meta[k]) throw new Error(`${arquivo}: o cabeçalho precisa de "${k}"`);
   return { meta: { ...PADROES, ...meta }, corpo: texto.slice(m[0].length) };
+}
+
+const json = (o) => JSON.stringify(o).replace(/</g, '\\u003c');
+const semEntidades = (s) => s.replace(/&nbsp;/g, ' ');
+
+/* ---- o Instituto como entidade (home: MedicalClinic + WebSite; llms.txt) --------------------------------
+   O @id é o mesmo que o publisher das respostas (scripts/perguntas.mjs) usa: tudo aponta para uma entidade só. */
+function dadosInstituto(dominio) {
+  const i = cfg.INSTITUTO;
+  const id = `${dominio}/#instituto`;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'MedicalClinic',
+        '@id': id,
+        name: 'Instituto Rocca',
+        description: `Instituto de Qualidade de Vida e Bem-Estar em ${i.bairro}, ${i.cidade}: Nutrologia, Endocrinologia e Dermatologia.`,
+        url: `${dominio}/`,
+        logo: `${dominio}/assets/img/logo-bordo.svg`,
+        image: `${dominio}/${PADROES.og_imagem}`,
+        telephone: cfg.WHATS_NUMERO_VISIVEL,
+        address: { '@type': 'PostalAddress', streetAddress: `${i.rua}, ${i.bairro}`, addressLocality: i.cidade, addressRegion: i.uf, postalCode: i.cep, addressCountry: 'BR' },
+        hasMap: i.mapa,
+        openingHoursSpecification: i.horarios.map((h) => ({ '@type': 'OpeningHoursSpecification', dayOfWeek: h.dias, opens: h.abre, closes: h.fecha })),
+        medicalSpecialty: ['DietNutrition', 'Endocrine', 'Dermatology'],
+        employee: Object.values(MEDICOS).map((m) => ({
+          '@type': 'Person',
+          name: m.nome,
+          url: `${dominio}/${m.slug}/`,
+          image: `${dominio}/assets/img/producao/${m.foto}.jpg`,
+          jobTitle: m.artigo === 'a' ? 'Médica' : 'Médico',
+          knowsAbout: m.area.split(' · '),
+          identifier: { '@type': 'PropertyValue', propertyID: m.crm.replace(/ \d+$/, ''), value: m.crm.replace(/^\D+/, '') },
+        })),
+        sameAs: i.perfis,
+      },
+      { '@type': 'WebSite', '@id': `${dominio}/#site`, url: `${dominio}/`, name: 'Instituto Rocca', inLanguage: 'pt-BR', publisher: { '@id': id } },
+    ],
+  };
 }
 
 const escaparAtributo = (s) => s.replace(/&(?!(?:[a-z]+|#\d+|#x[0-9a-f]+);)/gi, '&amp;').replace(/"/g, '&quot;');
@@ -151,6 +192,9 @@ function gerar(arquivoTemplate, problemas, avisos) {
     dominio: String(cfg.DOMINIO || '').replace(/\/+$/, ''),                             // URL absoluta (og:image, og:url, canonical)
     url_pagina: `${String(cfg.DOMINIO || '').replace(/\/+$/, '')}/${slug === 'index' ? '' : `${slug}/`}`, // https://…/ ou https://…/<slug>/ (site na raiz do domínio)
     gtm_id: cfg.GTM_ID,                                                                 // Google Tag Manager (partials head e skip)
+    dados_estruturados: slug === 'index'                                                // só na home: quem é o Instituto (partial head)
+      ? `<script type="application/ld+json">${json(dadosInstituto(String(cfg.DOMINIO || '').replace(/\/+$/, '')))}</script>`
+      : '',
     ano: cfg.ANO,
     whats_numero: cfg.WHATS_NUMERO,
     whats_numero_visivel: cfg.WHATS_NUMERO_VISIVEL,
@@ -261,5 +305,36 @@ if (problemas.length) {
   const robots = `User-agent: *\nAllow: /\nSitemap: ${dominio}/sitemap.xml\n`;
   const robotsAbs = join(raiz, 'robots.txt');
   if (!existsSync(robotsAbs) || readFileSync(robotsAbs, 'utf8') !== robots) writeFileSync(robotsAbs, robots);
+
+  /* llms.txt (llmstxt.org): um resumo em texto de quem é o Instituto e quais páginas existem, para os
+     assistentes de IA que o consultam. Títulos e descrições vêm dos cabeçalhos dos templates. */
+  const i = cfg.INSTITUTO;
+  const paginas = listarTemplates(dirPaginas).sort((a, b) => (slugDe(b) === 'index') - (slugDe(a) === 'index')).map((t) => {
+    const s = slugDe(t);
+    const { meta } = lerCabecalho(readFileSync(t, 'utf8'), t);
+    return { s, linha: `- [${meta.titulo}](${dominio}/${s === 'index' ? '' : `${s}/`}): ${meta.descricao}` };
+  });
+  const llms = [
+    '# Instituto Rocca',
+    '',
+    `> Instituto de Qualidade de Vida e Bem-Estar em ${i.bairro}, ${i.cidade}: Nutrologia, Endocrinologia e Dermatologia. Site oficial: ${dominio}/`,
+    '',
+    `- Endereço: ${i.rua}, ${i.bairro}, ${i.cidade}, ${i.uf}, ${i.cep} (${i.mapa})`,
+    `- Horário: ${i.horarios.map((h) => h.texto).join('; ')}`,
+    `- Agendamento: WhatsApp ${cfg.WHATS_NUMERO_VISIVEL} (https://wa.me/${cfg.WHATS_NUMERO})`,
+    ...Object.values(MEDICOS).map((m) => `- ${m.nome}: ${semEntidades(m.area)} (${semEntidades(m.frente)}), ${m.crm}. ${dominio}/${m.slug}/`),
+    ...i.perfis.map((u) => `- Perfil: ${u}`),
+    '',
+    '## Páginas',
+    '',
+    ...paginas.filter((p) => !p.s.startsWith('conteudo/')).map((p) => p.linha),
+    '',
+    '## Perguntas respondidas pelos médicos',
+    '',
+    ...paginas.filter((p) => p.s.startsWith('conteudo/')).map((p) => p.linha),
+    '',
+  ].join('\n');
+  const llmsAbs = join(dirSite, 'llms.txt');
+  if (!existsSync(llmsAbs) || readFileSync(llmsAbs, 'utf8') !== llms) writeFileSync(llmsAbs, llms);
 }
 console.log(`site.mjs ok — ${templates.length} página(s), ${gravadas} gravada(s).`);

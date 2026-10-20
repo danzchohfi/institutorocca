@@ -39,3 +39,17 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
       - id: deploy
         uses: actions/deploy-pages@v4
+      # Avisa o Bing (busca do ChatGPT e do Copilot) das páginas que mudaram neste push. Vai o sitemap
+      # inteiro quando o push anterior não tinha o IndexNow (a primeira vez) ou quando o workflow é
+      # rodado à mão. Falhar aqui não desfaz a publicação.
+      - name: Avisar os buscadores (IndexNow)
+        continue-on-error: true
+        env:
+          ANTES: ${{ github.event.before }}
+        run: |
+          if [ -n "$ANTES" ] && [ "$ANTES" != "0000000000000000000000000000000000000000" ] \
+             && git fetch -q --depth=1 origin "$ANTES" && git cat-file -e "$ANTES:scripts/indexnow.mjs" 2>/dev/null; then
+            node scripts/indexnow.mjs $(git diff --name-only "$ANTES" HEAD -- 'site/*index.html' | sed 's#^site/##')
+          else
+            node scripts/indexnow.mjs --tudo
+          fi

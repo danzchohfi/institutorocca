@@ -67,8 +67,9 @@ function template(p) {
         inLanguage: 'pt-BR',
         mainEntityOfPage: '{{url_pagina}}',
         image: `{{dominio}}/assets/img/producao/${m.foto}.jpg`,
-        author: { '@type': 'Person', name: m.nome, url: `{{dominio}}/${m.slug}/`, jobTitle: 'Médico(a)', worksFor: { '@type': 'MedicalClinic', name: 'Instituto Rocca' } },
-        publisher: { '@type': 'MedicalClinic', name: 'Instituto Rocca', address: { '@type': 'PostalAddress', streetAddress: 'Av. Indianópolis, 100', addressLocality: 'São Paulo', addressRegion: 'SP', postalCode: '04062-000', addressCountry: 'BR' }, openingHours: ['Mo-Fr 08:00-19:00', 'Sa 08:00-15:00'] },
+        author: { '@type': 'Person', name: m.nome, url: `{{dominio}}/${m.slug}/`, jobTitle: 'Médico(a)', worksFor: { '@type': 'MedicalClinic', '@id': '{{dominio}}/#instituto', name: 'Instituto Rocca' } },
+        // a entidade completa (endereço, horário, médicos, perfis) está na home, com este mesmo @id (scripts/site.mjs)
+        publisher: { '@type': 'MedicalClinic', '@id': '{{dominio}}/#instituto', name: 'Instituto Rocca', url: '{{dominio}}/' },
         articleSection: assunto,
         about: esp,
       },
