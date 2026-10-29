@@ -1,0 +1,21 @@
+/* ============================================================================
+   INSTITUTO ROCCA — /endocrinologia/ · regras só desta página
+   ----------------------------------------------------------------------------
+   O que é comum (hero interno, cabeçalho de seção, prosa, pilares, "O que
+   tratamos", perguntas, cards de médico, fecho) vem de shared/base.css e de
+   site/site.css. Aqui ficam só os ajustes de medida e de ritmo desta página.
+   Mobile-first; breakpoints 640 / 900 / 1200 / 1440; sem border-radius.
+   ============================================================================ */
+
+/* ---- Hero: a pergunta do H1 cabe numa linha só quando a coluna permite ----- */
+.pagina--endocrinologia .hero--interno .hero__texto h1 { max-width: 20ch; }
+
+/* ---- 01 · Como a gente conduz: cabeçalho ao topo, prosa ao lado, pilares abaixo ---- */
+.conduz .secao__cabeca { align-items: start; }
+.conduz .prosa .texto-grande { max-width: 30ch; }
+.conduz .pilares { margin-top: clamp(1rem, 2vw, 2rem); }
+
+/* ---- 02 · O que tratamos: fala e lista de perguntas ------------------------- */
+.tratamento__texto .fala { margin-top: clamp(2rem, 3vw, 2.8rem); }
+.tratamento__texto .tratamento__perguntas { margin-top: clamp(2.4rem, 4vw, 3.6rem); }
+/* o link inline na prosa, o par "Ver resposta → [PENDENTE]" e a linha de ligações da 04 vêm do site.css */
