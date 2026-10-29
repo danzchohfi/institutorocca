@@ -33,8 +33,8 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
         <div class="hero__quadro">
           <div class="stream stream--fundo" data-stream="{{stream_fundo}}" data-stream-modo="fundo" data-stream-titulo="Filme institucional do Instituto Rocca, sem som">
             <picture>
-              <source media="(max-width: 899.98px)" srcset="{{raiz}}assets/img/entrada-clinica-mobile.jpg">
-              <img class="stream__poster hero__poster" src="{{raiz}}assets/img/entrada-clinica.jpg" width="2731" height="1536" alt="" decoding="async">
+              <source media="(max-width: 899.98px)" srcset="{{raiz}}assets/img/producao/recepcao-01-mobile.jpg">
+              <img class="stream__poster hero__poster" src="{{raiz}}assets/img/producao/recepcao-01.jpg" width="1280" height="853" alt="" decoding="async">
             </picture>
           </div>
           <!-- só a base: legibilidade do creme sobre a foto, nunca véu inteiro -->
@@ -173,14 +173,14 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
       <div class="mosaico" data-mosaico>
         <figure class="mosaico__item mosaico__item--a">
           <div class="mosaico__moldura stream" data-stream="{{stream_casa_tulio}}" data-stream-modo="lightbox" data-stream-titulo="O instituto, por dentro · Instituto Rocca">
-            <img class="stream__poster" src="{{raiz}}assets/img/entrada-clinica.jpg" width="2731" height="1536" loading="lazy" decoding="async" alt="Recepção do Instituto Rocca: dois balcões de mármore marrom, luminárias suspensas, painel ripado bordô, chaise creme e cadeira de palhinha sob luz quente.">
+            <img class="stream__poster" src="{{raiz}}assets/img/producao/recepcao-02.jpg" srcset="{{raiz}}assets/img/producao/recepcao-02-1280.jpg 1280w, {{raiz}}assets/img/producao/recepcao-02.jpg 2400w" sizes="(min-width: 900px) 40vw, 100vw" width="2400" height="1600" loading="lazy" decoding="async" alt="Recepção do Instituto Rocca: o wordmark na parede creme iluminada, o balcão de mármore escuro e o sofá curvo creme com almofadas.">
             <button class="stream__play" type="button" hidden data-abre-lightbox="#filme" aria-label="Assistir: o instituto, por dentro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17l14-8.5z"/></svg></button>
           </div>
           <figcaption class="mosaico__legenda"><span class="numeral">01</span>A chegada</figcaption>
         </figure>
         <figure class="mosaico__item mosaico__item--b">
           <div class="mosaico__moldura">
-            <img src="{{raiz}}assets/img/espera-02.jpg" width="1600" height="1012" loading="lazy" decoding="async" alt="Sala de espera: sofá curvo creme, pufes de tecido, cadeiras de palhinha, painel de madeira clara e uma copa de mármore ao fundo.">
+            <img src="{{raiz}}assets/img/producao/recepcao-03.jpg" width="1280" height="853" loading="lazy" decoding="async" alt="Recepção com a atendente no balcão de mármore escuro; ao fundo, o sofá curvo, as poltronas e o painel de madeira da sala de espera.">
           </div>
           <figcaption class="mosaico__legenda"><span class="numeral">02</span>A espera</figcaption>
         </figure>
@@ -404,7 +404,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
 {{whats}}
 {{lightbox}}
 <!-- PRODUÇÃO — pontos de troca desta home (home.md §7):
-       abertura       assets/img/entrada-clinica.jpg (+ -mobile.jpg) → foto real da recepção (3:2 e 4:5), mesmos nomes;
+       abertura       assets/img/producao/recepcao-01.jpg (+ -mobile.jpg, recorte 4:5) → foto real da recepção;
                       data-stream do .stream--fundo → UID do filme institucional em loop mudo (config.mjs, chave fundo)
        lightbox       data-stream do #filme → UID do filme completo com som (chave institucional)
        os médicos     os cards mostram os vídeos já publicados no Instagram (embed oficial); para trocar, o permalink em data-instgrm-permalink
