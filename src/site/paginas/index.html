@@ -34,7 +34,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
           <div class="stream stream--fundo" data-stream="{{stream_fundo}}" data-stream-modo="fundo" data-stream-titulo="Filme institucional do Instituto Rocca, sem som">
             <picture>
               <source media="(max-width: 899.98px)" srcset="{{raiz}}assets/img/producao/recepcao-01-mobile.jpg">
-              <img class="stream__poster hero__poster" src="{{raiz}}assets/img/producao/recepcao-01.jpg" width="1280" height="853" alt="" decoding="async">
+              <img class="stream__poster hero__poster" src="{{raiz}}assets/img/producao/recepcao-01.jpg" srcset="{{raiz}}assets/img/producao/recepcao-01-1280.jpg 1280w, {{raiz}}assets/img/producao/recepcao-01.jpg 2400w" sizes="100vw" width="2400" height="1600" alt="" decoding="async">
             </picture>
           </div>
           <!-- só a base: legibilidade do creme sobre a foto, nunca véu inteiro -->
@@ -404,7 +404,7 @@ fecho_nota: Quem responde é o Instituto. Você conta o que parou de funcionar e
 {{whats}}
 {{lightbox}}
 <!-- PRODUÇÃO — pontos de troca desta home (home.md §7):
-       abertura       assets/img/producao/recepcao-01.jpg (+ -mobile.jpg, recorte 4:5) → foto real da recepção;
+       abertura       assets/img/producao/recepcao-01.jpg (DSC02010, versão fria; + -1280.jpg no srcset e -mobile.jpg, recorte 4:5);
                       data-stream do .stream--fundo → UID do filme institucional em loop mudo (config.mjs, chave fundo)
        lightbox       data-stream do #filme → UID do filme completo com som (chave institucional)
        os médicos     os cards mostram os vídeos já publicados no Instagram (embed oficial); para trocar, o permalink em data-instgrm-permalink
