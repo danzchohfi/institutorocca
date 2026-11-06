@@ -1,0 +1,91 @@
+/* ============================================================================
+   INSTITUTO ROCCA — /dra-ana-paula-bovo/ · regras só desta página
+   ----------------------------------------------------------------------------
+   O que é comum (hero interno com retrato e o par "Assistir: Quem eu sou",
+   componente .stream com a base escurecida, .quem__lista, .tres,
+   .lista-links, .perguntas-lista, cabeçalho de seção, fecho) vem de
+   site/site.css e shared/base.css. Aqui entra só a composição desta página:
+   o nome inteiro no H1, o vídeo vertical ao lado do texto (01), o texto com os
+   três blocos empilhados ao lado do retrato (02), o vídeo 16:9 com a sala ao
+   lado (05) e o rodapé da 05 com a linha de links para os outros médicos.
+   Mobile-first; breakpoints 640 / 900. Sem border-radius.
+   ============================================================================ */
+
+/* ---- Hero: o nome inteiro cabe em uma linha a partir de 900 px ---------------------- */
+.pagina--dra-ana-paula-bovo .hero--interno .hero__texto h1 { max-width: 20ch; }
+
+/* fecho: "Dra. Ana Paula Bovo." inteiro na segunda linha (o padrão de 14ch quebrava o nome) */
+.pagina--dra-ana-paula-bovo .fecho__chamada h2 { max-width: 24ch; }
+
+/* ---- 01 · Quem eu sou: vídeo 9:16 (col-4) + texto (col-7) ------------------------------ */
+.quem__in { align-items: start; row-gap: clamp(2.5rem, 5vw, 4rem); }
+.quem__texto h2 { max-width: 20ch; }
+@media (min-width: 900px) {
+  .quem__texto { padding-top: clamp(0px, 2vw, 32px); }
+}
+
+/* ---- 02 · Como eu conduzo: texto + três blocos à esquerda, retrato 2:3 à direita -------- */
+.conduzo__in {
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 5vw, 4rem) var(--coluna-gap);
+  align-items: start;
+}
+.conduzo__cabeca h2 { max-width: 26ch; }
+.conduzo__cabeca .texto-grande { max-width: 46ch; }
+.conduzo__foto {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 2 / 3;
+  background: var(--cor-bordo-profundo);
+}
+.conduzo .tres { margin-top: 0; }
+.conduzo .assinatura { margin-top: 1.6rem; }
+@media (min-width: 900px) {
+  .conduzo__in {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-areas: "cabeca foto" "tres foto";
+    column-gap: clamp(32px, 5vw, 96px);
+  }
+  .conduzo__cabeca { grid-area: cabeca; }
+  .conduzo__tres { grid-area: tres; }
+  .conduzo__foto {
+    grid-area: foto;
+    width: min(100%, 520px);
+    justify-self: end;
+  }
+  /* os três blocos empilhados, um sob o outro, no ritmo do retrato ao lado */
+  .conduzo .tres { grid-template-columns: 1fr; gap: 0; border-top: 0; }
+  .conduzo .tres > li { border-top: 1px solid var(--linha); padding-block: 1.8rem; }
+  .conduzo .tres > li:last-child { border-bottom: 1px solid var(--linha); }
+  .conduzo .tres__titulo { max-width: 24ch; }
+  .conduzo .tres__texto { max-width: 46ch; }
+}
+
+/* ---- 03 · O que eu trato ------------------------------------------------------------ */
+.trato .lista-links { max-width: 1040px; }
+
+/* ---- 05 · A casa, por dentro: vídeo 16:9 + a sala ao lado ----------------------------- */
+.casa__in {
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3rem) var(--coluna-gap);
+  align-items: start;
+}
+.casa__foto { margin: 0; }
+.casa__moldura { overflow: hidden; background: var(--cor-bordo-profundo); }
+.casa__moldura img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+.casa__rodape {
+  display: grid; grid-template-columns: 1fr;
+  gap: 2.5rem var(--coluna-gap);
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--linha);
+}
+.casa__outros .ligacoes { margin-top: 1.2rem; }
+@media (min-width: 640px) {
+  .casa__rodape { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+@media (min-width: 900px) {
+  .casa__in { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  /* 7 colunas em 16:9 e 5 colunas em 4:3 terminam quase na mesma altura */
+  .casa__moldura img { aspect-ratio: 4 / 3; }
+}
