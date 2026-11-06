@@ -22,7 +22,7 @@ lugares indicados; os renders de `assets/img/` continuam nos demais.
 | Arquivo | O que é | Onde entra |
 |---|---|---|
 | `recepcao-01.jpg` | Recepção: wordmark, balcão de mármore, sofá curvo e poltronas diante do painel de madeira. Desde 06/11 é a DSC02010 na versão fria pedida pelo cliente (2400 px; `-1280.jpg` no srcset); `-mobile.jpg` é o recorte 4:5 centrado no wordmark (1374×1717) | Home (abertura), O instituto (percurso: a chegada), Dr. Breno (capa do vídeo "O instituto, por dentro") |
-| `recepcao-02.jpg` | Recepção de perto: wordmark, balcão e sofá (2400 px; `-1280.jpg` no srcset) | Home (mosaico 01 · A chegada) |
+| `recepcao-02.jpg` | Recepção de perto: wordmark, balcão e sofá. Desde 06/11 na versão fria enviada pelo cliente (2400 px; `-1280.jpg` no srcset) | Home (mosaico 01 · A chegada) |
 | `recepcao-03.jpg` | Atendente no balcão da recepção, sala de espera ao fundo (1280 px) | Home (mosaico 02 · A espera), Contato (onde fica) |
 | `dr-breno-gondim-consultorio-01.jpg` | Dr. Breno sentado à mesa do consultório (1280 px) | O instituto (capa do vídeo do Dr. Breno) |
 | `dr-breno-gondim-consultorio-02.jpg` | Dr. Breno em pé junto à mesa do consultório (1280 px) | Dr. Breno (02 · Como eu conduzo) |
