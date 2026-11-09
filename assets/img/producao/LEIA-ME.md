@@ -34,7 +34,6 @@ no srcset; as que vieram como post (1080×1350) entram no tamanho original.
 | Arquivo | O que é | Onde entra |
 |---|---|---|
 | `recepcao-04.jpg` | Atendente no balcão da recepção, de frente, sob o wordmark (DSC02035) | O instituto (percurso: a espera), Dra. Ana Paula (capa do vídeo "O instituto, por dentro") |
-| `recepcao-wordmark-01.jpg` | Close do wordmark na parede, luminária em arco (DSC02019) | Home (mosaico 03 · O corredor) |
 | `recepcao-wordmark-02.jpg` | Close do wordmark, luminária em primeiro plano (DSC02045); `-mobile.jpg` é o recorte 4:5 (1374×1717) | O instituto (topo e imagem de compartilhamento) |
 | `consultorio-atendimento-02.jpg` | A mesma cena de `consultorio-atendimento-01`, na edição nova e em 2400 px (DSC02102) | Home (mosaico 04 · O consultório), O instituto (capa do vídeo do Dr. Túlio), Nutrologia (01 · Como a gente conduz) |
 | `consultorio-atendimento-03.jpg` | Médico em pé junto à cadeira, janela ao fundo (DSC02128) | Dr. Túlio (02 · Como eu conduzo) |
@@ -43,7 +42,7 @@ no srcset; as que vieram como post (1080×1350) entram no tamanho original.
 | `sala-de-aplicacao-01.jpg` | Sala de aplicação (sala de medicação), vertical, 1350×2400 | Home e O instituto (mosaico 05 · A sala de aplicação) |
 | `sala-de-procedimentos-01.jpg` | Sala de procedimentos, vertical, 1350×2400 | O instituto (percurso: o exame; capa do vídeo da Dra. Ana Paula), Dermatologia (topo, imagem de compartilhamento e 03 · Quem conduz), Dra. Ana Paula (a sala) |
 | `lounge-cafe-01.jpg` | Copa do lounge com a máquina de café (post, 1080×1350) | Home e O instituto (mosaico 06 · O lounge) |
-| `sala-de-espera-01.jpg` | Sala de espera sob o teto circular (post, 1080×1350) | O instituto (mosaico 03 · O corredor) |
+| `sala-de-espera-01.jpg` | Sala de espera sob o teto circular (post, 1080×1350) | Home e O instituto (mosaico 03 · O corredor) |
 
 As fotos de 1280 px vieram na exportação "Grande"; reenviadas em 2400–3000 px com o mesmo nome, o site troca sozinho.
 
