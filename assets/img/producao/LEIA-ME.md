@@ -16,17 +16,33 @@ Ao subir as fotos reais com estes nomes, o site troca sozinho.
 | `dra-ana-paula-bovo-03.jpg` | Idem, expressão séria | 2:3 |
 | `dra-ana-paula-bovo-04.jpg` | Idem, sorriso leve, mãos no colo | 2:3 |
 
-Fotos reais da clínica (diária de 26/10, trocadas pela página "Troca de fotos do Rocca"). Cada uma entra só nos
-lugares indicados; os renders de `assets/img/` continuam nos demais.
+Fotos reais da clínica (diária de 26/10, trocadas pelas páginas "Troca de fotos do Rocca" e, em 09/11, "Troca dos
+renders do Rocca"). Desde 09/11 o site não usa mais nenhum render de `assets/img/` (eles continuam lá para os conceitos).
 
 | Arquivo | O que é | Onde entra |
 |---|---|---|
-| `recepcao-01.jpg` | Recepção: wordmark, balcão de mármore, sofá curvo e poltronas diante do painel de madeira. Desde 06/11 é a DSC02010 na versão fria pedida pelo cliente (2400 px; `-1280.jpg` no srcset); `-mobile.jpg` é o recorte 4:5 centrado no wordmark (1374×1717) | Home (abertura), O instituto (percurso: a chegada), Dr. Breno (capa do vídeo "O instituto, por dentro") |
-| `recepcao-02.jpg` | Recepção de perto: wordmark, balcão e sofá. Desde 06/11 na versão fria enviada pelo cliente (2400 px; `-1280.jpg` no srcset) | Home (mosaico 01 · A chegada) |
+| `recepcao-01.jpg` | Recepção: wordmark, balcão de mármore, sofá curvo e poltronas diante do painel de madeira. Desde 06/11 é a DSC02010 na versão fria pedida pelo cliente (2400 px; `-1280.jpg` no srcset); `-mobile.jpg` é o recorte 4:5 centrado no wordmark (1374×1717) | Home (abertura), O instituto (percurso: a chegada; mosaico 01 · A chegada), Dr. Breno e Dr. Túlio (capa do vídeo "O instituto, por dentro"), capa do filme institucional (todas as páginas) |
+| `recepcao-02.jpg` | Recepção de perto: wordmark, balcão e sofá. Desde 06/11 na versão fria enviada pelo cliente (2400 px; `-1280.jpg` no srcset) | Home (mosaico 01 · A chegada), O instituto (mosaico 02 · A espera), Contato (imagem de compartilhamento) |
 | `recepcao-03.jpg` | Atendente no balcão da recepção, sala de espera ao fundo. Desde 06/11 na versão fria enviada pelo cliente (2400 px; `-1280.jpg` no srcset) | Home (mosaico 02 · A espera), Contato (onde fica) |
 | `dr-breno-gondim-consultorio-01.jpg` | Dr. Breno sentado à mesa do consultório (1280 px) | O instituto (capa do vídeo do Dr. Breno) |
 | `dr-breno-gondim-consultorio-02.jpg` | Dr. Breno em pé junto à mesa do consultório (1280 px) | Dr. Breno (02 · Como eu conduzo) |
 | `consultorio-atendimento-01.jpg` | Médico atendendo à mesa do consultório, cidade ao fundo (1280 px) | Endocrinologia (topo e imagem de compartilhamento) |
+
+Trocadas em 09/11 no lugar dos renders (página "Troca dos renders do Rocca"). As de câmera estão em 2400 px com `-1280.jpg`
+no srcset; as que vieram como post (1080×1350) entram no tamanho original.
+
+| Arquivo | O que é | Onde entra |
+|---|---|---|
+| `recepcao-04.jpg` | Atendente no balcão da recepção, de frente, sob o wordmark (DSC02035) | O instituto (percurso: a espera), Dra. Ana Paula (capa do vídeo "O instituto, por dentro") |
+| `recepcao-wordmark-02.jpg` | Close do wordmark, luminária em primeiro plano (DSC02045); `-mobile.jpg` é o recorte 4:5 (1374×1717) | O instituto (topo e imagem de compartilhamento) |
+| `consultorio-atendimento-02.jpg` | A mesma cena de `consultorio-atendimento-01`, na edição nova e em 2400 px (DSC02102) | Home (mosaico 04 · O consultório), O instituto (capa do vídeo do Dr. Túlio), Nutrologia (01 · Como a gente conduz) |
+| `consultorio-atendimento-03.jpg` | Médico em pé junto à cadeira, janela ao fundo (DSC02128) | Dr. Túlio (02 · Como eu conduzo) |
+| `dr-breno-gondim-consultorio-03.jpg` | A mesma cena de `dr-breno-gondim-consultorio-01`, na edição nova e em 2400 px (DSC02180) | O instituto (percurso: a consulta), Nutrologia (topo e imagem de compartilhamento) |
+| `dr-breno-gondim-consultorio-04.jpg` | A mesma cena de `dr-breno-gondim-consultorio-02`, na edição nova e em 2400 px (DSC02142) | O instituto (mosaico 04 · A sala) |
+| `sala-de-aplicacao-01.jpg` | Sala de aplicação (sala de medicação), vertical, 1350×2400 | Home e O instituto (mosaico 05 · A sala de aplicação) |
+| `sala-de-procedimentos-01.jpg` | Sala de procedimentos, vertical, 1350×2400 | O instituto (percurso: o exame; capa do vídeo da Dra. Ana Paula), Dermatologia (topo, imagem de compartilhamento e 03 · Quem conduz), Dra. Ana Paula (a sala) |
+| `lounge-cafe-01.jpg` | Copa do lounge com a máquina de café (post, 1080×1350) | Home e O instituto (mosaico 06 · O lounge) |
+| `sala-de-espera-01.jpg` | Sala de espera sob o teto circular (post, 1080×1350) | Home e O instituto (mosaico 03 · O corredor) |
 
 As fotos de 1280 px vieram na exportação "Grande"; reenviadas em 2400–3000 px com o mesmo nome, o site troca sozinho.
 
