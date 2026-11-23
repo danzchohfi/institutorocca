@@ -16,17 +16,40 @@ Ao subir as fotos reais com estes nomes, o site troca sozinho.
 | `dra-ana-paula-bovo-03.jpg` | Idem, expressão séria | 2:3 |
 | `dra-ana-paula-bovo-04.jpg` | Idem, sorriso leve, mãos no colo | 2:3 |
 
-Fotos reais da clínica (diária de 26/10, trocadas pela página "Troca de fotos do Rocca"). Cada uma entra só nos
-lugares indicados; os renders de `assets/img/` continuam nos demais.
+Fotos reais da clínica. Trocadas em três rodadas, sempre pela página de troca de fotos: 26/10, 09/11 (no lugar dos
+renders) e 23/11 (página "Fotos do site Rocca", com a segunda diária: arquivos DSC023xx a DSC026xx). O site não usa
+nenhum render de `assets/img/` (eles continuam lá para os conceitos). As de câmera estão em 2400 px no lado maior, com
+`-1280.jpg` no srcset; as de 1280 px vieram na exportação "Grande".
 
 | Arquivo | O que é | Onde entra |
 |---|---|---|
-| `recepcao-01.jpg` | Recepção: wordmark, balcão de mármore, sofá curvo e poltronas diante do painel de madeira. Desde 06/11 é a DSC02010 na versão fria pedida pelo cliente (2400 px; `-1280.jpg` no srcset); `-mobile.jpg` é o recorte 4:5 centrado no wordmark (1374×1717) | Home (abertura), O instituto (percurso: a chegada), Dr. Breno (capa do vídeo "O instituto, por dentro") |
-| `recepcao-02.jpg` | Recepção de perto: wordmark, balcão e sofá. Desde 06/11 na versão fria enviada pelo cliente (2400 px; `-1280.jpg` no srcset) | Home (mosaico 01 · A chegada) |
-| `recepcao-03.jpg` | Atendente no balcão da recepção, sala de espera ao fundo. Desde 06/11 na versão fria enviada pelo cliente (2400 px; `-1280.jpg` no srcset) | Home (mosaico 02 · A espera), Contato (onde fica) |
+| `recepcao-01.jpg` | Recepção: wordmark, balcão de mármore, sofá curvo e poltronas diante do painel de madeira (DSC02010, versão fria) | Capa do filme institucional (lightbox, todas as páginas) |
+| `recepcao-02.jpg` | Recepção de perto: wordmark, balcão e sofá (versão fria) | Home (mosaico 01 · A chegada) |
+| `recepcao-05.jpg` | Duas atendentes no balcão duplo de mármore, sob o wordmark; sofá curvo e painel de madeira ao fundo (DSC02530, 2400×1527); `-mobile.jpg` é o recorte 4:5 (1374×1717) | Home (abertura), O instituto (mosaico 01 · A chegada), Dr. Túlio (capa do vídeo "O instituto, por dentro"), Contato (imagem de compartilhamento) |
+| `recepcao-06.jpg` | A atendente no balcão sob o wordmark, com a sala de espera e o lounge ao fundo (DSC02533); `-mobile.jpg` é o recorte 4:5 (1374×1717) | O instituto (topo e imagem de compartilhamento), Dr. Breno (capa do vídeo), Contato (04 · Onde fica) |
+| `recepcao-07.jpg` | Recepção de frente: balcão duplo, wordmark, quadro vermelho e banco de palhinha (DSC02529) | Dra. Ana Paula (capa do vídeo) |
+| `sala-de-espera-02.jpg` | Sala de espera sob o teto circular: poltronas de palhinha, sofá curvo, recepção ao fundo (DSC02519) | Home (mosaico 02 · A espera), O instituto (percurso: a chegada, na versão `-1280`) |
+| `sala-de-espera-03.jpg` | Sala de espera: sofá curvo e poltrona de palhinha, copa e recepção ao fundo (DSC02524, 2400×1747) | O instituto (mosaico 02 · A espera; percurso: a espera) |
+| `corredor-01.jpg` | Corredor de madeira com as portas dos consultórios (DSC02568) | Home e O instituto (mosaico 03 · O corredor) |
+| `consultorio-mesa-01.jpg` | Consultório: mesa de mármore, cadeira preta, janela com a cidade (DSC02580) | Home (mosaico 04 · O consultório) |
+| `consultorio-mesa-02.jpg` | Consultório: mesa de mármore diante da janela, painel de madeira escura (DSC02648) | O instituto (mosaico 04 · A sala) |
+| `sala-de-aplicacao-02.jpg` | Sala de aplicação: poltronas reclináveis em primeiro plano, bancada e janela (DSC02454) | Home (mosaico 05) |
+| `sala-de-aplicacao-03.jpg` | Sala de aplicação: poltronas junto à janela e bancada (DSC02448) | O instituto (mosaico 05) |
+| `lounge-cafe-02.jpg` | Copa do lounge entre dois bancos de palhinha (DSC02535) | Home e O instituto (mosaico 06 · O lounge) |
+| `sala-de-procedimentos-02.jpg` | Cadeira reclinável em primeiro plano, mesa e painéis de madeira (DSC02400) | O instituto (percurso: o exame) |
+| `sala-de-procedimentos-03.jpg` | Mesa de mármore com computador, cadeira reclinável e janela (DSC02416) | O instituto (capa do vídeo da Dra. Ana Paula), Dra. Ana Paula (a sala) |
+| `sala-de-procedimentos-04.jpg` | Cadeira reclinável junto à janela, mesa em primeiro plano (DSC02363) | Dermatologia (topo e imagem de compartilhamento) |
+| `sala-de-procedimentos-05.jpg` | Cadeira reclinável, bancada com pia e janela (DSC02383) | Dermatologia (03 · Quem conduz: a sala) |
+| `consultorio-atendimento-01.jpg` | Médico atendendo à mesa do consultório, cidade ao fundo (1280 px) | Endocrinologia (topo e imagem de compartilhamento) |
+| `consultorio-atendimento-02.jpg` | A mesma cena, na edição nova e em 2400 px (DSC02102) | O instituto (capa do vídeo do Dr. Túlio), Nutrologia (01 · Como a gente conduz) |
+| `consultorio-atendimento-03.jpg` | Médico em pé junto à cadeira, janela ao fundo (DSC02128) | Dr. Túlio (02 · Como eu conduzo) |
 | `dr-breno-gondim-consultorio-01.jpg` | Dr. Breno sentado à mesa do consultório (1280 px) | O instituto (capa do vídeo do Dr. Breno) |
 | `dr-breno-gondim-consultorio-02.jpg` | Dr. Breno em pé junto à mesa do consultório (1280 px) | Dr. Breno (02 · Como eu conduzo) |
-| `consultorio-atendimento-01.jpg` | Médico atendendo à mesa do consultório, cidade ao fundo (1280 px) | Endocrinologia (topo e imagem de compartilhamento) |
+| `dr-breno-gondim-consultorio-03.jpg` | Dr. Breno sentado à mesa, na edição nova e em 2400 px (DSC02180) | O instituto (percurso: a consulta), Nutrologia (topo e imagem de compartilhamento) |
+
+Saíram do repositório em 23/11, por não estarem mais em nenhum lugar do site: `recepcao-03`, `recepcao-04`,
+`recepcao-wordmark-02`, `sala-de-espera-01`, `sala-de-aplicacao-01`, `sala-de-procedimentos-01`, `lounge-cafe-01`,
+`dr-breno-gondim-consultorio-04` e o recorte `recepcao-01-mobile` (estão no histórico do git).
 
 As fotos de 1280 px vieram na exportação "Grande"; reenviadas em 2400–3000 px com o mesmo nome, o site troca sozinho.
 
