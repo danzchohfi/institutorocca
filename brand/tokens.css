@@ -1,0 +1,171 @@
+/* ============================================================================
+   INSTITUTO ROCCA — tokens de marca
+   ----------------------------------------------------------------------------
+   Fonte de verdade das cores, da fonte, da escala tipográfica, dos espaços,
+   dos easings e das camadas (z-index). Todo CSS dos conceitos lê daqui.
+
+   ESTADO: identidade oficial aplicada (Manual de Identidade v1.0, pág. 18 e 21).
+   - Paleta Rocca 01–04 nos tokens --cor-bordo, --cor-areia, --cor-oliva-escuro,
+     --cor-cinza-quente; os nomes antigos (--cor-madeira, --cor-marmore,
+     --cor-grafite, --cor-oliva) continuam valendo como aliases.
+   - Semplicita Pro auto-hospedada em brand/fontes/ (300/400/500/600 + itálicas)
+     pelos @font-face abaixo; Jost fica só como reserva na pilha de --fonte.
+     Não há peso 200: títulos usam 300 (Light). Nenhum HTML carrega Google Fonts.
+
+   COMO TROCAR:
+   1) Fonte — substitua os arquivos em brand/fontes/ mantendo os nomes, ou
+      edite os @font-face abaixo e a ordem em --fonte. Títulos, botões,
+      rótulos e menu herdam de --fonte; nada mais muda.
+   2) Cores — troque só os valores --cor-* em :root. As superfícies
+      (.sup-bordo, .sup-osso, .sup-profundo) e os componentes leem das
+      variáveis derivadas (--bg, --fg, --fg-2, --acento, --rotulo, --linha,
+      --botao-*), então trocar as cores-base atualiza o site inteiro.
+   3) Logo e símbolo — assets/img/logo.svg (creme), logo-escuro.svg (= logo-bordo.svg,
+      fundos claros), simbolo.svg / simbolo-bordo.svg e favicon.svg; trocar os
+      arquivos mantendo os nomes, o HTML não muda.
+
+   Regras fixas: nunca #000 nem #FFF; nunca serifa; nunca border-radius > 0
+   (só o círculo do WhatsApp e o do play); logo nunca em areia, nunca com
+   gradiente ou efeito; wordmark nunca abaixo de 250px de largura (abaixo
+   disso, símbolo).
+   ============================================================================ */
+
+/* ---- Semplicita Pro (tipografia oficial, auto-hospedada em brand/fontes/) ---- */
+@font-face { font-family: 'Semplicita Pro'; font-weight: 300; font-style: normal; font-display: swap;
+  src: url('fontes/SemplicitaPro-300.woff2') format('woff2'), url('fontes/SemplicitaPro-300.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 300; font-style: italic; font-display: swap;
+  src: url('fontes/SemplicitaPro-300i.woff2') format('woff2'), url('fontes/SemplicitaPro-300i.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 400; font-style: normal; font-display: swap;
+  src: url('fontes/SemplicitaPro-400.woff2') format('woff2'), url('fontes/SemplicitaPro-400.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 400; font-style: italic; font-display: swap;
+  src: url('fontes/SemplicitaPro-400i.woff2') format('woff2'), url('fontes/SemplicitaPro-400i.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 500; font-style: normal; font-display: swap;
+  src: url('fontes/SemplicitaPro-500.woff2') format('woff2'), url('fontes/SemplicitaPro-500.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 500; font-style: italic; font-display: swap;
+  src: url('fontes/SemplicitaPro-500i.woff2') format('woff2'), url('fontes/SemplicitaPro-500i.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 600; font-style: normal; font-display: swap;
+  src: url('fontes/SemplicitaPro-600.woff2') format('woff2'), url('fontes/SemplicitaPro-600.ttf') format('truetype'); }
+@font-face { font-family: 'Semplicita Pro'; font-weight: 600; font-style: italic; font-display: swap;
+  src: url('fontes/SemplicitaPro-600i.woff2') format('woff2'), url('fontes/SemplicitaPro-600i.ttf') format('truetype'); }
+
+:root {
+  /* ---- Paleta — oficial do Manual de Identidade v1.0 (pág. 18) + apoio (BRIEF §4.1) ---------------------------------------------- */
+  --cor-bordo:          #550000; /* Rocca 01 — Bordô (manual) */
+  --cor-areia:          #B8997D; /* Rocca 02 — Areia (manual) */
+  --cor-oliva-escuro:   #4A3B26; /* Rocca 03 — Oliva Escuro (manual) */
+  --cor-cinza-quente:   #544D45; /* Rocca 04 — Cinza Quente (manual) */
+  --cor-bordo-profundo: #3B0000; /* gradientes do hero, footer, sombras de cor */
+  --cor-bordo-claro:    #6E1212; /* hover, linhas sobre bordô, painel ripado */
+  --cor-creme:          #F2E8D9; /* texto sobre bordô/escuro, botões sobre escuro, logo */
+  --cor-osso:           #EFE7DA; /* fundo das seções de respiro (off-white) */
+  --cor-tinta:          #2A1A16; /* texto sobre osso ("preto aberto" quente) */
+  --cor-madeira:        var(--cor-areia); /* acento quente: numerais, linhas, hover sobre osso */
+  --cor-marmore:        var(--cor-oliva-escuro); /* superfícies escuras secundárias, bordas sobre osso */
+  --cor-grafite:        var(--cor-cinza-quente); /* texto secundário sobre osso, ícones */
+  --cor-oliva:          var(--cor-oliva-escuro); /* acento alternativo (regra do feed), tags, detalhes */
+  --cor-creme-60:       rgba(242, 232, 217, .6); /* texto secundário sobre bordô (só ≥ 16px) */
+  --cor-whatsapp:       #25D366; /* só no hover do botão flutuante */
+
+  /* ---- Fonte (BRIEF §4.2) ----------------------------------------------- */
+  --fonte: 'Semplicita Pro', 'Jost', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+
+  /* ---- Escala tipográfica ------------------------------------------------ */
+  --h1:      clamp(2.6rem, 5.4vw, 5.8rem);               /* peso 300, lh 1.04 */
+  --h2:      clamp(1.9rem, 3.4vw, 3.4rem);               /* peso 300, lh 1.1 */
+  --h3:      clamp(1.25rem, 1.1rem + .7vw, 1.75rem);     /* peso 300, lh 1.25 */
+  --corpo:   clamp(1rem, .94rem + .25vw, 1.125rem);      /* 16px mobile → 18px desktop */
+  --eyebrow: clamp(.6875rem, .65rem + .15vw, .75rem);    /* 11–12px, caixa alta, tracking .28em */
+  --medida:  62ch;                                       /* largura máxima de leitura */
+
+  /* ---- Espaço e grade (BRIEF §4.3) -------------------------------------- */
+  --container: 1440px;
+  --gutter:    clamp(20px, 5vw, 96px);
+  --secao:     clamp(96px, 12vw, 200px);
+  --coluna-gap: clamp(16px, 2vw, 32px);
+  --espaco-1: .5rem;
+  --espaco-2: 1rem;
+  --espaco-3: 1.5rem;
+  --espaco-4: 2.5rem;
+  --espaco-5: 4rem;
+  --espaco-6: 6rem;
+  --nav-altura: 88px;
+
+  /* ---- Motion (BRIEF §4.4): nada quica, nada pisca ----------------------- */
+  --ease-out:   cubic-bezier(.22, 1, .36, 1);
+  --ease-inout: cubic-bezier(.65, 0, .35, 1);
+  --dur-rapida: .25s;
+  --dur-media:  .6s;
+  --dur-lenta:  1.1s;
+  --dur-imagem: 1.4s;
+
+  /* ---- Camadas ----------------------------------------------------------- */
+  --z-whats:     80;
+  --z-menu:      90;
+  --z-nav:       100;
+  --z-lightbox:  110;
+  --z-preloader: 120;
+
+  /* ---- Superfície padrão = bordô (o escuro domina) ----------------------- */
+  --bg:     var(--cor-bordo);
+  --fg:     var(--cor-creme);
+  --fg-2:   var(--cor-creme-60);
+  --acento: var(--cor-madeira);
+  --rotulo: var(--cor-madeira);
+  --linha:  rgba(242, 232, 217, .18);
+  --botao-bg:       var(--cor-creme);
+  --botao-fg:       var(--cor-bordo);
+  --botao-hover-bg: var(--cor-madeira);
+  --botao-hover-fg: var(--cor-bordo);
+  --foco: var(--cor-creme);
+}
+
+/* ---- Superfícies ---------------------------------------------------------
+   Cada uma redefine as variáveis derivadas e as aplica em background/color.
+   Componentes dentro delas (botão, linha, rótulo, tile…) se ajustam sozinhos. */
+.sup-bordo {
+  --bg:     var(--cor-bordo);
+  --fg:     var(--cor-creme);
+  --fg-2:   var(--cor-creme-60);
+  --acento: var(--cor-madeira);
+  --rotulo: var(--cor-madeira);
+  --linha:  rgba(242, 232, 217, .18);
+  --botao-bg:       var(--cor-creme);
+  --botao-fg:       var(--cor-bordo);
+  --botao-hover-bg: var(--cor-madeira);
+  --botao-hover-fg: var(--cor-bordo);
+  --foco: var(--cor-creme);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.sup-osso {
+  --bg:     var(--cor-osso);
+  --fg:     var(--cor-tinta);
+  --fg-2:   var(--cor-grafite);
+  --acento: var(--cor-madeira);
+  --rotulo: var(--cor-grafite);
+  --linha:  rgba(72, 57, 39, .2);
+  --botao-bg:       var(--cor-bordo);
+  --botao-fg:       var(--cor-creme);
+  --botao-hover-bg: var(--cor-bordo-claro);
+  --botao-hover-fg: var(--cor-creme);
+  --foco: var(--cor-bordo);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.sup-profundo {
+  --bg:     var(--cor-bordo-profundo);
+  --fg:     var(--cor-creme);
+  --fg-2:   var(--cor-creme-60);
+  --acento: var(--cor-madeira);
+  --rotulo: var(--cor-madeira);
+  --linha:  rgba(242, 232, 217, .14);
+  --botao-bg:       var(--cor-creme);
+  --botao-fg:       var(--cor-bordo);
+  --botao-hover-bg: var(--cor-madeira);
+  --botao-hover-fg: var(--cor-bordo);
+  --foco: var(--cor-creme);
+  background: var(--bg);
+  color: var(--fg);
+}
