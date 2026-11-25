@@ -30,6 +30,9 @@
 .conduzo__assinatura { margin-top: 2rem; }
 .conduzo__figura .paralaxe { aspect-ratio: 3 / 2; background: var(--cor-bordo-profundo); }
 .conduzo__figura .paralaxe__in img { height: 100%; aspect-ratio: auto; }
+/* No computador a faixa 21:9 corta em cima e embaixo: o recorte sobe até o topo da foto para a
+   cabeça do Dr. Túlio (em pé, consultorio-atendimento-03) aparecer inteira; quem perde é a perna. */
+.conduzo__figura .paralaxe__in img { object-position: 50% 0%; }
 @media (min-width: 900px) { .conduzo__figura .paralaxe { aspect-ratio: 21 / 9; } }
 
 /* ---- 03 · O que eu trato: a lista respira um pouco mais que o padrão ----------------- */
